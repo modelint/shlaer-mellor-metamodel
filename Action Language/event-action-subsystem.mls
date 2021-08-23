@@ -1,0 +1,23 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color olive
+sheet D
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Event Specification 6,3
+    Signal Action 4,3
+    Parameter 2,3
+    Absolute Delivery Time 1,4
+    Relative Delivery Time 1,6
+    Delivery Time 3,5
+    Supplied Parameter 3,1
+    Data Flow 1,1
+    Destination 4,7
+    Assigner Destination 3,9
+    Instance Destination 5,9
+    Instance Set 1,11
+    Partition 1,9

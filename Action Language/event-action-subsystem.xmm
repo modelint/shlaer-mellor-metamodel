@@ -1,0 +1,82 @@
+metadata
+    Title : Event Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.1a
+    Version : 0.1.0
+    Modification date : Auguest 23, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Action
+class Event Specification <import:Event>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
+class Instance Set <import:Flow>
+attributes
+    Name {I}
+    Activity {I,Rxx}
+    Domain {I,Rxx}
+--
+class Partition
+attributes
+    Name {I}
+    Activity {I, Rxx}
+    Domain  {I, Rxx}
+--
+class Relative Delivery Time
+attributes
+    Action {I, Rxx}
+    Delay : Duration
+--
+class Absolute Delivery Time
+attributes
+    Action {I, Rxx}
+    When : Time
+--
+class Delivery Time
+attributes
+    Action {I, Rxx}
+--
+class Signal Action
+attributes
+    Action {I, R800}
+    Activity {I, R800}
+    Domain {I, R800, R802}
+    Event spec {R802}
+--
+class Parameter <import:Signature>
+attributes
+    Name {I}
+    Signature {I}
+    Domain {I}
+--
+class Supplied Parameter
+attributes
+    Action {I, R801}
+    Activity {I,R801}
+    Data flow {I, R801}
+--
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Domain {I}
+--
+class Destination
+attributes
+    Name {I}
+    Domain {I,Rxx}
+--
+class Assigner Destination
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Instance Destination
+attributes
+    Instance set {I}
+    Activity {I}
+    Domain {I}
+--
