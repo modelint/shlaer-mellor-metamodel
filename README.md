@@ -4,4 +4,6 @@ I'm starting this repository to pull together a public metamodel of the Shlaer-M
 
 I am planning to submit this to the Shlaer Mellor Commons for review later in late 2021 / early 2022.
 
+If accepted by the community (with community contributions, no doubt), I'll remove the 'Leon Starr' part from the title ;)
+
 Just getting started, but I have a lot of existing material to upload so you should see updates soon.
