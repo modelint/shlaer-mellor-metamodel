@@ -1,0 +1,112 @@
+metadata
+    Title : Flow Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.2a
+    Version : 0.1.0
+    Modification date : September 8, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Flow
+class Activity
+attributes
+    ID : Activity ID {I}
+    Domain {I}
+--
+class Flow
+attributes
+    ID : Flow ID {I}
+    Activity {I, R800}
+    Domain {I, R800}
+--
+class Data Flow
+attributes
+    ID {R801}
+    Activity {R801}
+    Domain {R801}
+--
+class Class <import:Class>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Control Flow
+attributes
+    ID {R801}
+    Activity {R801}
+    Domain {R801}
+--
+class Instance Flow
+attributes
+    ID {R802}
+    Activity {R802}
+    Domain {R802, R803}
+    Class {R803}
+--
+class Table Flow
+attributes
+    ID {R802}
+    Activity {R802}
+    Domain {R802}
+--
+class Scalar Flow
+attributes
+    ID {R802}
+    Activity {R802}
+    Domain {R802}
+    Type {R807}
+--
+class Table Header
+attributes
+    Table {I, R804}
+    Activity {I, R804}
+    Domain {I, R804}
+--
+class Table Attribute
+attributes
+    Name : Attribute Name {I}
+    Table {I, R805}
+    Activity {I, R805}
+    Domain {I, R805}
+    Type {R806}
+--
+class Type
+attributes
+    Name : Type Name {I}
+--
+relationships
+    R800
+    conducts values in, 1 Activity
+    values are conducted by, Mc Flow
+--
+    R801
+    Flow +
+        Data Flow
+        Control Flow
+--
+    R802
+    Data Flow +
+        Instance Flow
+        Table Flow
+        Scalar Flow
+--
+    R803
+    flows instances of, 1 Class
+    types, Mc Instance Flow
+--
+    R804
+    flows tuples defined by, 1 Table Header
+    types, 1 Table Flow
+--
+    R805
+    column is defined by, Mc Table Attribute
+    defines column of, 1 Table Header
+--
+    R806
+    constrains values by, 1 Type
+    types, Mc Table Attribute
+--
+    R807
+    is typed by, 1 Type
+    types, Mc Scalar Flow
+--
