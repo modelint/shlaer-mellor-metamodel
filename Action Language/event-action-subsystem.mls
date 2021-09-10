@@ -2,22 +2,34 @@ diagram class
 notation Starr
 presentation default
 orientation landscape
-color olive
+color pink
 sheet D
 padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
+    Association 3,11
+    Data Flow 1,1
+    Supplied Parameter 3,1
     Event Specification 6,3
     Signal Action 4,3
-    Parameter 2,3
-    Absolute Delivery Time 1,4
-    Relative Delivery Time 1,6
-    Delivery Time 3,5
-    Supplied Parameter 3,1
-    Data Flow 1,1
+    Event Parameter 2,3
+    Absolute Delivery Time/2 2,5
+    Relative Delivery Time/2 2,6
+    Delivery Time 3,5-6
     Destination 4,7
-    Assigner Destination 3,9
-    Instance Destination 5,9
-    Instance Set 1,11
-    Partition 1,9
+    Assigner Destination/2 3,8-9
+    Instance Destination/2 5,8-9
+    Instance Flow 5,11
+    Single Instance Flow 2,11
+connectors
+    +R850 : -/1 b|Signal Action : -/2 t*|Event Parameter, r|Supplied Parameter
+    +R851 : +/2 t|Signal Action : -/2 b*|Event Specification
+    +R852 : +/2 b|Supplied Parameter : +/2 t*|Data Flow
+    +R853 : +/2 r|Signal Action : +/2 l*|Destination
+    +R854 : r|Destination { l|Instance Destination, l|Assigner Destination }
+    +R855.2 : +/1 t|Delivery Time : -/2 r-2|Signal Action
+    +R856 : b|Delivery Time { t|Absolute Delivery Time, t|Relative Delivery Time }
+    +R857 : +/3 r|Instance Destination : -/3 l*|Instance Flow
+    +R858 : +/2 r|Assigner Destination : -/3 l*|Association
+    +R859 : +/2 b|Assigner Destination : -/2 l|Single Instance Flow

@@ -2,8 +2,8 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2a
-    Version : 0.1.0
-    Modification date : September 8, 2021
+    Version : 0.2.0
+    Modification date : September 10, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -21,9 +21,9 @@ attributes
 --
 class Data Flow
 attributes
-    ID {R801}
-    Activity {R801}
-    Domain {R801}
+    ID {I, R801}
+    Activity {I, R801}
+    Domain {I, R801}
 --
 class Class <import:Class>
 attributes
@@ -32,28 +32,40 @@ attributes
 --
 class Control Flow
 attributes
-    ID {R801}
-    Activity {R801}
-    Domain {R801}
+    ID {I, R801}
+    Activity {I, R801}
+    Domain {I, R801}
 --
 class Instance Flow
 attributes
-    ID {R802}
-    Activity {R802}
-    Domain {R802, R803}
+    ID {I, R802}
+    Activity {I, R802}
+    Domain {I, R802, R803}
     Class {R803}
+--
+class Multiple Instance Flow
+attributes
+    ID {I, R808}
+    Activity {I, R808}
+    Domain {I, R808}
+--
+class Single Instance Flow
+attributes
+    ID {I, R808}
+    Activity {I, R808}
+    Domain {I, R808}
 --
 class Table Flow
 attributes
-    ID {R802}
-    Activity {R802}
-    Domain {R802}
+    ID {I, R802}
+    Activity {I, R802}
+    Domain {I, R802}
 --
 class Scalar Flow
 attributes
-    ID {R802}
-    Activity {R802}
-    Domain {R802}
+    ID {I, R802}
+    Activity {I, R802}
+    Domain {I, R802}
     Type {R807}
 --
 class Table Header
@@ -109,4 +121,9 @@ relationships
     R807
     is typed by, 1 Type
     types, Mc Scalar Flow
+--
+    R808
+    Instance Flow +
+        Single Instance Flow
+        Multiple Instance Flow
 --

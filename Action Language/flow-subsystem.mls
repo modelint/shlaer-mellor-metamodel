@@ -8,17 +8,19 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 9,1
-    Class 12,8
-    Flow 9,3
-    Data Flow 11,4-5
-    Control Flow 7,4-5
-    Instance Flow 12,6
-    Table Flow 10,6
-    Table Header 10,8
-    Table Attribute 10,10
-    Scalar Flow 8,6
-    Type 8,8
+    Activity 6,1
+    Class 9,8
+    Flow 6,3
+    Data Flow 8,4-5
+    Control Flow 4,4-5
+    Instance Flow 9,6
+    Table Flow 7,6
+    Table Header 7,8
+    Table Attribute 7,10
+    Scalar Flow 5,6
+    Single Instance Flow/2 11,5
+    Multiple Instance Flow/2 11,7
+    Type 5,8
 connectors
     +R800 : -/2 r|Activity : -/3 l*|Flow
     +R801 : r|Flow { l|Data Flow, l|Control Flow }
@@ -28,4 +30,4 @@ connectors
     +R805 : +/1 r|Table Header : -/2 l*|Table Attribute
     +R806 : +/1 b|Table Attribute : -/1 r|Type
     +R807 : +/1 r|Scalar Flow : -/1 l*|Type
-
+    +R808 : t|Instance Flow { b|Single Instance Flow, b|Multiple Instance Flow }
