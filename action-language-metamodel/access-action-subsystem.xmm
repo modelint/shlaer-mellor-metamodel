@@ -1,0 +1,86 @@
+metadata
+    Title : Access Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.3a
+    Version : 0.1.0
+    Modification date : September 11, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Access Action
+class Selection
+attributes
+    ID : Selection ID {I}
+    Expression : Selection Expression
+--
+class Zero One Selection
+attributes
+    ID {I, R875}
+--
+class Zero Many Selection
+attributes
+    ID {I, R875}
+--
+class Class <import:Classes And Attributes>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Attribute In Selection
+attributes
+    Attribute {I, R877}
+    Selection {I, R877}
+    Class {I, R877}
+    Domain {I, R877}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Name {I}
+    Activity {I}
+    Domain {I}
+--
+class Multiple Instance Flow <import:Flow>
+attributes
+    Name {I}
+    Activity {I}
+    Domain {I}
+--
+class Identifier <import:Classes And Attributes>
+attributes
+    Number {I}
+    Class {I}
+    Domain {I}
+--
+relationships
+    R875
+    Selection +
+        Zero One Selection
+        Zero Many Selection
+--
+    R876
+    specifies instances in, 1 Class
+    is source of instances for, Mc Selection
+--
+    R877
+    uses in criteria, Mc Attribute
+    participates in, Mc Selection
+    1 Attribute In Selection
+--
+    R878
+    is restricted by, 1 Identifier
+    restricts, Mc Zero One Selection
+--
+    R879
+    yields, 1 Single Instance Flow
+    is yielded by, 1 Zero One Selection
+--
+    R880
+    yields, 1 Multiple Instance Flow
+    is yielded by, 1 Zero One Selection
+--
