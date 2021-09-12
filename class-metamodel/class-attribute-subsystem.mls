@@ -1,0 +1,38 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color blue steel
+sheet D
+padding l300 b400
+frame OS Engineer
+frame_presentation default
+nodes
+    Class 6,3
+    Attribute 6,6-7
+    Identifier 9,3
+    Identifier Attribute 10,6
+    Modeled Identifier/2 10-11,2
+    Referential Attribute 3,7
+    Non Referential Attribute/2 3,6
+    Required Referential Identifier/2 10-11,3-4
+    Non Specialized Class/2 7,1
+    Specialized Class/2 5-6,1
+    Derived Attribute 3-4,4
+    Independent Attribute/2 2,4
+    Attribute In Derivation/2 4-5,2-3
+    Constrained Type/2 1,7
+    Referential Role 10,9
+    Reference 3,10
+connectors
+    +R20 : +/1 r+2|Class : +/1 l*|Attribute
+    +R21 : b|Attribute  { t|Non Referential Attribute, t|Referential Attribute }
+    -R22 : +/1 r|Identifier : +/1 t|Attribute, b|Identifier Attribute
+    +R23 : l|Class { r|Non Specialized Class, r|Specialized Class }
+    -R24 : +/3 b|Referential Attribute : +/2 t*|Constrained Type
+    +R25 : l|Non Referential Attribute { r|Derived Attribute, r|Independent Attribute }
+    +R26.2 : +/2 t|Derived Attribute : -/1 l|Attribute, r|Attribute In Derivation
+    +R27 : -/3 t|Class : -/3 b*|Identifier
+    -R30 : t|Identifier { b|Modeled Identifier, b|Required Referential Identifier }
+    +R31 : -/1 r|Referential Attribute : -/1 l*|Reference, b|Referential Role
+    -R32 : +/2 r|Identifier Attribute : +/2 l*|Referential Role
