@@ -51,12 +51,6 @@ attributes
     Domain {I, R25}
     Formula : Description
 --
-class Independent Attribute
-attributes
-    Name {I, R25}
-    Class {I, R25}
-    Domain {I, R25}
---
 class Identifier
 attributes
     Number : ID Number {I}
@@ -69,6 +63,12 @@ attributes
     Attribute {I, R22}
     Class {I, R22}
     Domain {I, R22}
+--
+class Independent Attribute
+attributes
+    Name {I, R25}
+    Class {I, R25}
+    Domain {I, R25}
 --
 class Modeled Identifier
 attributes
