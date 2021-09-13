@@ -1,4 +1,4 @@
-# Welcome to Leon Starr's Shlaer-Mellor Metamodel for Executable UML
+# Proposed Shlaer-Mellor Metamodel for Executable UML by Leon Starr
 
 Shlaer-Mellor (SM) is a well defined set of execution semantics that predates the UML (Unified Modeling Language).
 UML is standard graphical notation that, among others, can be used to visualze SM semantics.
