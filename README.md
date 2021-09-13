@@ -1,4 +1,4 @@
-# Welcome to Leon Starr's Shlaer-Mellor Executable UML Metamodel
+# Welcome to Leon Starr's Shlaer-Mellor Metamodel of Executable UML
 
 I'm starting this repository to pull together a public metamodel of the Shlaer-Mellor variation of Executable UML.
 
