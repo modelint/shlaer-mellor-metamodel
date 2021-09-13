@@ -15,4 +15,6 @@ For now, I accept all the blame ;)
 
 Just getting started, but I have a lot of existing material to upload so you should see updates soon.
 
+Feel free to post questions and comments in the [discussions](https://github.com/modelint/shlaer-mellor-metamodel/discussions) section.
+
 I am using my [flatland diagram generator](https://github.com/modelint/flatland-model-diagram-editor) to produce all of the model diagrams. For now I have both the source and pdf files under configuration management for ease of access. Later I will split off the PDFs into an unversion files directory and set up a make file so that you can build the pdfs.
