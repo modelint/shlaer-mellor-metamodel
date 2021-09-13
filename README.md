@@ -5,7 +5,7 @@ UML is standard graphical notation that, among others, can be used to visualze S
 
 The semantics are described in a book titled [Executable UML: A Foundation for Model Driven Architecture](https://github.com/modelint/shlaer-mellor-metamodel/wiki/Resources).
 
-The goal of this repository is to pull together and document an open source, tool-independent metamodel of the SM semantics.
+The goal of this repository is to pull together and document (see [wiki](https://github.com/modelint/shlaer-mellor-metamodel/wiki)) an open source, tool-independent metamodel of the SM semantics.
 
 I am planning to submit this to the Shlaer Mellor Commons for review later in late 2021 / early 2022.
 
