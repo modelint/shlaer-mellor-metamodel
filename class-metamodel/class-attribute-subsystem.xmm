@@ -36,7 +36,7 @@ attributes
 --
 class Class
 attributes
-    Name : Name {I}
+    Name : Class Name {I}
     Domain {I, I2, R14}
     Element {I2, R14}
 --
