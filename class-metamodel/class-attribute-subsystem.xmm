@@ -2,12 +2,24 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 3.0.0
-    Modification date : June 27, 2017
+    Version : 3.1.0
+    /// Creation date : June 27, 2017
+    Modification date : September 13, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Class And Attribute
+class Alias
+attributes
+    Name : Alias Name {I}
+    Domain {I, R29}
+--
+class Aliased Class
+attributes
+    Class {I, R28}
+    Alias {I2, R28}
+    Domain {I,I2 R28}
+--
 class Attribute
 attributes
     Name : Name {I}
@@ -118,10 +130,6 @@ relationships
     is characterized by, M Attribute
     characterizes, 1 Class
 --
-    R27
-    has instances uniquely distinguished by, M Identifier
-    uniquely distinguishes instances of, 1 Class
---
     R21
     Attribute +
         Non Referential Attribute
@@ -150,6 +158,15 @@ relationships
     is derived from, M Attribute
     contributes to the value of, Mc Derived Attribute
     1 Attribute In Derivation
+--
+    R27
+    has instances uniquely distinguished by, M Identifier
+    uniquely distinguishes instances of, 1 Class
+--
+    R28
+    is an abbreviation for, M Class
+    name is abbreviated by, 1c Alias
+    1 Aliased Class
 --
     R30
     Identifier +

@@ -8,6 +8,8 @@ padding l300 b400
 frame OS Engineer
 frame_presentation default
 nodes
+    Alias 3,3
+    Aliased Class 4,2
     Class 6,3
     Attribute 6,6-7
     Identifier 9,3
@@ -20,7 +22,7 @@ nodes
     Specialized Class/2 5-6,1
     Derived Attribute 3-4,4
     Independent Attribute/2 2,4
-    Attribute In Derivation/2 4-5,2-3
+    Attribute In Derivation/2 4-5,5
     Constrained Type/2 1,7
     Referential Role 10,9
     Reference 3,10
@@ -31,8 +33,9 @@ connectors
     +R23 : l|Class { r|Non Specialized Class, r|Specialized Class }
     -R24 : +/3 b|Referential Attribute : +/2 t*|Constrained Type
     +R25 : l|Non Referential Attribute { r|Derived Attribute, r|Independent Attribute }
-    +R26.2 : +/2 t|Derived Attribute : -/1 l|Attribute, r|Attribute In Derivation
+    +R26.2 : -/2 t|Derived Attribute : -/1 l|Attribute, l|Attribute In Derivation
     +R27 : -/3 t|Class : -/3 b*|Identifier
+    +R28 : -/2 b|Class : -/2 t*|Alias, r|Aliased Class
     -R30 : t|Identifier { b|Modeled Identifier, b|Required Referential Identifier }
     +R31 : -/1 r|Referential Attribute : -/1 l*|Reference, b|Referential Role
     -R32 : +/2 r|Identifier Attribute : +/2 l*|Referential Role
