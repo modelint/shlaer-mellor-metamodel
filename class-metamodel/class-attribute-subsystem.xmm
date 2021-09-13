@@ -59,7 +59,7 @@ attributes
 --
 class Identifier
 attributes
-    Number : Nominal {I}
+    Number : ID Number {I}
     Class {I, R27}
     Domain {I, R27}
 --
