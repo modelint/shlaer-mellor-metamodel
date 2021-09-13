@@ -101,7 +101,7 @@ attributes
     Name {I, R21}
     Class {I, R21}
     Domain {I, R21}
-    \Type
+    Type {R24c}
 --
 class Referential Role
 attributes
