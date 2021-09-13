@@ -1,6 +1,11 @@
 # Welcome to Leon Starr's Shlaer-Mellor Metamodel for Executable UML
 
-I'm starting this repository to pull together a public metamodel of the Shlaer-Mellor variation of Executable UML.
+Shlaer-Mellor (SM) is a well defined set of execution semantics that predates the UML (Unified Modeling Language).
+UML is standard graphical notation that, among others, can be used to visualze SM semantics.
+
+The semantics are described in a book titled [Executable UML: A Foundation for Model Driven Architecture](https://github.com/modelint/shlaer-mellor-metamodel/wiki/Resources).
+
+I'm starting this repository to pull together an open source, tool-independent metamodel of the SM semantics.
 
 I am planning to submit this to the Shlaer Mellor Commons for review later in late 2021 / early 2022.
 
