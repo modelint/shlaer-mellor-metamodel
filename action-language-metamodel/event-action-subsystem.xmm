@@ -1,9 +1,10 @@
 metadata
-    Title : Event Subsystem / Shlaer-Mellor Metamodel
+    Title : Signal Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.1a
-    Version : 0.2.0
-    Modification date : September 10, 2021
+    Version : 0.2.1
+    /// Creation date : September 10, 2021
+    Modification date : October 31, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint

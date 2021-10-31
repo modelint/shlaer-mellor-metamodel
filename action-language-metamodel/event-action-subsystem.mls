@@ -2,7 +2,7 @@ diagram class
 notation Starr
 presentation default
 orientation landscape
-color pink
+color pink eraser
 sheet D
 padding l300 b350
 frame OS Engineer
