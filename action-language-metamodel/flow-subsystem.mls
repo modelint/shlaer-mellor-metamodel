@@ -26,8 +26,7 @@ connectors
     +R801 : r|Flow { l|Data Flow, l|Control Flow }
     +R802 : r|Data Flow { l|Instance Flow, l|Table Flow, l|Scalar Flow }
     +R803 : +/1 r|Instance Flow : -/2 l*|Class
-    +R804 : +/1 r|Table Flow : -/2 l*|Table Header
-    +R805 : +/1 r|Table Header : -/2 l*|Table Attribute
-    +R806 : +/1 b|Table Attribute : -/1 r|Type
-    +R807 : +/1 r|Scalar Flow : -/1 l*|Type
+    +R804 : +/1 r|Table Flow : -/2 l*|Table Attribute
+    +R806 : +/2 b|Table Attribute : -/1 r|Type
+    +R807 : +/2 r|Scalar Flow : -/1 l*|Type
     +R808 : t|Instance Flow { b|Single Instance Flow, b|Multiple Instance Flow }

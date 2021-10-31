@@ -68,23 +68,17 @@ attributes
     Domain {I, R802}
     Type {R807}
 --
-class Table Header
-attributes
-    Table {I, R804}
-    Activity {I, R804}
-    Domain {I, R804}
---
 class Table Attribute
 attributes
     Name : Attribute Name {I}
-    Table {I, R805}
-    Activity {I, R805}
-    Domain {I, R805}
+    Table {I, R804}
+    Activity {I, R804}
+    Domain {I, R804}
     Type {R806}
 --
-class Type
+class Type <import:Type>
 attributes
-    Name : Type Name {I}
+    Name {I}
 --
 relationships
     R800
@@ -107,20 +101,16 @@ relationships
     types, Mc Instance Flow
 --
     R804
-    flows tuples defined by, 1 Table Header
-    types, 1 Table Flow
---
-    R805
     column is defined by, Mc Table Attribute
-    defines column of, 1 Table Header
+    defines column of, 1 Table Flow
 --
     R806
-    constrains values by, 1 Type
-    types, Mc Table Attribute
+    is constrained by, 1 Type
+    constrains values of, Mc Table Attribute
 --
     R807
-    is typed by, 1 Type
-    types, Mc Scalar Flow
+    is constrained by, 1 Type
+    constrains values of, Mc Scalar Flow
 --
     R808
     Instance Flow +
