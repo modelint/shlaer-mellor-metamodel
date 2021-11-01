@@ -34,17 +34,23 @@ attributes
 --
 class Relative Delivery Time
 attributes
-    Action {I, Rxx}
+    Action {I, R856}
+    Activity {I, R856}
+    Domain {I, R856}
     Delay : Duration
 --
 class Absolute Delivery Time
 attributes
-    Action {I, Rxx}
+    Action {I, R856}
+    Activity {I, R856}
+    Domain {I, R856}
     When : Time
 --
 class Delivery Time
 attributes
-    Action {I, Rxx}
+    Action {I, R855}
+    Activity {I, R855}
+    Domain {I, R855}
 --
 class Signal Action
 attributes
