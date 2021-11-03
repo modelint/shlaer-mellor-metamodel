@@ -1,0 +1,48 @@
+metadata
+    Title : Activity Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.5a
+    Version : 0.1.0
+    /// Creation date : September 1, 2021
+    Modification date : November 1, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Access Action
+class Activity
+attributes
+    ID : Activity ID {I}
+    Domain {I}
+--
+class State Activity
+attributes
+    ID : Activity ID {I}
+    Domain {I}
+--
+relationships
+    R875
+    Selection +
+        Zero One Selection
+        Zero Many Selection
+--
+    R876
+    specifies instances in, 1 Class
+    is source of instances for, Mc Selection
+--
+    R877
+    uses in criteria, Mc Attribute
+    participates in, Mc Selection
+    1 Attribute In Selection
+--
+    R878
+    is restricted by, 1 Identifier
+    restricts, Mc Zero One Selection
+--
+    R879
+    yields, 1 Single Instance Flow
+    is yielded by, 1 Zero One Selection
+--
+    R880
+    yields, 1 Multiple Instance Flow
+    is yielded by, 1 Zero One Selection
+--

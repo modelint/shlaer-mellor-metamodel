@@ -2,12 +2,35 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2a
-    Version : 0.2.0
-    Modification date : September 10, 2021
+    Version : 0.3.0
+    /// Creation date : September 10, 2021
+    Modification date : November 1, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
+class Parameter
+attributes
+    Name : Parameter Name {I}
+    Activity {I, R809}
+    Domain {I, R809}
+    Type {R810}
+--
+class Method
+attributes
+    ID {I, R805}
+    Domain {I, R805}
+--
+class State Activity
+attributes
+    ID {I, R805}
+    Domain {I, R805}
+--
+class Domain Operation
+attributes
+    ID {I, R805}
+    Domain {I, R805}
+--
 class Activity
 attributes
     ID : Activity ID {I}
@@ -104,6 +127,12 @@ relationships
     column is defined by, Mc Table Attribute
     defines column of, 1 Table Flow
 --
+    R805
+    Activity +
+        State Activity
+        Method
+        Domain Operation
+--
     R806
     is constrained by, 1 Type
     constrains values of, Mc Table Attribute
@@ -116,4 +145,12 @@ relationships
     Instance Flow +
         Single Instance Flow
         Multiple Instance Flow
+--
+    R809
+    is an input to, 1 Activity
+    has input, Mc Parameter
+--
+    R810
+    is constrained by, 1 Type
+    constrains, Mc Parameter
 --
