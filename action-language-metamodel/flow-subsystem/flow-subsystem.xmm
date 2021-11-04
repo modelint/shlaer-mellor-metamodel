@@ -2,69 +2,107 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2a
-    Version : 0.3.0
+    Version : 0.4.0
     /// Creation date : September 10, 2021
     Modification date : November 1, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
-class Parameter
+class Action
 attributes
-    Name : Parameter Name {I}
-    Activity {I, R809}
-    Domain {I, R809}
-    Type {R810}
---
-class Method
-attributes
-    ID {I, R805}
-    Domain {I, R805}
---
-class State Activity
-attributes
-    ID {I, R805}
-    Domain {I, R805}
---
-class Domain Operation
-attributes
-    ID {I, R805}
-    Domain {I, R805}
+    ID : Action ID {I}
+    Activity {I, R815}
+    Domain {I, R815}
 --
 class Activity
 attributes
     ID : Activity ID {I}
     Domain {I}
 --
-class Flow
+class Asynchronous Activity
 attributes
-    ID : Flow ID {I}
-    Activity {I, R800}
-    Domain {I, R800}
+    ID {I, R805}
+    Domain {I, R805}
 --
-class Data Flow
+class Asynchronous External Entity Operation
 attributes
-    ID {I, R801}
-    Activity {I, R801}
-    Domain {I, R801}
+    ID {I, R818}
+    Domain {I, R818}
 --
 class Class <import:Class>
 attributes
     Name {I}
     Domain {I}
 --
-class Control Flow
+class Connecting Data Flow
 attributes
     ID {I, R801}
     Activity {I, R801}
     Domain {I, R801}
 --
-class Instance Flow
+class Connecting Flow
+attributes
+    To action {I, R809}
+    Activity {I, R809}
+    Domain {I, R809}
+    From action {R809}
+--
+class Control Flow
+attributes
+    ID {I, R800}
+    Activity {I, R800}
+    Domain {I, R800}
+--
+class Data Flow
+attributes
+    ID {I, R800}
+    Activity {I, R800}
+    Domain {I, R800}
+--
+class Data Flow Type
+attributes
+    Flow {I, R811}
+    Activity {I, R811}
+    Domain {I, R811}
+--
+class Domain <import:Domain>
+attributes
+    Name {I}
+--
+class Domain Operation
+attributes
+    ID {I, R810}
+    Domain {I, R810}
+--
+class External Entity <import:Domain>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Flow
+attributes
+    ID : Flow ID {I}
+    Activity {I, R822}
+    Domain {I, R822}
+--
+class Input Data Flow
+attributes
+    ID {I, R801}
+    Activity {I, R801, R814}
+    Domain {I, R801, R814}
+--
+class Instance Flow Type
 attributes
     ID {I, R802}
     Activity {I, R802}
     Domain {I, R802, R803}
     Class {R803}
+--
+class Method
+attributes
+    ID {I, R810}
+    Domain {I, R810}
 --
 class Multiple Instance Flow
 attributes
@@ -72,24 +110,45 @@ attributes
     Activity {I, R808}
     Domain {I, R808}
 --
+class Output Data Flow
+attributes
+    ID {I, R801}
+    Activity {I, R801, R817}
+    Domain {I, R801, R817}
+--
+class Scalar Flow Type
+attributes
+    Flow {I, R802}
+    Activity {I, R802}
+    Domain {I, R802}
+    Type {R807}
+--
 class Single Instance Flow
 attributes
     ID {I, R808}
     Activity {I, R808}
     Domain {I, R808}
 --
-class Table Flow
+class State <import:State>
 attributes
-    ID {I, R802}
-    Activity {I, R802}
-    Domain {I, R802}
+    Name {I}
+    State model {I}
+    Domain {I}
 --
-class Scalar Flow
+class State Activity
 attributes
-    ID {I, R802}
-    Activity {I, R802}
-    Domain {I, R802}
-    Type {R807}
+    ID {I, R818}
+    Domain {I, R818}
+--
+class Synchronous Activity
+attributes
+    ID {I, R805}
+    Domain {I, R805}
+--
+class Synchronous External Entity Operation
+attributes
+    ID {I, R810}
+    Domain {I, R810}
 --
 class Table Attribute
 attributes
@@ -99,25 +158,33 @@ attributes
     Domain {I, R804}
     Type {R806}
 --
+class Table Flow Type
+attributes
+    Flow {I, R802}
+    Activity {I, R802}
+    Domain {I, R802}
+--
 class Type <import:Type>
 attributes
     Name {I}
 --
 relationships
     R800
-    conducts values in, 1 Activity
-    values are conducted by, Mc Flow
---
-    R801
     Flow +
         Data Flow
         Control Flow
 --
-    R802
+    R801
     Data Flow +
-        Instance Flow
-        Table Flow
-        Scalar Flow
+        Input Data Flow
+        Output Data Flow
+        Connecting Data Flow
+--
+    R802
+    Data Flow Type +
+        Instance Flow Type
+        Table Flow Type
+        Scalar Flow Type
 --
     R803
     flows instances of, 1 Class
@@ -129,9 +196,8 @@ relationships
 --
     R805
     Activity +
-        State Activity
-        Method
-        Domain Operation
+        Asynchronous Activity
+        Synchronous Activity
 --
     R806
     is constrained by, 1 Type
@@ -142,15 +208,68 @@ relationships
     constrains values of, Mc Scalar Flow
 --
     R808
-    Instance Flow +
+    Instance Flow Type +
         Single Instance Flow
         Multiple Instance Flow
 --
     R809
-    is an input to, 1 Activity
-    has input, Mc Parameter
+    inputs from, 1 Action
+    outputs from, Mc Action
+    1 Connecting Flow
 --
     R810
-    is constrained by, 1 Type
-    constrains, Mc Parameter
+    Synchronous Activity +
+        Domain Operation
+        Method
+        Synchronous External Entity Operation
+--
+    R811
+    defines content of, 1 Data Flow
+    content is defined by, 1 Data Flow Type
+--
+    R812
+    defines, Mc Method
+    is defined by, 1 Class
+--
+    R813
+    Connecting Flow +
+        Control Flow
+        Input Data Flow
+--
+    R814
+    provides external input to, 1 Activity
+    gets external input from, Mc Input Data Flow
+--
+    R815
+    executes in, 1 Activity
+    executes, Mc Action
+--
+    R816
+    defines, Mc Domain Operation
+    is defined on, 1 Domain
+--
+    R817
+    yields, 1c Output Data Flow
+    is yielded by, 1 Synchronous Activity
+--
+    R818
+    Asynchronous Activity +
+        State Activity
+        Asynchronous External Entity Operation
+--
+    R819
+    is executed in, 1 State
+    executes, 1 State Activity
+--
+    R820
+    defines, Mc Asynchronous External Entity Operation
+    is defined on, 1 External Entity
+--
+    R821
+    defines, Mc Synchronous External Entity Operation
+    is defined on, 1 External Entity
+--
+    R822
+    communicates using, Mc Flow
+    communicates within, 1 Activity
 --
