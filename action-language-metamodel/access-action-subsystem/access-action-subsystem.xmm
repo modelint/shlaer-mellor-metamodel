@@ -9,18 +9,6 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
-class Criteria Selection
-attributes
-    Action {I, R883}
-    Activity {I, R883}
-    Domain {I, R883}
---
-class Criteria Many Selection
-attributes
-    Action {I, R883}
-    Activity {I, R883}
-    Domain {I, R883}
---
 class All Selection
 attributes
     Action {I, R883}
@@ -29,9 +17,9 @@ attributes
 --
 class Any One Selection
 attributes
-    Action {I, R875}
-    Activity {I, R875}
-    Domain {I, R875}
+    Action {I, R882}
+    Activity {I, R882}
+    Domain {I, R882}
 --
 class Attribute <import:Classes And Attributes>
 attributes
@@ -51,30 +39,43 @@ attributes
     Name {I}
     Domain {I}
 --
+class Criteria Many Selection
+attributes
+    Action {I, R883, R884}
+    Activity {I, R883, R884}
+    Domain {I, R883, R884}
+--
+class Criteria One Selection
+attributes
+    Action {I, R882, R884}
+    Activity {I, R882, R884}
+    Domain {I, R882, R884}
+--
+class Criteria Selection
+attributes
+    Action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+--
 class Identifier <import:Classes And Attributes>
 attributes
     Number {I}
     Class {I}
     Domain {I}
 --
+class Identifier Selection
+attributes
+    Action {I, R882}
+    Activity {I, R882}
+    Domain {I, R882, R878}
+    Identifier {R878}
+    Class {R878c}
+--
 class Multiple Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
---
-class Zero One Selection
-attributes
-    Action {I, R875}
-    Activity {I, R875}
-    Domain {I, R875}
-    SI Flow {R879}
---
-class Criteria One Selection
-attributes
-    Action {I, R875}
-    Activity {I, R875}
-    Domain {I, R875}
 --
 class Scalar Data Flow <import:Flow>
 attributes
@@ -101,22 +102,19 @@ attributes
     Activity {I}
     Domain {I}
 --
+class Zero One Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875}
+    Domain {I, R875}
+    SI Flow {R879}
+--
 class Zero Many Selection
 attributes
     Action {I, R875}
     Activity {I, R875, R880}
     Domain {I, R875, R880}
     MI Flow {R880}
-    Cardinality : One All
---
-class Identifier Selection
-attributes
-    Action {I, R875}
-    Activity {I, R875, R879}
-    Domain {I, R875, R878, R879}
-    Identifier {R878}
-    Class {R878c}
-    SI Flow {R879}
 --
 relationships
     R875
