@@ -9,13 +9,13 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
-class Non Identifier Selection
+class Criteria Selection
 attributes
     Action {I, R883}
     Activity {I, R883}
     Domain {I, R883}
 --
-class Some Selection
+class Criteria Many Selection
 attributes
     Action {I, R883}
     Activity {I, R883}
@@ -70,7 +70,7 @@ attributes
     Domain {I, R875}
     SI Flow {R879}
 --
-class Specific One Selection
+class Criteria One Selection
 attributes
     Action {I, R875}
     Activity {I, R875}
@@ -130,7 +130,7 @@ relationships
 --
     R877
     uses in criteria, M Attribute
-    participates in, Mc Non Identifier Selection
+    participates in, Mc Criteria Selection
     1 Attribute In Selection
 --
     R878
@@ -154,15 +154,15 @@ relationships
     Zero One Selection +
         Identifier Selection
         Any One Selection
-        Specific One Selection
+        Criteria One Selection
 --
     R883
     Zero Many Selection +
         All Selection
-        Some Selection
+        Criteria Many Selection
 --
     R884
-    Non Identifier Selection +
-        Specific One Selection
-        Some Selection
+    Criteria Selection +
+        Criteria One Selection
+        Criteria Many Selection
 --
