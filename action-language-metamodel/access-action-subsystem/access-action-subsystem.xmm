@@ -2,33 +2,13 @@ metadata
     Title : Access Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3a
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : September 11, 2021
-    Modification date : October 29, 2021
+    Modification date : November 04, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
-class Selection
-attributes
-    ID : Selection ID {I}
-    Expression : Selection Expression
-    Class {R876}
-    Domain {R876}
---
-class Zero One Selection
-attributes
-    ID {I, R875}
---
-class Zero Many Selection
-attributes
-    ID {I, R875}
---
-class Class <import:Classes And Attributes>
-attributes
-    Name {I}
-    Domain {I}
---
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -42,10 +22,15 @@ attributes
     Class {I, R877}
     Domain {I, R877}
 --
-class Single Instance Flow <import:Flow>
+class Class <import:Classes And Attributes>
 attributes
     Name {I}
-    Activity {I}
+    Domain {I}
+--
+class Identifier <import:Classes And Attributes>
+attributes
+    Number {I}
+    Class {I}
     Domain {I}
 --
 class Multiple Instance Flow <import:Flow>
@@ -54,11 +39,46 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Identifier <import:Classes And Attributes>
+class Scalar Data Flow <import:Flow>
 attributes
-    Number {I}
-    Class {I}
+    Flow {I}
+    Activity {I}
     Domain {I}
+--
+class Selection <import:Action>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class Selection Input
+attributes
+    Flow {I, R881}
+    Action {I, R881}
+    Activity {I, R881}
+    Domain {I, R881}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Name {I}
+    Activity {I}
+    Domain {I}
+--
+class Zero Many Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875, R880}
+    Domain {I, R875, R880}
+    MI Flow {R880}
+--
+class Zero One Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875, R880}
+    Domain {I, R875, R878, R880}
+    Identifier {R878}
+    Class {R878c}
+    SI Flow {R880}
 --
 relationships
     R875
@@ -76,8 +96,8 @@ relationships
     1 Attribute In Selection
 --
     R878
-    is restricted by, 1 Identifier
-    restricts, Mc Zero One Selection
+    criteria is defined by, 1 Identifier
+    defines criteria for, Mc Zero One Selection
 --
     R879
     yields, 1 Single Instance Flow
@@ -86,4 +106,9 @@ relationships
     R880
     yields, 1 Multiple Instance Flow
     is yielded by, 1 Zero One Selection
+--
+    R881
+    provides comparison value to, Mc Selection
+    performs comparison using value from, Mc Scalar Data Flow
+    1 Scalar Input
 --
