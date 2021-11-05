@@ -9,6 +9,30 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
+class Non Identifier Selection
+attributes
+    Action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+--
+class Some Selection
+attributes
+    Action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+--
+class All Selection
+attributes
+    Action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+--
+class Any One Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875}
+    Domain {I, R875}
+--
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -35,9 +59,22 @@ attributes
 --
 class Multiple Instance Flow <import:Flow>
 attributes
-    Name {I}
+    Flow {I}
     Activity {I}
     Domain {I}
+--
+class Zero One Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875}
+    Domain {I, R875}
+    SI Flow {R879}
+--
+class Specific One Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875}
+    Domain {I, R875}
 --
 class Scalar Data Flow <import:Flow>
 attributes
@@ -60,7 +97,7 @@ attributes
 --
 class Single Instance Flow <import:Flow>
 attributes
-    Name {I}
+    Flow {I}
     Activity {I}
     Domain {I}
 --
@@ -70,15 +107,16 @@ attributes
     Activity {I, R875, R880}
     Domain {I, R875, R880}
     MI Flow {R880}
+    Cardinality : One All
 --
-class Zero One Selection
+class Identifier Selection
 attributes
     Action {I, R875}
-    Activity {I, R875, R880}
-    Domain {I, R875, R878, R880}
+    Activity {I, R875, R879}
+    Domain {I, R875, R878, R879}
     Identifier {R878}
     Class {R878c}
-    SI Flow {R880}
+    SI Flow {R879}
 --
 relationships
     R875
@@ -91,24 +129,40 @@ relationships
     is source of instances for, Mc Selection
 --
     R877
-    uses in criteria, Mc Attribute
-    participates in, Mc Selection
+    uses in criteria, M Attribute
+    participates in, Mc Non Identifier Selection
     1 Attribute In Selection
 --
     R878
     criteria is defined by, 1 Identifier
-    defines criteria for, Mc Zero One Selection
+    defines criteria for, Mc Identifier Selection
 --
     R879
     yields, 1 Single Instance Flow
-    is yielded by, 1 Zero One Selection
+    is yielded by, 1c Zero One Selection
 --
     R880
     yields, 1 Multiple Instance Flow
-    is yielded by, 1 Zero One Selection
+    is yielded by, 1c Zero Many Selection
 --
     R881
     provides comparison value to, Mc Selection
     performs comparison using value from, Mc Scalar Data Flow
     1 Scalar Input
+--
+    R882
+    Zero One Selection +
+        Identifier Selection
+        Any One Selection
+        Specific One Selection
+--
+    R883
+    Zero Many Selection +
+        All Selection
+        Some Selection
+--
+    R884
+    Non Identifier Selection +
+        Specific One Selection
+        Some Selection
 --
