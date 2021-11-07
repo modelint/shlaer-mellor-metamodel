@@ -2,31 +2,45 @@ metadata
     Title : Link Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8a
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : November 06, 2021
-    Modification date : November 06, 2021
+    Modification date : November 07, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
-class Attribute Initialization Flow
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Attribute Initialization
 attributes
     Action {I, R828}
     Activity {I, R828}
-    Domain {I, R828}
---
-class Create Action
-attributes
-    Action {I, R8xx}
-    Activity {I, R8xx}
-    Domain {I, R8xx}
+    Domain {I, R828, R829}
+    Value {R829}
 --
 class Class <import:Classes And Attributes>
 attributes
     Name {I}
     Domain {I}
 --
-class Table Flow Type <import:Flow>
+class Create Action
+attributes
+    Action {I,R8xx}
+    Activity {I,R8xx}
+    Domain {I,R8xx}
+--
+class New Instance Flow
+attributes
+    Create action {I,R826}
+    Flow {I2,R826}
+    Activity {I,I2,R826}
+    Domain {I,I2,R826}
+--
+class Scalar Flow Type <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -41,7 +55,8 @@ attributes
 relationships
     R826
     produces new instance reference in, 1c Single Instance Flow Type
-    conveys new instances produced by, 1 Create Action
+    conveys new instances produced by, 1c Create Action
+    1 New Instance Flow
 --
     R827
     creates an instance of, 1 Class
@@ -51,4 +66,8 @@ relationships
     provides initial values for, Mc Create Action
     gets initial values from, 1c Table Flow Type
     1 Attribute Initialization Flow
+--
+    R829
+    supplies value for, 1c Attribute Initialization
+    gets value from, 1 Scalar Flow Type
 --

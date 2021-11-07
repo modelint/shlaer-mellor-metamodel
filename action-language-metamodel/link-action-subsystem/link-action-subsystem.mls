@@ -8,12 +8,15 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Attribute Initialization Flow/2 6,4
+    Scalar Flow Type/2 8,4
+    Attribute Initialization/2 6,4
+    Attribute/2 5,2
+    New Instance Flow/2 6,6
     Create Action 5,5
+    Single Instance Flow Type/2 5,8
     Class 3,5
-    Table Flow Type/2 5,2
-    Single Instance Flow Type/2 5,7
 connectors
-    -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow Type
+    -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow Type, b|New Instance Flow
     -R827 : +/2 b|Create Action : +/2 t*|Class
-    -R828 : +/2 l|Create Action : +/2 r*|Table Flow Type, b|Attribute Initialization Flow
+    -R828 : +/2 l|Create Action : +/2 r*|Attribute, b|Attribute Initialization
+    -R829 : +/2 t|Attribute Initialization : +/1 b*|Scalar Flow Type
