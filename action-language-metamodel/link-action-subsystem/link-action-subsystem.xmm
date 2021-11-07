@@ -1,14 +1,14 @@
 metadata
-    Title : Link Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.action.td.8a
+    Document ID : mint.sm-meta.action.td.9a
     Version : 0.2.0
-    /// Creation date : November 06, 2021
+    /// Creation date : November 07, 2021
     Modification date : November 07, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Access Action
+subsystem Activity
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -29,16 +29,16 @@ attributes
 --
 class Create Action
 attributes
-    Action {I,R8xx}
-    Activity {I,R8xx}
-    Domain {I,R8xx}
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
 --
 class New Instance Flow
 attributes
-    Create action {I,R826}
-    Flow {I2,R826}
-    Activity {I,I2,R826}
-    Domain {I,I2,R826}
+    Create action {I, R826}
+    Flow {I2, R826}
+    Activity {I, I2, R826}
+    Domain {I, I2, R826}
 --
 class Scalar Flow Type <import:Flow>
 attributes

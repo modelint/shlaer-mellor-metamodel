@@ -16,7 +16,7 @@ nodes
     Criteria One Selection/2 7,9 >top
     Selection Input 12,7-8
     Scalar Data Flow 11,6
-    Selection 11,9
+    Selection Action 11,9
     Identifier Selection/2 7,6
     Zero Many Selection/2 9,11-12
     Class 11,12
@@ -26,13 +26,13 @@ nodes
     Single Instance Flow/2 9,5
     Multiple Instance Flow/2 9,14
 connectors
-    +R875 : b|Selection { t|Zero One Selection, t|Zero Many Selection }
-    -R876 : +/2 r|Selection : +/2 l*|Class
+    +R875 : b|Selection Action { t|Zero One Selection, t|Zero Many Selection }
+    -R876 : +/2 r|Selection Action : +/2 l*|Class
     +R877 : +/1 r|Criteria Selection : +/1 l*|Attribute, t|Attribute In Selection
     +R878 : -/2 b|Identifier Selection : -/2 t*|Identifier
     +R879 : +/1 l|Zero One Selection : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Zero Many Selection : +/1 l*|Multiple Instance Flow
-    -R881 : +/2 l|Selection : +/2 r*|Scalar Data Flow, b|Selection Input
+    -R881 : +/2 l|Selection Action : +/2 r*|Scalar Data Flow, b|Selection Input
     +R882 : b|Zero One Selection { t|Identifier Selection, t|Any One Selection, t|Criteria One Selection }
     +R883 : b|Zero Many Selection { t|All Selection, t|Criteria Many Selection }
     +R884 : t|Criteria Selection { b|Criteria One Selection, b|Criteria Many Selection }

@@ -53,7 +53,6 @@ connectors
     -R812 : +/1 b|Method : -/1 t*|Class.2
     +R813 : t|Connecting Flow { b-2|Connecting Data Flow, b|Control Flow }
     +R814.2 : +/2 b|Input Data Flow : -/2 r|Activity
-    -R815 : +/1 b*|Action : -/1 t|Activity
     -R816 : +/1 b|Domain Operation : +/1 t*|Domain
     +R817 : -/1 r|Synchronous Activity : +/1 b|Output Data Flow
     +R818 : b|Asynchronous Activity { t|Asynchronous External Entity Operation, t|State Activity }

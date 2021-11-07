@@ -2,9 +2,9 @@ metadata
     Title : Access Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3a
-    Version : 0.3.0
+    Version : 0.4.0
     /// Creation date : September 11, 2021
-    Modification date : November 04, 2021
+    Modification date : November 07, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -83,11 +83,11 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Selection <import:Action>
+class Selection Action
 attributes
-    Action {I}
-    Activity {I}
-    Domain {I}
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
 --
 class Selection Input
 attributes

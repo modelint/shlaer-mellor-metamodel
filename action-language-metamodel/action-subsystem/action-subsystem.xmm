@@ -1,0 +1,59 @@
+metadata
+    Title : Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.5a
+    Version : 0.1.0
+    /// Creation date : September 7, 2021
+    Modification date : November 7, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Action
+class Action
+attributes
+    ID : Action ID {I}
+    Activity {I, R900}
+    Domain {I, R900}
+--
+class Activity <import:Flow>
+attributes
+    ID {I}
+    Domain {I}
+--
+class Create Action <import:Link>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Link Action <import:Link>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Delete Action <import:Link>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Signal Action <import:Signal>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+
+relationships
+    R900
+    executes in, 1 Activity
+    executes, Mc Action
+--
+    R901
+    Action +
+        Create Action
+        Signal Action
+        Delete Action
+        Link Action
+--

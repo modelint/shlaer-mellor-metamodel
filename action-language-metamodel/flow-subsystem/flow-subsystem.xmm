@@ -2,18 +2,18 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2a
-    Version : 0.4.1
+    Version : 0.4.2
     /// Creation date : September 10, 2021
-    Modification date : November 5, 2021
+    Modification date : November 7, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Flow
-class Action
+class Action <import:Action>
 attributes
-    ID : Action ID {I}
-    Activity {I, R815}
-    Domain {I, R815}
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
 class Activity
 attributes
@@ -239,10 +239,6 @@ relationships
     R814
     provides external input to, 1 Activity
     gets external input from, Mc Input Data Flow
---
-    R815
-    executes in, 1 Activity
-    executes, Mc Action
 --
     R816
     defines, Mc Domain Operation
