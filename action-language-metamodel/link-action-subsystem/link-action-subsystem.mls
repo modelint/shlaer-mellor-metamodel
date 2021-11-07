@@ -8,6 +8,8 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
+    Delete Action 5,10
+    Instance Flow Type 5,13
     Scalar Flow Type/2 8,4
     Attribute Initialization/2 6,4
     Attribute/2 5,2
@@ -20,3 +22,4 @@ connectors
     -R827 : +/2 b|Create Action : +/2 t*|Class
     -R828 : +/2 l|Create Action : +/2 r*|Attribute, b|Attribute Initialization
     -R829 : +/2 t|Attribute Initialization : +/1 b*|Scalar Flow Type
+    -R830 : +/2 r|Delete Action : +/2 l*|Instance Flow Type

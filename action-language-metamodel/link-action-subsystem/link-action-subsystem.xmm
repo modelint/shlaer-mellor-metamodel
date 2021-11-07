@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9a
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : November 07, 2021
     Modification date : November 07, 2021
     Organization : Model Integration, LLC / www.modelint.com
@@ -32,6 +32,18 @@ attributes
     Action {I, R901}
     Activity {I, R901}
     Domain {I, R901}
+--
+class Delete Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Instance Flow Type <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
 --
 class New Instance Flow
 attributes
@@ -70,4 +82,8 @@ relationships
     R829
     supplies value for, 1c Attribute Initialization
     gets value from, 1 Scalar Flow Type
+--
+    R830
+    supplies instances for, 1c Delete Action
+    deletes instances in, 1 Instance Flow Type
 --
