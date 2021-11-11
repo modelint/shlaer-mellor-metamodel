@@ -15,15 +15,15 @@ nodes
     Simple Link Action/2 12-13,7
     Associative Link Action/2 12-13,9-10
     Target Ref Instance 10-11,7
-    T Ref Instance 10-11,9
-    P Ref Instance 10-11,10
+    T Ref Instance 10-11,8-9
+    P Ref Instance 10-11,10-11
     From Ref Instance/2 10-11,12
     To Ref Instance/2 10-11,14
     Referenced Instance/2 9,8
     Non Associative Relationship/2 11,3
     Associative Relationship/2 11,5
     Delete Action 8,16
-    Instance Flow Type 5,16
+    Instance Flow Type 6,16
     Scalar Flow Type/2 8,4
     Attribute Initialization/2 6,4
     Attribute/2 5,2
@@ -34,17 +34,17 @@ nodes
 connectors
     -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow Type, b|New Instance Flow
     -R827 : +/2 b|Create Action : +/2 t*|Class
-    -R828 : +/2 l|Create Action : +/2 r*|Attribute, b|Attribute Initialization
+    -R828 : -/2 l|Create Action : +/2 r*|Attribute, b|Attribute Initialization
     -R829 : +/2 t|Attribute Initialization : +/1 b*|Scalar Flow Type
     -R830 : +/2 b|Delete Action : +/2 t*|Instance Flow Type
     +R831 : b|Link Action { t|New Link Action, t|Relink Action, t|Unlink Action }
-    -R832 : +/2 t|Create Action : +/2 l|New Link Action
+    -R832 : -/2 t|Create Action : +/2 l|New Link Action
     +R833 : b|New Link Action { t|Simple Link Action, t|Associative Link Action }
     +R834 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|From Ref Instance, b|To Ref Instance }
-    -R835 : +/2 b|Referenced Instance : +/2 t*|Single Instance Flow Type
+    -R835 : +/2 b|Referenced Instance : +/1 t*|Single Instance Flow Type
     -R836 : +/1 b|Simple Link Action : +/2 t*|Target Ref Instance
     -R837 : +/1 l|Associative Link Action : -/2 t|T Ref Instance
-    -R838 : +/1 r|Associative Link Action : +/2 t|P Ref Instance
-    -R839 : +/1 l|Relink Action : +/2 t|From Ref Instance
-    -R840 : +/1 r|Relink Action : +/2 t|To Ref Instance
-    -R841 : +/1 b|Unlink Action : +/2 t*|Delete Action
+    +R838 : +/1 r|Associative Link Action : +/2 t|P Ref Instance
+    -R839 : +/2 l|Relink Action : -/2 t|From Ref Instance
+    +R840 : +/2 r|Relink Action : +/2 t|To Ref Instance
+    -R841 : +/2 b|Unlink Action : +/2 t*|Delete Action

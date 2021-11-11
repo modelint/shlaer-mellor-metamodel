@@ -2,9 +2,9 @@ metadata
     Title : Link Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9a
-    Version : 0.3.0
+    Version : 0.4.0
     /// Creation date : November 07, 2021
-    Modification date : November 10, 2021
+    Modification date : November 11, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -12,8 +12,10 @@ subsystem Link Action
 class Associative Link Action
 attributes
     Action {I, R833}
-    Activity {I, R833}
-    Domain {I, R833}
+    Activity {I, R833, R837, R838}
+    Domain {I, R833, R837, R838}
+    T instance {R837}
+    P instance {R838}
 --
 class Attribute <import:Classes And Attributes>
 attributes
@@ -67,14 +69,17 @@ attributes
 class New Link Action
 attributes
     Action {I, R831}
-    Activity {I, R831}
-    Domain {I, R831}
+    Activity {I, R831, R832}
+    Domain {I, R831, R832}
+    Create action {R832}
 --
 class Relink Action
 attributes
     Action {I, R831}
-    Activity {I, R831}
-    Domain {I, R831}
+    Activity {I, R831, R839, R840}
+    Domain {I, R831, R839, R840}
+    From instance {R839}
+    To instance {R840}
 --
 class Scalar Flow Type <import:Flow>
 attributes
@@ -85,8 +90,9 @@ attributes
 class Simple Link Action
 attributes
     Action {I, R833}
-    Activity {I, R833}
-    Domain {I, R833}
+    Activity {I, R833, R836}
+    Domain {I, R833, R836}
+    Target instance {R836}
 --
 class Single Instance Flow Type <import:Flow>
 attributes
@@ -133,8 +139,9 @@ attributes
 class Unlink Action
 attributes
     Action {I, R831}
-    Activity {I, R831}
-    Domain {I, R831}
+    Activity {I, R831, R841}
+    Domain {I, R831, R841}
+    Delete action {R841}
 --
 relationships
     R826
