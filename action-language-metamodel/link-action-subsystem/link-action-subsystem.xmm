@@ -1,14 +1,20 @@
 metadata
-    Title : Activity Subsystem / Shlaer-Mellor Metamodel
+    Title : Link Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9a
     Version : 0.3.0
     /// Creation date : November 07, 2021
-    Modification date : November 07, 2021
+    Modification date : November 10, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Activity
+subsystem Link Action
+class Associative Link Action
+attributes
+    Action {I, R833}
+    Activity {I, R833}
+    Domain {I, R833}
+--
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -45,6 +51,12 @@ attributes
     Activity {I}
     Domain {I}
 --
+class Link Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
 class New Instance Flow
 attributes
     Create action {I, R826}
@@ -52,17 +64,77 @@ attributes
     Activity {I, I2, R826}
     Domain {I, I2, R826}
 --
+class New Link Action
+attributes
+    Action {I, R831}
+    Activity {I, R831}
+    Domain {I, R831}
+--
+class Relink Action
+attributes
+    Action {I, R831}
+    Activity {I, R831}
+    Domain {I, R831}
+--
 class Scalar Flow Type <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
 --
+class Simple Link Action
+attributes
+    Action {I, R833}
+    Activity {I, R833}
+    Domain {I, R833}
+--
 class Single Instance Flow Type <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
+--
+class From Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class To Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class T Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class P Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class Referenced Instance
+attributes
+    Flow {I, R835}
+    Activity {I, R835}
+    Domain {I, R835}
+--
+class Target Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class Unlink Action
+attributes
+    Action {I, R831}
+    Activity {I, R831}
+    Domain {I, R831}
 --
 relationships
     R826
@@ -86,4 +158,55 @@ relationships
     R830
     supplies instances for, 1c Delete Action
     deletes instances in, 1 Instance Flow Type
+--
+    R831
+    Link Action +
+        New Link Action
+        Relink Action
+        Unlink Action
+--
+    R832
+    creates referring instance with, 1 Create Action
+    creates referring instance for, Mc New Link Action
+--
+    R833
+    New Link Action +
+        Simple Link Action
+        Associative Link Action
+--
+    R834
+    Referenced Instance +
+        Target Ref Instance
+        T Ref Instance
+        P Ref Instance
+        From Ref Instance
+        To Ref Instance
+--
+    R835
+    is provided by, 1 Single Instance Flow Type
+    provides, Mc Referenced Instance
+--
+    R836
+    creates reference to, 1 Target Ref Instance
+    is created by, 1 Target Ref Instance
+--
+    R837
+    creates reference to, 1 T Ref Instance
+    is created by, 1 Associative Link Action
+--
+    R838
+    creates reference to, 1 P Ref Instance
+    is created by, 1 Associative Link Action
+--
+    R839
+    updates reference at, 1 From Ref Instance
+    reference is updated by, 1 Relink Action
+--
+    R840
+    updates reference to, 1 To Ref Instance
+    reference is updated by, 1 Relink Action
+--
+    R841
+    removes referencing instance with, 1 Delete Action
+    removes referencing instance for, Mc Unlink Action
 --
