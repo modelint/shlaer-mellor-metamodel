@@ -2,9 +2,9 @@ metadata
     Title : Access Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3a
-    Version : 0.4.0
+    Version : 0.5.0
     /// Creation date : September 11, 2021
-    Modification date : November 07, 2021
+    Modification date : November 12, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -41,11 +41,6 @@ attributes
     Write action {I, R886}
     Activity {I, R886}
     Domain {I, R886}
---
-class Class <import:Classes And Attributes>
-attributes
-    Name {I}
-    Domain {I}
 --
 class Criteria Many Selection
 attributes
@@ -143,8 +138,8 @@ relationships
         Zero Many Selection
 --
     R876
-    specifies instances in, 1 Class
-    is source of instances for, Mc Selection
+    specifies instances in, 1 Instance Flow Type
+    is source of instances for, Mc Selection Action
 --
     R877
     uses in criteria, M Attribute

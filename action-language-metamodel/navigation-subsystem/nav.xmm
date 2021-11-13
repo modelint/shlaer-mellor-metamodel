@@ -1,0 +1,189 @@
+metadata
+    Title : Navigation Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.10a
+    Version : 0.1.0
+    /// Creation date : September 11, 2021
+    Modification date : November 13, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Navigation
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Association Class <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Association Class Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927, R928}
+    Association class {R928}
+--
+class Association Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927, R928}
+    Association {R928}
+--
+class Class <import:Class And Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Cyclic Hop
+attributes
+    Path {I}
+    Domain {I, R940}
+    Aggregation : First Last All
+    Perspective {R940}
+    Rnum {R940}
+--
+class Generalization <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Generalization Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927, R929}
+    Generalization {R929}
+--
+class Path
+attributes
+    ID : Path ID {I}
+    Domain {I, Rxx, R925}
+    Dest class {R925}
+--
+class Ordinal Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927, R929}
+    Ordinal relationship {R929}
+--
+class Ordinal Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Perspective <import:Relationship>
+attributes
+    Phrase {I}
+    Rnum {I}
+    Domain {I}
+--
+class Hop
+attributes
+    Number : Ordinal {I, OR1}
+    Path {I, R926, OR1}
+    Domain {I, R926}
+--
+class Reflexive Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927, R930}
+    Reflexive association {R930}
+--
+class Reflexive Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Straight Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927}
+--
+class Subclass <import:Relationship>
+attributes
+    Rnum {I}
+    Class {I}
+    Domain {I}
+--
+class Subclass Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927}
+--
+class Superclass Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927}
+--
+relationships
+    R925
+    leads to, 1 Class
+    is destination of, Mc Path
+--
+    R926
+    traverses each relationship via, Mc Hop
+    specifies traversal of relationship in, 1 Path
+--
+    R927
+    Hop +
+        Assocation Hop
+        Generalization Hop
+        Ordinal Hop
+--
+    R928
+    traverses, 1 Association
+    is traversed by, Mc Association Hop
+--
+    R929
+    traverses, 1 Generalization
+    is traversed by, Mc Generalization Hop
+--
+    R930
+    traverses, 1 Ordinal Relationshiop
+    is traversed by, Mc Ordinal Hop
+--
+    R931
+    Association Hop +
+        Reflexive Hop
+        Association Class Hop
+        Straight Top
+--
+    R932
+    leads to, 1 Association Class
+    is visited by, Mc Association Class Hop
+--
+    R933
+    traverses, 1 Reflexive Association
+    is traversed by, Mc Reflexive Hop
+--
+    R934
+    Generalization Hop +
+        Superclass Hop
+        Subclass Hop
+--
+    R935
+    leads to, 1 Sublcass
+    is visited by, Mc Subclass Hop
+--
+    R936
+    Cyclic Hop +
+        Reflexive Hop
+        Ordinal Hop
+--
+    R937
+    hops toward, 1 Perspective
+    is visited from, Mc Cyclic Hop
+--
+    OR938
+    after, 1c Hop
+    before, 1c Hop
+--

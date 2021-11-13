@@ -1,0 +1,45 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color harolds purple crayon
+sheet D
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Cyclic Hop 3,8
+    Perspective 3,10-11
+    Association Class 5,7
+    Path 10,5-6
+    Class 10,3
+    Hop 10,8
+    Reflexive Hop 7,4
+    Straight Hop 7,5-6
+    Association Class Hop/2 7,7
+    Superclass Hop 7,8-9
+    Subclass Hop 7,10
+    Subclass 5,10
+    Straight Hop 7,5-6
+    Reflexive Association 7,2
+    Association Hop 8-9,5
+    Generalization Hop 8-9,9
+    Ordinal Hop 8-9,11-12
+    Ordinal Relationship/2 8-9,14
+    Association 8-9,2-3
+    Generalization 8-9,6-7
+connectors
+    -R925 : +/1 l|Path : +/1 r*|Class
+    -R926 : +/2 r|Path : -/2 l*|Hop
+    +R927-1 : b|Hop { t|Ordinal Hop, t|Association Hop, t|Generalization Hop }
+    -R928 : +/1 l|Association Hop : -/1 r*|Association
+    -R929 : +/1 l|Generalization Hop : -/1 r*|Generalization
+    -R930 : +/1 r|Ordinal Hop : -/1 l*|Ordinal Relationship
+    +R931 : b|Association Hop { t|Reflexive Hop, t|Association Class Hop, t|Straight Hop }
+    -R932 : +/1 b|Association Class Hop : -/1 t*|Association Class
+    -R933 : +/1 l|Reflexive Hop : -/1 r*|Reflexive Association
+    +R934 : b|Generalization Hop { t|Superclass Hop, t|Subclass Hop }
+    -R935 : +/1 b|Subclass Hop : -/1 t*|Subclass
+    +R936 : t|Cyclic Hop { b|Reflexive Hop, b|Ordinal Hop : L4 }
+    -R937 : +/1 r|Cyclic Hop : -/1 l*|Perspective
+    +OR938.2 : -/1 t+2|Hop : -/1 r+2|Hop : L11R-2 L9R-2
