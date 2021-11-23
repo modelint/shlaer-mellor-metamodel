@@ -100,6 +100,12 @@ attributes
     Rnum {I}
     Domain {I}
 --
+class Selection Action <import:Access Action>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
 class Straight Hop
 attributes
     Number {I, R927}
@@ -186,4 +192,8 @@ relationships
     OR938
     after, 1c Hop
     before, 1c Hop
+--
+    R939
+    selects across 1, Path
+    specifies navigation for 1, Selection
 --

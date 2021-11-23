@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2a
-    Version : 0.4.2
+    Version : 0.5.0
     /// Creation date : September 10, 2021
-    Modification date : November 7, 2021
+    Modification date : November 23, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -60,7 +60,7 @@ attributes
     Activity {I, R800}
     Domain {I, R800}
 --
-class Data Flow Type
+class Content
 attributes
     Flow {I, R811}
     Activity {I, R811}
@@ -92,7 +92,7 @@ attributes
     Activity {I, R801, R814}
     Domain {I, R801, R814}
 --
-class Instance Flow Type
+class Instance Flow
 attributes
     Flow {I, R802}
     Activity {I, R802}
@@ -116,7 +116,7 @@ attributes
     Activity {I, R801, R817}
     Domain {I, R801, R817}
 --
-class Scalar Flow Type
+class Scalar Flow
 attributes
     Flow {I, R802}
     Activity {I, R802}
@@ -158,7 +158,7 @@ attributes
     Domain {I, R804}
     Type {R806}
 --
-class Table Flow Type
+class Table Flow
 attributes
     Flow {I, R802}
     Activity {I, R802}
@@ -181,10 +181,10 @@ relationships
         Connecting Data Flow
 --
     R802
-    Data Flow Type +
-        Instance Flow Type
-        Table Flow Type
-        Scalar Flow Type
+    Content +
+        Instance Flow
+        Table Flow
+        Scalar Flow
 --
     R803
     flows instances of, 1 Class
@@ -208,7 +208,7 @@ relationships
     constrains values of, Mc Scalar Flow
 --
     R808
-    Instance Flow Type +
+    Instance Flow +
         Single Instance Flow
         Multiple Instance Flow
 --
@@ -224,8 +224,8 @@ relationships
         Synchronous External Entity Operation
 --
     R811
-    defines content of, 1 Data Flow
-    content is defined by, 1 Data Flow Type
+    defines type of data in, 1 Data Flow
+    type of data is defined by, 1 Content
 --
     R812
     defines, Mc Method
