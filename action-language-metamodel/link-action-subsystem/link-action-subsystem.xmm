@@ -224,7 +224,7 @@ relationships
 --
     R841
     removes referencing instance with, 1 Delete Action
-    removes referencing instance for, Mc Unlink Action
+    removes referencing instance for, 1c Unlink Action
 --
     R842
     changes reference across, 1 Association
