@@ -1,0 +1,155 @@
+metadata
+    Title : Migrate Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.7
+    Version : 0.1.0
+    /// Creation date : November 25, 2021
+    Modification date : November 25, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Migrate Action
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Create Generalization Instance Action
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+    Generalization {R}
+--
+class Generalization Relationship <import:Generalization>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Create Action <import:Link Action>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class Subclass Instance Creation
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901, R827}
+    Class {R827}
+--
+class Delete Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Explicit Attribute Initialization
+attributes
+    Attribute {I, R828}
+    Class {I, R828}
+    Action {I, R828}
+    Activity {I, R828}
+    Domain {I, R828, R829}
+    Flow {R829}
+--
+class Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Link Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901, R842}
+    Association {R842}
+--
+class New Instance Flow
+attributes
+    Create action {I, R826}
+    Flow {I2, R826}
+    Activity {I, I2, R826}
+    Domain {I, I2, R826}
+--
+class New Link Action
+attributes
+    Action {I, R831}
+    Activity {I, R831, R832}
+    Domain {I, R831, R832}
+    Create action {R832}
+--
+class Relink Action
+attributes
+    Action {I, R831}
+    Activity {I, R831, R839, R840}
+    Domain {I, R831, R839, R840}
+    From instance {R839}
+    To instance {R840}
+--
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Simple Link Action
+attributes
+    Action {I, R833}
+    Activity {I, R833, R836}
+    Domain {I, R833, R836}
+    Target instance {R836}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class From Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class To Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class T Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class P Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class Referenced Instance
+attributes
+    Flow {I, R835}
+    Activity {I, R835}
+    Domain {I, R835}
+--
+class Target Ref Instance
+attributes
+    Flow {I, R834}
+    Activity {I, R834}
+    Domain {I, R834}
+--
+class Unlink Action
+attributes
+    Action {I, R831}
+    Activity {I, R831, R841}
+    Domain {I, R831, R841}
+    Delete action {R841}
+--
+relationships
+R950
