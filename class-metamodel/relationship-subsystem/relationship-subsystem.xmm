@@ -42,11 +42,52 @@ attributes
     Name {I}
     Domain {I}
 --
+class Constrained Loop
+attributes
+    Element {I, R17}
+    Domain {I, R17}
+--
+class Facet
+attributes
+    Lineage  {I, R131}
+    Class {I, R131}
+    Domain {I, R131}
+--
+class Generalization
+attributes
+    Rnum  {I, R100, R103}
+    Domain {I, R100, R103}
+    Superclass {R103}
+--
+class Generalization Role
+attributes
+    Rnum {I, R101}
+    Class {I, R101}
+    Domain {I, R101}
+--
+class Lineage
+attributes
+    Element {I, R17}
+    Domain {I, R17}
+--
+class Loop Segment
+attributes
+    Loop {I, R160}
+    Rnum {I, R160}
+    Domain {I, R160}
+--
 class Many Perspective
 attributes
     Rnum {I, R104}
     Domain {I, R104}
     Side {I, R104}
+--
+class Minimal Partition
+attributes
+    Rnum {I, R116, R117, R118}
+    Domain {I, R116, R117, R118}
+    A subclass {R117}
+    B subclass {R118c}
 --
 class One Perspective
 attributes
@@ -70,6 +111,29 @@ attributes
     Conditional : boolean
     \ UML multiplicity : UML M Symbol
 --
+class Relationship
+attributes
+    Rnum : Number  {I}
+    Domain {I, I2, R14}
+    Element {I2, R14}
+--
+class Specialized Class
+attributes
+    Name {I, R23}
+    Domain {I, R23}
+--
+class Subclass
+attributes
+    Rnum {I, R102, R151}
+    Class {I, R102, R151}
+    Domain {I, R102, R151}
+--
+class Superclass
+attributes
+    Rnum {I, R102}
+    Class {I, R102}
+    Domain {I, R102}
+--
 class Symmetric Perspective
 attributes
     Rnum {I, R123. R121}
@@ -82,6 +146,25 @@ attributes
     Domain {I, R119}
 --
 relationships
+    R100
+    Relationship +
+        Generalization
+        Association
+--
+    R101
+    has participating, M Specialized Class
+    participats in, M Generalization
+    1 Generalization Role
+--
+    R102
+    Generalization Role +
+        Subclass
+        Superclass
+--
+    R103
+    is required by, 1 Generalization
+    requires, 1 Superclass
+--
     R104
     Perpective +
         One Perspective
@@ -95,6 +178,18 @@ relationships
     R110
     is standpoint of, Mc Perspective
     is taken from, 1 Class
+--
+    R116
+    is required by, 1 Generalization
+    requires, 1 Minimal Partition
+--
+    R117
+    yields as a, 1 Subclass
+    is yielded on a side of, 1c Minimal Partition
+--
+    R118
+    yields as b, 1 Subclass
+    is yielded on b side of, 1c Minimal Partition
 --
     R119
     Association +
@@ -122,4 +217,14 @@ relationships
     R125
     is view on, 1 Binary Association
     is viewed from, 1 Passive Perspective
+--
+    R131
+    abstracts a facet of an object within, M Lineage
+    defines a facet of an object with, M Specialized Class
+    1 Facet
+--
+    R160
+    is a segment of, Mc Constrained Loop
+    is a contiguous closed path of, M Relationship
+    1 Loop Segment
 --
