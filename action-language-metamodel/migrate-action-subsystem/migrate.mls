@@ -2,36 +2,13 @@ diagram class
 notation Starr
 presentation default
 orientation landscape
-color butter
+color pumpkin
 sheet E
 padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Association 18,11
-    Link Action 15-16,11
-    New Link Action 14,8
-    Relink Action 14,13
-    Unlink Action 14,16
-    Simple Link Action/2 12-13,7
-    Associative Link Action/2 12-13,9-10
-    Target Ref Instance 10-11,7
-    T Ref Instance 10-11,8-9
-    P Ref Instance 10-11,10-11
-    From Ref Instance/2 10-11,12
-    To Ref Instance/2 10-11,14
-    Referenced Instance/2 9,8
-    Non Associative Relationship/2 11,3
-    Associative Relationship/2 11,5
-    Delete Action 8,16
-    Instance Flow 6,16
-    Scalar Flow/2 8,4
-    Explicit Attribute Initialization/2 6,4
-    Attribute/2 5,2
-    New Instance Flow/2 6,6-7
-    Create Action 5,5
-    Single Instance Flow/2 5,8// : 17,5
-    Class 3,5
+    Create Generalization Instance Action/2 10,10
 connectors
     -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow, b|New Instance Flow
     -R827 : +/2 b|Create Action : +/2 t*|Class

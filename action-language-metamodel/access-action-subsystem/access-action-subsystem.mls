@@ -19,9 +19,9 @@ nodes
     Selection Action 11,6
     Identifier Selection/2 7,3
     Zero Many Selection/2 9,8-9
-    Class 11,9
+    Instance Flow 11,9
     Attribute 5,11
-    Instance Flow Type/2 7,14
+    Instance Flow Type/2 9,14
     Write Action 5,14
     Attribute Update 4,12-13
     Attribute In Selection 4,10
@@ -30,7 +30,7 @@ nodes
     Multiple Instance Flow/2 9,11
 connectors
     +R875 : b|Selection Action { t|Zero One Selection, t|Zero Many Selection }
-    -R876 : +/2 r|Selection Action : +/2 l*|Class
+    +R876.2 : +/2 r|Selection Action : +/2 t|Instance Flow Type
     +R877 : -/1 r|Criteria Selection : +/2 l*|Attribute, t|Attribute In Selection
     +R878 : -/2 b|Identifier Selection : -/2 t*|Identifier
     +R879 : +/1 l|Zero One Selection : +/1 r*|Single Instance Flow

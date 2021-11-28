@@ -27,29 +27,29 @@ nodes
     Class 15,14 : 2,10
     Flow 15-16,4
     Data Flow 14,7
-    Data Flow Type 14,10-11
+    Content 14,10-11
     Control Flow 14,3
-    Instance Flow Type 15,12
-    Table Flow Type 13,12
+    Instance Flow 15,12
+    Table Flow 13,12
     Table Header 13,11
     Table Attribute 13,15
-    Scalar Flow Type 11,12
+    Scalar Flow 11,12
     Single Instance Flow/2 17,11
     Multiple Instance Flow/2 17,13
     Type 11,14
 connectors
     +R800 : b|Flow { t|Data Flow, t|Control Flow }
     +R801 : b|Data Flow { t|Connecting Data Flow, t|Input Data Flow, t|Output Data Flow }
-    +R802-1 : r|Data Flow Type { l|Instance Flow Type, l|Table Flow Type, l|Scalar Flow Type }
-    +R803 : +/1 r|Instance Flow Type : -/2 l*|Class
-    +R804 : +/1 r|Table Flow Type : -/2 l*|Table Attribute
+    +R802-1 : r|Content { l|Instance Flow, l|Table Flow, l|Scalar Flow }
+    +R803 : +/1 r|Instance Flow : -/2 l*|Class
+    +R804 : +/1 r|Table Flow : -/2 l*|Table Attribute
     +R805 : b|Activity { t|Asynchronous Activity, t|Synchronous Activity }
     +R806 : +/2 b|Table Attribute : -/1 r|Type
-    +R807 : +/2 r|Scalar Flow Type : -/1 l*|Type
-    +R808 : t|Instance Flow Type { b|Single Instance Flow, b|Multiple Instance Flow }
+    +R807 : +/2 r|Scalar Flow : -/1 l*|Type
+    +R808 : t|Instance Flow { b|Single Instance Flow, b|Multiple Instance Flow }
     +R809.3 : -/2 l+1|Action : +/2 t-1|Action, r-1|Connecting Flow : L5 L11
     +R810 : b|Synchronous Activity { t|Synchronous External Entity Operation, t|Domain Operation, t|Method }
-    +R811 : +/2 l|Data Flow Type : -/2 r*|Data Flow
+    +R811 : +/2 l|Content : -/2 r*|Data Flow
     -R812 : +/1 b|Method : -/1 t*|Class.2
     +R813 : t|Connecting Flow { b-2|Connecting Data Flow, b|Control Flow }
     +R814.2 : +/2 b|Input Data Flow : -/2 r|Activity

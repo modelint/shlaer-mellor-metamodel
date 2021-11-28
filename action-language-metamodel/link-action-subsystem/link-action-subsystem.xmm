@@ -1,14 +1,19 @@
 metadata
     Title : Link Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.action.td.9a
-    Version : 0.4.0
+    Document ID : mint.sm-meta.action.td.4
+    Version : 0.5.1
     /// Creation date : November 07, 2021
-    Modification date : November 11, 2021
+    Modification date : November 23, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Link Action
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
 class Associative Link Action
 attributes
     Action {I, R833}
@@ -23,13 +28,6 @@ attributes
     Class {I}
     Domain {I}
 --
-class Attribute Initialization
-attributes
-    Action {I, R828}
-    Activity {I, R828}
-    Domain {I, R828, R829}
-    Value {R829}
---
 class Class <import:Classes And Attributes>
 attributes
     Name {I}
@@ -39,7 +37,8 @@ class Create Action
 attributes
     Action {I, R901}
     Activity {I, R901}
-    Domain {I, R901}
+    Domain {I, R901, R827}
+    Class {R827}
 --
 class Delete Action
 attributes
@@ -47,7 +46,16 @@ attributes
     Activity {I, R901}
     Domain {I, R901}
 --
-class Instance Flow Type <import:Flow>
+class Explicit Attribute Initialization
+attributes
+    Attribute {I, R828}
+    Class {I, R828}
+    Action {I, R828}
+    Activity {I, R828}
+    Domain {I, R828, R829}
+    Flow {R829}
+--
+class Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -57,7 +65,8 @@ class Link Action
 attributes
     Action {I, R901}
     Activity {I, R901}
-    Domain {I, R901}
+    Domain {I, R901, R842}
+    Association {R842}
 --
 class New Instance Flow
 attributes
@@ -81,7 +90,7 @@ attributes
     From instance {R839}
     To instance {R840}
 --
-class Scalar Flow Type <import:Flow>
+class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -94,7 +103,7 @@ attributes
     Domain {I, R833, R836}
     Target instance {R836}
 --
-class Single Instance Flow Type <import:Flow>
+class Single Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -145,7 +154,7 @@ attributes
 --
 relationships
     R826
-    produces new instance reference in, 1c Single Instance Flow Type
+    produces new instance reference in, 1c Single Instance Flow
     conveys new instances produced by, 1c Create Action
     1 New Instance Flow
 --
@@ -154,17 +163,17 @@ relationships
     instance of is created by, Mc Create Action
 --
     R828
-    provides initial values for, Mc Create Action
-    gets initial values from, 1c Table Flow Type
-    1 Attribute Initialization Flow
+    is explicitly initialized for, Mc Create Action
+    explicitly initializes the value of, Mc Attribute
+    1 Explicit Attribute Initialization
 --
     R829
-    supplies value for, 1c Attribute Initialization
-    gets value from, 1 Scalar Flow Type
+    supplies value for, Mc Explicit Attribute Initialization
+    gets value from, 1 Scalar Flow
 --
     R830
     supplies instances for, 1c Delete Action
-    deletes instances in, 1 Instance Flow Type
+    deletes instances in, 1 Instance Flow
 --
     R831
     Link Action +
@@ -190,7 +199,7 @@ relationships
         To Ref Instance
 --
     R835
-    is provided by, 1 Single Instance Flow Type
+    is provided by, 1 Single Instance Flow
     provides, Mc Referenced Instance
 --
     R836
@@ -215,5 +224,9 @@ relationships
 --
     R841
     removes referencing instance with, 1 Delete Action
-    removes referencing instance for, Mc Unlink Action
+    removes referencing instance for, 1c Unlink Action
+--
+    R842
+    changes reference across, 1 Association
+    reference is changed by, Mc Link Action
 --
