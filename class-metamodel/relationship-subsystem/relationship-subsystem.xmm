@@ -1,0 +1,125 @@
+metadata
+    Title : Relationship Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.3
+    Version : 2.3.4
+    /// Creation date : March 4, 2012
+    Modification date : November 28, 2021
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Relationship
+class Active Perspective
+attributes
+    Rnum {I, R124, R105}
+    Domain {I, R105, R124}
+    Side {R105c}
+--
+class Association
+attributes
+    Rnum  {I, R100}
+    Domain {I, R100}
+--
+class Association Class
+attributes
+    Rnum {I, R120c}
+    Class {I2, R120}
+    Domain {I, I2, R120}
+--
+class Asymmetric Perspective
+attributes
+    Side {I, R121c}
+    Rnum {I, R121}
+    Domain {I, R121}
+--
+class Binary Association
+attributes
+    Rnum  {I, R119}
+    Domain {I, R119}
+--
+class Class <import:Class And Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Many Perspective
+attributes
+    Rnum {I, R104}
+    Domain {I, R104}
+    Side {I, R104}
+--
+class One Perspective
+attributes
+    Rnum {I, R104}
+    Domain {I, R104}
+    Side {I, R104}
+--
+class Passive Perspective
+attributes
+    Rnum {I, R125, R105}
+    Domain {I, R105, R125}
+    Side {R105c}
+--
+class Perspective
+attributes
+    Side :  Side  {I}
+    Rnum {I}
+    Domain {I, R110}
+    Viewed class {R110}
+    Phrase : Name
+    Conditional : boolean
+    \ UML multiplicity : UML M Symbol
+--
+class Symmetric Perspective
+attributes
+    Rnum {I, R123. R121}
+    Domain {I, R121, R123}
+    Side {R121c}
+--
+class Unary Association
+attributes
+    Rnum  {I, R119}
+    Domain {I, R119}
+--
+relationships
+    R104
+    Perpective +
+        One Perspective
+        Many Perspective
+--
+    R105
+    Asymmetric Perpective +
+        Active Perspective
+        Passive Perspective
+--
+    R110
+    is standpoint of, Mc Perspective
+    is taken from, 1 Class
+--
+    R119
+    Association +
+        Unary Association
+        Binary Association
+--
+    R120
+    abstracted dependency if fulfilled by, 1c Class
+    abstracts dependency on, 1c Association
+    1 Association Class
+--
+    R121
+    Perspective +
+        Symmetric Perspective
+        Asymmetric Perspective
+--
+    R123
+    is view on, 1 Unary Association
+    is viewed from, 1 Symmetric Perspective
+--
+    R124
+    is view on, 1 Binary Association
+    is viewed from, 1 Active Perspective
+--
+    R125
+    is view on, 1 Binary Association
+    is viewed from, 1 Passive Perspective
+--
