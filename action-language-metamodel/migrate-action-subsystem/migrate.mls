@@ -8,22 +8,13 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Create Generalization Instance Action/2 10,10
+    Lineage 12,10
+    Generalization Create Transaction/2 10,10
+    Specialized Class Creation/2 9,8-9
+    Specialized Class 10,7
+    Subclass 9,6
+    Subclass Link Action 8,7
 connectors
-    -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow, b|New Instance Flow
-    -R827 : +/2 b|Create Action : +/2 t*|Class
-    -R828 : -/2 l|Create Action : +/2 r*|Attribute, b|Explicit Attribute Initialization
-    -R829 : +/2 t|Explicit Attribute Initialization : +/1 b*|Scalar Flow
-    -R830 : +/2 b|Delete Action : +/2 t*|Instance Flow
-    +R831 : b|Link Action { t|New Link Action, t|Relink Action, t|Unlink Action }
-    -R832 : -/2 t|Create Action : +/2 l|New Link Action
-    +R833 : b|New Link Action { t|Simple Link Action, t|Associative Link Action }
-    +R834 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|From Ref Instance, b|To Ref Instance }
-    -R835 : +/2 b|Referenced Instance : +/1 t*|Single Instance Flow
-    -R836 : +/1 b|Simple Link Action : +/2 t*|Target Ref Instance
-    -R837 : +/1 l|Associative Link Action : -/2 t|T Ref Instance
-    +R838 : +/1 r|Associative Link Action : +/2 t|P Ref Instance
-    -R839 : +/2 l|Relink Action : -/2 t|From Ref Instance
-    +R840 : +/2 r|Relink Action : +/2 t|To Ref Instance
-    -R841 : +/2 b|Unlink Action : +/2 t*|Delete Action
-    -R842 : +/2 t|Link Action : +/2 b*|Association
+    -R950 : +/2 t|Generalization Create Transaction : +/2 b*|Lineage
+    +R951 : +/2 l|Generalization Create Transaction : +/2 r*|Specialized Class, t|Specialized Class Creation
+    +R952 : +/2 l|Specialized Class Creation : +/2 r*|Subclass, t|Subclass Link Action
