@@ -4,7 +4,7 @@ metadata
     Document ID : mint.sm-meta.action.td.6
     Version : 0.1.0
     /// Creation date : September 11, 2021
-    Modification date : November 13, 2021
+    Modification date : December 17, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -31,7 +31,7 @@ attributes
     Number {I, R927}
     Path {I, R927}
     Domain {I, R927, R928}
-    Association {R928}
+    Association {R927, R928}
 --
 class Class <import:Class And Attribute>
 attributes
@@ -56,12 +56,13 @@ attributes
     Number {I, R927}
     Path {I, R927}
     Domain {I, R927, R929}
-    Generalization {R929}
+    Generalization {R927, R929}
 --
 class Path
 attributes
-    ID : Path ID {I}
-    Domain {I, Rxx, R925}
+    Name : Path Name {I}
+    Alias : Path Alias {I2}
+    Domain {I, I2, Rxx, R925}
     Dest class {R925}
 --
 class Ordinal Hop
@@ -69,7 +70,7 @@ attributes
     Number {I, R927}
     Path {I, R927}
     Domain {I, R927, R929}
-    Ordinal relationship {R929}
+    Ordinal relationship {R927, R929}
 --
 class Ordinal Relationship <import:Relationship>
 attributes
@@ -84,16 +85,22 @@ attributes
 --
 class Hop
 attributes
-    Number : Ordinal {I, OR1}
-    Path {I, R926, OR1}
-    Domain {I, R926}
+    Number : Ordinal {I, OR938}
+    Path {I, R926, OR938}
+    Domain {I, OR938, R926, R940}
+    Rnum {R940}
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
 --
 class Reflexive Hop
 attributes
     Number {I, R927}
     Path {I, R927}
     Domain {I, R927, R930}
-    Reflexive association {R930}
+    Reflexive association {R927, R930}
 --
 class Reflexive Association <import:Relationship>
 attributes
@@ -136,7 +143,7 @@ relationships
     is destination of, Mc Path
 --
     R926
-    traverses each relationship via, Mc Hop
+    traverses each relationship via, M Hop
     specifies traversal of relationship in, 1 Path
 --
     R927
@@ -190,10 +197,14 @@ relationships
     is visited from, Mc Cyclic Hop
 --
     OR938
-    after, 1c Hop
-    before, 1c Hop
+    accessed after, 1c Hop
+    accessed before, 1c Hop
 --
     R939
-    selects across 1, Path
-    specifies navigation for 1, Selection
+    selects across, 1 Path
+    specifies navigation for, 1 Selection
+--
+    R940
+    traverses, 1 Relationship
+    is traversed by, Mc Hop
 --

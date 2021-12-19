@@ -20,6 +20,7 @@ nodes
     Association Class Hop/2 7,7
     Superclass Hop 7,8-9
     Subclass Hop 7,10
+    Relationship 10,11
     Subclass 5,10
     Straight Hop 7,5-6
     Reflexive Association 7,2
@@ -43,4 +44,6 @@ connectors
     -R935 : +/1 b|Subclass Hop : -/1 t*|Subclass
     +R936 : t|Cyclic Hop { b|Reflexive Hop, b|Ordinal Hop : L4 }
     -R937 : +/1 r|Cyclic Hop : -/1 l*|Perspective
-    +OR938.2 : -/1 t+2|Hop : -/1 r+2|Hop : L11R-2 L9R-2
+    +OR938.2 : -/2 t+2|Hop : -/2 r+2|Hop : L11R-2 L9R-2
+    +R939 : -/1 t|Path : -/2 b*|Selection Action
+    +R940 : -/1 r-1|Hop : +/1 l*|Relationship
