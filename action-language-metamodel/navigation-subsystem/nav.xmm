@@ -2,29 +2,24 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : September 11, 2021
-    Modification date : December 17, 2021
+    Modification date : December 20, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Navigation
-class Association <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
-class Association Class <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
-class Association Class Hop
+class From Association Class Hop
 attributes
     Number {I, R927}
     Path {I, R927}
-    Domain {I, R927, R928}
-    Association class {R928}
+    Domain {I, R927}
+--
+class To Association Class Hop
+attributes
+    Number {I, R927}
+    Path {I, R927}
+    Domain {I, R927}
 --
 class Association Hop
 attributes
@@ -38,18 +33,13 @@ attributes
     Name {I}
     Domain {I}
 --
-class Cyclic Hop
+class Perspective Hop
 attributes
     Path {I}
-    Domain {I, R940}
+    Domain {I, R940, R941}
     Aggregation : First Last All
-    Perspective {R940}
-    Rnum {R940}
---
-class Generalization <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
+    Phrase {R941}
+    Rnum {R941}
 --
 class Generalization Hop
 attributes
@@ -72,11 +62,6 @@ attributes
     Domain {I, R927, R929}
     Ordinal relationship {R927, R929}
 --
-class Ordinal Relationship <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
 class Perspective <import:Relationship>
 attributes
     Phrase {I}
@@ -95,17 +80,23 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Reflexive Hop
+class Circular Hop
 attributes
     Number {I, R927}
     Path {I, R927}
-    Domain {I, R927, R930}
-    Reflexive association {R927, R930}
+    Domain {I, R927}
 --
-class Reflexive Association <import:Relationship>
+class Asymmetric Hop
 attributes
-    Rnum {I}
-    Domain {I}
+    Number {I, R936}
+    Path {I, R936}
+    Domain {I, R936}
+--
+class Symmetric Hop
+attributes
+    Number {I, R936}
+    Path {I, R936}
+    Domain {I, R936}
 --
 class Selection Action <import:Access Action>
 attributes
@@ -150,33 +141,13 @@ relationships
     Hop +
         Assocation Hop
         Generalization Hop
-        Ordinal Hop
---
-    R928
-    traverses, 1 Association
-    is traversed by, Mc Association Hop
---
-    R929
-    traverses, 1 Generalization
-    is traversed by, Mc Generalization Hop
---
-    R930
-    traverses, 1 Ordinal Relationshiop
-    is traversed by, Mc Ordinal Hop
 --
     R931
     Association Hop +
-        Reflexive Hop
-        Association Class Hop
-        Straight Top
---
-    R932
-    leads to, 1 Association Class
-    is visited by, Mc Association Class Hop
---
-    R933
-    traverses, 1 Reflexive Association
-    is traversed by, Mc Reflexive Hop
+        To Association Class Hop
+        From Association Class Hop
+        Straight Hop
+        Circular Hop
 --
     R934
     Generalization Hop +
@@ -184,17 +155,20 @@ relationships
         Subclass Hop
 --
     R935
-    leads to, 1 Sublcass
-    is visited by, Mc Subclass Hop
+    specifies target, 1 Sublcass
+    is specified by target of, Mc Subclass Hop
 --
     R936
-    Cyclic Hop +
-        Reflexive Hop
+    Circular Hop +
+        Symmetric Hop
+        Asymmetric Hop
         Ordinal Hop
 --
     R937
-    hops toward, 1 Perspective
-    is visited from, Mc Cyclic Hop
+    Perspective Hop +
+        Asymmetric Hop
+        Ordinal Hop
+        From Association Class Hop
 --
     OR938
     accessed after, 1c Hop
@@ -207,4 +181,8 @@ relationships
     R940
     traverses, 1 Relationship
     is traversed by, Mc Hop
+--
+    R941
+    specifies target, 1 Perspective
+    is specified as target of, Mc Perspective Hope
 --
