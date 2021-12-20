@@ -9,78 +9,7 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Navigation
-class From Association Class Hop
-attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927}
---
-class To Association Class Hop
-attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927}
---
 class Association Hop
-attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927, R928}
-    Association {R927, R928}
---
-class Class <import:Class And Attribute>
-attributes
-    Name {I}
-    Domain {I}
---
-class Perspective Hop
-attributes
-    Path {I}
-    Domain {I, R940, R941}
-    Aggregation : First Last All
-    Phrase {R941}
-    Rnum {R941}
---
-class Generalization Hop
-attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927, R929}
-    Generalization {R927, R929}
---
-class Path
-attributes
-    Name : Path Name {I}
-    Alias : Path Alias {I2}
-    Domain {I, I2, Rxx, R925}
-    Dest class {R925}
---
-class Ordinal Hop
-attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927, R929}
-    Ordinal relationship {R927, R929}
---
-class Perspective <import:Relationship>
-attributes
-    Phrase {I}
-    Rnum {I}
-    Domain {I}
---
-class Hop
-attributes
-    Number : Ordinal {I, OR938}
-    Path {I, R926, OR938}
-    Domain {I, OR938, R926, R940}
-    Rnum {R940}
---
-class Relationship <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
-class Circular Hop
 attributes
     Number {I, R927}
     Path {I, R927}
@@ -88,27 +17,90 @@ attributes
 --
 class Asymmetric Hop
 attributes
-    Number {I, R936}
-    Path {I, R936}
-    Domain {I, R936}
+    Number {I, R936, R937}
+    Path {I, R936, R937}
+    Domain {I, R936, R937}
 --
-class Symmetric Hop
+class Circular Hop
 attributes
-    Number {I, R936}
-    Path {I, R936}
-    Domain {I, R936}
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
 --
-class Selection Action <import:Access Action>
+class Class <import:Class And Attribute>
 attributes
-    Action {I}
-    Activity {I}
+    Name {I}
     Domain {I}
 --
-class Straight Hop
+class From Asymmetric Association Class Hop
+attributes
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
+--
+class Association Class Hop
+attributes
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
+--
+class From Symmetric Association Class Hop
+attributes
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
+--
+class Generalization Hop
 attributes
     Number {I, R927}
     Path {I, R927}
     Domain {I, R927}
+--
+class Hop
+attributes
+    Number : Hop Number {I, OR938}
+    Path {I, R926, OR938}
+    Domain {I, OR938, R926, R940}
+    Rnum {R940}
+--
+class Ordinal Hop
+attributes
+    Number {I, R936, R937}
+    Path {I, R936, R937}
+    Domain {I, R936, R937}
+--
+class Path
+attributes
+    Name : Path Name {I}
+    Alias : Path Alias {I2}
+    Domain {I, I2, R925}
+    Dest class {R925}
+--
+class Perspective <import:Relationship>
+attributes
+    Phrase {I}
+    Rnum {I}
+    Domain {I}
+--
+class Perspective Hop
+attributes
+    Hop {I, UR937}
+    Path {I, UR937}
+    Domain {I, UR937, R941}
+    Phrase {R941}
+    Rnum {R941c}
+    Aggregation : First Last All
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Straight Hop
+attributes
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
 --
 class Subclass <import:Relationship>
 attributes
@@ -118,15 +110,28 @@ attributes
 --
 class Subclass Hop
 attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927}
+    Number {I, R934}
+    Path {I, R934}
+    Domain {I, R934, R935}
+    Dest subclass {R935}
 --
 class Superclass Hop
 attributes
-    Number {I, R927}
-    Path {I, R927}
-    Domain {I, R927}
+    Number {I, R934}
+    Path {I, R934}
+    Domain {I, R934}
+--
+class Symmetric Hop
+attributes
+    Number {I, R936, R937}
+    Path {I, R936, R937}
+    Domain {I, R936, R937}
+--
+class To Association Class Hop
+attributes
+    Number {I, R931}
+    Path {I, R931}
+    Domain {I, R931}
 --
 relationships
     R925
@@ -144,10 +149,15 @@ relationships
 --
     R931
     Association Hop +
-        To Association Class Hop
-        From Association Class Hop
+        Association Class Hop
         Straight Hop
         Circular Hop
+--
+    R932
+    Association Class Hop +
+        To Association Class Hop
+        From Asymmetric Association Class Hop
+        From Symmetric Association Class Hop
 --
     R934
     Generalization Hop +
@@ -168,15 +178,11 @@ relationships
     Perspective Hop +
         Asymmetric Hop
         Ordinal Hop
-        From Association Class Hop
+        From Asymmetric Association Class Hop
 --
     OR938
     accessed after, 1c Hop
     accessed before, 1c Hop
---
-    R939
-    selects across, 1 Path
-    specifies navigation for, 1 Selection
 --
     R940
     traverses, 1 Relationship
