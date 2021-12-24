@@ -26,6 +26,7 @@ attributes
     Number {I, R931}
     Path {I, R931}
     Domain {I, R931}
+    Aggregation : First Last All
 --
 class Class <import:Class And Attribute>
 attributes
@@ -89,7 +90,6 @@ attributes
     Domain {I, UR937, R941}
     Phrase {R941}
     Rnum {R941c}
-    Aggregation : First Last All
 --
 class Relationship <import:Relationship>
 attributes
