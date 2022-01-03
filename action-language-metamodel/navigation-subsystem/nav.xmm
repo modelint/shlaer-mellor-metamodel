@@ -2,9 +2,9 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : September 11, 2021
-    Modification date : December 20, 2021
+    Modification date : December 26, 2021
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -15,7 +15,7 @@ attributes
     Path {I, R927}
     Domain {I, R927}
 --
-class Asymmetric Hop
+class Asymmetric Circular Hop
 attributes
     Number {I, R936, R937}
     Path {I, R936, R937}
@@ -108,14 +108,14 @@ attributes
     Class {I}
     Domain {I}
 --
-class Subclass Hop
+class To Subclass Hop
 attributes
     Number {I, R934}
     Path {I, R934}
     Domain {I, R934, R935}
     Dest subclass {R935}
 --
-class Superclass Hop
+class To Superclass Hop
 attributes
     Number {I, R934}
     Path {I, R934}
@@ -161,28 +161,28 @@ relationships
 --
     R934
     Generalization Hop +
-        Superclass Hop
-        Subclass Hop
+        To Superclass Hop
+        To Subclass Hop
 --
     R935
-    specifies target, 1 Sublcass
-    is specified by target of, Mc Subclass Hop
+    specifies as target, 1 Sublcass
+    is specified as target of, Mc To Subclass Hop
 --
     R936
     Circular Hop +
         Symmetric Hop
-        Asymmetric Hop
+        Asymmetric Circular Hop
         Ordinal Hop
 --
     R937
     Perspective Hop +
-        Asymmetric Hop
+        Asymmetric Circular Hop
         Ordinal Hop
         From Asymmetric Association Class Hop
 --
     OR938
-    accessed after, 1c Hop
-    accessed before, 1c Hop
+    is traversed after, 1c Hop
+    is traversed before, 1c Hop
 --
     R940
     traverses, 1 Relationship

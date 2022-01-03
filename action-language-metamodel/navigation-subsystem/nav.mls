@@ -16,14 +16,14 @@ nodes
     Circular Hop 7,2-3
     Straight Hop 7,4-5
     Symmetric Hop 5-6,1
-    Asymmetric Hop 5-6,2-3
+    Asymmetric Circular Hop/2 5-6,2-3
     Association Class Hop/2 7,7
     To Association Class Hop/2 5-6,8
     From Asymmetric Association Class Hop/3 5-6,5-6
     From Symmetric Association Class Hop/3 5-6,7
     Generalization Hop 8-9,10
-    Superclass Hop 7,9-10
-    Subclass Hop 7,11
+    To Superclass Hop 7,9-10
+    To Subclass Hop 7,11
     Relationship 10,11
     Subclass 5,11
     Association Hop 8-9,5
@@ -34,10 +34,10 @@ connectors
     +R927-1 : b|Hop { t|Association Hop, t|Generalization Hop }
     +R931 : b|Association Hop { t|Association Class Hop, t|Circular Hop, t|Straight Hop }
     +R932 : b|Association Class Hop { t|From Symmetric Association Class Hop, t|From Asymmetric Association Class Hop, t|To Association Class Hop }
-    +R934 : b|Generalization Hop { t|Superclass Hop, t|Subclass Hop }
-    -R935 : +/2 b|Subclass Hop : -/2 t*|Subclass
-    +R936 : b|Circular Hop { t|Ordinal Hop, t|Symmetric Hop, t|Asymmetric Hop }
-    +R937 : t|Perspective Hop { b|Ordinal Hop, b|Asymmetric Hop, b|From Asymmetric Association Class Hop }
+    +R934 : b|Generalization Hop { t|To Superclass Hop, t|To Subclass Hop }
+    -R935 : +/2 b|To Subclass Hop : -/2 t*|Subclass
+    +R936 : b|Circular Hop { t|Ordinal Hop, t|Symmetric Hop, t|Asymmetric Circular Hop }
+    +R937 : t|Perspective Hop { b|Ordinal Hop, b|Asymmetric Circular Hop, b|From Asymmetric Association Class Hop }
     +OR938.2 : -/2 t+2|Hop : -/2 r+2|Hop : L11R-2 L9R-2
     +R940 : -/1 r-1|Hop : +/1 l*|Relationship
     +R941 : -/3 r|Perspective Hop : +/2 l*|Perspective
