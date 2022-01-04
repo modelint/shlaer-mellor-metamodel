@@ -1,20 +1,20 @@
 metadata
-    Title : Link Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Reference Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.4
-    Version : 0.5.1
+    Version : 0.6.0
     /// Creation date : November 07, 2021
-    Modification date : November 23, 2021
+    Modification date : January 3, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Link Action
+subsystem Reference Action
 class Association <import:Relationship>
 attributes
     Rnum {I}
     Domain {I}
 --
-class Associative Link Action
+class Associative Reference Action
 attributes
     Action {I, R833}
     Activity {I, R833, R837, R838}
@@ -61,7 +61,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Link Action
+class Reference Action
 attributes
     Action {I, R901}
     Activity {I, R901}
@@ -75,14 +75,14 @@ attributes
     Activity {I, I2, R826}
     Domain {I, I2, R826}
 --
-class New Link Action
+class New Reference Action
 attributes
     Action {I, R831}
     Activity {I, R831, R832}
     Domain {I, R831, R832}
     Create action {R832}
 --
-class Relink Action
+class Update Reference Action
 attributes
     Action {I, R831}
     Activity {I, R831, R839, R840}
@@ -96,7 +96,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Simple Link Action
+class Simple Reference Action
 attributes
     Action {I, R833}
     Activity {I, R833, R836}
@@ -176,19 +176,19 @@ relationships
     deletes instances in, 1 Instance Flow
 --
     R831
-    Link Action +
-        New Link Action
-        Relink Action
+    Reference Action +
+        New Reference Action
+        Update Reference Action
         Unlink Action
 --
     R832
     creates referring instance with, 1 Create Action
-    creates referring instance for, Mc New Link Action
+    creates referring instance for, Mc New Reference Action
 --
     R833
-    New Link Action +
-        Simple Link Action
-        Associative Link Action
+    New Reference Action +
+        Simple Reference Action
+        Associative Reference Action
 --
     R834
     Referenced Instance +
@@ -208,19 +208,19 @@ relationships
 --
     R837
     creates reference to, 1 T Ref Instance
-    is created by, 1 Associative Link Action
+    is created by, 1 Associative Reference Action
 --
     R838
     creates reference to, 1 P Ref Instance
-    is created by, 1 Associative Link Action
+    is created by, 1 Associative Reference Action
 --
     R839
     updates reference at, 1 From Ref Instance
-    reference is updated by, 1 Relink Action
+    reference is updated by, 1 Update Reference Action
 --
     R840
     updates reference to, 1 To Ref Instance
-    reference is updated by, 1 Relink Action
+    reference is updated by, 1 Update Reference Action
 --
     R841
     removes referencing instance with, 1 Delete Action
@@ -228,5 +228,5 @@ relationships
 --
     R842
     changes reference across, 1 Association
-    reference is changed by, Mc Link Action
+    reference is changed by, Mc Reference Action
 --
