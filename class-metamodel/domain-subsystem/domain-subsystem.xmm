@@ -1,0 +1,129 @@
+metadata
+    Title : Domain Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.domain.td.2
+    Version : 2.2.0
+    /// Creation date : May 9, 2011
+    Modification date : January 6, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Domain
+class Bridge
+attributes
+    Client {I, R7}
+    Service {I, R7c}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I, I2, R14}
+    Element {I2, R14}
+--
+class Constrained Loop <import:Relationship>
+attributes
+    Domain {I, I2, R17}
+    Element {I2, R17}
+--
+class Domain
+attributes
+    Name : Domain Name {I}
+    Alias : Domain Alias {I2}
+--
+class Domain Type <import:Type Subsystem>
+attributes
+    Name {I}
+    Domain {I, I2, R17}
+    Element {I2, R17}
+--
+class Element
+attributes
+    Number : Element Number {I}
+    Domain {I, R15}
+--
+class Lineage <import:Relationship>
+attributes
+    Domain {I, I2, R17}
+    Element {I2, R17}
+--
+class Modeled Domain
+attributes
+    Name {I, R4}
+--
+class Realized Domain
+attributes
+    Name {I, R4}
+--
+class Spanning Element
+attributes
+    Number {I, R16}
+    Domain {I, R16}
+--
+class Subsystem
+attributes
+    Name : Subsystem Name {I}
+    Domain {I, I2, R1}
+    Alias : Subsystem Alias {I2}
+--
+class Subsystem Element
+attributes
+    Number {I, R16}
+    Domain {I, R16}
+    Subsystem {R13}
+--
+class Subsystem Numbering Range
+attributes
+    Floor : Element Number {I}
+    Ceiling : Element Number {I2}
+    Subsystem {I, I2, R3}
+    Domain {I, I2, R3}
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I, I2, R14}
+    Element {I2, R14}
+--
+relationships
+    R1
+    manages content of, 1 Modeled Domain
+    content is managed by, M Subsystem
+--
+    R3
+    numbers elements within, 1 Subsystem Range
+    establishes numbers available for, 1 Subsystem
+--
+    R4
+    Domain +
+        Modeled Domain
+        Realized Domain
+--
+    R7
+    satisfies assumptions of, Mc Domain
+    makes assumptions on, Mc Domain
+    1 Bridge
+--
+    R13
+    manages, Mc Subsystem Element
+    is managed within, 1 Subsystem
+--
+    R14
+    Subsystem Element +
+        Relationship
+        Class
+--
+    R15
+    defines, Mc Element
+    is defined in, 1 Modeled Domain
+--
+    R16
+    Element +
+        Spanning Element
+        Subsystem Element
+--
+    R17
+    Spanning Element +
+        Domain Type
+        Lineage
+        Constrained Loop
+--
