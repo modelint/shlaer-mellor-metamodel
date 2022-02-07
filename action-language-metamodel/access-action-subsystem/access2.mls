@@ -1,0 +1,21 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color pumpkin
+sheet C
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Attribute 8-9,3
+    Extract Scalar Action/2 6-7,3
+    Single Instance Flow/2 6-7,1
+    Extracted Attribute Value/2 6-7,5-6
+    Scalar Flow 7,8
+    Other Kind Of Scalar Value/2 4,5-6
+connectors
+    -R890 : +/2 b|Attribute : +/2 t*|Extract Scalar Action
+    -R891 : +/1 l|Extract Scalar Action : +/1 r*|Single Instance Flow
+    +R892 : +/1 r|Extract Scalar Action : +/1 l*|Extracted Attribute Value
+    +R893 : l|Scalar Flow { r|Extracted Attribute Value, r|Other Kind Of Scalar Value }
