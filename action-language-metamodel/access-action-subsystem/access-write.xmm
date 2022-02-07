@@ -1,10 +1,10 @@
 metadata
-    Title : Access Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Update Action Snippet Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3d
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : February 6, 2022
-    Modification date : February 6, 2022
+    Modification date : February 7, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -15,62 +15,76 @@ attributes
     Class {I}
     Domain {I}
 --
-class Attribute Read Access
+class Attribute Update Flow
 attributes
-    Attribute {I, R894}
-    Class {I, R894}
-    Action {I, R894}
-    Activity {I, R894}
-    Domain {I, R894}
+    Flow {I,R1000}
+    Activity {I, R1000}
+    Attribute {I, R1000}
+    Class {I, R1000}
+    Domain {I, R1000}
 --
-class Attribute Value Tuple
+class Instance Flow <import:Flow>
 attributes
-    Flow {I, R893}
-    Activity {I, R892, R893}
-    Domain {I, R892, R893}
-    Extract action {I, R892}
+    Flow {I}
+    Activity {I}
+    Domain {I}
 --
-class Read Attributes Action
+class Make Tuple Action
 attributes
     Action {I, R901}
     Activity {I, R901}
-    Domain {I, R901, R895}
-    Instance {R895}
+    Domain {I, R901}
 --
-class Tuple Flow <import:Flow>
+class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
 --
-class Single Instance Flow <import:Flow>
+class Tuple Attribute Value
 attributes
-    Flow {I}
-    Activity {I}
-    Domain {I}
+    Make tuple action {I, R1001}
+    Update flow {I,R1001}
+    Activity {I, R1001}
+    Attribute {I, R1001}
+    Class {I, R1001}
+    Domain {I, R1001}
 --
-class Other Kind Of Tuple Value
+class Update Action
 attributes
-    Flow {I, R893}
-    Activity {I, R893}
-    Domain {I, R893}
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+    Update tuple flow {R1003}
+    Input instance flow {R1004}
+--
+class Update Tuple Flow
+attributes
+    Flow {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+    Make tuple action {I, R1002}
 --
 relationships
-    R894
-    reads value of, M Attribute
-    has value read by, Mc Read Attributes Action
-    1 Attribute Read Access
+    R1000
+    will be updated with, Mc Scalar Flow
+    updated value of, Mc Attribute
+    1 Attribute Update Value
 --
-    R895
-    accesses, 1 Single Instance Flow
-    is accessed by, Mc Read Attributes Action
+    R1001
+    is input to, Mc Make Tuple Action
+    takes input from, M Attribute Update Flow
+    1 Tuple Attribute Value
 --
-    R896
-    yields, 1 Attribute Value Tuple
-    is yielded by, 1 Read Attributes Action
+    R1002
+    yields, 1 Update Tuple Flow
+    is yielded by, 1 Make Tuple Action
 --
-    R897
-    Tuple Flow +
-        Attribute Value Tuple
-        Other Kind Of Tuple Value
+    R1003
+    provides update value for, 1 Update Action
+    updates using, 1 Update Tuple Flow
+--
+    R1004
+    updates instances in, 1 Instance Flow
+    provides instances to update for, Mc Update Action
 --
