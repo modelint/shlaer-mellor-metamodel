@@ -1,0 +1,22 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color pumpkin
+sheet C
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Attribute 8-9,3
+    Attribute Read Access 7,4-5
+    Read Attributes Action/2 5,3
+    Single Instance Flow/2 5,1
+    Attribute Value Tuple/2 5,5-6
+    Tuple Flow 4-5,8
+    Other Kind Of Tuple Value/2 2,5-6
+connectors
+    -R894 : +/2 b|Attribute : +/2 t*|Read Attributes Action, l|Attribute Read Access
+    -R895 : +/1 l|Read Attributes Action : +/1 r*|Single Instance Flow
+    +R896 : +/1 r|Read Attributes Action : +/1 l*|Attribute Value Tuple
+    +R897 : l|Tuple Flow { r|Attribute Value Tuple, r|Other Kind Of Tuple Value }
