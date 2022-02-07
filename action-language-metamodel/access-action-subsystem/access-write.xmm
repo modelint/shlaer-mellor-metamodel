@@ -1,0 +1,76 @@
+metadata
+    Title : Access Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.3d
+    Version : 0.1.0
+    /// Creation date : February 6, 2022
+    Modification date : February 6, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Access Action
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Attribute Read Access
+attributes
+    Attribute {I, R894}
+    Class {I, R894}
+    Action {I, R894}
+    Activity {I, R894}
+    Domain {I, R894}
+--
+class Attribute Value Tuple
+attributes
+    Flow {I, R893}
+    Activity {I, R892, R893}
+    Domain {I, R892, R893}
+    Extract action {I, R892}
+--
+class Read Attributes Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901, R895}
+    Instance {R895}
+--
+class Tuple Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Other Kind Of Tuple Value
+attributes
+    Flow {I, R893}
+    Activity {I, R893}
+    Domain {I, R893}
+--
+relationships
+    R894
+    reads value of, M Attribute
+    has value read by, Mc Read Attributes Action
+    1 Attribute Read Access
+--
+    R895
+    accesses, 1 Single Instance Flow
+    is accessed by, Mc Read Attributes Action
+--
+    R896
+    yields, 1 Attribute Value Tuple
+    is yielded by, 1 Read Attributes Action
+--
+    R897
+    Tuple Flow +
+        Attribute Value Tuple
+        Other Kind Of Tuple Value
+--
