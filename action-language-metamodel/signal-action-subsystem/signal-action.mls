@@ -24,8 +24,8 @@ nodes
     Single Instance Flow 2,11
 connectors
     +R850 : -/1 b|Signal Action : -/2 t*|Event Parameter, r|Supplied Parameter
-    +R851 : +/2 t|Signal Action : -/2 b*|Event Specification
-    +R852 : +/2 b|Supplied Parameter : +/2 t*|Data Flow
+    +R851 : -/2 t|Signal Action : -/2 b*|Event Specification
+    -R852 : +/2 b|Supplied Parameter : +/2 t*|Data Flow
     +R853 : +/2 r|Signal Action : +/2 l*|Destination
     +R854 : r|Destination { l|Instance Destination, l|Assigner Destination }
     +R855.2 : +/1 t|Delivery Time : -/2 r-2|Signal Action
