@@ -2,7 +2,7 @@ metadata
     Title : Update Action Snippet Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3d
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : February 6, 2022
     Modification date : February 7, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -29,26 +29,11 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Make Tuple Action
-attributes
-    Action {I, R901}
-    Activity {I, R901}
-    Domain {I, R901}
---
 class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
---
-class Tuple Attribute Value
-attributes
-    Make tuple action {I, R1001}
-    Update flow {I,R1001}
-    Activity {I, R1001}
-    Attribute {I, R1001}
-    Class {I, R1001}
-    Domain {I, R1001}
 --
 class Update Action
 attributes
@@ -72,19 +57,14 @@ relationships
     1 Attribute Update Value
 --
     R1001
-    is input to, Mc Make Tuple Action
+    is input to, 1 Update Tuple Flow
     takes input from, M Attribute Update Flow
-    1 Tuple Attribute Value
---
-    R1002
-    yields, 1 Update Tuple Flow
-    is yielded by, 1 Make Tuple Action
 --
     R1003
-    provides update value for, 1 Update Action
-    updates using, 1 Update Tuple Flow
+    is update value for, 1 Update Action
+    updates with, 1 Update Tuple Flow
 --
     R1004
     updates instances in, 1 Instance Flow
-    provides instances to update for, Mc Update Action
+    provides instances to update by, Mc Update Action
 --

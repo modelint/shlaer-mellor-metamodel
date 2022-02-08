@@ -11,14 +11,11 @@ nodes
     Scalar Flow 7,2
     Attribute 5,2
     Attribute Update Flow 6,3
-    Make Tuple Action 6,6
-    Tuple Attribute Value/2 5,4-5
-    Update Action 3,8-9
-    Update Tuple Flow 6,8-9
-    Instance Flow/2 3,6
+    Update Action 3,6
+    Update Tuple Flow 6,6
+    Instance Flow/2 3,3
 connectors
     -R1000 : +/2 b|Scalar Flow : +/2 t*|Attribute, l|Attribute Update Flow
-    +R1001 : +/1 r|Attribute Update Flow : +/2 l*|Make Tuple Action, t|Tuple Attribute Value
-    +R1002 : +/1 r|Make Tuple Action : +/1 l*|Update Tuple Flow
+    +R1001 : +/1 r|Attribute Update Flow : +/2 l*|Update Tuple Flow
     +R1003 : +/2 b|Update Tuple Flow : +/2 t*|Update Action
     -R1004 : +/2 l|Update Action : +/2 r*|Instance Flow
