@@ -63,6 +63,13 @@ attributes
     Activity {I}
     Domain {I}
 --
+class Multiple Assigner Partition Instance
+attributes
+    Action {I, R859}
+    Activity {I, I2, R859}
+    Domain {I, I2, R859}
+    Partition {I2, R859}
+--
 class Relative Delivery Time
 attributes
     Action {I, R856}
@@ -168,8 +175,9 @@ relationships
     provides assigner as, Mc Signal Assigner Action
 --
     R859
-    partitions multiple assigner, 1 Single Instance Flow
+    partitions multiple assigner, 1c Single Instance Flow
     is partition for multiple assigner in, Mc Signal Assigner Action
+    1 Multiple Assigner Partition Instance
 --
     R860
     asynchronously creates instance of, 1 Class

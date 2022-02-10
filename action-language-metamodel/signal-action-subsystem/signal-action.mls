@@ -26,6 +26,7 @@ nodes
     Class 7,10
     Instance Flow 5-6,10
     Scalar Flow 4,3
+    Multiple Assigner Partition Instance/2 1-2,9
 connectors
     +R850 : -/1 l|Signal Action : -/2 b|Event Parameter, r|Supplied Parameter Value
     +R851 : -/2 t|Signal Action : -/2 b*|Event Specification
@@ -35,7 +36,7 @@ connectors
     +R856 : b|Delivery Time { t|Absolute Delivery Time, t|Relative Delivery Time }
     +R857 : -/2 r|Signal Instance Set Action : -/2 l*|Instance Flow
     +R858 : -/2 r|Signal Assigner Action : -/3 l*|Association
-    +R859 : +/2 b|Signal Assigner Action : -/2 l|Single Instance Flow
+    +R859 : +/3 b|Signal Assigner Action : +/3 l|Single Instance Flow, t|Multiple Assigner Partition Instance
     +R860 : -/3 r|Signal Creation Action : -/2 l*|Class
     +R861 : -/2 r|Signal EE Action : -/2 l*|External Entity
     -R862 : +/2 r*|Scalar Flow : +/2 l|Delivery Time
