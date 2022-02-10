@@ -2,7 +2,7 @@ metadata
     Title : Signal Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.1a
-    Version : 0.4.0
+    Version : 0.5.0
     /// Creation date : September 10, 2021
     Modification date : February 9, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -16,12 +16,6 @@ attributes
     Domain {I, R856}
     When : Time
 --
-class Assigner Destination
-attributes
-    Destination {I, R854}
-    Rnum {I2, R858}
-    Domain {I, I2, R858, R854}
---
 class Association <import:Relationship>
 attributes
     Rnum {I}
@@ -31,12 +25,6 @@ class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
---
-class Creation Destination
-attributes
-    Destination {I, R854}
-    Domain {I, I2, R854}
-    Class {I2, R854}
 --
 class Data Flow <import:Flow>
 attributes
@@ -50,12 +38,6 @@ attributes
     Activity {I, R855, R862}
     Domain {I, R855, R862}
     Flow {R862}
---
-class External Destination
-attributes
-    Destination {I, R854}
-    Domain {I, I2, R854}
-    EE {I2, R854}
 --
 class External Entity <import:Domain>
 attributes
@@ -74,13 +56,6 @@ attributes
     Name {I}
     State model {I}
     Domain {I}
---
-class Instance Destination
-attributes
-    Destination {I}
-    Domain {I, I2}
-    Instance flow {I2}
-    Activity {I2}
 --
 class Instance Flow <import:Flow>
 attributes
@@ -110,16 +85,39 @@ attributes
     State model {R851}
     Destination {R853}
 --
-class Signal Destination, SDEST
+class Signal Assigner
 attributes
-    ID : Destination ID {I}
-    Domain {I, UR854}
+    Action {I, R854}
+    Activity {I, R854}
+    Domain {I, R854, R858}
+    Association {R858}
+--
+class Signal Creation
+attributes
+    Action {I, R854}
+    Activity {I, R854}
+    Domain {I, R854, R860}
+    Class {R860}
+--
+class Signal External
+attributes
+    Action {I, R854}
+    Activity {I, R854}
+    Domain {I, R854, R861}
+    EE {R861}
 --
 class Single Instance Flow <import:Flow>
 attributes
     Name {I}
     Activity {I}
     Domain {I}
+--
+class Signal Instance Set
+attributes
+    Action {I, R854}
+    Activity {I, R854, R857}
+    Domain {I, R854, R857}
+    Instance flow {R857}
 --
 class Supplied Parameter Value
 attributes
@@ -145,16 +143,12 @@ relationships
     provides value for, Mc Supplied Parameter Value
     obtains value from, 1 Data Flow
 --
-    R853
-    sends signal to, 1 Signal Destination
-    receives signal from, 1 Signal Action
---
     R854
-    Signal Destination +
-        Instance Destination
-        Assigner Destination
-        Creation Destination
-        External Destination
+    Signal Action +
+        Signal Instance Set
+        Signal Assigner
+        Signal Creation
+        Signal External
 --
     R855
     is sent at, 1c Delivery Time
@@ -166,24 +160,24 @@ relationships
         Relative Delivery Time
 --
     R857
-    directs signals to, 1 Instance Flow
-    recieves signal at, Mc Instance Destination
+    delivers signals to each member of, 1 Instance Flow
+    each member recieves signal from, Mc Signal Instance Set
 --
     R858
     directs signal to assigner on, 1 Association
-    provides assigner as, Mc Assigner Destination
+    provides assigner as, Mc Signal Assigner
 --
     R859
     partitions multiple assigner, 1 Single Instance Flow
-    is partition for multiple assigner in, Mc Assigner Destination
+    is partition for multiple assigner in, Mc Signal Assigner
 --
     R860
-    creates instance of, 1 Class
-    has instances created asynchronously at, Mc Creation Destination
+    asynchronously creates instance of, 1 Class
+    has instance asynchronously created by, Mc Signal Creation
 --
     R861
-    directs signal to, 1 External Entity
-    receives signal as, Mc External Destination
+    delivers signal to, 1 External Entity
+    receives signal from, Mc Signal External
 --
     R862
     flows value as, Mc Delivery Time
