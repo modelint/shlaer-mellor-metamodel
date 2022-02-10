@@ -10,26 +10,34 @@ frame_presentation default
 nodes
     Association 3,11
     Data Flow 1,1
-    Supplied Parameter 3,1
+    Supplied Parameter Value/2 3,1
     Event Specification 6,3
     Signal Action 4,3
     Event Parameter 2,3
     Absolute Delivery Time/2 2,5
     Relative Delivery Time/2 2,6
     Delivery Time 3,5-6
-    Destination 4,7
+    Signal Destination/2 4,7
     Assigner Destination/2 3,8-9
     Instance Destination/2 5,8-9
+    Creation Destination/2 6-7,8-9
+    External Destination/2 8,8-9
+    External Entity 8,11
+    Class 6-7,11
     Instance Flow 5,11
     Single Instance Flow 2,11
+    Scalar Flow 1,7
 connectors
-    +R850 : -/1 b|Signal Action : -/2 t*|Event Parameter, r|Supplied Parameter
+    +R850 : -/1 b|Signal Action : -/2 t*|Event Parameter, r|Supplied Parameter Value
     +R851 : -/2 t|Signal Action : -/2 b*|Event Specification
-    -R852 : +/2 b|Supplied Parameter : +/2 t*|Data Flow
-    +R853 : +/2 r|Signal Action : +/2 l*|Destination
-    +R854 : r|Destination { l|Instance Destination, l|Assigner Destination }
-    +R855.2 : +/1 t|Delivery Time : -/2 r-2|Signal Action
+    -R852 : +/2 b|Supplied Parameter Value : +/2 t*|Data Flow
+    +R853 : +/2 r|Signal Action : +/2 l*|Signal Destination
+    +R854-1 : r|Signal Destination { l|External Destination, l|Instance Destination, l|Assigner Destination, l|Creation Destination }
+    +R855.2 : -/1 t|Delivery Time : -/2 r-2|Signal Action
     +R856 : b|Delivery Time { t|Absolute Delivery Time, t|Relative Delivery Time }
-    +R857 : +/3 r|Instance Destination : -/3 l*|Instance Flow
-    +R858 : +/2 r|Assigner Destination : -/3 l*|Association
+    +R857 : -/2 r|Instance Destination : -/2 l*|Instance Flow
+    +R858 : -/2 r|Assigner Destination : -/3 l*|Association
     +R859 : +/2 b|Assigner Destination : -/2 l|Single Instance Flow
+    +R860 : -/3 r|Creation Destination : -/2 l*|Class
+    +R861 : -/2 r|External Destination : -/2 l*|External Entity
+    +R862.2 : +/1 t|Scalar Flow : +/1 r|Delivery Time
