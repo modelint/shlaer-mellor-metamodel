@@ -2,7 +2,7 @@ metadata
     Title : Signal Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.1a
-    Version : 0.5.0
+    Version : 0.5.1
     /// Creation date : September 10, 2021
     Modification date : February 9, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -85,21 +85,21 @@ attributes
     State model {R851}
     Destination {R853}
 --
-class Signal Assigner
+class Signal Assigner Action
 attributes
     Action {I, R854}
     Activity {I, R854}
     Domain {I, R854, R858}
     Association {R858}
 --
-class Signal Creation
+class Signal Creation Action
 attributes
     Action {I, R854}
     Activity {I, R854}
     Domain {I, R854, R860}
     Class {R860}
 --
-class Signal External
+class Signal EE Action
 attributes
     Action {I, R854}
     Activity {I, R854}
@@ -112,7 +112,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Signal Instance Set
+class Signal Instance Set Action
 attributes
     Action {I, R854}
     Activity {I, R854, R857}
@@ -145,10 +145,10 @@ relationships
 --
     R854
     Signal Action +
-        Signal Instance Set
-        Signal Assigner
-        Signal Creation
-        Signal External
+        Signal Instance Set Action
+        Signal Assigner Action
+        Signal Creation Action
+        Signal EE Action
 --
     R855
     is sent at, 1c Delivery Time
@@ -161,23 +161,23 @@ relationships
 --
     R857
     delivers signals to each member of, 1 Instance Flow
-    each member recieves signal from, Mc Signal Instance Set
+    each member recieves signal from, Mc Signal Instance Set Action
 --
     R858
     directs signal to assigner on, 1 Association
-    provides assigner as, Mc Signal Assigner
+    provides assigner as, Mc Signal Assigner Action
 --
     R859
     partitions multiple assigner, 1 Single Instance Flow
-    is partition for multiple assigner in, Mc Signal Assigner
+    is partition for multiple assigner in, Mc Signal Assigner Action
 --
     R860
     asynchronously creates instance of, 1 Class
-    has instance asynchronously created by, Mc Signal Creation
+    has instance asynchronously created by, Mc Signal Creation Action
 --
     R861
     delivers signal to, 1 External Entity
-    receives signal from, Mc Signal External
+    receives signal from, Mc Signal EE Action
 --
     R862
     flows value as, Mc Delivery Time
