@@ -2,7 +2,7 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 4.0.0
+    Version : 4.1.0
     /// Creation date : June 27, 2017
     Modification date : Feburary 18, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -15,6 +15,11 @@ attributes
     Class {I, R20}
     Domain {I, R20}
     Type {R24}
+--
+class Attribute Derivation Activity <import:Activity>
+attributes
+    Activity {I}
+    Domain {I}
 --
 class Attribute In Derivation
 attributes
@@ -40,6 +45,13 @@ attributes
     Cnum : Class Number {I3, R14}
     Domain {I, I2, I3, R14}
 --
+class Derived Attribute
+attributes
+    Name {I, R25}
+    Class {I, R25}
+    Domain {I, R25, R28}
+    Derivation {R28}
+--
 class Identifier
 attributes
     Number : ID Number {I}
@@ -52,6 +64,12 @@ attributes
     Attribute {I, R22}
     Class {I, R22}
     Domain {I, R22}
+--
+class Non Derived Attribute
+attributes
+    Name {I, R25}
+    Class {I, R25}
+    Domain {I, R25}
 --
 class Reference <import:Formalization>
 attributes
@@ -89,12 +107,22 @@ relationships
     is required in, Mc Identifier
     1 Identifier Attribute
 --
+    R23
+    is part of, M Reference
+    consists of, M Referential Attribute
+    1 Referential Role
+--
     R24
     may assume values defined by, 1 Type
     defines range of values assignable to, Mc Attribute Reference
 --
+    R25
+    Attribute +
+        Derived Attribute
+        Non Derived Attribute
+--
     R26
-    is derived from, Mc Attribute
+    is derived from, M Attribute
     contributes to the value of, Mc Attribute
     1 Attribute In Derivation
 --
@@ -102,8 +130,7 @@ relationships
     has instances uniquely distinguished by, M Identifier
     uniquely distinguishes instances of, 1 Class
 --
-    R23
-    is part of, M Reference
-    consists of, M Referential Attribute
-    1 Referential Role
+    R28
+    computes value of, 1 Derived Attribute
+    has value computed by, 1 Attribute Derivation Activity
 --
