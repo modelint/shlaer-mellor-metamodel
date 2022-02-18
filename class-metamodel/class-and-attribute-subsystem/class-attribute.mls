@@ -1,0 +1,28 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color blue steel
+sheet D
+padding l300 b400
+frame OS Engineer
+frame_presentation default
+nodes
+    Class 6,3
+    Attribute 50% 6,6-7
+    Identifier 9,3
+    Identifier Attribute 10,6
+    Attribute Reference/2 8,7-8
+    Required Referential Identifier/2 10-11,3-4
+    Attribute In Derivation/2 3-4,6
+    Type 6,9
+    Referential Role 9,9 >left
+    Reference 8,10
+connectors
+    +R20 : +/1 r+1|Class : +/1 l*|Attribute
+    -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
+    -R22.2 : +/1 r|Identifier : -/1 t-2|Attribute, b|Identifier Attribute
+    -R24 : -/3 r|Attribute : +/3 l*|Type
+    +R26.3 : +/1 l-2|Attribute : +/2 b-2|Attribute, t|Attribute In Derivation : L6R-2 L5
+    +R27 : -/3 t|Class : -/3 b*|Identifier
+    +R23 : -/1 r|Attribute Reference : -/1 l*|Reference, b|Referential Role
