@@ -2,13 +2,19 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 4.1.0
+    Version : 4.2.0
     /// Creation date : June 27, 2017
     Modification date : Feburary 18, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Class And Attribute
+class Alias
+attributes
+    Name : Alias Name {I}
+    Class {I, R29}
+    Domain {I, R29}
+--
 class Attribute
 attributes
     Name : Name {I}
@@ -41,9 +47,8 @@ attributes
 class Class
 attributes
     Name : Class Name {I}
-    Alias : Class Alias {I2}
-    Cnum : Class Number {I3, R14}
-    Domain {I, I2, I3, R14}
+    Cnum : Class Number {I2, R14}
+    Domain {I, I2, R14}
 --
 class Derived Attribute
 attributes
@@ -133,4 +138,8 @@ relationships
     R28
     computes value of, 1 Derived Attribute
     has value computed by, 1 Attribute Derivation Activity
+--
+    R29
+    abbreviates name of, 1 Class
+    is abbreviated by, 1c Alias
 --
