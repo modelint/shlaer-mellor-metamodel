@@ -1,4 +1,4 @@
-diagram class
+diagram class // Domain Subsystem layout
 notation Starr
 presentation default
 orientation landscape
@@ -12,9 +12,8 @@ nodes
     Class 2,8
     Constrained Loop 2,5
     Domain 10,6
-    Domain Type 2,3
     Element 5,5-6
-    Lineage 2,4
+    Lineage 2,3-4
     Modeled Domain 7,5-6
     Realized Domain 8-9,7
     Spanning Element 3-4,4
@@ -31,4 +30,4 @@ connectors
     +R14 : b|Subsystem Element { t|Relationship, t|Class }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
     +R16 : b|Element { t|Spanning Element, t|Subsystem Element }
-    +R17 : b|Spanning Element { t|Domain Type, t|Lineage, t|Constrained Loop }
+    +R17 : b|Spanning Element { t|Lineage, t|Constrained Loop }

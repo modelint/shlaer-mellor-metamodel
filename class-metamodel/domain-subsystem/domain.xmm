@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.2.0
+    Version : 2.3.0
     /// Creation date : May 9, 2011
-    Modification date : January 6, 2022
+    Modification date : February 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -16,35 +16,28 @@ attributes
 --
 class Class <import:Class Attribute>
 attributes
-    Name {I}
-    Domain {I, I2, R14}
-    Element {I2, R14}
+    Cnum {I, R14}
+    Domain {I, R14}
 --
 class Constrained Loop <import:Relationship>
 attributes
+    CLnum {I2, R17}
     Domain {I, I2, R17}
-    Element {I2, R17}
 --
 class Domain
 attributes
     Name : Domain Name {I}
     Alias : Domain Alias {I2}
 --
-class Domain Type <import:Type Subsystem>
-attributes
-    Name {I}
-    Domain {I, I2, R17}
-    Element {I2, R17}
---
 class Element
 attributes
-    Number : Element Number {I}
+    Number {I, UR16}
     Domain {I, R15}
 --
 class Lineage <import:Relationship>
 attributes
+    Lnum {I2, R17}
     Domain {I, I2, R17}
-    Element {I2, R17}
 --
 class Modeled Domain
 attributes
@@ -74,15 +67,14 @@ attributes
 class Subsystem Numbering Range
 attributes
     Floor : Element Number {I}
-    Ceiling : Element Number {I2}
+    Ceiling : Element Number {I2c}
     Subsystem {I, I2, R3}
     Domain {I, I2, R3}
 --
 class Relationship <import:Relationship>
 attributes
-    Rnum {I}
-    Domain {I, I2, R14}
-    Element {I2, R14}
+    Rnum {I, R14}
+    Domain {I, R14}
 --
 relationships
     R1
@@ -123,7 +115,6 @@ relationships
 --
     R17
     Spanning Element +
-        Domain Type
         Lineage
         Constrained Loop
 --
