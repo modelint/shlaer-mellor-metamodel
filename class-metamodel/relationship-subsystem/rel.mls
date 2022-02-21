@@ -42,7 +42,7 @@ connectors
     -R117.2-2 : +/1 b+2|Subclass : +/1 l+2|Minimal Partition
     -R118.2-2 : -/1 b-2|Subclass : +/1 l-2|Minimal Partition
     +R119 : b|Association  { t|Unary Association, t|Binary Association }
-    +R120.2+2 : +/1 r|Association : -/3 t|Class, l-1|Association Class
+    +R120.2+2 : +/1 r|Association : -/1 t|Class, l-1|Association Class
     +R121 : t|Perspective  { b|Symmetric Perspective, b|Asymmetric Perspective }
     -R123 : -/1 b|Unary Association : -/1 t*|Symmetric Perspective
     -R124 : -/1 b-1|Binary Association : -/1 t*|T Perspective

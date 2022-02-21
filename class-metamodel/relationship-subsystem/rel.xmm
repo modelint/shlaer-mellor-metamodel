@@ -2,9 +2,9 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 3.0.0
+    Version : 3.0.1
     /// Creation date : March 4, 2012
-    Modification date : February 20, 2022
+    Modification date : February 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -101,7 +101,7 @@ attributes
 --
 class Relationship
 attributes
-    Rnum : Number {I}
+    Rnum : Relationship Number {I}
     Domain {I, R14}
 --
 class Specialized Class
@@ -179,8 +179,8 @@ relationships
         Binary Association
 --
     R120
-    abstracted dependency if fulfilled by, 1c Class
-    abstracts dependency on, 1c Association
+    is formalized by, 1c Class
+    formalizes, 1c Association
     1 Association Class
 --
     R121
