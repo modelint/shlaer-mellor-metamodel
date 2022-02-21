@@ -2,14 +2,14 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 2.4.0
+    Version : 3.0.0
     /// Creation date : March 4, 2012
-    Modification date : December 19, 2021
+    Modification date : February 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Relationship
-class Active Perspective
+class T Perspective
 attributes
     Rnum {I, R124, R105}
     Domain {I, R105, R124}
@@ -44,7 +44,7 @@ attributes
 --
 class Constrained Loop
 attributes
-    Element {I, R17}
+    CLnum {I, R17}
     Domain {I, R17}
 --
 class Facet
@@ -67,7 +67,7 @@ attributes
 --
 class Lineage
 attributes
-    Element {I, R17}
+    Lnum {I, R17}
     Domain {I, R17}
 --
 class Loop Segment
@@ -76,12 +76,6 @@ attributes
     Rnum {I, R160}
     Domain {I, R160}
 --
-class Many Perspective
-attributes
-    Rnum {I, R104}
-    Domain {I, R104}
-    Side {I, R104}
---
 class Minimal Partition
 attributes
     Rnum {I, R116, R117, R118}
@@ -89,13 +83,7 @@ attributes
     A subclass {R117}
     B subclass {R118c}
 --
-class One Perspective
-attributes
-    Rnum {I, R104}
-    Domain {I, R104}
-    Side {I, R104}
---
-class Passive Perspective
+class P Perspective
 attributes
     Rnum {I, R125, R105}
     Domain {I, R105, R125}
@@ -107,15 +95,14 @@ attributes
     Rnum {I}
     Domain {I, R110}
     Viewed class {R110}
-    Phrase : Name
-    Conditional : boolean
-    \ UML multiplicity : UML M Symbol
+    Phrase : Phrase Name
+    Conditional : Boolean
+    Multiplicity : One Many
 --
 class Relationship
 attributes
-    Rnum : Number  {I}
-    Domain {I, I2, R14}
-    Element {I2, R14}
+    Rnum : Number {I}
+    Domain {I, R14}
 --
 class Specialized Class
 attributes
@@ -165,15 +152,10 @@ relationships
     is required by, 1 Generalization
     requires, 1 Superclass
 --
-    R104
-    Perpective +
-        One Perspective
-        Many Perspective
---
     R105
     Asymmetric Perpective +
-        Active Perspective
-        Passive Perspective
+        T Perspective
+        P Perspective
 --
     R110
     is standpoint of, Mc Perspective
@@ -212,11 +194,11 @@ relationships
 --
     R124
     is view on, 1 Binary Association
-    is viewed from, 1 Active Perspective
+    is viewed from, 1 T Perspective
 --
     R125
     is view on, 1 Binary Association
-    is viewed from, 1 Passive Perspective
+    is viewed from, 1 P Perspective
 --
     R131
     abstracts a facet of an object within, M Lineage
