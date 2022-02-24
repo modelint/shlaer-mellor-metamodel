@@ -21,6 +21,8 @@ nodes
     Attribute Derivation Activity/2 2-3,6
     Type 6,9
     Class Reference 8,10
+    Irreducible Identifier/2 8-9,1-2
+    Super Identifier 10,1-2
 connectors
     +R20 : +/1 r+1|Class : +/1 l*|Attribute
     -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
@@ -32,3 +34,5 @@ connectors
     +R27 : -/3 t|Class : -/3 b*|Identifier
     +R28 : -/2 b|Derived Attribute : -/2 t*|Attribute Derivation Activity
     +R29 : -/2 b|Class : -/1 t*|Alias
+    -R30 : l|Identifier { r|Irreducible Identifier, r|Super Identifier }
+    -R31 : -/2 b|Irreducible Identifier : -/2 l|Class
