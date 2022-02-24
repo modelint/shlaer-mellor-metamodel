@@ -21,7 +21,7 @@ attributes
     Activity {I, R882}
     Domain {I, R882}
 --
-class Attribute <import:Classes And Attributes>
+class Attribute <import:Class And Attribute>
 attributes
     Name {I}
     Class {I}
@@ -38,7 +38,7 @@ class Attribute Update
 attributes
     Attribute {I, R886}
     Class {I, R886}
-    Write action {I, R886}
+    Write Action {I, R886}
     Scalar flow {R887}
     Activity {I, R886, R887}
     Domain {I, R886, R887}
@@ -61,7 +61,7 @@ attributes
     Activity {I, R883}
     Domain {I, R883}
 --
-class Identifier <import:Classes And Attributes>
+class Identifier <import:Class And Attribute>
 attributes
     Number {I}
     Class {I}
@@ -134,7 +134,7 @@ attributes
 --
 relationships
     R875
-    Selection +
+    Selection Action +
         Zero One Selection
         Zero Many Selection
 --
@@ -160,9 +160,9 @@ relationships
     is yielded by, 1c Zero Many Selection
 --
     R881
-    provides comparison value to, Mc Selection
-    performs comparison using value from, Mc Scalar Flow Type
-    1 Scalar Input
+    provides comparison value to, Mc Selection Action
+    performs comparison using value from, Mc Scalar Flow
+    1 Selection Input
 --
     R882
     Zero One Selection +
@@ -190,6 +190,6 @@ relationships
     1 Attribute Update
 --
     R887
-    assigns value supplied by, 1 Scalar Flow Type
+    assigns value supplied by, 1 Scalar Flow
     supplies value to assign for, Mc Attribute Update
 --

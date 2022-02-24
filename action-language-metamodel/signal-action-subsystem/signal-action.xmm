@@ -8,7 +8,7 @@ metadata
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Action
+subsystem Signal
 class Absolute Delivery Time
 attributes
     Action {I, R856}
@@ -21,7 +21,7 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Class <import:Class Attribute>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -128,7 +128,7 @@ attributes
 --
 class Supplied Parameter Value
 attributes
-    Parameter {I, R850}
+    Event Parameter {I, R850}
     Action {I, R850}
     Activity {I,R850, R852}
     Domain {I, R850, R852}
@@ -139,7 +139,7 @@ attributes
 relationships
     R850
     is input to, Mc Signal Action
-    specifies input, Mc Parameter
+    specifies input, Mc Event Parameter
     1 Supplied Parameter Value
 --
     R851

@@ -144,7 +144,7 @@ relationships
 --
     R927
     Hop +
-        Assocation Hop
+        Association Hop
         Generalization Hop
 --
     R931
@@ -165,7 +165,7 @@ relationships
         To Subclass Hop
 --
     R935
-    specifies as target, 1 Sublcass
+    specifies as target, 1 Subclass
     is specified as target of, Mc To Subclass Hop
 --
     R936
@@ -190,5 +190,5 @@ relationships
 --
     R941
     specifies target, 1 Perspective
-    is specified as target of, Mc Perspective Hope
+    is specified as target of, Mc Perspective Hop
 --

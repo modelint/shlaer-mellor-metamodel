@@ -8,8 +8,8 @@ metadata
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Access Action
-class Attribute <import:Classes And Attributes>
+subsystem Access Write
+class Attribute <import:Class And Attribute>
 attributes
     Name {I}
     Class {I}
@@ -54,7 +54,7 @@ relationships
     R1000
     will be updated with, Mc Scalar Flow
     updated value of, Mc Attribute
-    1 Attribute Update Value
+    1 Attribute Update Flow
 --
     R1001
     is input to, 1 Update Tuple Flow

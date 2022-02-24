@@ -30,7 +30,7 @@ attributes
     ID {I, R818}
     Domain {I, R818}
 --
-class Class <import:Class>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}

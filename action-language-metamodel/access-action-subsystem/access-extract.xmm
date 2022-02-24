@@ -8,8 +8,8 @@ metadata
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Access Action
-class Attribute <import:Classes And Attributes>
+subsystem Access Extract
+class Attribute <import:Class And Attribute>
 attributes
     Name {I}
     Class {I}

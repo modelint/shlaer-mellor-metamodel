@@ -22,13 +22,13 @@ attributes
     T instance {R837}
     P instance {R838}
 --
-class Attribute <import:Classes And Attributes>
+class Attribute <import:Class And Attribute>
 attributes
     Name {I}
     Class {I}
     Domain {I}
 --
-class Class <import:Classes And Attributes>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -70,7 +70,7 @@ attributes
 --
 class New Instance Flow
 attributes
-    Create action {I, R826}
+    Create Action {I, R826}
     Flow {I2, R826}
     Activity {I, I2, R826}
     Domain {I, I2, R826}
