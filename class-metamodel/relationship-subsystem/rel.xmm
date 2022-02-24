@@ -2,7 +2,7 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.2.3
+    Version : 4.3.1
     /// Creation date : March 4, 2012
     Modification date : February 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -58,6 +58,13 @@ attributes
     Domain {I, R100, R103}
     Superclass {R103}
 --
+class Identifier Attribute <import:Class And Attribute>
+attributes
+    Identifier {I}
+    Name {I}
+    Class {I}
+    Domain {I}
+--
 class Lineage
 attributes
     Lnum : Lineage Number {I, R17}
@@ -79,8 +86,10 @@ attributes
 class Ordinal Relationship
 attributes
     Rnum {I, R100}
-    Domain {I, R100, R104}
-    Ranked class {R104}
+    Domain {I, R100, R104, R106}
+    Ranked class {R104, R106}
+    Ranked attribute {R106}
+    Rank identifier {R106}
     Ascending perspective : Phrase Name
     Descending perspective : Phrase Name
 --
@@ -98,6 +107,14 @@ attributes
     Phrase : Phrase Name
     Conditional : Boolean
     Multiplicity : One Many
+--
+class Rank Scope
+attributes
+    Rnum {I, R107}
+    Identifier {I, R107}
+    Attribute {I, R107}
+    Class {I, R107}
+    Domain {I, R107}
 --
 class Relationship
 attributes
@@ -160,6 +177,15 @@ relationships
     Asymmetric Perpective +
         T Perspective
         P Perspective
+--
+    R106
+    is ranked by, 1 Identifier Attribute
+    is used to rank, Mc Ordinal Relationship
+--
+    R107
+    scopes ranking in, Mc Ordinal Relationship
+    has ranking scoped by, Mc Identifier Attribute
+    1 Rank Scope
 --
     R110
     is standpoint of, Mc Perspective

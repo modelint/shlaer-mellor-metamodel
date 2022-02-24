@@ -22,6 +22,8 @@ nodes
     Generalization 11,6
     Association 11,10
     Ordinal Relationship/2 11,7-8
+    Identifier Attribute/2 4-5,7-8
+    Rank Scope 6,6-7
     Constrained Loop 12,13
     Loop Segment 13-14,11-12
     Class In Lineage 6-7,4
@@ -35,8 +37,10 @@ connectors
     +R101 : +/1 t*|Class.2 : +/1 b|Generalization, r|Facet
     +R102 : l|Facet { r|Subclass, r|Superclass }
     -R103 : -/1 t|Superclass : +/1 l-1|Generalization
-    +R104.2 : +/3 b|Ordinal Relationship : -/3 r|Class.2
+    -R104.2 : -/3 b-2|Ordinal Relationship : -/3 r|Class.2
     +R105 : t|Asymmetric Perspective  { b|T Perspective, b|P Perspective }
+    +R106 : +/2 b+2|Ordinal Relationship : +/2 t*|Identifier Attribute
+    +R107 : +/2 b-1|Ordinal Relationship : +/2 t*|Identifier Attribute, r|Rank Scope
     -R110 : +/1 r|Perspective : -/1 b|Class
     +R116 : +/1 t|Minimal Partition : +/1 l+2|Generalization
     +R117 : -/2 l*|Subclass : -/2 r+2|Minimal Partition
@@ -48,4 +52,4 @@ connectors
     -R124 : -/1 b-1|Binary Association : -/1 t*|T Perspective
     +R125 : +/1 b+1|Binary Association : +/1 t*|P Perspective
     -R130 : +/2 t+2|Association : +/1 l|Constrained Loop, b|Loop Segment
-    +R131 : +/3 b|Facet : +/3 t*|Lineage, r|Class In Lineage
+    +R131 : +/3 b|Facet : -/3 t*|Lineage, r|Class In Lineage
