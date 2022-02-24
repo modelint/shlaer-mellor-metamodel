@@ -118,7 +118,7 @@ attributes
 --
 class Symmetric Perspective
 attributes
-    Rnum {I, R123. R121}
+    Rnum {I, R123, R121}
     Domain {I, R121, R123}
 --
 class T Perspective
@@ -157,7 +157,7 @@ relationships
     has instances ranked by value in, Mc Ordinal Relationship
 --
     R105
-    Asymmetric Perpective +
+    Asymmetric Perspective +
         T Perspective
         P Perspective
 --
