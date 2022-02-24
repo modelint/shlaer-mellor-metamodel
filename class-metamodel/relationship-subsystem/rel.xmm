@@ -2,7 +2,7 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.0.0
+    Version : 4.1.0
     /// Creation date : March 4, 2012
     Modification date : February 23, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -79,7 +79,10 @@ attributes
 class Ordinal Relationship
 attributes
     Rnum {I, R100}
-    Domain {I, R100}
+    Domain {I, R100, R104}
+    Ranked class {I, R104}
+    Ascending perspective : Phrase Name
+    Descending perspective : Phrase Name
 --
 class P Perspective
 attributes
@@ -148,6 +151,10 @@ relationships
     R103
     is required by, 1 Generalization
     requires, 1 Superclass
+--
+    R104
+    ranks instances by value, 1 Class
+    has instances ranked by value in, Mc Ordinal Relationship
 --
     R105
     Asymmetric Perpective +
