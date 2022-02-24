@@ -2,19 +2,13 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 3.0.1
+    Version : 4.0.0
     /// Creation date : March 4, 2012
-    Modification date : February 22, 2022
+    Modification date : February 23, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Relationship
-class T Perspective
-attributes
-    Rnum {I, R124, R105}
-    Domain {I, R105, R124}
-    Side {R105c}
---
 class Association
 attributes
     Rnum  {I, R100}
@@ -42,6 +36,11 @@ attributes
     Name {I}
     Domain {I}
 --
+class Class In Lineage
+attributes
+    Class {I, R131}
+    Lnum {I, R131}
+--
 class Constrained Loop
 attributes
     CLnum {I, R17}
@@ -49,21 +48,15 @@ attributes
 --
 class Facet
 attributes
-    Lineage  {I, R131}
-    Class {I, R131}
-    Domain {I, R131}
+    Rnum {I, R101}
+    Class {I, R101}
+    Domain {I, R101}
 --
 class Generalization
 attributes
     Rnum  {I, R100, R103}
     Domain {I, R100, R103}
     Superclass {R103}
---
-class Generalization Role
-attributes
-    Rnum {I, R101}
-    Class {I, R101}
-    Domain {I, R101}
 --
 class Lineage
 attributes
@@ -83,11 +76,15 @@ attributes
     A subclass {R117}
     B subclass {R118c}
 --
+class Ordinal Relationship
+attributes
+    Rnum {I, R100}
+    Domain {I, R100}
+--
 class P Perspective
 attributes
     Rnum {I, R125, R105}
     Domain {I, R105, R125}
-    Side {R105c}
 --
 class Perspective
 attributes
@@ -103,11 +100,6 @@ class Relationship
 attributes
     Rnum : Relationship Number {I}
     Domain {I, R14}
---
-class Specialized Class
-attributes
-    Name {I, R23}
-    Domain {I, R23}
 --
 class Subclass
 attributes
@@ -125,7 +117,11 @@ class Symmetric Perspective
 attributes
     Rnum {I, R123. R121}
     Domain {I, R121, R123}
-    Side {R121c}
+--
+class T Perspective
+attributes
+    Rnum {I, R124, R105}
+    Domain {I, R105, R124}
 --
 class Unary Association
 attributes
@@ -137,14 +133,15 @@ relationships
     Relationship +
         Generalization
         Association
+        Ordinal Relationship
 --
     R101
-    has participating, M Specialized Class
-    participats in, M Generalization
-    1 Generalization Role
+    has participating, M Class
+    participates in, M Generalization
+    1 Facet
 --
     R102
-    Generalization Role +
+    Facet +
         Subclass
         Superclass
 --
@@ -200,13 +197,13 @@ relationships
     is view on, 1 Binary Association
     is viewed from, 1 P Perspective
 --
+    R130
+    is a segment of, Mc Constrained Loop
+    is a contiguous closed path of, M Association
+    1 Loop Segment
+--
     R131
     abstracts a facet of an object within, M Lineage
-    defines a facet of an object with, M Specialized Class
-    1 Facet
---
-    R160
-    is a segment of, Mc Constrained Loop
-    is a contiguous closed path of, M Relationship
-    1 Loop Segment
+    defines a facet of an object with, M Class
+    1 Class In Lineage
 --

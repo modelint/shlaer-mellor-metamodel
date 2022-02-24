@@ -8,45 +8,43 @@ padding l300 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Association 10,10
-    Association Class 10,15
-    T Perspective 6,11
-    Asymmetric Perspective 4-5,11-12
-    Binary Association 50% 8-9,11-12
-    Class 7,14
-    P Perspective 6,12
-    Perspective 3,10
-    One Perspective 1,9
-    Many Perspective 1,11
-    Symmetric Perspective 5-6,9
-    Relationship 11-12,9
-    Constrained Loop 11-12,11
-    Loop Segment 12-13,10
-    Unary Association 8-9,9
-    Generalization 10,7
-    Generalization Role 11-12,4
-    Specialized Class 13,6
-    Lineage 13,8-9
-    Facet 14,7-8
-    Superclass 10,5
-    Subclass 10,3
-    Minimal Partition 8,6
+// Association
+    Unary Association 9-10,9
+    Binary Association 50% 9-10,11-12
+    Association Class 10,14-15
+    T Perspective 7,11
+    Asymmetric Perspective 5-6,11-12
+    Class 8,13-14 : 8,6
+    P Perspective 7,12
+    Perspective 4,10
+    Symmetric Perspective 6-7,9
+    Relationship 12-13,9
+    Generalization 11,6
+    Association 11,10
+    Ordinal Relationship/2 11,7-8
+    Constrained Loop 12,13
+    Loop Segment 13-14,11-12
+    Class In Lineage 6-7,5
+    Lineage 5,6
+    Facet 9-10,5
+    Superclass 10,3-4
+    Subclass 8-9,3-4
+    Minimal Partition 8-9,1
 connectors
-    +R100 : b|Relationship  { t|Generalization, t|Association }
-    +R101 : -/1 b|Specialized Class : +/1 l+2|Generalization, r|Generalization Role
-    +R102 : b|Generalization Role { t|Subclass, t|Superclass }
-    -R103 : +/1 r*|Superclass : +/1 l-2|Generalization
+    +R100 : b|Relationship { t|Generalization, t-1|Association, t|Ordinal Relationship }
+    +R101 : +/1 t*|Class.2 : +/1 b|Generalization, r|Facet
+    +R102 : l|Facet { r|Subclass, r|Superclass }
+    -R103 : -/1 t|Superclass : +/1 l-1|Generalization
     +R105 : t|Asymmetric Perspective  { b|T Perspective, b|P Perspective }
     -R110 : +/1 r|Perspective : -/1 b|Class
-    -R116 : +/1 r|Minimal Partition : +/1 b|Generalization
-    -R117.2-2 : +/1 b+2|Subclass : +/1 l+2|Minimal Partition
-    -R118.2-2 : -/1 b-2|Subclass : +/1 l-2|Minimal Partition
-    +R119 : b|Association  { t|Unary Association, t|Binary Association }
-    +R120.2+2 : +/1 r|Association : -/1 t|Class, l-1|Association Class
-    +R121 : t|Perspective  { b|Symmetric Perspective, b|Asymmetric Perspective }
+    +R116 : +/1 t|Minimal Partition : +/1 l+2|Generalization
+    -R117.2-2 : +/1 l*|Subclass : +/1 r+2|Minimal Partition
+    -R118.2-2 : -/1 l*|Subclass : +/1 r-2|Minimal Partition
+    +R119 : b|Association { t|Unary Association, t|Binary Association }
+    +R120.2+2 : +/1 r-2|Association : -/1 t|Class, l-1|Association Class
+    +R121 : t|Perspective { b|Symmetric Perspective, b|Asymmetric Perspective }
     -R123 : -/1 b|Unary Association : -/1 t*|Symmetric Perspective
     -R124 : -/1 b-1|Binary Association : -/1 t*|T Perspective
     +R125 : +/1 b+1|Binary Association : +/1 t*|P Perspective
-    +R125 : +/1 b+1|Binary Association : +/1 t*|P Perspective
-    -R131 : +/2 r|Specialized Class : +/2 l*|Lineage, b|Facet
-    -R160 : +/2 r|Relationship : +/1 l*|Constrained Loop, b|Loop Segment
+    -R130 : +/2 t|Association : +/1 l|Constrained Loop, b|Loop Segment
+    +R131 : +/2 b|Class.2 : +/2 t*|Lineage, r|Class In Lineage
