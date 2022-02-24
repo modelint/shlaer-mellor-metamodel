@@ -2,7 +2,7 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.1.0
+    Version : 4.2.0
     /// Creation date : March 4, 2012
     Modification date : February 23, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -43,7 +43,7 @@ attributes
 --
 class Constrained Loop
 attributes
-    CLnum {I, R17}
+    CLnum : Constrained Loop Number {I, R17}
     Domain {I, R17}
 --
 class Facet
@@ -60,7 +60,7 @@ attributes
 --
 class Lineage
 attributes
-    Lnum {I, R17}
+    Lnum : Lineage Number {I, R17}
     Domain {I, R17}
 --
 class Loop Segment
