@@ -39,8 +39,8 @@ connectors
     +R105 : t|Asymmetric Perspective  { b|T Perspective, b|P Perspective }
     -R110 : +/1 r|Perspective : -/1 b|Class
     +R116 : +/1 t|Minimal Partition : +/1 l+2|Generalization
-    -R117.2-2 : +/1 l*|Subclass : +/1 r+2|Minimal Partition
-    -R118.2-2 : -/1 l*|Subclass : +/1 r-2|Minimal Partition
+    +R117 : -/2 l*|Subclass : -/2 r+2|Minimal Partition
+    +R118 : -/2 l*|Subclass : -/2 r-2|Minimal Partition
     +R119 : b|Association { t|Unary Association, t|Binary Association }
     +R120.2+2 : +/1 r-2|Association : -/1 t|Class, l-1|Association Class
     +R121 : t|Perspective { b|Symmetric Perspective, b|Asymmetric Perspective }

@@ -2,9 +2,9 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.2.0
+    Version : 4.2.1
     /// Creation date : March 4, 2012
-    Modification date : February 23, 2022
+    Modification date : February 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -170,12 +170,12 @@ relationships
     requires, 1 Minimal Partition
 --
     R117
-    yields as a, 1 Subclass
-    is yielded on a side of, 1c Minimal Partition
+    yields subset on a side as, 1 Subclass
+    defines subset on a side of, 1c Minimal Partition
 --
     R118
-    yields as b, 1 Subclass
-    is yielded on b side of, 1c Minimal Partition
+    yields subset on b side as, 1 Subclass
+    defines subset on b side of, 1c Minimal Partition
 --
     R119
     Association +
