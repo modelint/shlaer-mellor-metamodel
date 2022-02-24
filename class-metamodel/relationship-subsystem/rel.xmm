@@ -139,8 +139,8 @@ relationships
         Ordinal Relationship
 --
     R101
+    participates in, Mc Generalization
     has participating, M Class
-    participates in, M Generalization
     1 Facet
 --
     R102
@@ -210,7 +210,7 @@ relationships
     1 Loop Segment
 --
     R131
-    abstracts a facet of an object within, M Lineage
-    defines a facet of an object with, M Class
+    is instantiated to manifest real world entity as part of, M Lineage
+    real world entity requires instantiation of each, M Facet
     1 Class In Lineage
 --
