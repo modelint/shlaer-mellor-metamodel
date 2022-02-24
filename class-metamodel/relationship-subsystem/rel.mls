@@ -47,5 +47,5 @@ connectors
     -R123 : -/1 b|Unary Association : -/1 t*|Symmetric Perspective
     -R124 : -/1 b-1|Binary Association : -/1 t*|T Perspective
     +R125 : +/1 b+1|Binary Association : +/1 t*|P Perspective
-    -R130 : +/2 t|Association : +/1 l|Constrained Loop, b|Loop Segment
+    -R130 : +/2 t+2|Association : +/1 l|Constrained Loop, b|Loop Segment
     +R131 : +/3 b|Facet : +/3 t*|Lineage, r|Class In Lineage
