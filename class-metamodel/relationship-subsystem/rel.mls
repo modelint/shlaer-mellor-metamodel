@@ -9,23 +9,23 @@ frame OS Engineer
 frame_presentation default
 nodes
 // Association
-    Unary Association 9-10,9
-    Binary Association 50% 9-10,11-12
-    Association Class 10,14-15
-    T Perspective 7,11
-    Asymmetric Perspective 5-6,11-12
-    Class 8,13-14 : 8,6
-    P Perspective 7,12
-    Perspective 4,10
-    Symmetric Perspective 6-7,9
+    Association 11,11
+    Loop Segment 13-14,12-13
+    Constrained Loop 12,14
+    Unary Association 9-10,10-11
+    Symmetric Perspective 6-7,10-11
+    Binary Association 50% 9-10,12-13
+    Association Class 10,15
+    T Perspective 7,12
+    P Perspective 7,13
+    Perspective 4,11
+    Asymmetric Perspective 5-6,12-13
+    Class 8,14 : 8,6
     Relationship 12-13,9
     Generalization 11,6
-    Association 11,10
-    Ordinal Relationship/2 11,7-8
-    Identifier Attribute/2 4-5,7-8
-    Rank Scope 6,6-7
-    Constrained Loop 12,13
-    Loop Segment 13-14,11-12
+    Ordinal Relationship/2 11,8
+    Identifier Attribute/2 7,8
+    Rank Attribute 9-10,9
     Class In Lineage 6-7,4
     Lineage 5,5
     Facet 9-10,5
@@ -39,8 +39,8 @@ connectors
     -R103 : -/1 t|Superclass : +/1 l-1|Generalization
     -R104.2 : -/3 b-2|Ordinal Relationship : -/3 r|Class.2
     +R105 : t|Asymmetric Perspective  { b|T Perspective, b|P Perspective }
-    +R106 : +/2 b+2|Ordinal Relationship : +/2 t*|Identifier Attribute
-    +R107 : +/2 b-1|Ordinal Relationship : +/2 t*|Identifier Attribute, r|Rank Scope
+    +R106 : +/1 r|Ordinal Relationship : +/1 t|Rank Attribute
+    +R107 : +/2 b|Ordinal Relationship : +/2 t*|Identifier Attribute, l|Rank Attribute
     -R110 : +/1 r|Perspective : -/1 b|Class
     +R116 : +/1 t|Minimal Partition : +/1 l+2|Generalization
     +R117 : -/2 l*|Subclass : -/2 r+2|Minimal Partition
