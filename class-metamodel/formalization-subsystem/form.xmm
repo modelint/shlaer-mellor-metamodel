@@ -1,0 +1,94 @@
+metadata
+    Title : Formalization Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.6
+    Version : 2.0.0
+    /// Creation date : July 3, 2011
+    Modification date : March 1, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Formalization
+class Association Class Reference
+attributes
+    Rnum {I, R176}
+    Domain {I, R176}
+    Association class {R176}
+    Participating class {R176}
+--
+class Association Reference
+attributes
+    From class {I, R152}
+    To class {I, R152}
+    Rnum {I, R152}
+    Domain {I, R152}
+--
+class Reference
+attributes
+    From class {I, R160}
+    To class {I, R160}
+    Rnum {I, R160}
+    Domain {I, R160}
+--
+class Superclass Reference
+attributes
+    Subclass  {I, R152, R156}
+    Superclass {I, R152, R170}
+    Rnum {I, R152, R156, R170}
+    Domain {I, R152, R156, R170}
+--
+class Simple Association Reference
+attributes
+    From class {I, R152, R157, R176}
+    To class {I2, R152c, R176}
+    To side {I3, R171, R176}
+    Rnum {I, I2, I3, R152, R157, R171, R176}
+    Domain {I, I2, I3, R152, R157, R171, R176}
+--
+class Superclass <import:Class Attribute>
+attributes
+    Name {I}
+    Rnum {I}
+    Domain {I}
+--
+class Subclass <import:Class Attribute>
+attributes
+    Name {I}
+    Rnum {I}
+    Domain {I}
+--
+class P Reference
+attributes
+    Rnum {I, R153, R158}
+    Domain {I, R153, R158}
+    Association class {R153c}
+    Participating class {R153}
+--
+class T Reference
+attributes
+    Rnum {I, R153, R158}
+    Domain {I, R153, R158}
+    Association class {R153c}
+    Participating class {R153}
+--
+relationships
+    R152
+    Reference +
+        Superclass Reference
+        Association Reference
+--
+    R153
+    Association Class Reference +
+        T Reference
+        P Reference
+--
+    R176
+    Association Reference +
+        Simple Association Class Reference
+        Association Class Reference
+--
+///    R101
+///    participates in, Mc Generalization
+///    has participating, M Class
+///    1 Facet
+///--

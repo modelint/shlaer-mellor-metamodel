@@ -1,0 +1,25 @@
+diagram class // Shlaer-Mellor Class Meta / Formalization Subsystem Layout
+notation Starr
+presentation default
+orientation landscape
+color institutional
+sheet D
+padding l300 b300
+frame OS Engineer
+frame_presentation default
+nodes
+// Association
+    Reference 10,3
+    Superclass Reference/2 11,4-5
+    Superclass 12,6
+    Subclass 11,7
+    Association Reference/2 9,4-5
+    Simple Association Reference/2 7-8,3-4
+    Association Class Reference/2 7-8,5
+    T Reference 8,6-7
+    P Reference 6,6-7
+connectors
+    +R152 : r|Reference { l|Superclass Reference, l|Association Reference }
+    +R153 : r|Association Class Reference { l|T Reference, l|P Reference }
+    +R176 : b|Association Reference { t|Association Class Reference, t|Simple Association Reference }
+//    +R101 : +/1 t*|Class.2 : +/1 b|Generalization, r|Facet
