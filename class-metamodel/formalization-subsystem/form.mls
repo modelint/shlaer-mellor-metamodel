@@ -9,17 +9,29 @@ frame OS Engineer
 frame_presentation default
 nodes
 // Association
-    Reference 10,3
-    Superclass Reference/2 11,4-5
-    Superclass 12,6
-    Subclass 11,7
-    Association Reference/2 9,4-5
-    Simple Association Reference/2 7-8,3-4
-    Association Class Reference/2 7-8,5
-    T Reference 8,6-7
-    P Reference 6,6-7
+    Class 2,2
+    Relationship 2,6
+    Formalizing Class 3,4
+    Subclass 4-5,3-4
+    Non Association Class/2 4-5,5-6
+    Association Class 4-5,8-9
+    Class Reference 10,2
+    Association Reference/2 10-11,8
+    T Reference 7-8,8
+    P Reference 7-8,9
+    Generalization Reference/2 9,3-4
+    Superclass 6-7,3
+    Simple Association Reference/2 9,5-6
+    Association Class Reference/2 9,8-9
 connectors
-    +R152 : r|Reference { l|Superclass Reference, l|Association Reference }
-    +R153 : r|Association Class Reference { l|T Reference, l|P Reference }
+    -R150 : -/1 r|Class : -/2 l*|Relationship, b|Formalizing Class
+    +R151 : t|Formalizing Class { b|Subclass, b|Non Association Class, b|Association Class }
+    +R152-1 : r|Class Reference { l|Generalization Reference, l|Association Reference }
+    +R153 : b|Association Class Reference { t|T Reference, t|P Reference }
+    +R155 : -/1 t-2|Class : -/2 l|Formalizing Class, b|Class Reference
+    +R156 : +/1 t+2|Subclass : +/1 b*|Generalization Reference
+    +R157 : +/1 t|Non Association Class : +/1 b*|Simple Association Reference
+    -R158 : -/1 t-2|Association Class : -/1 b*|T Reference
+    +R159 : +/1 t+2|Association Class : +/1 b*|P Reference
+    +R170 : -/1 b-2|Generalization Reference : -/1 t*|Superclass
     +R176 : b|Association Reference { t|Association Class Reference, t|Simple Association Reference }
-//    +R101 : +/1 t*|Class.2 : +/1 b|Generalization, r|Facet

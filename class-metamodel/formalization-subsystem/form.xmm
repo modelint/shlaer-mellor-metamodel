@@ -4,11 +4,17 @@ metadata
     Document ID : mint.sm-meta.class.td.6
     Version : 2.0.0
     /// Creation date : July 3, 2011
-    Modification date : March 1, 2022
+    Modification date : March 2, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Formalization
+class Association Class <import:Class Attribute>
+attributes
+    Rnum {I, R151}
+    Class {I, R151}
+    Domain {I, R151}
+--
 class Association Class Reference
 attributes
     Rnum {I, R176}
@@ -23,14 +29,36 @@ attributes
     Rnum {I, R152}
     Domain {I, R152}
 --
-class Reference
+class Class <import:Class Attribute>
 attributes
-    From class {I, R160}
-    To class {I, R160}
-    Rnum {I, R160}
-    Domain {I, R160}
+    Name {I}
+    Domain {I}
 --
-class Superclass Reference
+class Formalizing Class
+attributes
+    Rnum {I, R150}
+    Class {I, R150}
+    Domain {I, R150}
+--
+class Non Association Class
+attributes
+    Rnum {I, R151}
+    Class {I, R151}
+    Domain {I, R151}
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Class Reference
+attributes
+    From class {I, R155}
+    To class {I, R155}
+    Rnum {I, R155}
+    Domain {I, R155}
+--
+class Generalization Reference
 attributes
     Subclass  {I, R152, R156}
     Superclass {I, R152, R170}
@@ -72,9 +100,20 @@ attributes
     Participating class {R153}
 --
 relationships
+    R150
+    is used to formalize, Mc Relationship
+    is formalized in, M Class
+    1 Formalizing Class
+--
+    R151
+    Formalizing Class +
+        Subclass
+        Association Class
+        Non Association Class
+--
     R152
     Reference +
-        Superclass Reference
+        Generalization Reference
         Association Reference
 --
     R153
@@ -82,13 +121,33 @@ relationships
         T Reference
         P Reference
 --
+    R155
+    is referred to from, Mc Formalizing Class
+    refers to, M Class
+    1 Class Reference
+--
+    R156
+    is defined in, 1 Subclass
+    defines, 1 Generalization Reference
+--
+    R157
+    defines, 1 Simple Association Class
+    is defined in, 1 Simple Association Reference
+--
+    R158
+    defines, 1 T Reference
+    is defined in, 1 Association Class
+--
+    R159
+    defines, 1 P Reference
+    is defined in, 1 Association Class
+--
+    R170
+    refers to, 1 Superclass
+    is referred to by, M Generalization Reference
+--
     R176
     Association Reference +
         Simple Association Class Reference
         Association Class Reference
 --
-///    R101
-///    participates in, Mc Generalization
-///    has participating, M Class
-///    1 Facet
-///--
