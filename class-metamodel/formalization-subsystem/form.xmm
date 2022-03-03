@@ -2,7 +2,7 @@ metadata
     Title : Formalization Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.6
-    Version : 2.0.0
+    Version : 2.1.0
     /// Creation date : July 3, 2011
     Modification date : March 2, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -26,15 +26,16 @@ class Association Reference
 attributes
     From class {I, R152}
     To class {I, R152}
-    Rnum {I, R152}
-    Domain {I, R152}
+    Rnum {I, R152, R154}
+    Domain {I, R152, R154}
+    Side {R154}
 --
 class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
 --
-class Formalizing Class
+class Formalizing Class Role
 attributes
     Rnum {I, R150}
     Class {I, R150}
@@ -45,6 +46,12 @@ attributes
     Rnum {I, R151}
     Class {I, R151}
     Domain {I, R151}
+--
+class Perspective <import:Relationship>
+attributes
+    Side {I}
+    Rnum {I}
+    Domain {I}
 --
 class Relationship <import:Relationship>
 attributes
@@ -103,10 +110,10 @@ relationships
     R150
     is used to formalize, Mc Relationship
     is formalized in, M Class
-    1 Formalizing Class
+    1 Formalizing Class Role
 --
     R151
-    Formalizing Class +
+    Formalizing Class Role +
         Subclass
         Association Class
         Non Association Class
@@ -121,8 +128,12 @@ relationships
         T Reference
         P Reference
 --
+    R154
+    refers to, 1 Perspective
+    is refered to by, 1 Association Reference
+--
     R155
-    is referred to from, Mc Formalizing Class
+    is referred to from, Mc Formalizing Class Role
     refers to, M Class
     1 Class Reference
 --
