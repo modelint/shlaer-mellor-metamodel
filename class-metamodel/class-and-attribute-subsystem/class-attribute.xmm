@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 4.4.2
+    Version : 4.5.0
     /// Creation date : June 27, 2017
-    Modification date : Feburary 23, 2022
+    Modification date : March 6, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -37,13 +37,14 @@ attributes
 --
 class Attribute Reference
 attributes
-    From attribute {I, R21}
-    From class {I, R21, R23}
+    From attribute {I, I2, R21}
+    From class {I, I2, R21, R23}
     To attribute {I, R21c}
     To class {I, R21c, R23}
     Domain {I, R21, R23}
     To identifier {R21}
-    Rnum {R23}
+    Ref {I2, R23}
+    Rnum {I2, R23}
 --
 class Class
 attributes
@@ -51,10 +52,10 @@ attributes
     Cnum : Class Number {I2, R14}
     Domain {I, I2, R14}
 --
-class Class Reference <import:Formalization>
+class Reference <import:Formalization>
 attributes
+    Ref {I}
     From class {I}
-    To class {I}
     Rnum {I}
     Domain {I}
 --
@@ -116,7 +117,7 @@ relationships
     1 Identifier Attribute
 --
     R23
-    formalizes, 1 Class Reference
+    formalizes, 1 Reference
     is formalized by, M Attribute Reference
 --
     R24

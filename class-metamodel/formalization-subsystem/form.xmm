@@ -2,9 +2,9 @@ metadata
     Title : Formalization Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.6
-    Version : 2.1.0
+    Version : 2.6.0
     /// Creation date : July 3, 2011
-    Modification date : March 2, 2022
+    Modification date : March 6, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,8 +19,9 @@ class Association Class Reference
 attributes
     Rnum {I, R176}
     Domain {I, R176}
-    Association class {R176}
-    Participating class {R176}
+    Association class {I, R176}
+    Participating class {I, R176}
+    Ref type {I, R176}
 --
 class Association Reference
 attributes
@@ -28,7 +29,8 @@ attributes
     To class {I, R152}
     Rnum {I, R152, R154}
     Domain {I, R152, R154}
-    Side {R154}
+    Ref type {I, R152}
+    Perspective {R154}
 --
 class Class <import:Class Attribute>
 attributes
@@ -41,7 +43,14 @@ attributes
     Class {I, R150}
     Domain {I, R150}
 --
-class Non Association Class
+class Generalization Reference
+attributes
+    Subclass  {I, R152, R156}
+    Superclass {I, R152, R170}
+    Rnum {I, R152, R156, R170}
+    Domain {I, R152, R156, R170}
+--
+class Referring Class
 attributes
     Rnum {I, R151}
     Class {I, R151}
@@ -58,27 +67,21 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Class Reference
+class Reference
 attributes
+    Ref : Reference Type {I}
     From class {I, R155}
-    To class {I, R155}
     Rnum {I, R155}
     Domain {I, R155}
---
-class Generalization Reference
-attributes
-    Subclass  {I, R152, R156}
-    Superclass {I, R152, R170}
-    Rnum {I, R152, R156, R170}
-    Domain {I, R152, R156, R170}
+    To class {R155}
 --
 class Simple Association Reference
 attributes
-    From class {I, R152, R157, R176}
-    To class {I2, R152c, R176}
-    To side {I3, R171, R176}
-    Rnum {I, I2, I3, R152, R157, R171, R176}
-    Domain {I, I2, I3, R152, R157, R171, R176}
+    From class {I, R157, R176}
+    To class {I, R176}
+    To side {I, R176}
+    Rnum {I, R157, R176}
+    Domain {I, R157, R176}
 --
 class Superclass <import:Class Attribute>
 attributes
@@ -116,7 +119,7 @@ relationships
     Formalizing Class Role +
         Subclass
         Association Class
-        Non Association Class
+        Referring Class
 --
     R152
     Reference +
@@ -130,12 +133,12 @@ relationships
 --
     R154
     refers to, 1 Perspective
-    is refered to by, 1 Association Reference
+    is refered to by, M Association Reference
 --
     R155
     is referred to from, Mc Formalizing Class Role
     refers to, M Class
-    1 Class Reference
+    1 Reference
 --
     R156
     is defined in, 1 Subclass
