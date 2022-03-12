@@ -2,9 +2,9 @@ metadata
     Title : Formalization Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.6
-    Version : 2.6.0
+    Version : 2.6.3
     /// Creation date : July 3, 2011
-    Modification date : March 6, 2022
+    Modification date : March 12, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -17,19 +17,19 @@ attributes
 --
 class Association Class Reference
 attributes
-    Rnum {I, R176}
-    Domain {I, R176}
+    Ref type {I, R176}
     Association class {I, R176}
     Participating class {I, R176}
-    Ref type {I, R176}
+    Rnum {I, R176}
+    Domain {I, R176}
 --
 class Association Reference
 attributes
+    Ref type {I, R152}
     From class {I, R152}
     To class {I, R152}
     Rnum {I, R152, R154}
     Domain {I, R152, R154}
-    Ref type {I, R152}
     Perspective {R154}
 --
 class Class <import:Class Attribute>
@@ -71,15 +71,14 @@ class Reference
 attributes
     Ref : Reference Type {I}
     From class {I, R155}
+    To class {I, R155}
     Rnum {I, R155}
     Domain {I, R155}
-    To class {R155}
 --
 class Simple Association Reference
 attributes
     From class {I, R157, R176}
     To class {I, R176}
-    To side {I, R176}
     Rnum {I, R157, R176}
     Domain {I, R157, R176}
 --
@@ -97,17 +96,17 @@ attributes
 --
 class P Reference
 attributes
+    Association class {I, R153c}
+    Participating class {I, R153}
     Rnum {I, R153, R158}
     Domain {I, R153, R158}
-    Association class {R153c}
-    Participating class {R153}
 --
 class T Reference
 attributes
+    Association class {I, R153c}
+    Participating class {I, R153}
     Rnum {I, R153, R158}
     Domain {I, R153, R158}
-    Association class {R153c}
-    Participating class {R153}
 --
 relationships
     R150
@@ -141,20 +140,20 @@ relationships
     1 Reference
 --
     R156
-    is defined in, 1 Subclass
-    defines, 1 Generalization Reference
+    is housed in, 1 Subclass
+    houses, 1 Generalization Reference
 --
     R157
-    defines, 1 Simple Association Class
-    is defined in, 1 Simple Association Reference
+    houses, 1 Simple Association Reference
+    is housed in, 1 Simple Association Class
 --
     R158
-    defines, 1 T Reference
-    is defined in, 1 Association Class
+    houses, 1 T Reference
+    is housed in, 1 Association Class
 --
     R159
-    defines, 1 P Reference
-    is defined in, 1 Association Class
+    houses, 1 P Reference
+    is housed in, 1 Association Class
 --
     R170
     refers to, 1 Superclass
