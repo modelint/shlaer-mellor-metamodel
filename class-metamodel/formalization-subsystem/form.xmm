@@ -2,9 +2,9 @@ metadata
     Title : Formalization Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.6
-    Version : 2.6.3
+    Version : 2.6.4
     /// Creation date : July 3, 2011
-    Modification date : March 12, 2022
+    Modification date : March 13, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -132,7 +132,7 @@ relationships
 --
     R154
     refers to, 1 Perspective
-    is refered to by, M Association Reference
+    is referred to by, M Association Reference
 --
     R155
     is referred to from, Mc Formalizing Class Role
