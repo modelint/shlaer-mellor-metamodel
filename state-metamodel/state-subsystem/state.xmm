@@ -9,16 +9,33 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem State
-class State
+class Assigner
 attributes
+    Rnum {I, R501, R502}
+    Domain {I, R501, R502}
+--
+class Lifecycle
+attributes
+    Class {I, R500, R502}
+    Domain {I, R500, R502}
+--
+class State Model
+attributes
+    Name : State Model Name {I}
+    Domain {I, UR502}
 --
 relationships
-    R503
-    partitions time period on, 1 State Model
-    specifies period of time as, M State
+    R502
+    State Model +
+        Lifecycle
+        Assigner
 --
-    R514
-    Assigner +
-        Single Assigner
-        Multiple Assigner
---
+///    R503
+///    partitions time period on, 1 State Model
+///    specifies period of time as, M State
+///--
+///    R514
+///    Assigner +
+///        Single Assigner
+///        Multiple Assigner
+///--

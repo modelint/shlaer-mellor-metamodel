@@ -8,7 +8,10 @@ padding l300 b400
 frame OS Engineer
 frame_presentation default
 nodes
-    State 6,4
-//connectors
+//    State 6,4
+    Assigner 10-11,8
+    Lifecycle 10-11,7
+    State Model 9,7-8
+connectors
+    -R502 : t|State Model { b|Lifecycle, b|Assigner }
 //    -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
-//    -R25 : b|Attribute { t|Derived Attribute, t|Non Derived Attribute }
