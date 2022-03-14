@@ -9,9 +9,12 @@ frame OS Engineer
 frame_presentation default
 nodes
 //    State 6,4
-    Assigner 10-11,8
+    Assigner 12,9
     Lifecycle 10-11,7
-    State Model 9,7-8
+    State Model 9,8
+    Class 13,7
+    Association 14-15,9
 connectors
+    -R500 : +/2 t|Lifecycle : +/2 b*|Class
+    -R501 : +/2 t|Assigner : +/2 b*|Association
     -R502 : t|State Model { b|Lifecycle, b|Assigner }
-//    -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference

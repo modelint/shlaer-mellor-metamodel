@@ -14,6 +14,16 @@ attributes
     Rnum {I, R501, R502}
     Domain {I, R501, R502}
 --
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
 class Lifecycle
 attributes
     Class {I, R500, R502}
@@ -25,6 +35,14 @@ attributes
     Domain {I, UR502}
 --
 relationships
+    R500
+    specifies pattern of behavior for, 1 Class
+    behavior pattern is specified by, 1c Lifecycle
+--
+    R501
+    resolves competition on, 1 Association
+    competition is resolved by, 1c Assigner
+--
     R502
     State Model +
         Lifecycle
