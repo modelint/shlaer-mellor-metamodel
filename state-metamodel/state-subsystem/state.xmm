@@ -1,0 +1,24 @@
+metadata
+    Title : State Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.4a
+    Version : 3.2.5
+    /// Creation date : January 21, 2012
+    Modification date : March 13, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem State
+class State
+attributes
+--
+relationships
+    R503
+    partitions time period on, 1 State Model
+    specifies period of time as, M State
+--
+    R514
+    Assigner +
+        Single Assigner
+        Multiple Assigner
+--

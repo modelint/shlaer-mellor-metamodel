@@ -1,0 +1,14 @@
+diagram class // Shlaer-Mellor Meta Model / State Subsystem
+notation Starr
+presentation default
+orientation landscape
+color tutti frutti
+sheet D
+padding l300 b400
+frame OS Engineer
+frame_presentation default
+nodes
+    State 6,4
+//connectors
+//    -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
+//    -R25 : b|Attribute { t|Derived Attribute, t|Non Derived Attribute }
