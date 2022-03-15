@@ -8,19 +8,22 @@ padding l100 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Assigner 12,9
-    Lifecycle 10-11,7
-    State Model 9,8
-    Class 13,7
-    Association 14-15,9
-    State 5,7
-    Deletion State 6-7,5-6
-    Non Deletion State 6-7,8
-    Creation Event 8,7
-    Effective Signaling Event/2 5,10
-    Event Response 4,8-9
-    Transition 2-3,8 >bottom
-    Non Transition 2-3,9-10 >bottom
+    Assigner 10-11,6
+    Single Assigner 12,7-8
+    Multiple Assigner 9-10,7-8
+    Constrained Loop 10-11,9-10
+    Lifecycle 10-11,4
+    State Model 9,5
+    Class 13,4 : 8-9,9-10
+    Association 13,6
+    State 5,4
+    Deletion State 6-7,2-3
+    Non Deletion State 6-7,5
+    Creation Event 8,4
+    Effective Signaling Event/2 5,7
+    Event Response 4,5-6
+    Transition 2-3,5 >bottom
+    Non Transition 2-3,6-7 >bottom
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -31,4 +34,7 @@ connectors
     -R508 : -/3 b|Creation Event : +/2 l|Non Deletion State
     -R510 : t|State { b|Non Deletion State, b|Deletion State }
     -R513.2 : -/3 t|Deletion State : +/2 l|Lifecycle
+    -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
+    -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
+    +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2
     +R519 : -/3 b-1|Lifecycle : -/3 t*|Creation Event

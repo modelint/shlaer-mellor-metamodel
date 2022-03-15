@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4a
-    Version : 3.2.5
+    Version : 3.3.0
     /// Creation date : January 21, 2012
-    Modification date : March 13, 2022
+    Modification date : March 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -22,6 +22,11 @@ attributes
 class Class <import:Class Attribute>
 attributes
     Name {I}
+    Domain {I}
+--
+class Constrained Loop <import:Relationship>
+attributes
+    CLnum {I}
     Domain {I}
 --
 class Creation Event
@@ -55,6 +60,13 @@ attributes
     Class {I, R500, R502}
     Domain {I, R500, R502}
 --
+class Multiple Assigner
+attributes
+    Rnum {I, R514}
+    Domain {I, R514, R517, R518}
+    Loop {R517c}
+    Partitioning class {R518c}
+--
 class Non Deletion State
 attributes
     Name {I, R510}
@@ -69,6 +81,11 @@ attributes
     Domain {I, R506}
     Behavior : NT Response
     Reason : Description
+--
+class Single Assigner
+attributes
+    Rnum {I, R514}
+    Domain {I, R514}
 --
 class State
 attributes
@@ -130,12 +147,20 @@ relationships
     deletes instances in, 1 Lifecycle
     instances are deleted after entering, Mc Deletion State
 --
+    R517
+    manages within constraint set by, 1 Constrained Loop
+    establishes constraint for, Mc Multiple Assigner
+--
+    R518
+    managed instance subset is partitioned by, 1 Class
+    partitions managed instance subset for, Mc Multiple Assigner
+--
     R519
     specifies new instance creation with, Mc Creation Event
     triggers creation of new instance on, 1 Lifecycle
 --
-///    R514
-///    Assigner +
-///        Single Assigner
-///        Multiple Assigner
-///--
+    R514
+    Assigner +
+        Single Assigner
+        Multiple Assigner
+--
