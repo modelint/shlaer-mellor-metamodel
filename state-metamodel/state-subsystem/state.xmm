@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4a
-    Version : 3.3.2
+    Version : 3.3.4
     /// Creation date : January 21, 2012
     Modification date : March 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -70,7 +70,7 @@ attributes
 class Non Deletion State
 attributes
     Name {I, R510}
-    Class {I, R510}
+    State model {I, R510}
     Domain {I, R510}
 --
 class Non Transition
@@ -151,6 +151,11 @@ relationships
     deletes instances in, 1 Lifecycle
     instances are deleted after entering, Mc Deletion State
 --
+    R514
+    Assigner +
+        Single Assigner
+        Multiple Assigner
+--
     R517
     manages within constraint set by, 1 Constrained Loop
     establishes constraint for, Mc Multiple Assigner
@@ -162,9 +167,4 @@ relationships
     R519
     specifies new instance creation with, Mc Creation Event
     triggers creation of new instance on, 1 Lifecycle
---
-    R514
-    Assigner +
-        Single Assigner
-        Multiple Assigner
 --
