@@ -31,6 +31,7 @@ connectors
     -R503 : +/2 t*|Non Deletion State : +/2 b|State Model
     +R505 : +/2 r|State : +/2 l*|Effective Signaling Event, t|Event Response
     +R506 : b|Event Response { t|Transition, t|Non Transition }
+    -R507 : -/2 l|Transition : +/2 b|State
     -R508 : -/3 b|Creation Event : +/2 l|Non Deletion State
     -R510 : t|State { b|Non Deletion State, b|Deletion State }
     -R513.2 : -/3 t|Deletion State : +/2 l|Lifecycle
