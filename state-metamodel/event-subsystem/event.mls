@@ -1,0 +1,18 @@
+diagram class // Shlaer-Mellor Meta Model / Event Subsystem
+notation Starr
+presentation default
+orientation landscape
+color mint
+sheet D
+padding l100 b300
+frame OS Engineer
+frame_presentation default
+nodes
+    Event Specification 7,4
+    Event Signature 5,4
+    Activity Input 3,4
+    State 5,1
+connectors
+    -R556 : +/1 t|Event Signature : +/1 b*|Event Specification
+    -R563 : +/1 t|Activity Input : +/1 b*|Event Signature
+    -R564 : +/2 r*|State : +/2 l|Event Signature

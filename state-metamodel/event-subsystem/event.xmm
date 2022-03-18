@@ -1,0 +1,52 @@
+metadata
+    Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.5
+    Version : 3.3.0
+    /// Creation date : March 4, 2012
+    Modification date : March 18, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Event
+class Activity Input
+attributes
+    Name : Input Name {I}
+    Signature {I, R563}
+    State model {I, R563}
+    Domain {I, R563}
+    Type : Type Name
+--
+class Event Signature
+attributes
+    ID : Signature ID {I}
+    State model {I, R556}
+    Domain {I, R556}
+--
+class Event Specification
+attributes
+    Name : Event Name {I}
+    State model {I, R565, R556}
+    Domain {I, R565, R556}
+    Signature {R556}
+--
+class State <import:State>
+attributes
+    State Name {I}
+    State Model {I, R564}
+    Domain {I, R564}
+    Signature {R564}
+--
+relationships
+    R556
+    delivers data in, 1 Event Signature
+    provides data for, Mc Event Specification
+--
+    R563
+    is supplied in, 1 Event Signature
+    supplies, Mc Activity Input
+--
+    R564
+    requires input supplied by, 1 Event Signature
+    supplies required input to, M State
+--
