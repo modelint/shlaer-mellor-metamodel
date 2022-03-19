@@ -10,9 +10,11 @@ frame_presentation default
 nodes
     Event Specification 7,4
     Event Signature 5,4
-    Activity Input 3,4
+    Event Parameter 3,4
     State 5,1
+    State Model 7,1
 connectors
     -R556 : +/1 t|Event Signature : +/1 b*|Event Specification
-    -R563 : +/1 t|Activity Input : +/1 b*|Event Signature
+    -R563 : +/1 t|Event Parameter : +/1 b*|Event Signature
     -R564 : +/2 r*|State : +/2 l|Event Signature
+    -R565 : +/1 r*|State Model : +/1 l|Event Specification
