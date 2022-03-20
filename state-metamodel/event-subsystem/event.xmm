@@ -29,12 +29,12 @@ attributes
 ///    Rnum {I, R551}
 ///    Domain {I, R551}
 ///--
-///class Creation Event <import:State>
-///attributes
-///    ID {I}
-///    Class {I}
-///    Domain {I}
-///--
+class Creation Event <import:State>
+attributes
+    ID {I}
+    Class {I}
+    Domain {I}
+--
 ///class Delegated Event
 ///attributes
 ///    ID {I, R560}
@@ -62,12 +62,12 @@ attributes
 ///    State model {I, R560}
 ///    Domain {I, R560}
 ///--
-///class Effective Signaling Event
-///attributes
-///    ID {I, UR568}
-///    State model {I, UR568}
-///    Domain {I, UR568}
-///--
+class Signaled Event
+attributes
+    ID {I, UR568}
+    State model {I, UR568}
+    Domain {I, UR568}
+--
 ///class Event
 ///attributes
 ///    ID : Event ID {I}
@@ -106,12 +106,12 @@ attributes
 ///    Class {I, R561, R552}
 ///    Domain {I, R561, R552}
 ///--
-///class Inherited Effective Event
-///attributes
-///    ID {I, R554, R552, R568}
-///    Class {I, R554, R552, R568}
-///    Domain {I, R554, R552, R568}
-///--
+class Inherited Local Event
+attributes
+    ID {I, R554, R552, R568}
+    Class {I, R554, R552, R568}
+    Domain {I, R554, R552, R568}
+--
 ///class Inherited Event
 ///attributes
 ///    ID {I, UR552}
@@ -128,19 +128,19 @@ attributes
 ///    Class {I, I2, R561, R558}
 ///    Domain {I, I2, R561, R558}
 ///--
-///class Local Effective Event
-///attributes
-///    ID {I, R554}
-///    Number {I2, R557}
-///    State model {I, I2, R557, R554}
-///    Domain {I, I2, R557, R554}
-///--
-///class Local Effective Signaling Event
-///attributes
-///    ID {I, R567, R568}
-///    State model {I, R567, R568}
-///    Domain {I, R567, R568}
-///--
+class Local Event
+attributes
+    ID {I, R554}
+    Number {I2, R557}
+    State model {I, I2, R557, R554}
+    Domain {I, I2, R557, R554}
+--
+class Local Signaled Event
+attributes
+    ID {I, R567, R568}
+    State model {I, R567, R568}
+    Domain {I, R567, R568}
+--
 class Monomorphic Event Specification
 attributes
     Name {I, R550}
@@ -212,10 +212,10 @@ relationships
     delivers data in, 1 Event Signature
     provides data for, Mc Event Specification
 --
-///    R557
-///    is detected via, 1 Local Effective Event
-///    detects, 1 Monomorphic Event Specification
-///--
+    R557
+    defines, 1 Local Event
+    is defined by, 1 Monomorphic Event Specification
+--
 ///    R558
 ///    is detected via, 1 Local Delegated Event
 ///    detects, 1 Polymorphic Event Specification
@@ -251,16 +251,16 @@ relationships
     defines, Mc Event Specification
     is defined on, 1 State Model
 --
-///    R567
-///    Local Effective Event +
-///        Local Effective Signaling Event
-///        Creation Event
-///--
-///    R568
-///    Effective Signaling Event +
-///        Local Effective Signaling Event
-///        Inherited Effective Event
-///--
+    R567
+    Local Event +
+        Local Signaled Event
+        Creation Event
+--
+    R568
+    Signaled Event +
+        Local Signaled Event
+        Inherited Local Event
+--
 ///    R569
 ///    establishes direction of delegation for, Mc Delegated Event
 ///    delegates down, M Generalization
