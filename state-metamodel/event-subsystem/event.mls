@@ -8,17 +8,19 @@ padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Event 10,4
-    Event Signature 8,4
-    Event Parameter 6,4
-    State 8,1
-    State Model 10,1
-    Polymorphic Event 12,5-6
-    Monomorphic Event 9-10,5-6
-    Generalization 14,5-6
-    Delegation 13,7
-    Subclass 13,10
-    Delegation Target 12,8-9
+    Polymorphic Event Specification/2 10,6-7
+    Monomorphic Event Specification/2 8,6-7
+    State Model 8-9,2-3
+    Event Specification 8-9,5
+    Event Signature 6,5
+    State 6,1
+    Activity Input Set/2 6,3-4
+    State Model Signature/2 4-5,4-5
+    Event Parameter 2,4-5
+//    Generalization 14,5-6
+//    Delegation 13,7
+//    Subclass 13,10
+//    Delegation Target 12,8-9
 //    Local Effective Event/2 7-8,5-6
 //    Local Effective Signaling Event/2 8,7
 //    Creation Event 7,7
@@ -33,21 +35,22 @@ nodes
 //    Delegation Path 5-6,12-13
 //    Inherited Event 9,12-13
 connectors
-    +R550-1 : r|Event { l|Monomorphic Event, l|Polymorphic Event }
-    -R551 : +/1 t|Polymorphic Event : +/1 b*|Generalization, l|Delegation
-    +R552 : +/1 r|Delegation : +/1 l*|Subclass, t|Delegation Target
+    +R550-1 : r|Event Specification { l|Monomorphic Event Specification, l|Polymorphic Event Specification }
+//    -R551 : +/1 t|Polymorphic Event : +/1 b*|Generalization, l|Delegation
+//    +R552 : +/1 r|Delegation : +/1 l*|Subclass, t|Delegation Target
 //    +R552 : l|Inherited Event { r|Inherited Delegated Event, r|Inherited Effective Event }
 //    -R553 : +/1 r|Delegation Direction : +/1 l*|Subclass, b|Delegation Path
 //    +R554 : t|Effective Event { b|Local Effective Event, b|Inherited Effective Event : L6R+2 }
-    -R556 : +/1 t|Event Signature : +/1 b*|Event
+    -R556 : +/1 t|Event Signature : +/1 b*|Event Specification
 //    -R557 : +/1 b|Monomorphic Event Specification : +/1 t*|Local Effective Event
 //    -R558 : +/1 r|Polymorphic Event Specification : +/1 t|Local Delegated Event
 //    -R559 : +/1 t|Delegation Path : +/1 b*|Inherited Event
 //    +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
 //    +R561 : t|Delegated Event { b|Local Delegated Event, b|Inherited Delegated Event }
-    -R563 : +/1 t|Event Parameter : +/1 b*|Event Signature
-    -R564 : +/2 r*|State : +/2 l|Event Signature
-    -R565 : +/1 r*|State Model : +/1 l|Event
+    +R562 : t|State Model Signature { b|Activity Input Set, b|Event Signature }
+    -R563 : +/1 t|Event Parameter : +/1 b*|State Model Signature
+    -R564 : +/2 r*|State : +/2 l|Activity Input Set
+    -R565 : +/1 r*|State Model : +/1 l|Event Specification
 //    +R567 : r|Local Effective Event { l|Local Effective Signaling Event, l|Creation Event }
 //    +R568 : b|Effective Signaling Event { t|Local Effective Signaling Event, t|Inherited Effective Event }
 //    -R569 : +/1 t*|Generalization : +/2 b+1|Delegated Event, l|Delegation Direction

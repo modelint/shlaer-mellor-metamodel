@@ -2,27 +2,33 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.4.0
+    Version : 3.5.0
     /// Creation date : March 4, 2012
-    Modification date : March 19, 2022
+    Modification date : March 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Event
-class Delegation
+class Activity Input Set
 attributes
-    Event {I, R551}
-    Class {I, R551}
-    Rnum {I, R551}
-    Domain {I, R551}
+    State {I, R564, R562}
+    State model {I, R564, R562}
+    Domain {I, R564, R562}
 --
-class Delegation Target
-attributes
-    Event {I, R551}
-    Class {I, R551}
-    Rnum {I, R551}
-    Domain {I, R551}
---
+///class Delegation
+///attributes
+///    Event {I, R551}
+///    Class {I, R551}
+///    Rnum {I, R551}
+///    Domain {I, R551}
+///--
+///class Delegation Target
+///attributes
+///    Event {I, R551}
+///    Class {I, R551}
+///    Rnum {I, R551}
+///    Domain {I, R551}
+///--
 ///class Creation Event <import:State>
 ///attributes
 ///    ID {I}
@@ -82,18 +88,18 @@ attributes
     State model {I, R556}
     Domain {I, R556}
 --
-class Event
+class Event Specification
 attributes
     Name : Event Name {I}
     State model {I, R565, R556}
     Domain {I, R565, R556}
     Signature {R556}
 --
-class Generalization <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
+///class Generalization <import:Relationship>
+///attributes
+///    Rnum {I}
+///    Domain {I}
+///--
 ///class Inherited Delegated Event
 ///attributes
 ///    ID {I, R561, R552}
@@ -135,13 +141,13 @@ attributes
 ///    State model {I, R567, R568}
 ///    Domain {I, R567, R568}
 ///--
-class Monomorphic Event
+class Monomorphic Event Specification
 attributes
     Name {I, R550}
     State model {I, R550c}
     Domain {I, R550}
 --
-class Polymorphic Event
+class Polymorphic Event Specification
 attributes
     Name {I, R550}
     Class {I, R550c}
@@ -159,28 +165,34 @@ attributes
     Name {I}
     Domain {I}
 --
-class Subclass <import:Relationship>
+class State Model Signature
 attributes
-    Rnum {I}
-    Class {I}
-    Domain {I}
+    Name {I, UR562}
+    State model {I, UR562}
+    Domain {I, UR562}
 --
+///class Subclass <import:Relationship>
+///attributes
+///    Rnum {I}
+///    Class {I}
+///    Domain {I}
+///--
 relationships
     R550
     Event Specification +
         Monomorphic Event Specification
         Polymorphic Event Specification
 --
-    R551
-    is delegated in, M Generalization
-    delegates, Mc Polymorphic Event
-    1 Delegation
---
-    R552
-    is target of, Mc Delegation
-    has target, M Subclass
-    1 Delegation Target
---
+///    R551
+///    is delegated in, M Generalization
+///    delegates, Mc Polymorphic Event
+///    1 Delegation
+///--
+///    R552
+///    is target of, Mc Delegation
+///    has target, M Subclass
+///    1 Delegation Target
+///--
 ///    R552
 ///    Inherited Event +
 ///        Inherited Effective Event
@@ -222,12 +234,17 @@ relationships
 ///        Local Delegated Event
 ///        Inherited Delegated Event
 ///--
+    R562
+    State Model Signature +
+        Activity Input Set
+        Event Signature
+--
     R563
-    is supplied in, 1 Event Signature
+    is supplied in, 1 State Model Signature
     supplies, Mc Event Parameter
 --
     R564
-    requires input supplied by, 1 Event Signature
+    requires input supplied by, 1 Activity Input Set
     supplies required input to, M State
 --
     R565
