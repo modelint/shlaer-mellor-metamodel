@@ -13,11 +13,11 @@ nodes
     Monomorphic Event Specification/2 8,6-7
     State Model 7,4-5
     Event Specification 8-9,5
-    Event Signature 8-9,2-3
-    State 5,2-3
-    Activity Input Set/2 7,2-3
-    Parameter Set/2 7-8,1
-    Parameter 10,1
+//    Event Signature 8-9,2
+//    State 5,2-3
+//    Activity Input Set/2 7,2-3
+//    Parameter Set/2 7-8,1
+    Event Parameter 8-9,2-3
     Local Effective Event/2 5-6,6-7
     Local Effective Signaled Event/2 6,8
     Creation Event 5,8
@@ -39,15 +39,15 @@ connectors
     +R552 : l|Forwarded Event { r|Forwarded Delegated Event, r|Forwarded Effective Event }
     -R553 : +/1 r|Delegation On Generalization : +/1 l*|Subclass, b|Subclass Destination
     +R554 : t|Effective Event { b|Local Effective Event, b|Forwarded Effective Event : L4R+2 }
-    -R556 : +/1 r|Event Signature : +/1 l*|Event Specification
+//    -R556 : +/1 r|Event Signature : +/1 l*|Event Specification
     +R557 : +/1 b+1|Monomorphic Event Specification : -/1 t*|Local Effective Event
     +R558.2 : +/1 r|Polymorphic Event Specification : +/2 t|Local Delegated Event
     -R559 : +/1 t|Subclass Destination : +/1 b*|Forwarded Event
     +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
     +R561 : t|Delegated Event { b|Local Delegated Event, b|Forwarded Delegated Event }
-    +R562 : r|Parameter Set { l|Activity Input Set, l|Event Signature }
-    -R563 : +/1 b*|Parameter : +/1 t|Parameter Set
-    -R564 : +/2 t*|State : +/2 b|Activity Input Set
+//    +R562 : r|Parameter Set { l|Activity Input Set, l|Event Signature }
+    -R563 : +/1 r*|Event Parameter : +/1 l|Event Specification
+//    -R564 : +/2 t*|State : +/2 b|Activity Input Set
     -R565.2 : +/1 r|State Model : -/1 b-2|Monomorphic Event Specification
     +R567 : r|Local Effective Event { l|Local Effective Signaled Event, l|Creation Event }
     +R568 : b|Effective Signaled Event { t|Local Effective Signaled Event, t|Forwarded Effective Event }

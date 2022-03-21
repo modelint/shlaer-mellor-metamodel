@@ -2,19 +2,19 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.5.3
+    Version : 3.6.0
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Event
-class Activity Input Set
-attributes
-    State {I, R564, R562}
-    State model {I, R564, R562}
-    Domain {I, R564, R562}
---
+///class Activity Input Set
+///attributes
+///    State {I, R564, R562}
+///    State model {I, R564, R562}
+///    Domain {I, R564, R562}
+///--
 class Class <import:Class Attribute>
 attributes
     Name {I}
@@ -39,14 +39,6 @@ attributes
     Domain {I, R569}
     Generalization {I, R569c}
 --
-class Subclass Destination
-attributes
-    Delegated event ID {I, R553}
-    Superclass {I, R553}
-    Subclass {I, R553}
-    Generalization {I, R553}
-    Domain {I, R553}
---
 class Effective Event
 attributes
     ID {I, R560}
@@ -65,26 +57,24 @@ attributes
     State model {I, UR560}
     Domain {I, UR560}
 --
-class Parameter
+class Event Parameter
 attributes
     Name : Input Name {I}
-    Signature {I, R563}
-    State model {I, R563}
+    Subsystem element {I, R563}
     Domain {I, R563}
     Type : Type Name
 --
-class Event Signature
-attributes
-    ID : Signature ID {I}
-    State model {I, R556}
-    Domain {I, R556}
---
+///class Event Signature
+///attributes
+///    ID : Signature ID {I}
+///    State model {I, R556}
+///    Domain {I, R556}
+///--
 class Event Specification
 attributes
     Name : Event Name {I}
-    State model {I, R565, R556}
+    Subsystem element {I, R565, R556}
     Domain {I, R565, R556}
-    Signature {R556}
 --
 class Generalization <import:Relationship>
 attributes
@@ -144,29 +134,37 @@ attributes
     Class {I, R550c}
     Domain {I, R550}
 --
-class State <import:State>
-attributes
-    State Name {I}
-    State model {I, R564}
-    Domain {I, R564}
-    Signature {R564}
---
+///class State <import:State>
+///attributes
+///    State Name {I}
+///    State model {I, R564}
+///    Domain {I, R564}
+///    Signature {R564}
+///--
 class State Model <import:State>
 attributes
     Name {I}
     Domain {I}
 --
-class Parameter Set
-attributes
-    Name {I, UR562}
-    State model {I, UR562}
-    Domain {I, UR562}
---
+///class Parameter Set
+///attributes
+///    Name {I, UR562}
+///    State model {I, UR562}
+///    Domain {I, UR562}
+///--
 class Subclass <import:Relationship>
 attributes
     Rnum {I}
     Class {I}
     Domain {I}
+--
+class Subclass Destination
+attributes
+    Delegated event ID {I, R553}
+    Superclass {I, R553}
+    Subclass {I, R553}
+    Generalization {I, R553}
+    Domain {I, R553}
 --
 relationships
     R550
@@ -193,10 +191,10 @@ relationships
         Local Effective Event
         Forwarded Effective Event
 --
-    R556
-    delivers data in, 1 Event Signature
-    provides data for, Mc Event Specification
---
+///    R556
+///    delivers data in, 1 Event Signature
+///    provides data for, 1 Event Specification
+///--
     R557
     is detected as, 1 Local Effective Event
     detects, 1 Monomorphic Event Specification
@@ -219,19 +217,19 @@ relationships
         Local Delegated Event
         Forwarded Delegated Event
 --
-    R562
-    Parameter Set +
-        Activity Input Set
-        Event Signature
---
+///    R562
+///    Parameter Set +
+///        Activity Input Set
+///        Event Signature
+///--
     R563
-    is defined in, 1 Parameter Set
-    defines, Mc Parameter
+    delivers data in, 1 Event Specification
+    delivers data with, Mc Event Parameter
 --
-    R564
-    requires input supplied by, 1 Activity Input Set
-    supplies required input to, M State
---
+///    R564
+///    requires input supplied by, 1 Activity Input Set
+///    supplies required input to, 1 State
+///--
     R565
     defines, Mc Monomorphic Event Specification
     is defined on, 1 State Model
