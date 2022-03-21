@@ -4,7 +4,7 @@ metadata
     Document ID : mint.sm-meta.class.td.5
     Version : 3.5.0
     /// Creation date : March 4, 2012
-    Modification date : March 20, 2022
+    Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -15,65 +15,51 @@ attributes
     State model {I, R564, R562}
     Domain {I, R564, R562}
 --
-///class Delegation
-///attributes
-///    Event {I, R551}
-///    Class {I, R551}
-///    Rnum {I, R551}
-///    Domain {I, R551}
-///--
-///class Delegation Target
-///attributes
-///    Event {I, R551}
-///    Class {I, R551}
-///    Rnum {I, R551}
-///    Domain {I, R551}
-///--
 class Creation Event <import:State>
 attributes
     ID {I}
     Class {I}
     Domain {I}
 --
-///class Delegated Event
-///attributes
-///    ID {I, R560}
-///    Class {I, R560}
-///    Domain {I, R560}
-///--
-///class Delegation Direction
-///attributes
-///    Delegated event ID {I, R569}
-///    Superclass {I, R569}
-///    Domain {I, R569}
-///    Generalization {I, R569c}
-///--
-///class Delegation Path
-///attributes
-///    Delegated event ID {I, R553}
-///    Superclass {I, R553}
-///    Subclass {I, R553}
-///    Generalization {I, R553}
-///    Domain {I, R553}
-///--
-///class Effective Event
-///attributes
-///    ID {I, R560}
-///    State model {I, R560}
-///    Domain {I, R560}
-///--
-class Signaled Event
+class Delegated Event
+attributes
+    ID {I, R560}
+    Class {I, R560}
+    Domain {I, R560}
+--
+class Delegation Direction
+attributes
+    Delegated event ID {I, R569}
+    Superclass {I, R569}
+    Domain {I, R569}
+    Generalization {I, R569c}
+--
+class Delegation Path
+attributes
+    Delegated event ID {I, R553}
+    Superclass {I, R553}
+    Subclass {I, R553}
+    Generalization {I, R553}
+    Domain {I, R553}
+--
+class Effective Event
+attributes
+    ID {I, R560}
+    State model {I, R560}
+    Domain {I, R560}
+--
+class Effective Signaled Event
 attributes
     ID {I, UR568}
     State model {I, UR568}
     Domain {I, UR568}
 --
-///class Event
-///attributes
-///    ID : Event ID {I}
-///    State model {I, UR560}
-///    Domain {I, UR560}
-///--
+class Event
+attributes
+    ID : Event ID {I}
+    State model {I, UR560}
+    Domain {I, UR560}
+--
 class Event Parameter
 attributes
     Name : Input Name {I}
@@ -95,47 +81,47 @@ attributes
     Domain {I, R565, R556}
     Signature {R556}
 --
-///class Generalization <import:Relationship>
-///attributes
-///    Rnum {I}
-///    Domain {I}
-///--
-///class Inherited Delegated Event
-///attributes
-///    ID {I, R561, R552}
-///    Class {I, R561, R552}
-///    Domain {I, R561, R552}
-///--
-class Inherited Local Event
+class Generalization <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Inherited Delegated Event
+attributes
+    ID {I, R561, R552}
+    Class {I, R561, R552}
+    Domain {I, R561, R552}
+--
+class Inherited Effective Event
 attributes
     ID {I, R554, R552, R568}
     Class {I, R554, R552, R568}
     Domain {I, R554, R552, R568}
 --
-///class Inherited Event
-///attributes
-///    ID {I, UR552}
-///    Subclass {I, I2, R559}
-///    Domain {I, I2, R559}
-///    Parent event ID {I2, R559}
-///    Superclass {I2, R559}
-///    Generalization {I2, R559}
-///--
-///class Local Delegated Event
-///attributes
-///    ID {I, R561}
-///    Number {I2, R558}
-///    Class {I, I2, R561, R558}
-///    Domain {I, I2, R561, R558}
-///--
-class Local Event
+class Inherited Event
+attributes
+    ID {I, UR552}
+    Subclass {I, I2, R559}
+    Domain {I, I2, R559}
+    Parent event ID {I2, R559}
+    Superclass {I2, R559}
+    Generalization {I2, R559}
+--
+class Local Delegated Event
+attributes
+    ID {I, R561}
+    Number {I2, R558}
+    Class {I, I2, R561, R558}
+    Domain {I, I2, R561, R558}
+--
+class Local Effective Event
 attributes
     ID {I, R554}
     Number {I2, R557}
     State model {I, I2, R557, R554}
     Domain {I, I2, R557, R554}
 --
-class Local Signaled Event
+class Local Effective Signaled Event
 attributes
     ID {I, R567, R568}
     State model {I, R567, R568}
@@ -171,69 +157,59 @@ attributes
     State model {I, UR562}
     Domain {I, UR562}
 --
-///class Subclass <import:Relationship>
-///attributes
-///    Rnum {I}
-///    Class {I}
-///    Domain {I}
-///--
+class Subclass <import:Relationship>
+attributes
+    Rnum {I}
+    Class {I}
+    Domain {I}
+--
 relationships
     R550
     Event Specification +
         Monomorphic Event Specification
         Polymorphic Event Specification
 --
-///    R551
-///    is delegated in, M Generalization
-///    delegates, Mc Polymorphic Event
-///    1 Delegation
-///--
-///    R552
-///    is target of, Mc Delegation
-///    has target, M Subclass
-///    1 Delegation Target
-///--
-///    R552
-///    Inherited Event +
-///        Inherited Effective Event
-///        Inherited Delegated Event
-///--
-///    R553
-///    leads to, M Subclass
-///    is destination of, Mc Delegation Direction
-///    1 Delegation Path
-///--
-///    R554
-///    Effective Event +
-///        Local Effective Event
-///        Inherited Effective Event
-///--
+    R552
+    Inherited Event +
+        Inherited Effective Event
+        Inherited Delegated Event
+--
+    R553
+    leads to, M Subclass
+    is destination of, Mc Delegation Direction
+    1 Delegation Path
+--
+    R554
+    Effective Event +
+        Local Effective Event
+        Inherited Effective Event
+--
     R556
     delivers data in, 1 Event Signature
     provides data for, Mc Event Specification
 --
     R557
-    defines, 1 Local Event
+    defines, 1 Local Effective Event
     is defined by, 1 Monomorphic Event Specification
 --
-///    R558
-///    is detected via, 1 Local Delegated Event
-///    detects, 1 Polymorphic Event Specification
-///--
-///    R559
-///    is spawned by, 1 Delegation Path
-///    spawns, 1 Inherited Event
-///--
-///    R560
-///    Event +
-///        Effective Event
-///        Delegated Event
-///--
-///    R561
-///    Delegated Event +
-///        Local Delegated Event
-///        Inherited Delegated Event
-///--
+    R558
+    is detected via, 1 Local Delegated Event
+    detects, 1 Polymorphic Event Specification
+--
+    R559
+    is spawned by, 1 Delegation Path
+    spawns, 1 Inherited Event
+--
+    R560
+    Event +
+        Effective Event
+        Delegated Event
+--
+    R561
+    Delegated Event +
+        Local Delegated Event
+        Inherited Delegated Event
+--
     R562
     State Model Signature +
         Activity Input Set
@@ -252,17 +228,17 @@ relationships
     is defined on, 1 State Model
 --
     R567
-    Local Event +
-        Local Signaled Event
+    Local Effective Event +
+        Local Effective Signaled Event
         Creation Event
 --
     R568
-    Signaled Event +
-        Local Signaled Event
-        Inherited Local Event
+    Effective Signaled Event +
+        Local Effective Signaled Event
+        Inherited Effective Event
 --
-///    R569
-///    establishes direction of delegation for, Mc Delegated Event
-///    delegates down, M Generalization
-///    1 Delegation Direction
-///--
+    R569
+    establishes direction of delegation for, Mc Delegated Event
+    delegates down, M Generalization
+    1 Delegation Direction
+--
