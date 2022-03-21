@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.6.0
+    Version : 3.6.1
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -73,8 +73,8 @@ attributes
 class Event Specification
 attributes
     Name : Event Name {I}
-    Subsystem element {I, R565, R556}
-    Domain {I, R565, R556}
+    Subsystem element {I, UR550}
+    Domain {I, R550}
 --
 class Generalization <import:Relationship>
 attributes
