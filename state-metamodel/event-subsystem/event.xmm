@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.5.0
+    Version : 3.5.1
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -27,14 +27,14 @@ attributes
     Class {I, R560}
     Domain {I, R560}
 --
-class Delegation Direction
+class Delegation On Generalization
 attributes
     Delegated event ID {I, R569}
     Superclass {I, R569}
     Domain {I, R569}
     Generalization {I, R569c}
 --
-class Delegation Path
+class Subclass Destination
 attributes
     Delegated event ID {I, R553}
     Superclass {I, R553}
@@ -176,8 +176,8 @@ relationships
 --
     R553
     leads to, M Subclass
-    is destination of, Mc Delegation Direction
-    1 Delegation Path
+    is destination of, Mc Delegation On Generalization
+    1 Subclass Destination
 --
     R554
     Effective Event +
@@ -197,7 +197,7 @@ relationships
     detects, 1 Polymorphic Event Specification
 --
     R559
-    is spawned by, 1 Delegation Path
+    is spawned by, 1 Subclass Destination
     spawns, 1 Forwarded Event
 --
     R560
@@ -240,5 +240,5 @@ relationships
     R569
     establishes direction of delegation for, Mc Delegated Event
     delegates down, M Generalization
-    1 Delegation Direction
+    1 Delegation On Generalization
 --
