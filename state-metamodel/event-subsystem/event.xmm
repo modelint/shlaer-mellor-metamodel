@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.5.1
+    Version : 3.5.2
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -14,6 +14,11 @@ attributes
     State {I, R564, R562}
     State model {I, R564, R562}
     Domain {I, R564, R562}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
 --
 class Creation Event <import:State>
 attributes
@@ -169,6 +174,10 @@ relationships
         Monomorphic Event Specification
         Polymorphic Event Specification
 --
+    R551
+    defines, Mc Polymorphic Event Specification
+    is defined on, 1 Class
+--
     R552
     Forwarded Event +
         Forwarded Effective Event
@@ -189,16 +198,16 @@ relationships
     provides data for, Mc Event Specification
 --
     R557
-    defines, 1 Local Effective Event
-    is defined by, 1 Monomorphic Event Specification
+    is detected as, 1 Local Effective Event
+    detects, 1 Monomorphic Event Specification
 --
     R558
-    is detected via, 1 Local Delegated Event
-    detects, 1 Polymorphic Event Specification
+    initiates delegation as, 1 Local Delegated Event
+    is initial delegation of, 1 Polymorphic Event Specification
 --
     R559
-    is spawned by, 1 Subclass Destination
-    spawns, 1 Forwarded Event
+    is readdressed for, 1 Subclass Destination
+    readdresses as, 1 Forwarded Event
 --
     R560
     Event +
@@ -224,7 +233,7 @@ relationships
     supplies required input to, M State
 --
     R565
-    defines, Mc Event Specification
+    defines, Mc Monomorphic Event Specification
     is defined on, 1 State Model
 --
     R567
@@ -238,7 +247,7 @@ relationships
         Forwarded Effective Event
 --
     R569
-    establishes direction of delegation for, Mc Delegated Event
-    delegates down, M Generalization
+    forwards, Mc Delegated Event
+    is forwarded along, M Generalization
     1 Delegation On Generalization
 --
