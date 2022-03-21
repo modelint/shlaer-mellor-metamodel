@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.5.2
+    Version : 3.5.3
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -65,7 +65,7 @@ attributes
     State model {I, UR560}
     Domain {I, UR560}
 --
-class Event Parameter
+class Parameter
 attributes
     Name : Input Name {I}
     Signature {I, R563}
@@ -156,7 +156,7 @@ attributes
     Name {I}
     Domain {I}
 --
-class State Model Signature
+class Parameter Set
 attributes
     Name {I, UR562}
     State model {I, UR562}
@@ -220,13 +220,13 @@ relationships
         Forwarded Delegated Event
 --
     R562
-    State Model Signature +
+    Parameter Set +
         Activity Input Set
         Event Signature
 --
     R563
-    is supplied in, 1 State Model Signature
-    supplies, Mc Event Parameter
+    is defined in, 1 Parameter Set
+    defines, Mc Parameter
 --
     R564
     requires input supplied by, 1 Activity Input Set
