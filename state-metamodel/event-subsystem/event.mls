@@ -21,32 +21,32 @@ nodes
     Local Effective Signaled Event/2 6,8
     Creation Event 5,8
     Effective Signaled Event/2 9,8-9
-    Inherited Effective Event/2 7-8,9
+    Forwarded Effective Event/2 7-8,9
     Effective Event 3-4,7-8
     Local Delegated Event/2 5-6,10-11
-    Inherited Delegated Event/2 5-6,12
+    Forwarded Delegated Event/2 5-6,12
     Delegated Event 3-4,11-12
     Event 2,9
     Generalization 1,11-12
     Delegation Direction 2,12-13
     Subclass 2,15
     Delegation Path 3,14
-    Inherited Event 7,14
+    Forwarded Event 7,14
 connectors
     +R550-1 : r|Event Specification { l|Monomorphic Event Specification, l|Polymorphic Event Specification }
-    +R552 : l|Inherited Event { r|Inherited Delegated Event, r|Inherited Effective Event }
+    +R552 : l|Forwarded Event { r|Forwarded Delegated Event, r|Forwarded Effective Event }
     -R553 : +/1 r|Delegation Direction : +/1 l*|Subclass, b|Delegation Path
-    +R554 : t|Effective Event { b|Local Effective Event, b|Inherited Effective Event : L4R+2 }
+    +R554 : t|Effective Event { b|Local Effective Event, b|Forwarded Effective Event : L4R+2 }
     -R556 : +/1 t|Event Signature : +/1 b*|Event Specification
     -R557 : +/1 b|Monomorphic Event Specification : +/1 t*|Local Effective Event
     +R558.2 : +/1 r|Polymorphic Event Specification : +/1 t|Local Delegated Event
-    -R559 : +/1 t|Delegation Path : +/1 b*|Inherited Event
+    -R559 : +/1 t|Delegation Path : +/1 b*|Forwarded Event
     +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
-    +R561 : t|Delegated Event { b|Local Delegated Event, b|Inherited Delegated Event }
+    +R561 : t|Delegated Event { b|Local Delegated Event, b|Forwarded Delegated Event }
     +R562 : t|State Model Signature { b|Activity Input Set, b|Event Signature }
     -R563 : +/1 t|Event Parameter : +/1 b*|State Model Signature
     -R564 : +/2 r*|State : +/2 l|Activity Input Set
     -R565 : +/1 r*|State Model : +/1 l|Event Specification
     +R567 : r|Local Effective Event { l|Local Effective Signaled Event, l|Creation Event }
-    +R568 : b|Effective Signaled Event { t|Local Effective Signaled Event, t|Inherited Effective Event }
+    +R568 : b|Effective Signaled Event { t|Local Effective Signaled Event, t|Forwarded Effective Event }
     -R569 : -/2 t*|Generalization : +/2 b+1|Delegated Event, l|Delegation Direction

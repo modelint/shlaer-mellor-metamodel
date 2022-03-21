@@ -86,19 +86,19 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Inherited Delegated Event
+class Forwarded Delegated Event
 attributes
     ID {I, R561, R552}
     Class {I, R561, R552}
     Domain {I, R561, R552}
 --
-class Inherited Effective Event
+class Forwarded Effective Event
 attributes
     ID {I, R554, R552, R568}
     Class {I, R554, R552, R568}
     Domain {I, R554, R552, R568}
 --
-class Inherited Event
+class Forwarded Event
 attributes
     ID {I, UR552}
     Subclass {I, I2, R559}
@@ -170,9 +170,9 @@ relationships
         Polymorphic Event Specification
 --
     R552
-    Inherited Event +
-        Inherited Effective Event
-        Inherited Delegated Event
+    Forwarded Event +
+        Forwarded Effective Event
+        Forwarded Delegated Event
 --
     R553
     leads to, M Subclass
@@ -182,7 +182,7 @@ relationships
     R554
     Effective Event +
         Local Effective Event
-        Inherited Effective Event
+        Forwarded Effective Event
 --
     R556
     delivers data in, 1 Event Signature
@@ -198,7 +198,7 @@ relationships
 --
     R559
     is spawned by, 1 Delegation Path
-    spawns, 1 Inherited Event
+    spawns, 1 Forwarded Event
 --
     R560
     Event +
@@ -208,7 +208,7 @@ relationships
     R561
     Delegated Event +
         Local Delegated Event
-        Inherited Delegated Event
+        Forwarded Delegated Event
 --
     R562
     State Model Signature +
@@ -235,7 +235,7 @@ relationships
     R568
     Effective Signaled Event +
         Local Effective Signaled Event
-        Inherited Effective Event
+        Forwarded Effective Event
 --
     R569
     establishes direction of delegation for, Mc Delegated Event
