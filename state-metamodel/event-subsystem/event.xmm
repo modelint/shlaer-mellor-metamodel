@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.6.2
+    Version : 3.6.4
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -114,14 +114,14 @@ attributes
 class Monomorphic Event Specification
 attributes
     Name {I, R550}
-    State model {I, R550c}
-    Domain {I, R550}
+    State model {I, R550, R565}
+    Domain {I, R550, R565}
 --
 class Polymorphic Event Specification
 attributes
     Name {I, R550}
-    Class {I, R550c}
-    Domain {I, R550}
+    Class {I, R551c, R550}
+    Domain {I, R551, R550}
 --
 class State Model <import:State>
 attributes
