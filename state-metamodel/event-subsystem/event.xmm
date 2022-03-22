@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.7.1
+    Version : 3.7.2
     /// Creation date : March 4, 2012
     Modification date : March 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -136,7 +136,7 @@ attributes
 --
 class Subclass Destination
 attributes
-    Delegated event ID {I, R553}
+    Delegated event {I, R553}
     Superclass {I, R553}
     Subclass {I, R553}
     Generalization {I, R553}
