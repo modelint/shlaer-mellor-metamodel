@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.6.4
+    Version : 3.6.5
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -91,7 +91,7 @@ attributes
     Superclass {I2, R559}
     Generalization {I2, R559}
 --
-class Local Delegated Event
+class Root Delegated Event
 attributes
     ID {I, R561}
     Number {I2, R558}
@@ -167,16 +167,12 @@ relationships
         Local Effective Event
         Forwarded Effective Event
 --
-///    R556
-///    delivers data in, 1 Event Signature
-///    provides data for, 1 Event Specification
-///--
     R557
     is detected as, 1 Local Effective Event
     detects, 1 Monomorphic Event Specification
 --
     R558
-    initiates delegation as, 1 Local Delegated Event
+    initiates delegation as, 1 Root Delegated Event
     is initial delegation of, 1 Polymorphic Event Specification
 --
     R559
@@ -190,7 +186,7 @@ relationships
 --
     R561
     Delegated Event +
-        Local Delegated Event
+        Root Delegated Event
         Forwarded Delegated Event
 --
     R563
