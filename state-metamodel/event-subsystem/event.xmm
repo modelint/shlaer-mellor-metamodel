@@ -22,7 +22,7 @@ attributes
 --
 class Delegated Event
 attributes
-    ID {I, R560}
+    Name {I, R560}
     Class {I, R560}
     Domain {I, R560}
 --
@@ -119,9 +119,9 @@ attributes
 --
 class Polymorphic Event Specification
 attributes
-    Name {I, R550}
-    Class {I, R551c, R550}
-    Domain {I, R551, R550}
+    Name {I, R550, R558}
+    Class {I, R551c, R550, R558}
+    Domain {I, R551, R550, R558}
 --
 class State Model <import:State>
 attributes
