@@ -2,7 +2,7 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.6.5
+    Version : 3.7.0
     /// Creation date : March 4, 2012
     Modification date : March 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -70,12 +70,12 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Forwarded Delegated Event
-attributes
-    ID {I, R561, R552}
-    Class {I, R561, R552}
-    Domain {I, R561, R552}
---
+///class Forwarded Delegated Event
+///attributes
+///    ID {I, R561, R552}
+///    Class {I, R561, R552}
+///    Domain {I, R561, R552}
+///--
 class Forwarded Effective Event
 attributes
     ID {I, R554, R552, R568}
@@ -91,13 +91,13 @@ attributes
     Superclass {I2, R559}
     Generalization {I2, R559}
 --
-class Root Delegated Event
-attributes
-    ID {I, R561}
-    Number {I2, R558}
-    Class {I, I2, R561, R558}
-    Domain {I, I2, R561, R558}
---
+///class Root Delegated Event
+///attributes
+///    ID {I, R561}
+///    Number {I2, R558}
+///    Class {I, I2, R561, R558}
+///    Domain {I, I2, R561, R558}
+///--
 class Local Effective Event
 attributes
     ID {I, R554}
@@ -155,7 +155,7 @@ relationships
     R552
     Forwarded Event +
         Forwarded Effective Event
-        Forwarded Delegated Event
+        Delegated Event
 --
     R553
     leads to, M Subclass
@@ -172,8 +172,8 @@ relationships
     detects, 1 Monomorphic Event Specification
 --
     R558
-    initiates delegation as, 1 Root Delegated Event
-    is initial delegation of, 1 Polymorphic Event Specification
+    initiates delegation as, 1 Delegated Event
+    is initial delegation of, 1c Polymorphic Event Specification
 --
     R559
     is readdressed for, 1 Subclass Destination
@@ -184,11 +184,11 @@ relationships
         Effective Event
         Delegated Event
 --
-    R561
-    Delegated Event +
-        Root Delegated Event
-        Forwarded Delegated Event
---
+///    R561
+///    Delegated Event +
+///        Root Delegated Event
+///        Forwarded Delegated Event
+///--
     R563
     delivers data in, 1 Event Specification
     delivers data with, Mc Event Parameter
