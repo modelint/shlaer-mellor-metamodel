@@ -2,9 +2,9 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.7.0
+    Version : 3.7.1
     /// Creation date : March 4, 2012
-    Modification date : March 21, 2022
+    Modification date : March 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -28,7 +28,7 @@ attributes
 --
 class Delegation On Generalization
 attributes
-    Delegated event ID {I, R569}
+    Delegated event {I, R569}
     Superclass {I, R569}
     Domain {I, R569}
     Generalization {I, R569c}
