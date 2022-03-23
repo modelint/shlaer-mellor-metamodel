@@ -2,9 +2,9 @@ metadata
     Title : Event Subsystem (in progress) / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.8.0
+    Version : 3.8.1
     /// Creation date : March 4, 2012
-    Modification date : March 22, 2022
+    Modification date : March 23, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -33,13 +33,13 @@ attributes
     Domain {I, R569}
     Generalization {I, R569c}
 --
-class Effective Event
+class Non Delegated Event
 attributes
     Name {I, R560}
     State model {I, R560}
     Domain {I, R560}
 --
-class Effective Signaled Event
+class Effective Event
 attributes
     Name {I, UR568}
     State model {I, UR568}
@@ -90,13 +90,13 @@ attributes
     Superclass {R553}
     Generalization {R553}
 --
-class Local Effective Event
+class Monomorphic Event
 attributes
     Name {I, R557, R554}
     State model {I, R557, R554}
     Domain {I, R557, R554}
 --
-class Local Effective Signaled Event
+class Monomorphic Effective Event
 attributes
     Name {I, R567, R568}
     State model {I, R567, R568}
@@ -152,12 +152,12 @@ relationships
     1 Forwarded Event
 --
     R554
-    Effective Event +
-        Local Effective Event
+    Non Delegated Event +
+        Monomorphic Event
         Forwarded Effective Event
 --
     R557
-    is detected as, 1 Local Effective Event
+    is detected as, 1 Monomorphic Event
     detects, 1 Monomorphic Event Specification
 --
     R558
@@ -166,7 +166,7 @@ relationships
 --
     R560
     Event +
-        Effective Event
+        Non Delegated Event
         Delegated Event
 --
     R561
@@ -183,13 +183,13 @@ relationships
     is defined on, 1 State Model
 --
     R567
-    Local Effective Event +
-        Local Effective Signaled Event
+    Monomorphic Event +
+        Monomorphic Effective Event
         Creation Event
 --
     R568
-    Effective Signaled Event +
-        Local Effective Signaled Event
+    Effective Event +
+        Monomorphic Effective Event
         Forwarded Effective Event
 --
     R569

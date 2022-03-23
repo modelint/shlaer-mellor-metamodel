@@ -14,12 +14,12 @@ nodes
     State Model 7,4-5
     Event Specification 8-9,5
     Event Parameter 8-9,2-3
-    Local Effective Event/2 5-6,6-7
-    Local Effective Signaled Event/2 6,8
+    Monomorphic Event/2 5-6,6-7
+    Monomorphic Effective Event/2 6,8
     Creation Event 5,8
-    Effective Signaled Event/2 9,8-9
+    Effective Event/2 9,8-9
     Forwarded Effective Event/2 7-8,9
-    Effective Event 3-4,7-8
+    Non Delegated Event 3-4,7-8
     Root Delegated Event/2 5-6,10-11
     Forwarded Delegated Event/2 5-6,12
     Delegated Event 3-4,11-12
@@ -33,13 +33,13 @@ connectors
     -R551.2 : +/1 r|Class : +/1 t|Polymorphic Event Specification
     +R552 : l|Forwarded Event { r|Forwarded Delegated Event, r|Forwarded Effective Event }
     -R553 : +/1 r|Delegation On Generalization : +/1 l*|Subclass, b|Forwarded Event
-    +R554 : t|Effective Event { b|Local Effective Event, b|Forwarded Effective Event : L4R+2 }
-    +R557 : +/1 b+1|Monomorphic Event Specification : -/1 t*|Local Effective Event
+    +R554 : t|Non Delegated Event { b|Monomorphic Event, b|Forwarded Effective Event : L4R+2 }
+    +R557 : +/1 b+1|Monomorphic Event Specification : -/1 t*|Monomorphic Event
     +R558.2 : +/1 r|Polymorphic Event Specification : +/2 t|Root Delegated Event
-    +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
+    +R560 : t|Event { b|Non Delegated Event, b-1|Delegated Event }
     +R561 : t|Delegated Event { b|Root Delegated Event, b|Forwarded Delegated Event }
     -R563 : +/1 r*|Event Parameter : +/1 l|Event Specification
     -R565.2 : +/1 r|State Model : -/1 b-2|Monomorphic Event Specification
-    +R567 : r|Local Effective Event { l|Local Effective Signaled Event, l|Creation Event }
-    +R568 : b|Effective Signaled Event { t|Local Effective Signaled Event, t|Forwarded Effective Event }
+    +R567 : r|Monomorphic Event { l|Monomorphic Effective Event, l|Creation Event }
+    +R568 : b|Effective Event { t|Monomorphic Effective Event, t|Forwarded Effective Event }
     -R569 : -/1 t*|Generalization : +/2 b+1|Delegated Event, l|Delegation On Generalization
