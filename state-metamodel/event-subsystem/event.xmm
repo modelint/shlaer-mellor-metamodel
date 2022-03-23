@@ -70,12 +70,6 @@ attributes
     Rnum {I}
     Domain {I}
 --
-///class Forwarded Delegated Event
-///attributes
-///    ID {I, R561, R552}
-///    Class {I, R561, R552}
-///    Domain {I, R561, R552}
-///--
 class Forwarded Effective Event
 attributes
     ID {I, R554, R552, R568}
@@ -84,12 +78,11 @@ attributes
 --
 class Forwarded Event
 attributes
-    ID {I, UR552}
-    Subclass {I, I2, R559}
-    Domain {I, I2, R559}
-    Parent event ID {I2, R559}
-    Superclass {I2, R559}
-    Generalization {I2, R559}
+    Delegated event {I, R559}
+    Subclass {I, R559}
+    Domain {I, R559}
+    Superclass {R559}
+    Generalization {R559}
 --
 ///class Root Delegated Event
 ///attributes
