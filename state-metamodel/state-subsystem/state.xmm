@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.3.5
+    Version : 3.3.6
     /// Creation date : January 21, 2012
-    Modification date : March 19, 2022
+    Modification date : March 23, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -42,9 +42,9 @@ attributes
     Class {I, R513, R510}
     Domain {I, R513, R510}
 --
-class Effective Signaling Event <import:Event>
+class Effective Event <import:Event>
 attributes
-    ID {I}
+    Name {I}
     State model {I}
     Domain {I}
 --
@@ -125,7 +125,7 @@ relationships
     partions time period on, 1 State Model
 --
     R505
-    specifies response to, Mc Effective Signaling Event
+    specifies response to, Mc Effective Event
     is responded to in, M State
     1 Event Response
 --
