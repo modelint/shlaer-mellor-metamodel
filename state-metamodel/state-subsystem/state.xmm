@@ -31,7 +31,7 @@ attributes
 --
 class Creation Event
 attributes
-    ID {I, R567}
+    Name {I, R567}
     Class {I, I2, R567, R519, R508}
     Domain {I, I2, R567, R519, R508}
     To state {I2, R508}
