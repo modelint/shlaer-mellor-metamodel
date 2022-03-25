@@ -2,9 +2,9 @@ metadata
     Title : Signal Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.1a
-    Version : 0.5.1
+    Version : 0.5.2
     /// Creation date : September 10, 2021
-    Modification date : February 9, 2022
+    Modification date : March 25, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -47,14 +47,14 @@ attributes
 class Event Parameter <import:Event>
 attributes
     Name {I}
-    Signature {I}
-    State Model {I}
+    Event specification {I}
+    Subsystem element {I}
     Domain {I}
 --
 class Event Specification <import:Event>
 attributes
     Name {I}
-    State model {I}
+    Subsystem element {I}
     Domain {I}
 --
 class Instance Flow <import:Flow>
@@ -89,7 +89,7 @@ attributes
     Activity {I, R901}
     Domain {I, R901, R851, R853}
     Event spec {R851}
-    State model {R851}
+    Subsystem element {R851}
     Destination {R853}
 --
 class Signal Assigner Action
@@ -132,8 +132,8 @@ attributes
     Action {I, R850}
     Activity {I,R850, R852}
     Domain {I, R850, R852}
-    State model {I, R850}
-    Signature {I, R850}
+    Subsystem element {I, R850}
+    Event spec {I, R850}
     Data flow {R852}
 --
 relationships
