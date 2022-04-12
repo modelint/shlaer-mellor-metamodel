@@ -2,9 +2,9 @@ metadata
     Title : Access Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.5.1
+    Version : 0.5.2
     /// Creation date : September 11, 2021
-    Modification date : February 5, 2022
+    Modification date : April 12, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -75,7 +75,7 @@ attributes
     Identifier {R878}
     Class {R878c}
 --
-class Instance Flow Type <import:Flow>
+class Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -87,7 +87,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Scalar Flow Type <import:Flow>
+class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -139,7 +139,7 @@ relationships
         Zero Many Selection
 --
     R876
-    specifies instances in, 1 Instance Flow Type
+    specifies instances in, 1 Instance Flow
     is source of instances for, Mc Selection Action
 --
     R877
@@ -161,7 +161,7 @@ relationships
 --
     R881
     provides comparison value to, Mc Selection
-    performs comparison using value from, Mc Scalar Flow Type
+    performs comparison using value from, Mc Scalar Flow
     1 Scalar Input
 --
     R882
@@ -181,7 +181,7 @@ relationships
         Criteria Many Selection
 --
     R885
-    writes attribute values of instances in, 1 Instance Flow Type
+    writes attribute values of instances in, 1 Instance Flow
     instance attributes are written by, Mc Write Action
 --
     R886
@@ -190,6 +190,6 @@ relationships
     1 Attribute Update
 --
     R887
-    assigns value supplied by, 1 Scalar Flow Type
+    assigns value supplied by, 1 Scalar Flow
     supplies value to assign for, Mc Attribute Update
 --

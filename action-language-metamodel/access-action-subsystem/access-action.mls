@@ -15,13 +15,13 @@ nodes
     Zero One Selection/2 9,4
     Criteria One Selection/2 7,6 >top
     Selection Input 12,4-5
-    Scalar Flow Type 11,3 : 4,15
+    Scalar Flow 11,3 : 4,15
     Selection Action 11,6
     Identifier Selection/2 7,3
     Zero Many Selection/2 9,8-9
     Instance Flow 11,9
     Attribute 5,11
-    Instance Flow Type/2 9,14
+    Instance Flow/2 9,14
     Write Action 5,14
     Attribute Update 4,12-13
     Attribute In Selection 4,10
@@ -30,15 +30,15 @@ nodes
     Multiple Instance Flow/2 9,11
 connectors
     +R875 : b|Selection Action { t|Zero One Selection, t|Zero Many Selection }
-    +R876.2 : +/2 r|Selection Action : +/2 t|Instance Flow Type
+    +R876.2 : +/2 r|Selection Action : +/2 t|Instance Flow
     +R877 : -/1 r|Criteria Selection : +/2 l*|Attribute, t|Attribute In Selection
     +R878 : -/2 b|Identifier Selection : -/2 t*|Identifier
     +R879 : +/1 l|Zero One Selection : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Zero Many Selection : +/1 l*|Multiple Instance Flow
-    -R881 : +/2 l|Selection Action : +/2 r*|Scalar Flow Type, b|Selection Input
+    -R881 : +/2 l|Selection Action : +/2 r*|Scalar Flow, b|Selection Input
     +R882 : b|Zero One Selection { t|Identifier Selection, t|Any One Selection, t|Criteria One Selection }
     +R883 : b|Zero Many Selection { t|All Selection, t|Criteria Many Selection }
     +R884 : t|Criteria Selection { b|Criteria One Selection, b|Criteria Many Selection }
-    -R885 : +/2 t|Write Action : +/2 b*|Instance Flow Type
+    -R885 : +/2 t|Write Action : +/2 b*|Instance Flow
     +R886 : +/2 l|Write Action : +/2 r*|Attribute, t|Attribute Update
-    -R887 : +/2 r|Attribute Update : +/2 l*|Scalar Flow Type.2
+    -R887 : +/2 r|Attribute Update : +/2 l*|Scalar Flow.2
