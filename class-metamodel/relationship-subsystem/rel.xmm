@@ -11,14 +11,14 @@ metadata
 subsystem Relationship
 class Association
 attributes
-    Rnum  {I, R100}
+    Rnum {I, R100}
     Domain {I, R100}
 --
 class Association Class
 attributes
-    Rnum {I, R120c}
-    Class {I2, R120}
-    Domain {I, I2, R120}
+    Rnum {I, R120c, R151}
+    Class {I2, R120, R151}
+    Domain {I, I2, R120, R151}
 --
 class Asymmetric Perspective
 attributes
@@ -28,7 +28,7 @@ attributes
 --
 class Binary Association
 attributes
-    Rnum  {I, R119}
+    Rnum {I, R119}
     Domain {I, R119}
 --
 class Class <import:Class And Attribute>
@@ -40,6 +40,8 @@ class Class In Lineage
 attributes
     Class {I, R131}
     Lnum {I, R131}
+    Rnum {I, R131}
+    Domain {I, R131}
 --
 class Constrained Loop
 attributes
@@ -54,7 +56,7 @@ attributes
 --
 class Generalization
 attributes
-    Rnum  {I, R100, R103}
+    Rnum {I, R100, R103}
     Domain {I, R100, R103}
     Superclass {R103}
 --
@@ -67,7 +69,7 @@ attributes
 class Identifier Attribute <import:Class And Attribute>
 attributes
     Identifier {I}
-    Name {I}
+    Attribute {I}
     Class {I}
     Domain {I}
 --
@@ -78,9 +80,9 @@ attributes
 --
 class Loop Segment
 attributes
-    Loop {I, R160}
-    Rnum {I, R160}
-    Domain {I, R160}
+    Loop {I, R130}
+    Rnum {I, R130}
+    Domain {I, R130}
 --
 class Minimal Partition
 attributes
@@ -93,7 +95,7 @@ class Ordinal Relationship
 attributes
     Rnum {I, R100}
     Domain {I, R100, R104, R106, R107}
-    Ranked class {R104,R106,R107}
+    Ranked class {R104, R106, R107}
     Ranking attribute {R106}
     Ranking identifier {R107, R106}
     Ascending perspective : Phrase Name
@@ -106,7 +108,7 @@ attributes
 --
 class Perspective
 attributes
-    Side :  Side  {I}
+    Side : Side {I}
     Rnum {I}
     Domain {I, R110}
     Viewed class {R110}
@@ -116,7 +118,7 @@ attributes
 --
 class Relationship
 attributes
-    Rnum : Relationship Number {I}
+    Rnum : Relationship Number {I, R14}
     Domain {I, R14}
 --
 class Subclass
@@ -133,7 +135,7 @@ attributes
 --
 class Symmetric Perspective
 attributes
-    Rnum {I, R123. R121}
+    Rnum {I, R123, R121}
     Domain {I, R121, R123}
 --
 class T Perspective
@@ -143,7 +145,7 @@ attributes
 --
 class Unary Association
 attributes
-    Rnum  {I, R119}
+    Rnum {I, R119}
     Domain {I, R119}
 --
 relationships
@@ -172,7 +174,7 @@ relationships
     has instances ranked in value by, Mc Ordinal Relationship
 --
     R105
-    Asymmetric Perpective +
+    Asymmetric Perspective +
         T Perspective
         P Perspective
 --

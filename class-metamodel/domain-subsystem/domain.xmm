@@ -14,7 +14,7 @@ attributes
     Client {I, R7}
     Service {I, R7c}
 --
-class Class <import:Class Attribute>
+class Class <import:Class And Attribute>
 attributes
     Cnum {I, R14}
     Domain {I, R14}
@@ -61,7 +61,7 @@ attributes
 class Subsystem Element
 attributes
     Number {I, R16, UR14}
-    Domain {I, R16}
+    Domain {I, R16, R13}
     Subsystem {R13}
 --
 class Subsystem Numbering Range
@@ -82,7 +82,7 @@ relationships
     content is managed by, M Subsystem
 --
     R3
-    numbers elements within, 1 Subsystem Range
+    numbers elements within, 1 Subsystem Numbering Range
     establishes numbers available for, 1 Subsystem
 --
     R4

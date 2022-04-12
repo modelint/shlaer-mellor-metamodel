@@ -9,11 +9,11 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Formalization
-class Association Class <import:Class Attribute>
+class Association Class <import:Relationship>
 attributes
-    Rnum {I, R151}
-    Class {I, R151}
-    Domain {I, R151}
+    Rnum {I, R120c, R151}
+    Class {I2, R120, R151}
+    Domain {I, I2, R120, R151}
 --
 class Association Class Reference
 attributes
@@ -32,7 +32,7 @@ attributes
     Domain {I, R152, R154}
     Perspective {R154}
 --
-class Class <import:Class Attribute>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -45,7 +45,7 @@ attributes
 --
 class Generalization Reference
 attributes
-    Subclass  {I, R152, R156}
+    Subclass {I, R152, R156}
     Superclass {I, R152, R170}
     Rnum {I, R152, R156, R170}
     Domain {I, R152, R156, R170}
@@ -82,13 +82,13 @@ attributes
     Rnum {I, R157, R176}
     Domain {I, R157, R176}
 --
-class Superclass <import:Class Attribute>
+class Superclass <import:Relationship>
 attributes
     Name {I}
     Rnum {I}
     Domain {I}
 --
-class Subclass <import:Class Attribute>
+class Subclass <import:Relationship>
 attributes
     Name {I}
     Rnum {I}
@@ -98,8 +98,8 @@ class P Reference
 attributes
     Association class {I, R153c}
     Participating class {I, R153}
-    Rnum {I, R153, R158}
-    Domain {I, R153, R158}
+    Rnum {I, R153, R159}
+    Domain {I, R153, R159}
 --
 class T Reference
 attributes
@@ -145,7 +145,7 @@ relationships
 --
     R157
     houses, 1 Simple Association Reference
-    is housed in, 1 Simple Association Class
+    is housed in, 1 Referring Class
 --
     R158
     houses, 1 T Reference
@@ -161,6 +161,6 @@ relationships
 --
     R176
     Association Reference +
-        Simple Association Class Reference
+        Simple Association Reference
         Association Class Reference
 --

@@ -12,8 +12,8 @@ subsystem Class And Attribute
 class Alias
 attributes
     Name : Alias Name {I}
-    Class {I, R29}
-    Domain {I, R29}
+    Class {I2, R29}
+    Domain {I, I2, R29}
 --
 class Attribute
 attributes
@@ -44,7 +44,7 @@ attributes
     Domain {I, R21, R23}
     To identifier {R21}
     Ref {I2, R23}
-    Rnum {I2, R23}
+    Rnum {I, I2, R23}
 --
 class Class
 attributes
@@ -56,6 +56,7 @@ class Reference <import:Formalization>
 attributes
     Ref {I}
     From class {I}
+    To class {I}
     Rnum {I}
     Domain {I}
 --
@@ -109,7 +110,7 @@ relationships
     R21
     constrains value of, Mc Attribute
     is constrained to match value of, Mc Identifier Attribute
-    1 Attribute Reference
+    M Attribute Reference
 --
     R22
     requires, M Attribute
@@ -122,7 +123,7 @@ relationships
 --
     R24
     may assume values defined by, 1 Type
-    defines range of values assignable to, Mc Attribute Reference
+    defines range of values assignable to, Mc Attribute
 --
     R25
     Attribute +
@@ -131,7 +132,7 @@ relationships
 --
     R26
     is derived from, M Attribute
-    contributes to the value of, Mc Attribute
+    contributes to the value of, Mc Derived Attribute
     1 Attribute In Derivation
 --
     R27
