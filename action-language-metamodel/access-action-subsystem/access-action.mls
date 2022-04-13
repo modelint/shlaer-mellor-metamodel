@@ -10,8 +10,8 @@ frame_presentation default
 nodes
     Criteria Selection/2 5,9
     Criteria Many Selection/2 7,9-10
-    All Selection 7,8
-    Any One Selection/2 7,4-5 >top
+    Many Cardinality Selection/2 7,8
+    Zero One Cardinality Selection/2 7,4-5 >top
     Zero One Selection/2 9,4
     Criteria One Selection/2 7,6 >top
     Selection Input 12,4-5
@@ -36,8 +36,8 @@ connectors
     +R879 : +/1 l|Zero One Selection : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Zero Many Selection : +/1 l*|Multiple Instance Flow
     -R881 : +/2 l|Selection Action : +/2 r*|Scalar Flow, b|Selection Input
-    +R882 : b|Zero One Selection { t|Identifier Selection, t|Any One Selection, t|Criteria One Selection }
-    +R883 : b|Zero Many Selection { t|All Selection, t|Criteria Many Selection }
+    +R882 : b|Zero One Selection { t|Identifier Selection, t|Zero One Cardinality Selection, t|Criteria One Selection }
+    +R883 : b|Zero Many Selection { t|Many Cardinality Selection, t|Criteria Many Selection }
     +R884 : t|Criteria Selection { b|Criteria One Selection, b|Criteria Many Selection }
     -R885 : +/2 t|Write Action : +/2 b*|Instance Flow
     +R886 : +/2 l|Write Action : +/2 r*|Attribute, t|Attribute Update

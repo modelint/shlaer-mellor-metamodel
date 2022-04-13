@@ -2,20 +2,20 @@ metadata
     Title : Access Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.5.2
+    Version : 0.5.4
     /// Creation date : September 11, 2021
     Modification date : April 12, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Access Action
-class All Selection
+class Many Cardinality Selection
 attributes
     Action {I, R883}
     Activity {I, R883}
     Domain {I, R883}
 --
-class Any One Selection
+class Zero One Cardinality Selection
 attributes
     Action {I, R882}
     Activity {I, R882}
@@ -98,6 +98,7 @@ attributes
     Action {I, R901}
     Activity {I, R901}
     Domain {I, R901}
+    Selection cardinality : Cardinality
 --
 class Selection Input
 attributes
@@ -121,8 +122,8 @@ attributes
 class Zero One Selection
 attributes
     Action {I, R875}
-    Activity {I, R875}
-    Domain {I, R875}
+    Activity {I, R875, R879}
+    Domain {I, R875, R879}
     SI Flow {R879}
 --
 class Zero Many Selection
@@ -160,19 +161,19 @@ relationships
     is yielded by, 1c Zero Many Selection
 --
     R881
-    provides comparison value to, Mc Selection
     performs comparison using value from, Mc Scalar Flow
+    provides comparison value to, Mc Selection
     1 Scalar Input
 --
     R882
     Zero One Selection +
         Identifier Selection
-        Any One Selection
+        Zero One Cardinality Selection
         Criteria One Selection
 --
     R883
     Zero Many Selection +
-        All Selection
+        Many Cardinality Selection
         Criteria Many Selection
 --
     R884
