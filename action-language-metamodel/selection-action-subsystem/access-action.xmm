@@ -1,5 +1,5 @@
 metadata
-    Title : Access Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Selection Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
     Version : 0.6.0
@@ -24,20 +24,11 @@ attributes
 --
 class Filter Expression
 attributes
-    Selection action {I, R877}
-    Activity {I, R877}
-    Domain {I, R877}
+    Selection action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
     Expression : Text
 --
-///class Attribute Update
-///attributes
-///    Attribute {I, R886}
-///    Class {I, R886}
-///    Write action {I, R886}
-///    Scalar flow {R887}
-///    Activity {I, R886, R887}
-///    Domain {I, R886, R887}
-///--
 class Identifier <import:Classes And Attributes>
 attributes
     Number {I}
@@ -97,12 +88,6 @@ attributes
     Activity {I}
     Domain {I}
 --
-///class Write Action
-///attributes
-///    Action {I, R901}
-///    Activity {I, R901}
-///    Domain {I, R901}
-///--
 class Single Selection
 attributes
     Action {I, R875}
@@ -127,8 +112,8 @@ relationships
     is source of instances for, Mc Selection Action
 --
     R877
-    uses criteria defined in, M Filter Expression
-    defines criteria for, Mc Attribute
+    compares, M Filter Expression
+    is compared in, Mc Attribute
     1 Filter Attribute
 --
     R878
@@ -154,16 +139,7 @@ relationships
         Zero One Cardinality Selection
         Criteria One Selection
 --
-    R885
-    writes attribute values of instances in, 1 Instance Flow
-    instance attributes are written by, Mc Write Action
---
-    R886
-    updates values of, M Attribute
-    has value updated by, Mc Write Action
-    1 Attribute Update
---
-    R887
-    assigns value supplied by, 1 Scalar Flow
-    supplies value to assign for, Mc Attribute Update
+    R883
+    uses criteria defined in, 1c Filter Expression
+    defines criteria for, 1 Selection Action
 --

@@ -1,0 +1,34 @@
+diagram class // Selection Action Subsystem 0.6.x / Action Metamodel
+notation Starr
+presentation default
+orientation landscape
+color pumpkin
+sheet C
+padding l200 b250
+frame OS Engineer
+frame_presentation default
+nodes
+    Selection Action/2 6,5-6
+    Single Selection/2 4,4
+    Many Selection/2 4,7
+    Single Instance Flow/2 4,2
+    Multiple Instance Flow/2 4,10
+    Zero One Cardinality Selection/2 2,4-5 >top
+    Filter Expression 8,5-6
+    Identifier Selection/2 2,3
+    Attribute 8,2-3
+    Filter Attribute 9,4
+    Selection Input 9,7
+    Scalar Flow 8,8-9// : 13,8
+    Instance Flow 6,3
+    Identifier 2,1
+connectors
+    +R875 : b|Selection Action { t|Single Selection, t|Many Selection }
+    -R876 : +/2 l|Selection Action : +/2 r*|Instance Flow
+    -R877 : +/2 l|Filter Expression : +/1 r*|Attribute, b|Filter Attribute
+    +R878 : -/2 l|Identifier Selection : -/2 r*|Identifier
+    +R879 : +/1 l|Single Selection : +/1 r*|Single Instance Flow
+    -R880 : +/1 r|Many Selection : +/1 l*|Multiple Instance Flow
+    -R881 : +/3 r|Filter Expression : +/3 l*|Scalar Flow, b|Selection Input
+    +R882 : b|Single Selection { t|Identifier Selection, t|Zero One Cardinality Selection }
+    -R883 : +/2 t|Selection Action : +/2 b*|Filter Expression

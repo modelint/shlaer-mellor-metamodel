@@ -1,0 +1,173 @@
+metadata
+    Title : Access Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.3
+    Version : 0.6.0
+    /// Creation date : September 11, 2021
+    Modification date : April 13, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Access Action
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Filter Attribute
+attributes
+    Attribute {I, R877}
+    Selection {I, R877}
+    Class {I, R877}
+    Domain {I, R877}
+--
+class Filter Expression
+attributes
+    Selection action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+    Expression : Text
+--
+///class Attribute Update
+///attributes
+///    Attribute {I, R886}
+///    Class {I, R886}
+///    Write action {I, R886}
+///    Scalar flow {R887}
+///    Activity {I, R886, R887}
+///    Domain {I, R886, R887}
+///--
+class Identifier <import:Classes And Attributes>
+attributes
+    Number {I}
+    Class {I}
+    Domain {I}
+--
+class Identifier Selection
+attributes
+    Action {I, R882}
+    Activity {I, R882}
+    Domain {I, R882, R878}
+    Identifier {R878}
+    Class {R878c}
+--
+class Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Many Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875, R880}
+    Domain {I, R875, R880}
+    MI Flow {R880}
+--
+class Multiple Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Selection Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+    Selection cardinality : Cardinality
+--
+class Selection Input
+attributes
+    Flow {I, R881}
+    Action {I, R881}
+    Activity {I, R881}
+    Domain {I, R881}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+///class Write Action
+///attributes
+///    Action {I, R901}
+///    Activity {I, R901}
+///    Domain {I, R901}
+///--
+class Single Selection
+attributes
+    Action {I, R875}
+    Activity {I, R875, R879}
+    Domain {I, R875, R879}
+    SI Flow {R879}
+--
+class Zero One Cardinality Selection
+attributes
+    Action {I, R882}
+    Activity {I, R882}
+    Domain {I, R882}
+--
+relationships
+    R875
+    Selection +
+        Single Selection
+        Many Selection
+--
+    R876
+    specifies instances in, 1 Instance Flow
+    is source of instances for, Mc Selection Action
+--
+    R877
+    compares, M Filter Expression
+    is compared in, Mc Attribute
+    1 Filter Attribute
+--
+    R878
+    criteria is defined by, 1 Identifier
+    defines criteria for, Mc Identifier Selection
+--
+    R879
+    yields, 1 Single Instance Flow
+    is yielded by, 1c Single Selection
+--
+    R880
+    yields, 1 Multiple Instance Flow
+    is yielded by, 1c Many Selection
+--
+    R881
+    performs comparison using value from, Mc Scalar Flow
+    provides comparison value to, Mc Selection
+    1 Scalar Input
+--
+    R882
+    Single Selection +
+        Identifier Selection
+        Zero One Cardinality Selection
+        Criteria One Selection
+--
+    R883
+    uses criteria defined in, 1c Filter Expression
+    defines criteria for, 1 Selection Action
+--
+    R885
+    writes attribute values of instances in, 1 Instance Flow
+    instance attributes are written by, Mc Write Action
+--
+    R886
+    updates values of, M Attribute
+    has value updated by, Mc Write Action
+    1 Attribute Update
+--
+    R887
+    assigns value supplied by, 1 Scalar Flow
+    supplies value to assign for, Mc Attribute Update
+--

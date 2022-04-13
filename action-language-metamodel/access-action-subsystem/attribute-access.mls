@@ -18,23 +18,23 @@ nodes
     Identifier Selection/2 7,3
     Attribute 13,2-3
     Filter Attribute 14,4
-//    Criteria One Selection/2 7,6 >top
-//    Selection Input 12,4-5
-//    Scalar Flow 11,3 : 4,15
-//    Instance Flow 11,9
+    Selection Input 14,7
+    Scalar Flow 13,8-9// : 13,8
+    Instance Flow 11,3
+    Identifier 7,1
 //    Instance Flow/2 9,14
 //    Write Action 5,14
 //    Attribute Update 4,12-13
-//    Identifier 5,3
 connectors
     +R875 : b|Selection Action { t|Single Selection, t|Many Selection }
-//    +R876.2 : +/2 r|Selection Action : +/2 t|Instance Flow
-    +R877 : -/2 l|Filter Expression : -/2 r*|Attribute, b|Filter Attribute
-//    +R878 : -/2 b|Identifier Selection : -/2 t*|Identifier
+    -R876 : +/2 l|Selection Action : +/2 r*|Instance Flow
+    -R877 : +/2 l|Filter Expression : +/1 r*|Attribute, b|Filter Attribute
+    +R878 : -/2 l|Identifier Selection : -/2 r*|Identifier
     +R879 : +/1 l|Single Selection : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Selection : +/1 l*|Multiple Instance Flow
-//    -R881 : +/2 l|Selection Action : +/2 r*|Scalar Flow, b|Selection Input
+    -R881 : +/3 r|Filter Expression : +/3 l*|Scalar Flow, b|Selection Input
     +R882 : b|Single Selection { t|Identifier Selection, t|Zero One Cardinality Selection }
+    -R883 : +/2 t|Selection Action : +/2 b*|Filter Expression
 //    -R885 : +/2 t|Write Action : +/2 b*|Instance Flow
 //    +R886 : +/2 l|Write Action : +/2 r*|Attribute, t|Attribute Update
-//    -R887 : +/2 r|Attribute Update : +/2 l*|Scalar Flow.2
+//    -R887 : +/2 r|Filter Expression : +/2 l*|Scalar Flow.2
