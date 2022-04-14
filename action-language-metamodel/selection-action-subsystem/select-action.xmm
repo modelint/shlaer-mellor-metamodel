@@ -1,14 +1,14 @@
 metadata
-    Title : Selection Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.6.1
+    Version : 0.6.2
     /// Creation date : September 11, 2021
-    Modification date : April 13, 2022
+    Modification date : April 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Access Action
+subsystem Select Action
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -18,14 +18,14 @@ attributes
 class Filter Attribute
 attributes
     Attribute {I, R877}
-    Selection action {I, R877}
+    Select action {I, R877}
     Activity {I, R877}
     Class {I, R877}
     Domain {I, R877}
 --
-class Filter Expression
+class Selection Criteria
 attributes
-    Selection action {I, R883}
+    Select action {I, R883}
     Activity {I, R883}
     Domain {I, R883}
     Expression : Text
@@ -36,7 +36,7 @@ attributes
     Class {I}
     Domain {I}
 --
-class Identifier Selection
+class Identifier Select
 attributes
     Action {I, R882}
     Activity {I, R882}
@@ -50,7 +50,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Many Selection
+class Many Select
 attributes
     Action {I, R875}
     Activity {I, R875, R880}
@@ -69,7 +69,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Selection Action
+class Select Action
 attributes
     Action {I, R901}
     Activity {I, R901, R876}
@@ -90,14 +90,14 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Single Selection
+class Single Select
 attributes
     Action {I, R875}
     Activity {I, R875, R879}
     Domain {I, R875, R879}
     Output flow {R879}
 --
-class Zero One Cardinality Selection
+class Zero One Cardinality Select
 attributes
     Action {I, R882}
     Activity {I, R882}
@@ -106,42 +106,42 @@ attributes
 relationships
     R875
     Selection +
-        Single Selection
-        Many Selection
+        Single Select
+        Many Select
 --
     R876
     specifies instances in, 1 Instance Flow
-    is source of instances for, Mc Selection Action
+    is source of instances for, Mc Select Action
 --
     R877
     compares, M Attribute
-    is compared in, Mc Filter Expression
+    is compared in, Mc Selection Criteria
     1 Filter Attribute
 --
     R878
     criteria is defined by, 1 Identifier
-    defines criteria for, Mc Identifier Selection
+    defines criteria for, Mc Identifier Select
 --
     R879
     yields, 1 Single Instance Flow
-    is yielded by, 1c Single Selection
+    is yielded by, 1c Single Select
 --
     R880
     yields, 1 Multiple Instance Flow
-    is yielded by, 1c Many Selection
+    is yielded by, 1c Many Select
 --
     R881
     performs comparison using value from, Mc Scalar Flow
-    provides comparison value to, Mc Selection
+    provides comparison value to, Mc Select
     1 Scalar Input
 --
     R882
-    Single Selection +
-        Identifier Selection
-        Zero One Cardinality Selection
-        Criteria One Selection
+    Single Select +
+        Identifier Select
+        Zero One Cardinality Select
+        Criteria One Select
 --
     R883
-    uses criteria defined in, 1c Filter Expression
-    defines criteria for, 1 Selection Action
+    uses criteria defined in, 1c Selection Criteria
+    defines criteria for, 1 Select Action
 --
