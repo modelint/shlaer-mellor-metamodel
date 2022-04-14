@@ -2,7 +2,7 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.7.0
+    Version : 0.7.1
     /// Creation date : September 11, 2021
     Modification date : April 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -15,7 +15,7 @@ attributes
     Class {I}
     Domain {I}
 --
-class Filter Attribute
+class Selection Attribute
 attributes
     Attribute {I, R877}
     Select action {I, R877}
@@ -116,7 +116,7 @@ relationships
     R877
     compares, M Attribute
     is compared in, Mc Selection Criteria
-    1 Filter Attribute
+    1 Selection Attribute
 --
     R878
     criteria is defined by, 1 Identifier

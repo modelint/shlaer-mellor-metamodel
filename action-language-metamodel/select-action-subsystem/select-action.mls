@@ -17,7 +17,7 @@ nodes
     Selection Criteria 8,5-6
     Identifier Select/2 2,3
     Attribute 8,2-3
-    Filter Attribute 9,4
+    Selection Attribute 9,4
     Selection Input 9,7
     Scalar Flow 8,8-9
     Instance Flow 6,3
@@ -25,7 +25,7 @@ nodes
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
-    -R877 : +/1 l|Selection Criteria : +/1 r*|Attribute, b|Filter Attribute
+    -R877 : +/1 l|Selection Criteria : +/1 r*|Attribute, b|Selection Attribute
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
