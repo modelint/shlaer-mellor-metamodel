@@ -2,7 +2,7 @@ metadata
     Title : Selection Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.6.0
+    Version : 0.6.1
     /// Creation date : September 11, 2021
     Modification date : April 13, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -18,7 +18,8 @@ attributes
 class Filter Attribute
 attributes
     Attribute {I, R877}
-    Selection {I, R877}
+    Selection action {I, R877}
+    Activity {I, R877}
     Class {I, R877}
     Domain {I, R877}
 --
@@ -54,7 +55,7 @@ attributes
     Action {I, R875}
     Activity {I, R875, R880}
     Domain {I, R875, R880}
-    MI Flow {R880}
+    Output flow {R880}
 --
 class Multiple Instance Flow <import:Flow>
 attributes
@@ -71,8 +72,9 @@ attributes
 class Selection Action
 attributes
     Action {I, R901}
-    Activity {I, R901}
-    Domain {I, R901}
+    Activity {I, R901, R876}
+    Domain {I, R901, R876}
+    Input flow {R876}
     Selection cardinality : Cardinality
 --
 class Selection Input
@@ -93,7 +95,7 @@ attributes
     Action {I, R875}
     Activity {I, R875, R879}
     Domain {I, R875, R879}
-    SI Flow {R879}
+    Output flow {R879}
 --
 class Zero One Cardinality Selection
 attributes
@@ -112,8 +114,8 @@ relationships
     is source of instances for, Mc Selection Action
 --
     R877
-    compares, M Filter Expression
-    is compared in, Mc Attribute
+    compares, M Attribute
+    is compared in, Mc Filter Expression
     1 Filter Attribute
 --
     R878
