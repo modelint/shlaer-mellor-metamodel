@@ -1,0 +1,110 @@
+metadata
+    Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.8
+    Version : 0.2.0
+    /// Creation date : September 11, 2021
+    Modification date : April 15, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Attribute Access
+class Attribute Access
+attributes
+    Attribute {I, R1003}
+    Class {I, R1003}
+    Action {I, R1003}
+    Activity {I, R1003}
+    Domain {I, R1003}
+--
+class Attribute Value Tuple
+attributes
+    Flow {I, R1005}
+    Activity {I, R1004, R1005}
+    Domain {I, R1004, R1005}
+    Extract action {I, R1004}
+--
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Tuple Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Read Action
+attributes
+    Action {I, R901}
+    Activity {I, R901, R1006}
+    Domain {I, R901, R1006}
+    Instance flow {R1006}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Update Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+    Update flow {R1001}
+    Input instance flow {R1002}
+--
+class Update Flow
+attributes
+    Flow {I,R1000}
+    Activity {I, R1000}
+    Attribute {I, R1000}
+    Class {I, R1000}
+    Domain {I, R1000}
+--
+relationships
+    R1000
+    is updated with value in, Mc Scalar Flow
+    updates value of, Mc Attribute
+    1 Update Flow
+--
+    R1001
+    applies, M Attribute Update Flow
+    is applied by, 1 Update Action
+--
+    R1002
+    updates instances in, 1 Instance Flow
+    provides instances to update by, Mc Update Action
+--
+    R1003
+    reads value of, M Attribute
+    has value read by, Mc Read Action
+    1 Attribute Access
+--
+    R1004
+    yields, 1 Attribute Value Tuple
+    is yielded by, 1 Read Action
+--
+    R1005
+    is conveyed in, 1 Tuple Flow
+    conveys, 1c Attribute Value Tuple
+--
+    R1006
+    accesses, 1 Single Instance Flow
+    is accessed by, Mc Read Action
+--
