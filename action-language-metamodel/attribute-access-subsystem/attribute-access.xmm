@@ -2,7 +2,7 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.2.0
+    Version : 0.2.1
     /// Creation date : September 11, 2021
     Modification date : April 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -22,7 +22,7 @@ attributes
     Flow {I, R1005}
     Activity {I, R1004, R1005}
     Domain {I, R1004, R1005}
-    Extract action {I, R1004}
+    Read action {I, R1004}
 --
 class Attribute <import:Classes And Attributes>
 attributes
