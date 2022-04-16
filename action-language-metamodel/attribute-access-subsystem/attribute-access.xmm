@@ -2,13 +2,19 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.3.0
+    Version : 0.3.1
     /// Creation date : September 11, 2021
     Modification date : April 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Attribute Access
+class Attribute <import:Classes And Attributes>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
 class Attribute Read Access
 attributes
     Attribute {I, R1003}
@@ -16,14 +22,6 @@ attributes
     Action {I, R1003}
     Activity {I, R1003}
     Domain {I, R1003}
---
-class Attribute Write Access
-attributes
-    Attribute {I, R1000}
-    Class {I, R1000}
-    Action {I, R1000}
-    Activity {I, R1000}
-    Domain {I, R1000}
 --
 class Attribute Read Tuple
 attributes
@@ -46,11 +44,13 @@ attributes
     Domain {I, R1005, Rxx}
     Update action {I, R1005}
 --
-class Attribute <import:Classes And Attributes>
+class Attribute Write Access
 attributes
-    Name {I}
-    Class {I}
-    Domain {I}
+    Attribute {I, R1000}
+    Class {I, R1000}
+    Action {I, R1000}
+    Activity {I, R1000}
+    Domain {I, R1000}
 --
 class Instance Flow <import:Flow>
 attributes
