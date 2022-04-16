@@ -3,26 +3,26 @@ notation Starr
 presentation default
 orientation landscape
 color pumpkin
-sheet C
+sheet D
 padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Scalar Flow 8,4
     Attribute 6,4
-    Update Flow 7,5
-    Update Action 7,7-8
-    Instance Flow/2 7,10
+    Attribute Write Access 7,5
+    Update Action 8,4
+    Instance Flow/2 8,2
     Read Action 4,4
-    Attribute Access 5,5
-    Attribute Value Tuple/2 2,4
-    Tuple Flow 2,6
+    Attribute Read Access 5,5
+    Attribute Update Tuple/2 8,6
+    Attribute Read Tuple/2 4,6
+    Attribute Value Tuple/2 6,7-8
     Single Instance Flow/2 4,2
 connectors
-    -R1000 : +/2 b*|Scalar Flow : +/2 t|Attribute, l|Update Flow
-    -R1001 : +/1 l*|Update Action : +/1 r|Update Flow
-    -R1002 : +/3 r|Update Action : +/2 l*|Instance Flow
-    -R1003 : +/2 b|Attribute : +/2 t*|Read Action, l|Attribute Access
-    -R1004 : +/1 b|Read Action : +/1 t*|Attribute Value Tuple
-    -R1005 : +/1 l*|Tuple Flow : +/1 r|Attribute Value Tuple
+    -R1000 : +/2 b*|Update Action : +/2 t|Attribute, l|Attribute Write Access
+    +R1001-1 : l|Attribute Value Tuple { r|Attribute Update Tuple, r|Attribute Read Tuple }
+    -R1002 : +/3 l|Update Action : +/2 r*|Instance Flow
+    -R1003 : +/2 b|Attribute : +/2 t*|Read Action, l|Attribute Read Access
+    -R1004 : +/1 r|Read Action : +/1 l*|Attribute Read Tuple
+    -R1005 : +/2 r|Update Action : +/2 l*|Attribute Update Tuple
     -R1006 : +/1 l|Read Action : +/1 r*|Single Instance Flow

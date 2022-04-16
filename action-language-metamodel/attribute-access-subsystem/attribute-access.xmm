@@ -2,14 +2,14 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.2.1
+    Version : 0.3.0
     /// Creation date : September 11, 2021
-    Modification date : April 15, 2022
+    Modification date : April 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Attribute Access
-class Attribute Access
+class Attribute Read Access
 attributes
     Attribute {I, R1003}
     Class {I, R1003}
@@ -17,12 +17,34 @@ attributes
     Activity {I, R1003}
     Domain {I, R1003}
 --
+class Attribute Write Access
+attributes
+    Attribute {I, R1000}
+    Class {I, R1000}
+    Action {I, R1000}
+    Activity {I, R1000}
+    Domain {I, R1000}
+--
+class Attribute Read Tuple
+attributes
+    Flow {I, R1001}
+    Activity {I, R1004, R1001}
+    Domain {I, R1004, R1001}
+    Read action {I, R1004}
+--
+class Attribute Update Tuple
+attributes
+    Flow {I, R1001}
+    Activity {I, R1005, R1001}
+    Domain {I, R1005, R1001}
+    Update action {I, R1005}
+--
 class Attribute Value Tuple
 attributes
-    Flow {I, R1005}
-    Activity {I, R1004, R1005}
-    Domain {I, R1004, R1005}
-    Read action {I, R1004}
+    Flow {I, Rxx}
+    Activity {I, R1005, Rxx}
+    Domain {I, R1005, Rxx}
+    Update action {I, R1005}
 --
 class Attribute <import:Classes And Attributes>
 attributes
@@ -31,18 +53,6 @@ attributes
     Domain {I}
 --
 class Instance Flow <import:Flow>
-attributes
-    Flow {I}
-    Activity {I}
-    Domain {I}
---
-class Scalar Flow <import:Flow>
-attributes
-    Flow {I}
-    Activity {I}
-    Domain {I}
---
-class Tuple Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -69,23 +79,16 @@ attributes
     Update flow {R1001}
     Input instance flow {R1002}
 --
-class Update Flow
-attributes
-    Flow {I,R1000}
-    Activity {I, R1000}
-    Attribute {I, R1000}
-    Class {I, R1000}
-    Domain {I, R1000}
---
 relationships
     R1000
-    is updated with value in, Mc Scalar Flow
+    is updated by, Mc Update Action
     updates value of, Mc Attribute
-    1 Update Flow
+    1 Attribute Write Access
 --
     R1001
-    applies, M Attribute Update Flow
-    is applied by, 1 Update Action
+    Attribute Value Tuple +
+        Attribute Update Tuple
+        Attribute Read Tuple
 --
     R1002
     updates instances in, 1 Instance Flow
@@ -101,8 +104,8 @@ relationships
     is yielded by, 1 Read Action
 --
     R1005
-    is conveyed in, 1 Tuple Flow
-    conveys, 1c Attribute Value Tuple
+    writes new values in, 1 Attribute Value Tuple
+    supplies new values to, 1 Update Action
 --
     R1006
     accesses, 1 Single Instance Flow
