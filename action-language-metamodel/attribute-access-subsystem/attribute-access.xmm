@@ -2,7 +2,7 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.3.1
+    Version : 0.3.2
     /// Creation date : September 11, 2021
     Modification date : April 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -82,7 +82,7 @@ attributes
 relationships
     R1000
     is updated by, Mc Update Action
-    updates value of, Mc Attribute
+    updates value of, M Attribute
     1 Attribute Write Access
 --
     R1001
