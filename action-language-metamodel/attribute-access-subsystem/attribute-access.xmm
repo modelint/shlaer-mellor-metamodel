@@ -2,7 +2,7 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.3.3
+    Version : 0.3.4
     /// Creation date : September 11, 2021
     Modification date : April 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -73,10 +73,9 @@ attributes
 class Update Action
 attributes
     Action {I, R901}
-    Activity {I, R901}
-    Domain {I, R901}
-    Update flow {R1001}
-    Input instance flow {R1002}
+    Activity {I, R901, R1002}
+    Domain {I, R901, R1002}
+    Instance flow {R1002}
 --
 relationships
     R1000
