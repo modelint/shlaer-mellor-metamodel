@@ -9,11 +9,11 @@ frame OS Engineer
 frame_presentation default
 nodes
     Attribute 6,4
-    Attribute Write Access 7,5
+    Attribute Write Access/2 7,5
     Update Action 8,4
     Instance Flow/2 8,2
     Read Action 4,4
-    Attribute Read Access 5,5
+    Attribute Read Access/2 5,5
     Attribute Update Tuple/2 8,6
     Attribute Read Tuple/2 4,6
     Attribute Value Tuple/2 6,7-8
