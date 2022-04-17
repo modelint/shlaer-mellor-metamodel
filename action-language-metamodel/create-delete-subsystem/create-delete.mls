@@ -8,27 +8,30 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 8,5
-    Create Action 6,5
-    Delegated Create 6-7,6
-    Local Create 5,6
-    Attribute 6,2-3
-    Attribute Initialization/2 5,4
-    State 5,8-9
-    Create In State 4,7
-//    Single Instance Flow/2 6,7-8
+    Class 9-10,4
+    Create Action 8,7
+    Delegated Create 8-9,8-9
+    Local Create 7,8-9
+    Attribute 8,4
+    Attribute Initialization/2 7,5-6
+    State 7,11
+    Create In State 6,9-10
+    New Instance Flow/2 10,9
+    Explicit Initialization/2 5-6,4
+    Reference Initialization/2 5-6,5
+    Default Initialization/2 5-6,6
 
 //    Delete Action 8,16
-//    Instance Flow 6,16
 //    Scalar Flow/2 8,4
 //    Explicit Attribute Initialization/2 6,4
 //    New Instance Flow/2 6,6-7
 connectors
-    -R975 : +/2 t|Create Action : +/2 b*|Class
-    +R976 : r|Create Action { l|Delegated Create, l|Local Create }
-    +R977 : +/1 r|Local Create : +/2 l*|State, t|Create In State
-    +R978 : -/2 l|Create Action : +/2 r*|Attribute, t|Attribute Initialization
-//    -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow, b|New Instance Flow
+    +R975 : -/2 t-1|Create Action : +/2 r|Class
+    +R976-1 : r|Create Action { l|Delegated Create, l|Local Create }
+    +R977 : -/1 r|Local Create : -/1 l*|State, t|Create In State
+    +R978 : -/1 l|Create Action : +/2 r*|Attribute, t|Attribute Initialization
+    -R979 : +/3 t+1|Create Action : +/3 l|New Instance Flow
+    +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
 //    -R829 : +/2 t|Explicit Attribute Initialization : +/1 b*|Scalar Flow
 //    -R830 : +/2 b|Delete Action : +/2 t*|Instance Flow
 //    +R831 : b|Reference Action { t|New Reference Action, t|Update Reference Action, t|Unlink Action }

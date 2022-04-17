@@ -61,21 +61,21 @@ attributes
 --
 class Attribute Initialization
 attributes
-    Action {I, Rxx}
-    Activity {I, Rxx}
-    Domain {I, Rxx}
+    Action {I, R980}
+    Activity {I, R980}
+    Domain {I, R980}
 --
-class Initialization By Default
+class Default Initialization
 attributes
-    Action {I, Rxx}
-    Activity {I, Rxx}
-    Domain {I, Rxx}
+    Action {I, R980}
+    Activity {I, R980}
+    Domain {I, R980}
 --
-class Initialization By Reference
+class Reference Initialization
 attributes
-    Action {I, Rxx}
-    Activity {I, Rxx}
-    Domain {I, Rxx}
+    Action {I, R980}
+    Activity {I, R980}
+    Domain {I, R980}
 --
 class Explicit Initialization
 attributes
@@ -94,10 +94,10 @@ attributes
 --
 class New Instance Flow
 attributes
-    Create action {I, R826}
-    Flow {I2, R826}
-    Activity {I, I2, R826}
-    Domain {I, I2, R826}
+    Create action {I, R979}
+    Flow {I2, R979}
+    Activity {I, I2, R979}
+    Domain {I, I2, R979}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -131,20 +131,13 @@ relationships
     initializes the value of, M Attribute
     1 Attribute Initialization
 --
-///    R826
-///    produces new instance reference in, 1c Single Instance Flow
-///    conveys new instances produced by, 1c Create Action
-///    1 New Instance Flow
-///--
-///    R829
-///    supplies value for, Mc Explicit Attribute Initialization
-///    gets value from, 1 Scalar Flow
-///--
-///    R830
-///    supplies instances for, 1c Delete Action
-///    deletes instances in, 1 Instance Flow
-///--
-///    R835
-///    is provided by, 1 Single Instance Flow
-///    provides, Mc Referenced Instance
-///--
+    R979
+    yields new instance reference in, 1 New Instance Flow
+    conveys new instance produced by, 1 Create Action
+--
+    R980
+    Attribute Initialization +
+        Explicit Initialization
+        Initialization By Reference
+        Default Initialization
+--
