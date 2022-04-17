@@ -1,0 +1,45 @@
+diagram class // Create Delete Subsystem / Action Language Metamodel 0.7.x
+notation Starr
+presentation default
+orientation landscape
+color butter
+sheet D
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Class 8,5
+    Create Action 6,5
+    Delegated Create 6-7,6
+    Local Create 5,6
+    Attribute 6,2-3
+    Attribute Initialization/2 5,4
+    State 5,8-9
+    Create In State 4,7
+//    Single Instance Flow/2 6,7-8
+
+//    Delete Action 8,16
+//    Instance Flow 6,16
+//    Scalar Flow/2 8,4
+//    Explicit Attribute Initialization/2 6,4
+//    New Instance Flow/2 6,6-7
+connectors
+    -R975 : +/2 t|Create Action : +/2 b*|Class
+    +R976 : r|Create Action { l|Delegated Create, l|Local Create }
+    +R977 : +/1 r|Local Create : +/2 l*|State, t|Create In State
+    +R978 : -/2 l|Create Action : +/2 r*|Attribute, t|Attribute Initialization
+//    -R826 : +/3 r|Create Action : +/3 l*|Single Instance Flow, b|New Instance Flow
+//    -R829 : +/2 t|Explicit Attribute Initialization : +/1 b*|Scalar Flow
+//    -R830 : +/2 b|Delete Action : +/2 t*|Instance Flow
+//    +R831 : b|Reference Action { t|New Reference Action, t|Update Reference Action, t|Unlink Action }
+//    -R832 : -/2 t|Create Action : +/2 l|New Reference Action
+//    +R833 : b|New Reference Action { t|Simple Reference Action, t|Associative Reference Action }
+//    +R834 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|From Ref Instance, b|To Ref Instance }
+//    -R835 : +/2 b|Referenced Instance : +/1 t*|Single Instance Flow
+//    -R836 : +/1 b|Simple Reference Action : +/2 t*|Target Ref Instance
+//    -R837 : +/1 l|Associative Reference Action : -/2 t|T Ref Instance
+//    +R838 : +/1 r|Associative Reference Action : +/2 t|P Ref Instance
+//    -R839 : +/2 l|Update Reference Action : -/2 t|From Ref Instance
+//    +R840 : +/2 r|Update Reference Action : +/2 t|To Ref Instance
+//    -R841 : +/2 b|Unlink Action : +/2 t*|Delete Action
+//    -R842 : +/2 t|Reference Action : +/2 b*|Association
