@@ -1,30 +1,29 @@
-diagram class // Create Delete Subsystem / Action Language Metamodel 0.7.x
+diagram class // Create Delete Subsystem / Action Language Metamodel 1.0.0
 notation Starr
 presentation default
 orientation landscape
 color butter
-sheet D
-padding l300 b350
+sheet C
+padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 9-10,4
-    Create Action 8,7
-    Delegated Create 8-9,8-9
-    Local Create 7,8-9
-    Attribute 8,4
-    Attribute Initialization/2 7,5-6
-    State 7,11
-    Create In State 6,9-10
-    New Instance Flow/2 10,9
-    Explicit Initialization/2 5-6,4
-    Reference Initialization/2 5-6,5
-    Default Initialization/2 5-6,6
-
-//    Delete Action 8,16
-//    Scalar Flow/2 8,4
-//    Explicit Attribute Initialization/2 6,4
-//    New Instance Flow/2 6,6-7
+    Class 7-8,3
+    Create Action 6,6
+    Delegated Create 6-7,7-8
+    Local Create 5,7-8
+    Attribute 6,3
+    Attribute Initialization/2 5,4-5
+    State 5,10
+    Create In State 4,8-9
+    New Instance Flow/2 8,8
+    Explicit Initialization/2 3-4,3
+    Reference Initialization/2 3-4,4
+    Default Initialization/2 3-4,5
+    Scalar Flow/2 3-4,1
+    Reference Flow/2 1,4
+    Delete Action 1,7
+    Instance Flow 1,9-10
 connectors
     +R975 : -/2 t-1|Create Action : +/2 r|Class
     +R976-1 : r|Create Action { l|Delegated Create, l|Local Create }
@@ -32,17 +31,6 @@ connectors
     +R978 : -/1 l|Create Action : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t+1|Create Action : +/3 l|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
-//    -R829 : +/2 t|Explicit Attribute Initialization : +/1 b*|Scalar Flow
-//    -R830 : +/2 b|Delete Action : +/2 t*|Instance Flow
-//    +R831 : b|Reference Action { t|New Reference Action, t|Update Reference Action, t|Unlink Action }
-//    -R832 : -/2 t|Create Action : +/2 l|New Reference Action
-//    +R833 : b|New Reference Action { t|Simple Reference Action, t|Associative Reference Action }
-//    +R834 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|From Ref Instance, b|To Ref Instance }
-//    -R835 : +/2 b|Referenced Instance : +/1 t*|Single Instance Flow
-//    -R836 : +/1 b|Simple Reference Action : +/2 t*|Target Ref Instance
-//    -R837 : +/1 l|Associative Reference Action : -/2 t|T Ref Instance
-//    +R838 : +/1 r|Associative Reference Action : +/2 t|P Ref Instance
-//    -R839 : +/2 l|Update Reference Action : -/2 t|From Ref Instance
-//    +R840 : +/2 r|Update Reference Action : +/2 t|To Ref Instance
-//    -R841 : +/2 b|Unlink Action : +/2 t*|Delete Action
-//    -R842 : +/2 t|Reference Action : +/2 b*|Association
+    -R981 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
+    -R982 : +/2 b|Reference Initialization : +/2 t*|Reference Flow
+    -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
