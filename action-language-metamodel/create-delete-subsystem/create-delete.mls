@@ -18,14 +18,14 @@ nodes
     Create In State 6,9
     New Instance Flow/2 5,7-8
     Explicit Initialization/2 5-6,3
-    Reference Initialization/2 4-5,4
+    Reference Initialization/2 5-6,4
     Default Initialization/2 5-6,5
     Scalar Flow/2 5-6,1
-    Reference Flow/2 2,5
-    Delete Action 1,7
-    Instance Flow 1,9-10
+    New Reference Action/2 3,4
+    Reference Value 4,3
+    Delete Action 3,7
+    Instance Flow 3,9-10
     Monomorphic Event 8-9,10
-    Relationship 2,3
 connectors
     +R975 : -/2 t-1|Create Action : +/2 r|Class
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action }
@@ -34,7 +34,6 @@ connectors
     -R979 : +/3 b|Local Create Action : +/3 t*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
     -R981 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
-    +R982.2 : +/1 r-1|Reference Initialization : +/1 t|Reference Flow
+    +R982.2 : +/1 b|Reference Initialization : +/1 t*|New Reference Action, r|Reference Value
     -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
     -R984 : +/2 r|Delegated Create Action : +/2 l*|Monomorphic Event
-    -R985 : +/2 l-1|Reference Initialization : +/2 t|Relationship

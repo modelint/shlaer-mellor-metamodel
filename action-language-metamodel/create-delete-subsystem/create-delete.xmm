@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.3.0
+    Version : 1.3.1
     /// Creation date : November 07, 2021
     Modification date : April 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -100,25 +100,28 @@ attributes
     Activity {I, I2, R979}
     Domain {I, I2, R979}
 --
-class Reference Flow <import:Reference>
+class New Reference Action <import:Reference>
 attributes
-    Flow {I}
+    Action {I}
     Activity {I}
     Domain {I}
 --
 class Reference Initialization
 attributes
     Create action {I, R980}
-    Activity {I, R980, R982}
+    Activity {I, R980}
     Attribute {I, R980}
     Class {I, R980}
-    Domain {I, R980, R982}
-    Flow {R982}
+    Domain {I, R980}
 --
-class Relationship <import:Relationship>
+class Reference Value
 attributes
-    Rnum {I}
-    Domain {I}
+    Create action {I, R982}
+    Reference action {I, R982}
+    Activity {I, R982}
+    Attribute {I, R982}
+    Class {I, R982}
+    Domain {I, R982}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -167,8 +170,9 @@ relationships
     gets value from, 1 Scalar Flow
 --
     R982
-    obtains value for, Mc Reference Initialization
-    gets value from, 1 Reference Flow
+    obtains values using, M New Reference Action
+    gets value for, M Reference Initialization
+    1 Reference Value
 --
     R983
     deletes instances referenced in, 1 Instance Flow
@@ -177,8 +181,4 @@ relationships
     R984
     signals creation with, 1 Monomorphic Event
     signals creation for, 1c Delegated Create Action
---
-    R985
-    gets value from instance referenced in, 1 Relationship
-    provides value to initialize, Mc Reference Initialization
 --
