@@ -24,6 +24,7 @@ nodes
     Reference Flow/2 1,4
     Delete Action 1,7
     Instance Flow 1,9-10
+    Monomorphic Event 6-7,10
 connectors
     +R975 : -/2 t-1|Create Action : +/2 r|Class
     +R976-1 : r|Create Action { l|Delegated Create, l|Local Create }
@@ -34,3 +35,4 @@ connectors
     -R981 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
     -R982 : +/2 b|Reference Initialization : +/2 t*|Reference Flow
     -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
+    -R984 : +/2 r|Delegated Create : +/2 l*|Monomorphic Event

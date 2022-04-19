@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.0.0
+    Version : 1.1.0
     /// Creation date : November 07, 2021
     Modification date : April 18, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,7 +17,7 @@ attributes
 --
 class Attribute Initialization
 attributes
-    Action {I, R978}
+    Create action {I, R978}
     Activity {I, R978}
     Attribute {I, R978}
     Class {I, R978}
@@ -37,7 +37,7 @@ attributes
 --
 class Create In State
 attributes
-    Action {I, R977}
+    Create action {I, R977}
     Activity {I, R977}
     Class {I, R977c}
     Domain {I, R977}
@@ -45,7 +45,7 @@ attributes
 --
 class Default Initialization
 attributes
-    Action {I, R980}
+    Create action {I, R980}
     Activity {I, R980}
     Attribute {I, R980}
     Class {I, R980}
@@ -55,7 +55,9 @@ class Delegated Create
 attributes
     Action {I, R976}
     Activity {I, R976}
-    Domain {I, R976}
+    Domain {I, R976, R984}
+    Initial event {R984}
+    Target class {R984}
 --
 class Delete Action
 attributes
@@ -66,7 +68,7 @@ attributes
 --
 class Explicit Initialization
 attributes
-    Action {I, R980}
+    Create action {I, R980}
     Activity {I, R980, R981}
     Attribute {I, R980}
     Class {I, R980}
@@ -85,6 +87,12 @@ attributes
     Activity {I, R976}
     Domain {I, R976}
 --
+class Monomorphic Event <import:Event>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
 class New Instance Flow
 attributes
     Create action {I, R979}
@@ -100,7 +108,7 @@ attributes
 --
 class Reference Initialization
 attributes
-    Action {I, R980}
+    Create action {I, R980}
     Activity {I, R980, R982}
     Attribute {I, R980}
     Class {I, R980}
@@ -160,4 +168,8 @@ relationships
     R983
     deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
+--
+    R984
+    signals creation with, 1 Monomorphic Event
+    signals creation for, 1c Delegated Create
 --
