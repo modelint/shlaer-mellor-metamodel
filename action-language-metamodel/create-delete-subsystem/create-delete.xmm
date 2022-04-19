@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.1.3
+    Version : 1.2.0
     /// Creation date : November 07, 2021
     Modification date : April 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -149,7 +149,7 @@ relationships
 --
     R979
     yields new instance reference in, 1 New Instance Flow
-    conveys new instance produced by, 1 Create Action
+    conveys new instance produced by, 1 Local Create Action
 --
     R980
     Attribute Initialization +

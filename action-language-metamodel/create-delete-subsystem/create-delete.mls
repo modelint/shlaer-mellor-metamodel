@@ -1,4 +1,4 @@
-diagram class // Create Delete Subsystem / Action Language Metamodel 1.1.x
+diagram class // Create Delete Subsystem / Action Language Metamodel 1.2.x
 notation Starr
 presentation default
 orientation landscape
@@ -15,8 +15,8 @@ nodes
     Attribute 6,3
     Attribute Initialization/2 5,4-5
     State 5,10
-    Create In State 4,8-9
-    New Instance Flow/2 8,8
+    Create In State 4,9
+    New Instance Flow/2 3,7-8
     Explicit Initialization/2 3-4,3
     Reference Initialization/2 3-4,4
     Default Initialization/2 3-4,5
@@ -30,7 +30,7 @@ connectors
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action }
     +R977 : -/1 r|Local Create Action : -/1 l*|State, t|Create In State
     +R978 : -/1 l|Create Action : +/2 r*|Attribute, t|Attribute Initialization
-    -R979 : +/3 t+1|Create Action : +/3 l|New Instance Flow
+    -R979 : +/3 b|Local Create Action : +/3 t*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
     -R981 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
     -R982 : +/2 b|Reference Initialization : +/2 t*|Reference Flow
