@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.1.2
+    Version : 1.1.3
     /// Creation date : November 07, 2021
     Modification date : April 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -73,7 +73,7 @@ attributes
     Attribute {I, R980}
     Class {I, R980}
     Domain {I, R980, R981}
-    Flow {R981}
+    Initial value flow {R981}
 --
 class Instance Flow <import:Flow>
 attributes
