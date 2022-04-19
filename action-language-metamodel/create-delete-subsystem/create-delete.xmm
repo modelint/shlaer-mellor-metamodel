@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.1.0
+    Version : 1.1.1
     /// Creation date : November 07, 2021
     Modification date : April 18, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -51,7 +51,7 @@ attributes
     Class {I, R980}
     Domain {I, R980}
 --
-class Delegated Create
+class Delegated Create Action
 attributes
     Action {I, R976}
     Activity {I, R976}
@@ -81,7 +81,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Local Create
+class Local Create Action
 attributes
     Action {I, R976}
     Activity {I, R976}
@@ -134,12 +134,12 @@ relationships
 --
     R976
     Create Action +
-        Delegated Create
-        Local Create
+        Delegated Create Action
+        Local Create Action
 --
     R977
     creates in, 1c State
-    is initial by, Mc Local Create
+    is initial by, Mc Local Create Action
     1 Create In State
 --
     R978
@@ -171,5 +171,5 @@ relationships
 --
     R984
     signals creation with, 1 Monomorphic Event
-    signals creation for, 1c Delegated Create
+    signals creation for, 1c Delegated Create Action
 --
