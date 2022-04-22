@@ -157,7 +157,7 @@ relationships
 --
     R979
     yields new instance reference in, 1 New Instance Flow
-    conveys reference to new instances produced by, 1 Local Create Action
+    conveys reference to new instance produced by, 1 Local Create Action
 --
     R980
     Attribute Initialization +
