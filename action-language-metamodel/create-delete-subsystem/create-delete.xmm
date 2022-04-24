@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.4.0
+    Version : 1.4.2
     /// Creation date : November 07, 2021
     Modification date : April 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -112,23 +112,21 @@ attributes
 class Reference Initialization
 attributes
     Create action {I, R980}
-    Activity {I, R980, R986}
+    Activity {I, R980}
     Attribute {I, R980}
     Class {I, R980}
-    Domain {I, R980, R985, R986}
-    Rnum {R985}
-    Referenced instance {R986}
+    Domain {I, R980}
 --
 class Initializing Attribute Reference
 attributes
     Create action {I, R985}
     Activity {I, R985}
-    Attribute {I, R985}
-    Class {I, R985}
-    Domain {I, R985}
+    From attribute {I, R985}
+    From class {I, R985}
     To attribute {I, R985}
     To class {I, R985}
     Rnum {I, R985}
+    Domain {I, R985}
 --
 class Initializing Instance Reference
 attributes
