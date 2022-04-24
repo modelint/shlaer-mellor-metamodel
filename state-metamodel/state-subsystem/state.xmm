@@ -31,9 +31,9 @@ attributes
 --
 class Deletion State
 attributes
-    Name {I, R513, R510}
-    Class {I, R513, R510}
-    Domain {I, R513, R510}
+    Name {I, R513, R511}
+    Class {I, R513, R511}
+    Domain {I, R513, R511}
 --
 class Effective Event <import:Event>
 attributes
@@ -68,9 +68,9 @@ attributes
 --
 class Non Deletion State
 attributes
-    Name {I, R510}
-    State model {I, R510}
-    Domain {I, R510}
+    Name {I, R511}
+    State model {I, R511}
+    Domain {I, R511}
 --
 class Non Transition
 attributes
