@@ -23,6 +23,15 @@ attributes
     Class {I, R978}
     Domain {I, R978}
 --
+class Attribute Reference <import:Class Attribute>
+attributes
+    From attribute {I}
+    From class {I}
+    To attribute {I}
+    To class {I}
+    Domain {I}
+    Rnum {I}
+--
 class Class <import:Classes And Attributes>
 attributes
     Name {I}
@@ -100,11 +109,6 @@ attributes
     Activity {I, I2, R979, Rxx}
     Domain {I, I2, R979, Rxx}
 --
-class Relationship <import:Relationship>
-attributes
-    Rnum {I}
-    Domain {I}
---
 class Reference Initialization
 attributes
     Create action {I, R980}
@@ -115,17 +119,40 @@ attributes
     Rnum {R985}
     Referenced instance {R986}
 --
+class Initializing Attribute Reference
+attributes
+    Create action {I, R985}
+    Activity {I, R985}
+    Attribute {I, R985}
+    Class {I, R985}
+    Domain {I, R985}
+    To attribute {I, R985}
+    To class {I, R985}
+    Rnum {I, R985}
+--
+class Initializing Instance Reference
+attributes
+    Create action {I, R982}
+    Activity {I, R982}
+    Attribute {I, R982}
+    Class {I, R982}
+    Domain {I, R982}
+    To attribute {I, R982}
+    To class {I, R982}
+    Rnum {I, R982}
+    Flow {R982}
+--
 class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
 --
-class Single Referenced Instance Flow
+class Single Instance Flow <import:Flow>
 attributes
-    Flow {I, Rxx}
-    Activity {I, Rxx}
-    Domain {I, Rxx}
+    Flow {I}
+    Activity {I}
+    Domain {I}
 --
 class State <import:State>
 attributes
@@ -167,6 +194,11 @@ relationships
     supplies value for, Mc Explicit Initialization
     gets value from, 1 Scalar Flow
 --
+    R982
+    provides referenced instance for, Mc Initializing Attribute Reference
+    takes value from instance in, 1 Single Instance Flow
+    1 Initializing Instance Reference
+--
     R983
     deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
@@ -176,10 +208,7 @@ relationships
     signals creation for, 1c Delegated Create Action
 --
     R985
-    finds value across, 1 Relationship
+    finds value across, M Attribute Reference
     leads to value used for, Mc Reference Initialization
---
-    R986
-    references attribute value of, 1 Single Referenced Instance Flow
-    attribute value is referenced by, M Reference Initialization
+    1 Referenced Value
 --
