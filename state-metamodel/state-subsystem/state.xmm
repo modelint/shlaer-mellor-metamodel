@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.3.6
+    Version : 3.4.0
     /// Creation date : January 21, 2012
-    Modification date : March 23, 2022
+    Modification date : April 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -29,13 +29,6 @@ attributes
     CLnum {I}
     Domain {I}
 --
-class Creation Event
-attributes
-    Name {I, R567}
-    Class {I, I2, R567, R519, R508}
-    Domain {I, I2, R567, R519, R508}
-    To state {I2, R508}
---
 class Deletion State
 attributes
     Name {I, R513, R510}
@@ -54,6 +47,12 @@ attributes
     Event {I, R505}
     State model {I, R505}
     Domain {I, R505}
+--
+class Initial Pseudo State
+attributes
+    Name {I, R510}
+    State model {I, R510}
+    Domain {I, R510}
 --
 class Lifecycle
 attributes
@@ -82,6 +81,13 @@ attributes
     Behavior : NT Response
     Reason : Description
 --
+class Real State
+attributes
+    Name {I, R510}
+    State model {I, R510}
+    Domain {I, R510, R504}
+    Activity {R504}
+--
 class Single Assigner
 attributes
     Rnum {I, R514}
@@ -92,6 +98,11 @@ attributes
     Name {I, R510}
     State model {I, R510, R503}
     Domain {I, R510, R503}
+--
+class State Activity <import:Activity>
+attributes
+    Activity {I}
+    Domain {I}
 --
 class State Model
 attributes
@@ -124,6 +135,10 @@ relationships
     specifies period of time as, M Non Deletion State
     partions time period on, 1 State Model
 --
+    R504
+    entry executes, 1 State Activity
+    is executed on transition into, 1 State
+--
     R505
     specifies response to, Mc Effective Event
     is responded to in, M State
@@ -138,11 +153,12 @@ relationships
     specifies path to, 1 State
     is arrived at via, Mc Transition
 --
-    R508
-    creates instance in, 1 Non Deletion State
-    is where a new instance may be created by, 1c Creation Event
---
     R510
+    State +
+        Real State
+        Initial Pseudo State
+--
+    R511
     State +
         Deletion State
         Non Deletion State
@@ -163,8 +179,4 @@ relationships
     R518
     managed instance subset is partitioned by, 1 Class
     partitions managed instance subset for, Mc Multiple Assigner
---
-    R519
-    specifies new instance creation with, Mc Creation Event
-    triggers creation of new instance on, 1 Lifecycle
 --

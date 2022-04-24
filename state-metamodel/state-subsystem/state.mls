@@ -16,26 +16,28 @@ nodes
     State Model 9,5
     Class 13,4 : 8-9,9-10
     Association 13,6
-    State 5,4
-    Deletion State 6-7,2-3
-    Non Deletion State 6-7,5
-    Creation Event 8,4
-    Effective Event/2 5,7
-    Event Response 4,5-6
-    Transition 2-3,5 >bottom
-    Non Transition 2-3,6-7 >bottom
+    State 4,4
+    Deletion State 7,3
+    Non Deletion State 7,5
+    Real State 5-6,3-4
+    Initial Pseudo State 5-6,5
+    Effective Event/2 4,7
+    Event Response 2-3,5-6
+    Transition 1,5 >bottom
+    Non Transition 1,6-7 >bottom
+    State Activity 5-6,1-2
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
     -R502 : t|State Model { b+1|Lifecycle, b|Assigner }
     -R503 : +/2 t*|Non Deletion State : +/2 b|State Model
+    -R504 : +/2 l|Real State : +/2 r*|State Activity
     +R505 : +/2 r|State : +/2 l*|Effective Event, t|Event Response
     +R506 : b|Event Response { t|Transition, t|Non Transition }
     -R507 : -/2 l|Transition : +/2 b|State
-    -R508 : -/3 b|Creation Event : +/2 l|Non Deletion State
-    -R510 : t|State { b|Non Deletion State, b|Deletion State }
+    -R510 : t|State { b|Real State, b|Initial Pseudo State }
+    -R511 : t|Real State { b|Deletion State, b|Non Deletion State }
     -R513.2 : -/3 t|Deletion State : +/2 l|Lifecycle
     -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
     -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
     +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2
-    +R519 : -/3 b-1|Lifecycle : -/3 t*|Creation Event
