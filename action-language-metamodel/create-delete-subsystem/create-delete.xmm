@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.3.3
+    Version : 1.4.0
     /// Creation date : November 07, 2021
-    Modification date : April 22, 2022
+    Modification date : April 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -95,39 +95,37 @@ attributes
 --
 class New Instance Flow
 attributes
-    Create action {I, R979}
-    Flow {I2, R979}
-    Activity {I, I2, R979}
-    Domain {I, I2, R979}
+    Create action {I, R979, Rxx}
+    Flow {I2, R979, Rxx}
+    Activity {I, I2, R979, Rxx}
+    Domain {I, I2, R979, Rxx}
 --
-class New Reference Action <import:Reference>
+class Relationship <import:Relationship>
 attributes
-    Action {I}
-    Activity {I}
+    Rnum {I}
     Domain {I}
 --
 class Reference Initialization
 attributes
     Create action {I, R980}
-    Activity {I, R980}
+    Activity {I, R980, R986}
     Attribute {I, R980}
     Class {I, R980}
-    Domain {I, R980}
---
-class Reference Value
-attributes
-    Create action {I, R982}
-    Reference action {I, R982}
-    Activity {I, R982}
-    Attribute {I, R982}
-    Class {I, R982}
-    Domain {I, R982}
+    Domain {I, R980, R985, R986}
+    Rnum {R985}
+    Referenced instance {R986}
 --
 class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
+--
+class Single Referenced Instance Flow
+attributes
+    Flow {I, Rxx}
+    Activity {I, Rxx}
+    Domain {I, Rxx}
 --
 class State <import:State>
 attributes
@@ -169,11 +167,6 @@ relationships
     supplies value for, Mc Explicit Initialization
     gets value from, 1 Scalar Flow
 --
-    R982
-    obtains values using, M New Reference Action
-    gets value for, M Reference Initialization
-    1 Reference Value
---
     R983
     deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
@@ -181,4 +174,12 @@ relationships
     R984
     signals creation with, 1 Monomorphic Event
     signals creation for, 1c Delegated Create Action
+--
+    R985
+    finds value across, 1 Relationship
+    leads to value used for, Mc Reference Initialization
+--
+    R986
+    references attribute value of, 1 Single Referenced Instance Flow
+    attribute value is referenced by, M Reference Initialization
 --
