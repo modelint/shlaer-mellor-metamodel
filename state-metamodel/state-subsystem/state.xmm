@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.4.1
+    Version : 3.4.3
     /// Creation date : January 21, 2012
     Modification date : April 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -50,7 +50,6 @@ attributes
 --
 class Initial Pseudo State
 attributes
-    Name {I, R510}
     Class {I, R510, R508}
     Domain {I, R510, R508}
 --
