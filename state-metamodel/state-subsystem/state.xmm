@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.4.0
+    Version : 3.4.1
     /// Creation date : January 21, 2012
     Modification date : April 24, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -31,7 +31,7 @@ attributes
 --
 class Deletion State
 attributes
-    Name {I, R513, R511}
+    Name {I, R511}
     Class {I, R513, R511}
     Domain {I, R513, R511}
 --
@@ -51,8 +51,8 @@ attributes
 class Initial Pseudo State
 attributes
     Name {I, R510}
-    State model {I, R510}
-    Domain {I, R510}
+    Class {I, R510, R508}
+    Domain {I, R510, R508}
 --
 class Lifecycle
 attributes
@@ -69,8 +69,8 @@ attributes
 class Non Deletion State
 attributes
     Name {I, R511}
-    State model {I, R511}
-    Domain {I, R511}
+    State model {I, R511, R503}
+    Domain {I, R511, R503}
 --
 class Non Transition
 attributes
@@ -84,8 +84,8 @@ attributes
 class Real State
 attributes
     Name {I, R510}
-    State model {I, R510}
-    Domain {I, R510, R504}
+    State model {I, R510, UR511}
+    Domain {I, R510, R504, UR511}
     Activity {R504}
 --
 class Single Assigner
@@ -95,9 +95,9 @@ attributes
 --
 class State
 attributes
-    Name {I, R510}
-    State model {I, R510, R503}
-    Domain {I, R510, R503}
+    Name {I} : State Name
+    State model {I, UR510}
+    Domain {I, UR510}
 --
 class State Activity <import:Activity>
 attributes
@@ -152,6 +152,10 @@ relationships
     R507
     specifies path to, 1 State
     is arrived at via, Mc Transition
+--
+    R508
+    instances are created by delegation in, 1c Initial Pseudo State
+    is source of initial transition on, 1 Lifecycle
 --
     R510
     State +
