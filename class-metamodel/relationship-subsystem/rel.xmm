@@ -60,12 +60,6 @@ attributes
     Domain {I, R100, R103}
     Superclass {R103}
 --
-class Identifier <import:Class And Attribute>
-attributes
-    Number {I}
-    Class {I}
-    Domain {I}
---
 class Identifier Attribute <import:Class And Attribute>
 attributes
     Identifier {I}
@@ -94,10 +88,10 @@ attributes
 class Ordinal Relationship
 attributes
     Rnum {I, R100}
-    Domain {I, R100, R104, R106, R107}
-    Ranked class {R104, R106, R107}
+    Domain {I, R100, R106}
+    Ranked class {R106}
     Ranking attribute {R106}
-    Ranking identifier {R107, R106}
+    Ranking identifier {R106}
     Ascending perspective : Phrase Name
     Descending perspective : Phrase Name
 --
@@ -169,10 +163,6 @@ relationships
     is required by, 1 Generalization
     requires, 1 Superclass
 --
-    R104
-    ranks instances by value in, 1 Class
-    has instances ranked in value by, Mc Ordinal Relationship
---
     R105
     Asymmetric Perspective +
         T Perspective
@@ -181,10 +171,6 @@ relationships
     R106
     is ranked by, 1 Identifier Attribute
     is used to rank, 1c Ordinal Relationship
---
-    R107
-    scopes ranking in, Mc Ordinal Relationship
-    has ranking scoped by, 1 Identifier
 --
     R110
     is standpoint of, Mc Perspective
