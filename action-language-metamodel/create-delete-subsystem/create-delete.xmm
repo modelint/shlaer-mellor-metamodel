@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.8.2
+    Version : 1.8.3
     /// Creation date : November 07, 2021
     Modification date : May 1, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -39,7 +39,7 @@ attributes
 --
 class Instance Initialization
 attributes
-    Action {I, R975}
+    Create action {I, R975}
     Activity {I, R975}
     Class {I, R975}
     Domain {I, R975}
