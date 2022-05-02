@@ -1,41 +1,41 @@
-diagram class // Create Delete Subsystem / Action Metamodel 1.4.x
+diagram class // Create Delete Subsystem / Action Metamodel 1.5.x
 notation Starr
 presentation default
 orientation landscape
 color butter
-sheet E
-padding l200 b350
+sheet D
+padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 9-10,4
-    Create Action 8,8
-    Delegated Create Action/2 12,10
-    Local Create Action/2 7,10
-    Attribute 8,4
-    Attribute Initialization/2 7,5-6
-    Single Delegated Create Action/2 13,11-12
-    Multiple Delegated Create Action/2 10,11-12
-    Single Local Create Action/2 6,11-12
-    Multiple Local Create Action/2 8,11-12
-    Multiple Create Action/2 9,13
-    Lineage 11,13
-    Facet 9,16
-    Facet Instantiation/2 10,14-15
-    Facet Instantiation Reference/2 7,14
-    State 5,10
-    Create In State 6,9
-    New Instance Flow/2 9,10
-    Explicit Initialization/2 5-6,4
-    Reference Initialization/2 5-6,5-6
-    Default Initialization/2 5-6,7
-    Attribute Reference 3,5-6
-    Initializing Attribute Reference/2 4,4-5
-    Initializing Instance Reference/2 3,3
-    Single Instance Flow/2 4,1
-    Scalar Flow/2 5-6,2
-    Delete Action 3,8
-    Instance Flow 3,10-11
+    Class 7-8,4
+    Create Action 6,8
+    Delegated Create Action/2 10,10
+    Local Create Action/2 5,10
+    Attribute 6,4
+    Attribute Initialization/2 5,5-6
+    Single Delegated Create Action/2 11,11-12
+    Multiple Delegated Create Action/2 8,11-12
+    Single Local Create Action/2 4,11-12
+    Multiple Local Create Action/2 6,11-12
+    Multiple Create Action/2 7,13
+    Lineage 9,13
+    Facet 7,16
+    Facet Instantiation/2 8,14-15
+    Facet Instantiation Reference/2 5,14
+    State 3,10
+    Create In State 4,9
+    New Instance Flow/2 7,10
+    Explicit Initialization/2 3-4,4
+    Reference Initialization/2 3-4,5-6
+    Default Initialization/2 3-4,7
+    Attribute Reference 1,5-6
+    Initializing Attribute Reference/2 2,4-5
+    Initializing Instance Reference/2 1,3
+    Single Instance Flow/2 2,1
+    Scalar Flow/2 3-4,2
+    Delete Action 1,8
+    Instance Flow 1,10-11
 connectors
     +R975 : -/2 t-1|Create Action : +/2 r|Class
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action }
@@ -52,5 +52,5 @@ connectors
     +R989-1 : l|Multiple Create Action { r|Multiple Delegated Create Action, r|Multiple Local Create Action }
     -R990 : +/1 t|Multiple Create Action : +/1 b*|Lineage
     -R991 : +/1 r|Multiple Create Action : +/1 l*|Facet, b|Facet Instantiation
-    +R992.2 : +/2 t|Multiple Delegated Create Action : +/2 t|Facet Instantiation : L12
+    +R992.2 : +/2 t|Multiple Delegated Create Action : +/2 t|Facet Instantiation : L10
     +R993.2 : -/3 r-2|Multiple Local Create Action : +/2 r|Facet Instantiation, t|Facet Instantiation Reference : L17R-2
