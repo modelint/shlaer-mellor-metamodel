@@ -1,36 +1,49 @@
 metadata
-    Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
+    Title : Generalization Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.action.td.9
-    Version : 1.5.0
-    /// Creation date : November 07, 2021
-    Modification date : May 1, 2022
+    Document ID : mint.sm-meta.action.td.10
+    Version : 0.1.0
+    /// Creation date : April 25, 2022
+    Modification date : April 25, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Creation Deletion
-class Attribute <import:Classes And Attributes>
+class Lineage <import:Relationship>
 attributes
-    Name {I}
-    Class {I}
+    Lnum {I}
     Domain {I}
 --
-class Attribute Initialization
+class Instantiate Lineage Action
 attributes
-    Create action {I, R978}
-    Activity {I, R978}
-    Attribute {I, R978}
-    Class {I, R978}
-    Domain {I, R978}
---
-class Attribute Reference <import:Class Attribute>
-attributes
-    From attribute {I}
-    From class {I}
-    To attribute {I}
-    To class {I}
+    Action {I}
+    Activity {I}
     Domain {I}
-    Rnum {I}
+--
+class Create Action <import:Create Delete>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class Create Action In Lineage Instantiation
+attributes
+    LI Action {I,R1100}
+    Create Action {I,R1100}
+    Activity {I,R1100}
+    Domain {I,R1100}
+--
+class Delegated LIA
+attributes
+    Action {I, R1101}
+    Activity {I, IR1101}
+    Domain {I, IR1101}
+--
+class Local LIA
+attributes
+    Action {I, R1101}
+    Activity {I, IR1101}
+    Domain {I, IR1101}
 --
 class Class <import:Classes And Attributes>
 attributes
@@ -65,20 +78,8 @@ attributes
     Action {I, R976}
     Activity {I, R976}
     Domain {I, R976, R984}
---
-class Multiple Delegated Create Action
-attributes
-    Action {I, R986, R989, R992}
-    Activity {I, R986, R989, R992}
-    Domain {I, R986, R989, R992}
-    Rnum {R992}
-    Class {R992}
---
-class Single Delegated Create Action
-attributes
-    Action {I, R986}
-    Activity {I, R986}
-    Domain {I, R986}
+    Initial event {R984}
+    Target class {R984c}
 --
 class Delete Action
 attributes
@@ -96,37 +97,10 @@ attributes
     Domain {I, R980, R981}
     Initial value flow {R981}
 --
-class Facet <import:Relationship>
-attributes
-    Rnum {I}
-    Class {I}
-    Domain {I}
---
-class Facet Instantiation
-attributes
-    Rnum {I, R991}
-    Class {I, R991}
-    Action {I, R991}
-    Activity {I, R991}
-    Domain {I, R991}
---
-class Facet Instantiation Reference
-attributes
-    Rnum {I, R993}
-    Class {I, R993}
-    Action {I, R993}
-    Activity {I, R993}
-    Domain {I, R993}
---
 class Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
-    Domain {I}
---
-class Lineage <import:Relationship>
-attributes
-    Lnum {I}
     Domain {I}
 --
 class Local Create Action
@@ -135,24 +109,11 @@ attributes
     Activity {I, R976}
     Domain {I, R976}
 --
-class Single Local Create Action
+class Monomorphic Event <import:Event>
 attributes
-    Action {I, R987}
-    Activity {I, R987}
-    Domain {I, R987}
---
-class Multiple Create Action
-attributes
-    Action {I, UR989}
-    Activity {I, UR989}
-    Domain {I, UR989, R990}
-    Lnum {R990}
---
-class Multiple Local Create Action
-attributes
-    Action {I, R987, R989}
-    Activity {I, R987, R989}
-    Domain {I, R987, R989}
+    Name {I}
+    State model {I}
+    Domain {I}
 --
 class New Instance Flow
 attributes
@@ -231,7 +192,7 @@ relationships
     1 Attribute Initialization
 --
     R979
-    yields new instance reference in, 1c New Instance Flow
+    yields new instance reference in, 1 New Instance Flow
     conveys reference to new instance produced by, 1 Local Create Action
 --
     R980
@@ -253,41 +214,12 @@ relationships
     deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
 --
+    R984
+    signals creation with, 1 Monomorphic Event
+    signals creation for, 1c Delegated Create Action
+--
     R985
     finds value across, M Attribute Reference
     leads to value used for, Mc Reference Initialization
     1 Referenced Value
---
-    R986
-    Delegated Create Action +
-        Single Delegated Create Action
-        Multiple Delegated Create Action
---
-    R987
-    Local Create Action +
-        Single Local Create Action
-        Multiple Local Create Action
---
-    R989
-    Multiple Create Action +
-        Multipl Delegated Create Action
-        Multiple Local Create Action
---
-    R990
-    instantiates, 1 Lineage
-    is instantiated by, Mc Multiple Create Action
---
-    R991
-    instantiates, M Facet
-    is instantiated by, Mc Multiple Create Action
-    1 Facet Instantiation
---
-    R992
-    sends initial event to, 1 Facet Instantiation
-    gets initial event from, 1c Multiple Delegated Create Action
---
-    R993
-    designates output reference to, 1c Facet Instantiation
-    is designated as referenced output of, 1c Multiple Local Create Action
-    1 Facet Instantiation Reference
 --

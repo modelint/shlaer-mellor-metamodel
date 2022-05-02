@@ -1,4 +1,4 @@
-diagram class
+diagram class // Signal Action / Action Metamodel v0.6.x
 notation Starr
 presentation default
 orientation landscape
@@ -20,10 +20,10 @@ nodes
     Association 4,10
     Single Instance Flow/2 2-3,10
     Signal Instance Set Action/2 5-6,7-8
-    Signal Creation Action/2 7,7-8
+    Initial Signal Action/2 7,7-8
     Signal EE Action 8-9,7-8
     External Entity 8-9,10
-    Class 7,10
+    Delegated Create Action/2 7,10
     Instance Flow 5-6,10
     Scalar Flow 4,3
     Multiple Assigner Partition Instance/2 1-2,9
@@ -31,12 +31,12 @@ connectors
     +R850 : -/1 l|Signal Action : -/2 b|Event Parameter, r|Supplied Parameter Value
     +R851 : -/2 t|Signal Action : -/2 b*|Event Specification
     -R852 : +/2 t|Supplied Parameter Value : +/2 b*|Data Flow
-    +R854-1 : r|Signal Action { l|Signal EE Action, l|Signal Instance Set Action, l|Signal Assigner Action, l|Signal Creation Action }
+    +R854-1 : r|Signal Action { l|Signal EE Action, l|Signal Instance Set Action, l|Signal Assigner Action, l|Initial Signal Action }
     +R855.2 : -/1 t*|Delivery Time : -/2 b|Signal Action
     +R856 : b|Delivery Time { t|Absolute Delivery Time, t|Relative Delivery Time }
     +R857 : -/2 r|Signal Instance Set Action : -/2 l*|Instance Flow
     +R858 : -/2 r|Signal Assigner Action : -/3 l*|Association
     +R859 : +/3 b|Signal Assigner Action : +/3 l|Single Instance Flow, t|Multiple Assigner Partition Instance
-    +R860 : -/3 r|Signal Creation Action : -/2 l*|Class
+    +R860 : -/3 r|Initial Signal Action : -/2 l*|Delegated Create Action
     +R861 : -/2 r|Signal EE Action : -/2 l*|External Entity
     -R862 : +/2 r*|Scalar Flow : +/2 l|Delivery Time
