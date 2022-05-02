@@ -174,7 +174,7 @@ attributes
 class New Instance Flow
 attributes
     Create action {I, R979, Rxx}
-    Flow {I2, R979, Rxx}
+    Flow {I2, Rxx}
     Activity {I, I2, R979, Rxx}
     Domain {I, I2, R979, Rxx}
 --
