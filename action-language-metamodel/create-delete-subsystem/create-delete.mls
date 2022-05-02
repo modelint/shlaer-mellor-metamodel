@@ -20,7 +20,7 @@ nodes
     Scalar Flow/2 4-5,2
     Class 8-9,8 : 5,18
     Create Action 6,8
-    Class Initialization 7,7
+    Instance Initialization/2 7,7
     Delegated Create Action/2 10,10
     Local Create Action/2 5,10
     Single Delegated Create Action/2 11,11-12
@@ -39,10 +39,10 @@ nodes
     Instance Flow 2,10-11
     Single Create Action/2 7,18
 connectors
-    +R975 : -/2 t|Create Action : -/1 b*|Class, r|Class Initialization
+    +R975 : -/2 t|Create Action : -/1 b*|Class, r|Instance Initialization
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L9R+1 }
     +R977 : -/1 b|Local Create Action : -/1 t*|State, r|Create In State
-    +R978 : -/1 l|Class Initialization : +/2 r*|Attribute, t|Attribute Initialization
+    +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
     -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
