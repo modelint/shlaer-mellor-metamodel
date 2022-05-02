@@ -2,47 +2,13 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.8.0
+    Version : 1.8.1
     /// Creation date : November 07, 2021
     Modification date : May 1, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Creation Deletion
-class Attribute Reference <import:Class Attribute>
-attributes
-    From attribute {I}
-    From class {I}
-    To attribute {I}
-    To class {I}
-    Domain {I}
-    Rnum {I}
---
-class Default Initialization
-attributes
-    Create action {I, R980}
-    Activity {I, R980}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980}
---
-class Explicit Initialization
-attributes
-    Create action {I, R980}
-    Activity {I, R980, R984}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980, R984}
-    Initial value flow {R984}
---
-class Reference Initialization
-attributes
-    Create action {I, R980}
-    Activity {I, R980}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980}
---
 class Attribute <import:Classes And Attributes>
 attributes
     Name {I}
@@ -56,6 +22,15 @@ attributes
     Attribute {I, R978}
     Class {I, R978}
     Domain {I, R978}
+--
+class Attribute Reference <import:Class Attribute>
+attributes
+    From attribute {I}
+    From class {I}
+    To attribute {I}
+    To class {I}
+    Domain {I}
+    Rnum {I}
 --
 class Class <import:Classes And Attributes>
 attributes
@@ -83,37 +58,19 @@ attributes
     Domain {I, R977}
     State {I, R977}
 --
+class Default Initialization
+attributes
+    Create action {I, R980}
+    Activity {I, R980}
+    Attribute {I, R980}
+    Class {I, R980}
+    Domain {I, R980}
+--
 class Delegated Create Action
 attributes
     Action {I, R976}
     Activity {I, R976}
     Domain {I, R976, R984}
---
-class Initializing Instance Reference
-attributes
-    Create action {I, R988}
-    Activity {I, R988}
-    From attribute {I, R988}
-    From class {I, R988}
-    To attribute {I, R988}
-    To class {I, R988}
-    Rnum {I, R988}
-    Domain {I, R988}
-    Flow {R988}
---
-class Multiple Delegated Create Action
-attributes
-    Action {I, R986, R989, R992}
-    Activity {I, R986, R989, R992}
-    Domain {I, R986, R989, R992}
-    Rnum {R992}
-    Class {R992}
---
-class Single Delegated Create Action
-attributes
-    Action {I, R986}
-    Activity {I, R986}
-    Domain {I, R986}
 --
 class Delete Action
 attributes
@@ -121,6 +78,15 @@ attributes
     Activity {I, R901, R983}
     Domain {I, R901, R983}
     Deletion flow {R983}
+--
+class Explicit Initialization
+attributes
+    Create action {I, R980}
+    Activity {I, R980, R984}
+    Attribute {I, R980}
+    Class {I, R980}
+    Domain {I, R980, R984}
+    Initial value flow {R984}
 --
 class Facet <import:Relationship>
 attributes
@@ -155,6 +121,18 @@ attributes
     Rnum {I, R985}
     Domain {I, R985}
 --
+class Initializing Instance Reference
+attributes
+    Create action {I, R988}
+    Activity {I, R988}
+    From attribute {I, R988}
+    From class {I, R988}
+    To attribute {I, R988}
+    To class {I, R988}
+    Rnum {I, R988}
+    Domain {I, R988}
+    Flow {R988}
+--
 class Instance Flow <import:Flow>
 attributes
     Flow {I}
@@ -172,25 +150,20 @@ attributes
     Activity {I, R976}
     Domain {I, R976}
 --
-class Single Create Action
-attributes
-    Action {I, R987}
-    Activity {I, R987}
-    Domain {I, R987, R995}
-    Class {R995}
---
-class Single Local Create Action
-attributes
-    Action {I, R987}
-    Activity {I, R987}
-    Domain {I, R987}
---
 class Multiple Create Action
 attributes
     Action {I, UR989}
     Activity {I, UR989}
     Domain {I, UR989, R990}
     Lnum {R990}
+--
+class Multiple Delegated Create Action
+attributes
+    Action {I, R986, R989, R992}
+    Activity {I, R986, R989, R992}
+    Domain {I, R986, R989, R992}
+    Rnum {R992}
+    Class {R992}
 --
 class Multiple Local Create Action
 attributes
@@ -205,17 +178,44 @@ attributes
     Activity {I, I2, R979, Rxx}
     Domain {I, I2, R979, Rxx}
 --
+class Reference Initialization
+attributes
+    Create action {I, R980}
+    Activity {I, R980}
+    Attribute {I, R980}
+    Class {I, R980}
+    Domain {I, R980}
+--
 class Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
 --
+class Single Create Action
+attributes
+    Action {I, R987}
+    Activity {I, R987}
+    Domain {I, R987, R995}
+    Class {R995}
+--
+class Single Delegated Create Action
+attributes
+    Action {I, R986}
+    Activity {I, R986}
+    Domain {I, R986}
+--
 class Single Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
+--
+class Single Local Create Action
+attributes
+    Action {I, R987}
+    Activity {I, R987}
+    Domain {I, R987}
 --
 class State <import:State>
 attributes
