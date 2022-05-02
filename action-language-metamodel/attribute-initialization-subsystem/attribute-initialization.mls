@@ -8,11 +8,9 @@ padding l100 b380
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 7,10
     Class Initialization 7,7
     Attribute 7,4
     Attribute Initialization/2 5-6,5-6
-    Multiple Create Action/2 7,13
     Explicit Initialization/2 3-4,4
     Reference Initialization/2 3-4,5-6
     Default Initialization/2 3-4,7
@@ -22,9 +20,8 @@ nodes
     Single Instance Flow/2 2,1
     Scalar Flow/2 3-4,2
 connectors
-    +R975 : -/2 r|Class Initialization : +/2 l*|Class
-    +R978 : -/1 l|Class Initialization : +/2 r*|Attribute, t|Attribute Initialization
-    +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
-    -R981 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
-    +R982 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
-    +R985 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference
+    +R826 : -/1 l|Class Initialization : +/2 r*|Attribute, t|Attribute Initialization
+    +R827 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
+    -R828 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
+    +R829 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
+    +R830 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference

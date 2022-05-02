@@ -2,7 +2,7 @@ metadata
     Title : Attribute Initialization Subsystem / SM Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : May 1, 2021
     Modification date : May 1, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,11 +17,11 @@ attributes
 --
 class Attribute Initialization
 attributes
-    Create action {I, R978}
-    Activity {I, R978}
-    Attribute {I, R978}
-    Class {I, R978}
-    Domain {I, R978}
+    Create action {I, R826}
+    Activity {I, R826}
+    Attribute {I, R826}
+    Class {I, R826}
+    Domain {I, R826}
 --
 class Attribute Reference <import:Class Attribute>
 attributes
@@ -32,65 +32,60 @@ attributes
     Domain {I}
     Rnum {I}
 --
-class Class <import:Classes And Attributes>
+class Class Initialization <import:Create Delete>
 attributes
-    Name {I}
+    Action {I}
+    Activity {I}
+    Class {I}
     Domain {I}
---
-class Class Initialization
-attributes
-    Action {I, R901}
-    Activity {I, R901}
-    Domain {I, R901, R975}
-    Class {R975}
 --
 class Default Initialization
 attributes
-    Create action {I, R980}
-    Activity {I, R980}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980}
+    Create action {I, R827}
+    Activity {I, R827}
+    Attribute {I, R827}
+    Class {I, R827}
+    Domain {I, R827}
 --
 class Explicit Initialization
 attributes
-    Create action {I, R980}
-    Activity {I, R980, R981}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980, R981}
-    Initial value flow {R981}
+    Create action {I, R827}
+    Activity {I, R827, R828}
+    Attribute {I, R827}
+    Class {I, R827}
+    Domain {I, R827, R828}
+    Initial value flow {R828}
 --
 class Reference Initialization
 attributes
-    Create action {I, R980}
-    Activity {I, R980}
-    Attribute {I, R980}
-    Class {I, R980}
-    Domain {I, R980}
+    Create action {I, R827}
+    Activity {I, R827}
+    Attribute {I, R827}
+    Class {I, R827}
+    Domain {I, R827}
 --
 class Initializing Attribute Reference
 attributes
-    Create action {I, R985}
-    Activity {I, R985}
-    From attribute {I, R985}
-    From class {I, R985}
-    To attribute {I, R985}
-    To class {I, R985}
-    Rnum {I, R985}
-    Domain {I, R985}
+    Create action {I, R830}
+    Activity {I, R830}
+    From attribute {I, R830}
+    From class {I, R830}
+    To attribute {I, R830}
+    To class {I, R830}
+    Rnum {I, R830}
+    Domain {I, R830}
 --
 class Initializing Instance Reference
 attributes
-    Create action {I, R982}
-    Activity {I, R982}
-    From attribute {I, R982}
-    From class {I, R982}
-    To attribute {I, R982}
-    To class {I, R982}
-    Rnum {I, R982}
-    Domain {I, R982}
-    Flow {R982}
+    Create action {I, R829}
+    Activity {I, R829}
+    From attribute {I, R829}
+    From class {I, R829}
+    To attribute {I, R829}
+    To class {I, R829}
+    Rnum {I, R829}
+    Domain {I, R829}
+    Flow {R829}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -105,31 +100,27 @@ attributes
     Domain {I}
 --
 relationships
-    R975
-    creates an instance of, 1 Class
-    instance of is created by, Mc Class Initialization
---
-    R978
+    R826
     is initialized for, Mc Create Initialization
     initializes the value of, M Attribute
     1 Attribute Initialization
 --
-    R980
+    R827
     Attribute Initialization +
         Explicit Initialization
         Initialization By Reference
         Default Initialization
 --
-    R981
+    R828
     supplies value for, Mc Explicit Initialization
     gets value from, 1 Scalar Flow
 --
-    R982
+    R829
     provides referenced instance for, Mc Initializing Attribute Reference
     takes value from instance in, 1 Single Instance Flow
     1 Initializing Instance Reference
 --
-    R985
+    R830
     finds value across, M Attribute Reference
     leads to value used for, Mc Reference Initialization
     1 Referenced Value
