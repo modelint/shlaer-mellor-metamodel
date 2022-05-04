@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.8.5
+    Version : 1.8.6
     /// Creation date : November 07, 2021
     Modification date : May 4, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -123,15 +123,15 @@ attributes
 --
 class Initializing Instance Reference
 attributes
-    Create action {I, R988}
-    Activity {I, R988}
-    From attribute {I, R988}
-    From class {I, R988}
-    To attribute {I, R988}
-    To class {I, R988}
-    Rnum {I, R988}
-    Domain {I, R988}
-    Flow {R988}
+    Create action {I, R982}
+    Activity {I, R982}
+    From attribute {I, R982}
+    From class {I, R982}
+    To attribute {I, R982}
+    To class {I, R982}
+    Rnum {I, R982}
+    Domain {I, R982}
+    Flow {R982}
 --
 class Instance Flow <import:Flow>
 attributes
@@ -254,6 +254,11 @@ relationships
         Initialization By Reference
         Default Initialization
 --
+    R982
+    provides referenced instance for, Mc Initializing Attribute Reference
+    takes value from instance in, 1 Single Instance Flow
+    1 Initializing Instance Reference
+--
     R983
     deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
@@ -276,11 +281,6 @@ relationships
     Local Create Action +
         Single Local Create Action
         Multiple Local Create Action
---
-    R988
-    provides referenced instance for, Mc Initializing Attribute Reference
-    takes value from instance in, 1 Single Instance Flow
-    1 Initializing Instance Reference
 --
     R989
     Multiple Create Action +

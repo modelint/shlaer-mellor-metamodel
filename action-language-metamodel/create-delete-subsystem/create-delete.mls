@@ -45,12 +45,12 @@ connectors
     +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
+    +R982 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
     -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
     -R984 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
     +R985 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference
     +R986-1 : r|Delegated Create Action { l|Single Delegated Create Action, l|Multiple Delegated Create Action }
     +R987-1 : r|Local Create Action { l|Single Local Create Action, l|Multiple Local Create Action }
-    +R988 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
     +R989-1 : l|Multiple Create Action { r|Multiple Delegated Create Action, r|Multiple Local Create Action }
     -R990 : +/1 t|Multiple Create Action : +/1 b*|Lineage
     -R991 : +/1 r|Multiple Create Action : +/1 l*|Facet, b|Facet Instantiation
