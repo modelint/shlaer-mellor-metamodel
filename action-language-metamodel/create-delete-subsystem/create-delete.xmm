@@ -98,7 +98,7 @@ class Facet Instantiation
 attributes
     Rnum {I, R991}
     Class {I, R991}
-    Creation action {I, R991}
+    Create action {I, R991}
     Activity {I, R991}
     Domain {I, R991}
 --
