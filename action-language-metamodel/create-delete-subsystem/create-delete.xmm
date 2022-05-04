@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.8.3
+    Version : 1.8.4
     /// Creation date : November 07, 2021
-    Modification date : May 1, 2022
+    Modification date : May 4, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -98,7 +98,7 @@ class Facet Instantiation
 attributes
     Rnum {I, R991}
     Class {I, R991}
-    Action {I, R991}
+    Creation action {I, R991}
     Activity {I, R991}
     Domain {I, R991}
 --
