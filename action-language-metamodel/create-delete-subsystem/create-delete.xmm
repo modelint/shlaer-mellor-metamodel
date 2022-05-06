@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.8.6
+    Version : 1.9.0
     /// Creation date : November 07, 2021
-    Modification date : May 4, 2022
+    Modification date : May 6, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -312,5 +312,5 @@ relationships
 --
     R995
     creates instance of, 1 Class
-    has instance created by, Mc Single Create Action
+    is instantiated by, Mc Single Create Action
 --
