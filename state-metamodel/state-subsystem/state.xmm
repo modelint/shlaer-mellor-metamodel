@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.5.1
+    Version : 3.5.2
     /// Creation date : January 21, 2012
     Modification date : May 7, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -59,6 +59,13 @@ attributes
     Class {I, R510, R508}
     Domain {I, R510, R508}
 --
+class Initial Spliced State
+attributes
+    Rnum {I, R512}
+    Class {I, R512}
+    Domain {I, R512}
+    State {I, R512}
+--
 class Lifecycle
 attributes
     Class {I, R500, R502}
@@ -98,22 +105,6 @@ attributes
     Rnum {I, R514}
     Domain {I, R514}
 --
-class Initial Spliced State
-attributes
-    Rnum {I, R512}
-    Class {I, R512}
-    Domain {I, R512}
-    State {I, R512}
---
-class Synched Spliced State
-attributes
-    Rnum {I, R512}
-    Class {I, R512}
-    Domain {I, R512}
-    State {I, R512}
-    Initializing state {R512}
-    Initializing class {R512}
---
 class Spliced State
 attributes
     Rnum {I,R509}
@@ -136,6 +127,15 @@ class State Model
 attributes
     Name : State Model Name {I}
     Domain {I, UR502}
+--
+class Synched Spliced State
+attributes
+    Rnum {I, R512, R515}
+    Class {I, R512}
+    Domain {I, R512, R515}
+    State {I, R512}
+    Initializing state {R515}
+    Initializing class {R515c}
 --
 class Transition
 attributes
