@@ -25,7 +25,11 @@ nodes
     Event Response 2-3,4-5
     Transition 1,4 >bottom
     Non Transition 1,5-6 >bottom
-    State Activity 5-6,7
+    State Activity 5-6,6
+    Facet 5,7-8
+    Spliced State 6-7,8-9
+    Initial Spliced State/2 7,10
+    Synched Spliced State/2 4,10
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -36,9 +40,12 @@ connectors
     +R506 : b|Event Response { t|Transition, t|Non Transition }
     -R507 : -/2 l|Transition : +/2 b|State
     -R508 : +/3 l+2|Lifecycle : -/3 t|Initial Pseudo State
+    -R509 : +/1 r|Non Deletion State : +/2 t|Facet, l|Spliced State
     -R510 : t|State { b|Real State, b|Initial Pseudo State }
     -R511 : t|Real State { b|Deletion State, b|Non Deletion State }
+    +R512 : r|Spliced State { l|Initial Spliced State, l|Synched Spliced State }
     -R513.2 : -/3 t|Deletion State : +/2 l-2|Lifecycle
     -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
+    -R515 : +/2 b|Initial Spliced State : +/2 t*|Synched Spliced State
     -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
     +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2

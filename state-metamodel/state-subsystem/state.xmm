@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.4.3
+    Version : 3.5.0
     /// Creation date : January 21, 2012
-    Modification date : April 24, 2022
+    Modification date : May 7, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -47,6 +47,12 @@ attributes
     Event {I, R505}
     State model {I, R505}
     Domain {I, R505}
+--
+class Facet <import:Relationship>
+attributes
+    Rnum {I}
+    Class {I}
+    Domain {I}
 --
 class Initial Pseudo State
 attributes
@@ -91,6 +97,29 @@ class Single Assigner
 attributes
     Rnum {I, R514}
     Domain {I, R514}
+--
+class Initial Spliced State
+attributes
+    Rnum {I, R512}
+    Class {I, R512}
+    Domain {I, R512}
+    State {I, R512}
+--
+class Synched Spliced State
+attributes
+    Rnum {I, R512}
+    Class {I, R512}
+    Domain {I, R512}
+    State {I, R512}
+    Initial state {R512}
+    Initial class {R512}
+--
+class Spliced State
+attributes
+    Rnum {I,R509}
+    Class {I,R509}
+    Domain {I,R509}
+    State {I, R509}
 --
 class State
 attributes
@@ -156,6 +185,11 @@ relationships
     instances are created by delegation in, 1c Initial Pseudo State
     is source of initial transition on, 1 Lifecycle
 --
+    R509
+    is in spliced lifecycle of, 1c Facet
+    lifecycle splices, Mc Non Deletion State
+    1 Spliced State
+--
     R510
     State +
         Real State
@@ -166,6 +200,11 @@ relationships
         Deletion State
         Non Deletion State
 --
+    R512
+    Spliced State +
+        Initial Splice State
+        Synched Splice State
+--
     R513
     deletes instances in, 1 Lifecycle
     instances are deleted after entering, Mc Deletion State
@@ -174,6 +213,10 @@ relationships
     Assigner +
         Single Assigner
         Multiple Assigner
+--
+    R515
+    sets, M Synched Spliced State
+    is set by, 1 Initial Spliced State
 --
     R517
     manages within constraint set by, 1 Constrained Loop
