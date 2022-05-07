@@ -29,7 +29,7 @@ nodes
     Facet 5,7-8
     Spliced State 6-7,8-9
     Initial Spliced State/2 7,10
-    Synched Spliced State/2 4,10
+    Synched Spliced State/2 5,10
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -46,6 +46,6 @@ connectors
     +R512 : r|Spliced State { l|Initial Spliced State, l|Synched Spliced State }
     -R513.2 : -/3 t|Deletion State : +/2 l-2|Lifecycle
     -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
-    -R515 : +/2 b|Initial Spliced State : +/2 t*|Synched Spliced State
+    -R515 : +/1 b|Initial Spliced State : +/1 t*|Synched Spliced State
     -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
     +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2

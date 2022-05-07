@@ -111,8 +111,8 @@ attributes
     Class {I, R512}
     Domain {I, R512}
     State {I, R512}
-    Initial state {R512}
-    Initial class {R512}
+    Initializing state {R512}
+    Initializing class {R512}
 --
 class Spliced State
 attributes
@@ -215,8 +215,8 @@ relationships
         Multiple Assigner
 --
     R515
-    sets, M Synched Spliced State
-    is set by, 1 Initial Spliced State
+    initializes, M Synched Spliced State
+    is initialized by, 1 Initial Spliced State
 --
     R517
     manages within constraint set by, 1 Constrained Loop
