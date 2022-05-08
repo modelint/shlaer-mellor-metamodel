@@ -3,47 +3,47 @@ notation Starr
 presentation default
 orientation landscape
 color butter
-sheet E
-padding b220
+sheet D
+padding l50 b220
 frame OS Engineer
 frame_presentation default
 nodes
-    Attribute 7,4
-    Attribute Initialization/2 6,5-6
-    Explicit Initialization/2 4-5,4
-    Reference Initialization/2 4-5,5-6
-    Default Initialization/2 4-5,7
-    Initializing Attribute Reference/2 3,4-5
-    Single Instance Flow/2 3,2
-    Initializing Instance Reference/2 2,3
-    Attribute Reference 2,5-6
-    Scalar Flow/2 4-5,2
-    Class 8-9,8 : 5,21
-    Create Action 6,8
-    Instance Initialization/2 7,7
-    Delegated Create Action/2 10,10
-    Local Create Action/2 5,10
-    Single Delegated Create Action/2 12,11-12
-    Multiple Delegated Create Action/2 9,11-12
-    Single Local Create Action/2 4,11-12
-    Multiple Local Create Action/2 6,11-12
-    Multiple Create Action/2 7,13
-    Lineage 7,15-16
-    Facet 10,13
-    Facet Instantiation/2 8-9,14
-    Delegated Facet Instantiation/2 9-10,16-17
-    Local Facet Instantiation/2 8,16-17
-    Facet Instantiation Reference/2 5,14
-    Facet Create In State/2 7,18
-    State 2,11-12 : 8,19
-    Create In State 3,10-11
-    New Instance Flow/2 7,10
-    Delete Action 2,14
-    Instance Flow 2,16-17
-    Single Create Action/2 7,21
+    Attribute 7,3
+    Attribute Initialization/2 6,4-5
+    Explicit Initialization/2 4-5,3
+    Reference Initialization/2 4-5,4-5
+    Default Initialization/2 4-5,6
+    Initializing Attribute Reference/2 3,3-4
+    Single Instance Flow/2 3,1
+    Initializing Instance Reference/2 2,2
+    Attribute Reference 2,4-5
+    Scalar Flow/2 4-5,1
+    Class 8-9,7 : 5,20
+    Create Action 6,7
+    Instance Initialization/2 7,6
+    Delegated Create Action/2 10,9
+    Local Create Action/2 5,9
+    Single Delegated Create Action/2 12,10-11
+    Multiple Delegated Create Action/2 9,10-11
+    Single Local Create Action/2 4,10-11
+    Multiple Local Create Action/2 6,10-11
+    Multiple Create Action/2 7,12
+    Lineage 7,14-15
+    Facet 10,12
+    Facet Instantiation/2 8-9,13
+    Delegated Facet Instantiation/2 9-10,15-16
+    Local Facet Instantiation/2 8,15-16
+    Facet Instantiation Reference/2 5,13
+    Facet Create In State/2 7,17
+    State 2,10-11 : 8,18
+    Create In State 3,9-10
+    New Instance Flow/2 7,9
+    Delete Action 2,13
+    Instance Flow 2,15-16
+    Single Create Action/2 7,20
 connectors
     +R975 : -/2 t|Create Action : -/1 b*|Class, r|Instance Initialization
-    +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L9R+1 }
+    +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L8R+1 }
     +R977 : -/1 b|Single Local Create Action : -/1 t*|State, r|Create In State
     +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|New Instance Flow
@@ -61,5 +61,5 @@ connectors
     -R991 : +/2 t|Multiple Create Action : +/1 b*|Facet, l|Facet Instantiation
     +R992.2 : +/2 t|Multiple Delegated Create Action : +/2 t|Delegated Facet Instantiation : L11
     +R993.2 : -/3 r-2|Multiple Local Create Action : +/2 b|Local Facet Instantiation, t|Facet Instantiation Reference
-    +R994-1 : l|Single Create Action { r|Single Local Create Action, r|Single Delegated Create Action : L20R+1 }
+    +R994-1 : l|Single Create Action { r|Single Local Create Action, r|Single Delegated Create Action : L19R+1 }
     -R995 : +/2 b|Single Create Action : +/2 t*|Class.2
