@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 1.9.0
+    Version : 2.0.0
     /// Creation date : November 07, 2021
-    Modification date : May 6, 2022
+    Modification date : May 8, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -72,6 +72,14 @@ attributes
     Activity {I, R976}
     Domain {I, R976, R984}
 --
+class Delegated Facet Instantiation
+attributes
+    Rnum {I, R981}
+    Class {I, R981}
+    Create action {I, R981}
+    Activity {I, R981}
+    Domain {I, R981}
+--
 class Delete Action
 attributes
     Action {I, R901}
@@ -93,6 +101,14 @@ attributes
     Rnum {I}
     Class {I}
     Domain {I}
+--
+class Facet Create In State
+attributes
+    Create action {I, R988}
+    Activity {I, R988}
+    Class {I, R988c}
+    Domain {I, R988}
+    State {I, R988}
 --
 class Facet Instantiation
 attributes
@@ -149,6 +165,14 @@ attributes
     Action {I, R976}
     Activity {I, R976}
     Domain {I, R976}
+--
+class Local Facet Instantiation
+attributes
+    Rnum {I, R981}
+    Class {I, R981}
+    Create action {I, R981}
+    Activity {I, R981}
+    Domain {I, R981}
 --
 class Multiple Create Action
 attributes
@@ -254,6 +278,11 @@ relationships
         Initialization By Reference
         Default Initialization
 --
+    R981
+    Facet Initialization +
+        Local Facet Initialization
+        Delegated Facet Initialization
+--
     R982
     provides referenced instance for, Mc Initializing Attribute Reference
     takes value from instance in, 1 Single Instance Flow
@@ -281,6 +310,11 @@ relationships
     Local Create Action +
         Single Local Create Action
         Multiple Local Create Action
+--
+    R988
+    creates in, 1c State
+    is initial by, Mc Local Facet Instantiation
+    1 Facet Create In State
 --
     R989
     Multiple Create Action +
