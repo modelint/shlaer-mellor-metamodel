@@ -2,7 +2,7 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 2.0.1
+    Version : 2.0.2
     /// Creation date : November 07, 2021
     Modification date : May 8, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -241,7 +241,7 @@ attributes
     Activity {I, R987}
     Domain {I, R987}
 --
-class State <import:State>
+class Non Deletion State <import:State>
 attributes
     Name {I}
     Class {I}
@@ -259,7 +259,7 @@ relationships
         Local Create Action
 --
     R977
-    creates in, 1c State
+    creates in, 1c Non Deletion State
     is initial by, Mc Local Create Action
     1 Create In State
 --
@@ -312,7 +312,7 @@ relationships
         Multiple Local Create Action
 --
     R988
-    creates in, 1c State
+    creates in, 1c Non Deletion State
     is initial by, Mc Local Facet Instantiation
     1 Facet Create In State
 --

@@ -35,7 +35,7 @@ nodes
     Local Facet Instantiation/2 8,15-16
     Facet Instantiation Reference/2 5,13
     Facet Create In State/2 7,17
-    State 2,10-11 : 8,18
+    Non Deletion State/2 2,10-11 : 8,18
     Create In State 3,9-10
     New Instance Flow/2 7,9
     Delete Action 2,13
@@ -44,7 +44,7 @@ nodes
 connectors
     +R975 : -/2 t|Create Action : -/1 b*|Class, r|Instance Initialization
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L8R+1 }
-    +R977 : -/1 b|Single Local Create Action : -/1 t*|State, r|Create In State
+    +R977 : -/1 b|Single Local Create Action : -/1 t*|Non Deletion State, r|Create In State
     +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
@@ -55,7 +55,7 @@ connectors
     +R985 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference
     +R986-1 : r|Delegated Create Action { l|Single Delegated Create Action, l|Multiple Delegated Create Action }
     +R987-1 : r|Local Create Action { l|Single Local Create Action, l|Multiple Local Create Action }
-    -R988 : +/2 r|Local Facet Instantiation : +/2 l*|State.2, t|Facet Create In State
+    -R988 : +/2 r|Local Facet Instantiation : +/2 l*|Non Deletion State.2, t|Facet Create In State
     +R989-1 : l|Multiple Create Action { r|Multiple Delegated Create Action, r|Multiple Local Create Action }
     -R990 : +/2 r|Multiple Create Action : +/1 l*|Lineage
     -R991 : +/2 t|Multiple Create Action : +/1 b*|Facet, l|Facet Instantiation
