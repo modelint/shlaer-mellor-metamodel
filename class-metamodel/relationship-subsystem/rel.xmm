@@ -2,7 +2,7 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.6.0
+    Version : 4.6.1
     /// Creation date : March 4, 2012
     Modification date : May 8, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -183,8 +183,8 @@ relationships
     is used to rank, 1c Ordinal Relationship
 --
     R107
-    scopes ranking in, Mc Ordinal Relationship
-    has ranking scoped by, 1 Identifier
+    formalizes, Mc Ordinal Relationship
+    is formalized by, 1 Identifier
 --
     R110
     is standpoint of, Mc Perspective

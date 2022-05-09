@@ -40,7 +40,7 @@ connectors
     -R104.2 : -/3 b-2|Ordinal Relationship : -/3 r|Class.2
     +R105 : t|Asymmetric Perspective  { b|T Perspective, b|P Perspective }
     +R106 : +/1 r|Ordinal Relationship : +/1 t|Identifier Attribute
-    +R107 : +/2 b|Ordinal Relationship : +/2 t*|Identifier
+    +R107 : +/1 b|Ordinal Relationship : +/1 t*|Identifier
     -R110 : +/1 r|Perspective : -/1 b|Class
     +R116 : +/1 t|Minimal Partition : +/1 l+2|Generalization
     +R117 : -/2 l*|Subclass : -/2 r+2|Minimal Partition
