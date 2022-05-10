@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.3.1
+    Version : 2.4.0
     /// Creation date : May 9, 2011
-    Modification date : March 17, 2022
+    Modification date : May 9, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -55,6 +55,7 @@ attributes
 class Subsystem
 attributes
     Name : Subsystem Name {I}
+    First element number {R1}
     Domain {I, I2, R1}
     Alias : Subsystem Alias {I2}
 --
@@ -64,12 +65,10 @@ attributes
     Domain {I, R16, R13}
     Subsystem {R13}
 --
-class Subsystem Numbering Range
+class Domain Partition
 attributes
-    Floor : Element Number {I}
-    Ceiling : Element Number {I2c}
-    Subsystem {I, I2, R3}
-    Domain {I, I2, R3}
+    Number : Element Number {I, OR2}
+    Domain {I, R3, OR2}
 --
 class Relationship <import:Relationship>
 attributes
@@ -78,12 +77,16 @@ attributes
 --
 relationships
     R1
-    manages content of, 1 Modeled Domain
-    content is managed by, M Subsystem
+    begins numbering elements from, 1 Domain Parition
+    defines initial element number in, 1 Subsystem
+--
+    OR2
+    is greater than, 1 Domain Partition
+    is less than, 1 Domain Partition
 --
     R3
-    numbers elements within, 1 Subsystem Numbering Range
-    establishes numbers available for, 1 Subsystem
+    is partitioned by, M Domain Partition
+    partitions, 1 Subsystem
 --
     R4
     Domain +

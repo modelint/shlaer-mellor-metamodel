@@ -3,29 +3,30 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet D
-padding l300 b400
+sheet C
+padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Bridge 50% 11-12,5-6
-    Class 2,8
-    Constrained Loop 2,5
-    Domain 10,6
-    Element 5,5-6
-    Lineage 2,3-4
-    Modeled Domain 7,5-6
-    Realized Domain 8-9,7
-    Spanning Element 3-4,4
-    Subsystem 7,8
-    Subsystem Element 3-4,7
-    Subsystem Numbering Range/2 7,10-11
-    Relationship 2,6-7
+    Bridge 50% 10,3
+    Class 2,6
+    Constrained Loop 2,3
+    Domain 8-9,2-3
+    Element 5,3-4
+    Lineage 2,1-2
+    Modeled Domain 7,3-4
+    Realized Domain 7,1-2
+    Spanning Element 3-4,2
+    Subsystem 5,6
+    Subsystem Element 3-4,5
+    Domain Partition 7,6
+    Relationship 2,4-5
 connectors
-    -R1 : +/2 r|Modeled Domain : +/2 l*|Subsystem
-    -R3 : +/2 r|Subsystem : +/2 l*|Subsystem Numbering Range
+    -R1 : +/2 b|Domain Partition : +/2 t*|Subsystem
+    +OR2.3 : -/2 r|Domain Partition : -/2 t|Domain Partition : L7R-2 L8R-1
+    -R3 : +/2 r|Modeled Domain : +/2 l*|Domain Partition
     +R4 : b|Domain { t|Modeled Domain, t|Realized Domain }
-    -R7.3 : -/2 l|Domain : +/2 t|Domain, b|Bridge : L5 L11R-2
+    -R7.3 : -/2 r|Domain : -/2 t|Domain, b|Bridge : L3R+2 L9R+2
     +R13.2 : +/1 b|Subsystem : +/1 r|Subsystem Element
     +R14 : b|Subsystem Element { t|Relationship, t|Class }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
