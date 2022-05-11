@@ -26,8 +26,8 @@ nodes
     Ordinal Relationship/2 11,8
     Identifier 7,8
     Identifier Attribute 9-10,9
-    Class In Lineage 6-7,4
-    Lineage 5,5
+    Class In Lineage 6-7,5
+    Lineage 5,6
     Facet 9-10,5
     Superclass 10,3-4
     Subclass 8-9,3-4
@@ -52,4 +52,4 @@ connectors
     -R124 : -/1 b-1|Binary Association : -/1 t*|T Perspective
     +R125 : +/1 b+1|Binary Association : +/1 t*|P Perspective
     -R130 : +/2 t+2|Association : +/1 l|Constrained Loop, b|Loop Segment
-    +R131 : +/3 b|Facet : -/3 t*|Lineage, r|Class In Lineage
+    +R131 : +/3 b|Class.2 : +/3 t*|Lineage, r|Class In Lineage

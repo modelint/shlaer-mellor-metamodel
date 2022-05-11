@@ -2,9 +2,9 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.6.1
+    Version : 4.7.0
     /// Creation date : March 4, 2012
-    Modification date : May 8, 2022
+    Modification date : May 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -40,7 +40,6 @@ class Class In Lineage
 attributes
     Class {I, R131}
     Lnum {I, R131}
-    Rnum {I, R131}
     Domain {I, R131}
 --
 class Constrained Loop
@@ -235,7 +234,7 @@ relationships
     1 Loop Segment
 --
     R131
-    is instantiated to manifest real world entity as part of, M Lineage
-    real world entity requires instantiation of each, M Facet
+    is instantiated to manifest real world entity as part of, Mc Lineage
+    real world entity requires instantiation of each, M Class
     1 Class In Lineage
 --
