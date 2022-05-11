@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 2.0.3
+    Version : 2.1.0
     /// Creation date : November 07, 2021
-    Modification date : May 8, 2022
+    Modification date : May 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -173,6 +173,14 @@ attributes
     Create action {I, R981}
     Activity {I, R981}
     Domain {I, R981}
+--
+class Migrate Action
+attributes
+    Action{I, R901}
+    Activity{I, R901, R996, R997}
+    Domain{I, R901, R996, R997}
+    Instances to migrate {R996}
+    Create action {R997}
 --
 class Multiple Create Action
 attributes
@@ -347,4 +355,12 @@ relationships
     R995
     creates instance of, 1 Class
     is instantiated by, Mc Single Create Action
+--
+    R996
+    deletes original, 1 Instance Flow
+    is deleted by, 1c Migrate Action
+--
+    R997
+    applies, 1 Multiple Local Create Action
+    is applied by, 1c Migrate Action
 --

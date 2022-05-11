@@ -1,4 +1,4 @@
-diagram class // Create Delete Subsystem / Action Metamodel 1.x.x
+diagram class // Create Delete Subsystem / Action Metamodel 2.x.x
 notation Starr
 presentation default
 orientation landscape
@@ -25,7 +25,7 @@ nodes
     Local Create Action/2 5,9
     Single Delegated Create Action/2 12,10-11
     Multiple Delegated Create Action/2 9,10-11
-    Single Local Create Action/2 4,10-11
+    Single Local Create Action/2 4,12
     Multiple Local Create Action/2 6,10-11
     Multiple Create Action/2 7,12
     Lineage 7,14-15
@@ -33,24 +33,25 @@ nodes
     Facet Instantiation/2 8-9,13
     Delegated Facet Instantiation/2 9-10,15-16
     Local Facet Instantiation/2 8,15-16
-    Facet Instantiation Reference/2 5,13
+    Facet Instantiation Reference/2 5,15
     Facet Create In State/2 7,17
-    Non Deletion State/2 2,10-11 : 8,18
-    Create In State 3,9-10
+    Non Deletion State/2 3,15 : 8,18
+    Create In State 2-3,13
     New Instance Flow/2 7,9
-    Delete Action 2,13
-    Instance Flow 2,15-16
+    Delete Action 2,9
+    Instance Flow 2,6-7
     Single Create Action/2 7,20
+    Migrate Action 3,9
 connectors
     +R975 : -/2 t|Create Action : -/1 b*|Class, r|Instance Initialization
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L8R+1 }
-    +R977 : -/1 b|Single Local Create Action : -/1 t*|Non Deletion State, r|Create In State
+    +R977 : -/1 b|Single Local Create Action : -/1 l|Non Deletion State, t|Create In State
     +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|New Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
     +R981-1 : r|Facet Instantiation { l+1|Local Facet Instantiation, l|Delegated Facet Instantiation }
     +R982 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
-    -R983 : +/2 r|Delete Action : +/2 l*|Instance Flow
+    -R983 : +/2 l|Delete Action : +/2 r*|Instance Flow
     -R984 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
     +R985 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference
     +R986-1 : r|Delegated Create Action { l|Single Delegated Create Action, l|Multiple Delegated Create Action }
@@ -63,3 +64,5 @@ connectors
     +R993.2 : -/3 r-2|Multiple Local Create Action : +/2 b|Local Facet Instantiation, t|Facet Instantiation Reference
     +R994-1 : l|Single Create Action { r|Single Local Create Action, r|Single Delegated Create Action : L19R+1 }
     -R995 : +/2 b|Single Create Action : +/2 t*|Class.2
+    -R996 : +/2 r|Migrate Action : +/2 b|Multiple Local Create Action
+    +R997.2 : +/2 l|Migrate Action : +/2 t|Instance Flow
