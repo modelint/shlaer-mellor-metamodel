@@ -2,9 +2,9 @@ metadata
     Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9
-    Version : 2.1.0
+    Version : 2.1.1
     /// Creation date : November 07, 2021
-    Modification date : May 10, 2022
+    Modification date : May 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -357,10 +357,10 @@ relationships
     is instantiated by, Mc Single Create Action
 --
     R996
-    deletes original, 1 Instance Flow
-    is deleted by, 1c Migrate Action
---
-    R997
     applies, 1 Multiple Local Create Action
     is applied by, 1c Migrate Action
+--
+    R997
+    migrates instances in, 1 Instance Flow
+    provides instances to migrate to, 1c Migrate Action
 --

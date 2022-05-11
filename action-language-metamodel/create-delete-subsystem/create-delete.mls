@@ -64,5 +64,5 @@ connectors
     +R993.2 : -/3 r-2|Multiple Local Create Action : +/2 b|Local Facet Instantiation, t|Facet Instantiation Reference
     +R994-1 : l|Single Create Action { r|Single Local Create Action, r|Single Delegated Create Action : L19R+1 }
     -R995 : +/2 b|Single Create Action : +/2 t*|Class.2
-    -R996 : +/2 r|Migrate Action : +/2 b|Multiple Local Create Action
+    -R996.2 : +/1 r|Migrate Action : +/2 b|Multiple Local Create Action
     +R997.2 : +/2 l|Migrate Action : +/2 t|Instance Flow
