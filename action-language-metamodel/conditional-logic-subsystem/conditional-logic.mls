@@ -1,0 +1,38 @@
+diagram class // Conditional Logic Subsystem / Action Metamodel 0.x.x
+notation Starr
+presentation default
+orientation landscape
+color butter
+sheet D
+padding l200 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Action 6,2
+    Sequence Dependency/2 4,1-2
+    Condition Flow 6,5
+    Condition Dependency/2 5,3-4
+    True Result 8-9,6-7
+    False Result 7,6-7
+    Case 5,6-7
+    Decision Action 7-8,8
+    Data Flow 7-8,11
+    Decision Input 6-7,9-10
+    Switch Action 5,8-9
+    Scalar Switch Action/2 3-4,8
+    Subclass Switch Action/2 3-4,9-10
+    Scalar Flow 1,8
+    Generalization 3-4,12
+    Single Instance Flow/2 1,9-10
+connectors
+    -R1050.2 : +/1 l|Action : +/1 b|Action, t|Sequence Dependency : L1 L5
+    +R1051 : +/1 r|Action : +/1 l*|Condition Flow, t|Condition Dependency
+    -R1052 : +/1 r|Case : +/1 l*|Switch Action
+    +R1053-1 : r|Condition Flow { l|True Result, l|False Result, l|Case }
+    +R1054 : -/2 b|Subclass Switch Action : -/2 t*|Single Instance Flow
+    +R1055 : -/2 r|Subclass Switch Action : -/2 l*|Generalization
+    +R1056 : -/1 b|Scalar Switch Action : -/1 t*|Scalar Flow
+    +R1057 : -/2 r|Decision Action : -/2 l*|Data Flow, t|Decision Input
+    +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
+    +R1059.2 : +/1 r|True Result : +/1 t|Decision Action
+    +R1060.2 : -/1 r-2|False Result : +/1 b|Decision Action

@@ -1,0 +1,165 @@
+metadata
+    Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.10
+    Version : 0.1.0
+    /// Creation date : May 12, 2022
+    Modification date : May 13, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Conditional Logic
+class Action <import:Action>
+attributes
+    Action {I}
+    Activity {I}
+    Rnum {I}
+--
+class Case
+attributes
+    Value : Enumerated Value
+    Switch action {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
+--
+class Condition Dependency
+attributes
+    Condition flow {I, R1051}
+    Action {I, R1051}
+    Activity {I, R1051}
+    Domain {I, R1051}
+--
+class Condition Flow
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Data Flow <import:Flow>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class Decision Action
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+    Predicate : Predicate String
+--
+class Decision Input
+attributes
+    Decision action {I, R1057}
+    Flow {I, R1057}
+    Acitivty {I, R1057}
+    Domain {I, R1057}
+--
+class False Result
+attributes
+    Flow {I, R1053}
+    Activity {I, R1053}
+    Domain {I, R1053}
+--
+class Generalization <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Scalar Switch Action
+attributes
+    Action {I, R1053}
+    Activity {I, R1053, R1056}
+    Domain {I, R1053, R1056}
+    Scalar input {I, R1056}
+--
+class Sequence Dependency
+attributes
+    From action {I, R1150}
+    To action {I, R1150}
+    Activity {I, R1150}
+    Domain {I, R1150}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Subclass Switch Action
+attributes
+    Action {I, R1053}
+    Activity {I, R1053, R1054}
+    Domain {I, R1053, R1054, R1055}
+    Instance input {R1054}
+    Generalization {R1055}
+--
+class Switch Action
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class True Result
+attributes
+    Flow {I, R1053}
+    Activity {I, R1053}
+    Domain {I, R1053}
+--
+relationships
+    R1050
+    enables, Mc Action
+    is enabled by, Mc Action
+    1 Sequence Dependency
+--
+    R1051
+    enables, Mc Action
+    is enabled by, Mc Condition Flow
+    1 Condition Dependency
+--
+    R1052
+    selects, M Case
+    is selected by, 1 Switch Action
+--
+    R1053
+    Condition Flow +
+        True Result
+        False Result
+        Case
+--
+    R1054
+    provides superclass instance to, Mc Subclass Switch Action
+    gets superclas instance from, 1 Single Instance Flow
+--
+    R1055
+    determines subclass in, 1 Generalization
+    has subclass determined by, Mc Subclass Switch Action
+--
+    R1056
+    supplies value to, Mc Scalar Switch Action
+    gets value from, 1 Scalar Flow
+--
+    R1057
+    is based on input from, Mc Data Flow
+    provides input to, Mc Decision Action
+    1 Decision Input
+--
+    R1058
+    Switch Action +
+        Subclass Switch Action
+        Scalar Switch Action
+--
+    R1059
+    can be yielded by, 1 Decision Action
+    yields, 1 True Result
+--
+    R1060
+    can be yielded by, 1 Decision Action
+    yields, 1 False Result
+--
