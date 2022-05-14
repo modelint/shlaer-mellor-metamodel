@@ -2,9 +2,9 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.1.0
+    Version : 0.3.0
     /// Creation date : May 12, 2022
-    Modification date : May 13, 2022
+    Modification date : May 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -77,7 +77,8 @@ attributes
     Action {I, R1053}
     Activity {I, R1053, R1056}
     Domain {I, R1053, R1056}
-    Scalar input {I, R1056}
+    Scalar input {R1056}
+    Enumerated type : Type Name
 --
 class Sequence Dependency
 attributes
@@ -97,7 +98,7 @@ attributes
     Action {I, R1053}
     Activity {I, R1053, R1054}
     Domain {I, R1053, R1054, R1055}
-    Instance input {R1054}
+    Superclass instance {R1054c}
     Generalization {R1055}
 --
 class Switch Action
@@ -135,11 +136,11 @@ relationships
 --
     R1054
     provides superclass instance to, Mc Subclass Switch Action
-    gets superclas instance from, 1 Single Instance Flow
+    gets superclass instance from, 1 Single Instance Flow
 --
     R1055
-    determines subclass in, 1 Generalization
-    has subclass determined by, Mc Subclass Switch Action
+    switches on subclasses of, 1 Generalization
+    subclasses are switched in, Mc Subclass Switch Action
 --
     R1056
     supplies value to, Mc Scalar Switch Action
