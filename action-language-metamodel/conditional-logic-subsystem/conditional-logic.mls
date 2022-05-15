@@ -8,17 +8,15 @@ padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Action 3-4,5
-    Sequence Flow 1,5
-    Sequence Dependency/2 2-3,3
-    Condition Flow 6,5
-    Condition Dependency/2 5,4
-    True Result 8-9,6-7
-    False Result 7,6-7
+    Action 6,2-3
+    Sequence Flow 8-9,6-7
+    Control Flow 6,5
+    Control Dependency/2 5,4
+    Result 7,6-7
     Case 5,6-7
-    Decision Action 7-8,8
-    Data Flow 7-8,11
-    Decision Input 6-7,9-10
+    Decision Action 7,8-9
+    Data Flow 7,11-12
+    Decision Input 6,10
     Switch Action 5,8-9
     Scalar Switch Action/2 3-4,8
     Subclass Switch Action/2 3-4,9-10
@@ -26,15 +24,13 @@ nodes
     Generalization 3-4,12
     Single Instance Flow/2 1,9-10
 connectors
-    +R1050.2 : +/1 l|Action : -/1 l|Sequence Flow, r|Sequence Dependency : L4
-    +R1051 : +/1 t*|Action : +/1 b|Condition Flow, r|Condition Dependency
+    +R1051 : +/1 r|Action : +/1 l*|Control Flow, t|Control Dependency
     -R1052 : +/1 r|Case : +/1 l*|Switch Action
-    +R1053-1 : r|Condition Flow { l|True Result, l|False Result, l|Case }
+    +R1053-1 : r|Control Flow { l-1|Sequence Flow, l|Result, l|Case }
     +R1054 : -/2 b|Subclass Switch Action : -/2 t*|Single Instance Flow
     +R1055 : -/2 r|Subclass Switch Action : -/2 l*|Generalization
     +R1056 : -/2 b|Scalar Switch Action : -/2 t*|Scalar Flow
     +R1057 : -/2 r|Decision Action : -/2 l*|Data Flow, t|Decision Input
     +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
-    +R1059.2 : +/1 r|True Result : +/1 t|Decision Action
-    +R1060.2 : -/1 r-2|False Result : +/1 b|Decision Action
-    +R1061 : -/1 b|Action : -/1 t*|Sequence Flow
+    +R1060.2 : -/1 r|Result : -/1 l*|Decision Action
+    +R1061.2 : -/1 t|Action : +/1 l+2|Sequence Flow
