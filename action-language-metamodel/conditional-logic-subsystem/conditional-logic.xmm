@@ -2,7 +2,7 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.4.0
+    Version : 0.5.0
     /// Creation date : May 12, 2022
     Modification date : May 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -87,6 +87,13 @@ attributes
     Activity {I, R1150}
     Domain {I, R1150}
 --
+class Sequence Flow
+attributes
+    Name {I}
+    Action {I, R1061}
+    Activity {I, R1061}
+    Domain {I, R1061}
+--
 class Single Instance Flow <import:Flow>
 attributes
     Flow {I}
@@ -115,8 +122,8 @@ attributes
 --
 relationships
     R1050
-    is executed before, Mc Action
-    is executed after, Mc Action
+    is enabled by, Mc Sequence Flow
+    enables, M Action
     1 Sequence Dependency
 --
     R1051
@@ -163,4 +170,8 @@ relationships
     R1060
     can be yielded by, 1 Decision Action
     yields, 1 False Result
+--
+    R1061
+    is output by, 1 Action
+    outputs, Mc Sequence Flow
 --
