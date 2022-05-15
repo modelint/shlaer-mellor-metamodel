@@ -31,7 +31,7 @@ connectors
     +R1053-1 : r|Condition Flow { l|True Result, l|False Result, l|Case }
     +R1054 : -/2 b|Subclass Switch Action : -/2 t*|Single Instance Flow
     +R1055 : -/2 r|Subclass Switch Action : -/2 l*|Generalization
-    +R1056 : -/1 b|Scalar Switch Action : -/1 t*|Scalar Flow
+    +R1056 : -/2 b|Scalar Switch Action : -/2 t*|Scalar Flow
     +R1057 : -/2 r|Decision Action : -/2 l*|Data Flow, t|Decision Input
     +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
     +R1059.2 : +/1 r|True Result : +/1 t|Decision Action
