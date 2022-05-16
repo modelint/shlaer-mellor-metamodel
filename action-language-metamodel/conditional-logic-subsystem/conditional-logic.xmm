@@ -2,7 +2,7 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.6.0
+    Version : 0.6.2
     /// Creation date : May 12, 2022
     Modification date : May 15, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,19 +17,20 @@ attributes
 --
 class Case
 attributes
-    Value : Enumerated Value
-    Switch action {I, R1152}
-    Activity {I, R1152}
-    Domain {I, R1152}
+    Value : Enumerated Value {I2}
+    Switch action {I2, R1152}
+    Flow {I, R1053}
+    Activity {I, I2, R1053, R1152}
+    Domain {I, I2, R1053, R1152}
 --
 class Control Dependency
 attributes
-    Condition flow {I, R1051}
+    Control flow {I, R1051}
     Action {I, R1051}
     Activity {I, R1051}
     Domain {I, R1051}
 --
-class Control Flow
+class Control Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -37,7 +38,7 @@ attributes
 --
 class Data Flow <import:Flow>
 attributes
-    Action {I}
+    Flow {I}
     Activity {I}
     Domain {I}
 --
@@ -55,17 +56,18 @@ attributes
     Activity {I, R1057}
     Domain {I, R1057}
 --
-class Result
-attributes
-    Decision {I} : Boolean
-    Flow {I, R1053}
-    Activity {I, R1053}
-    Domain {I, R1053}
---
 class Generalization <import:Relationship>
 attributes
     Rnum {I}
     Domain {I}
+--
+class Result
+attributes
+    Decision {I2} : Boolean
+    Decision action {I2, R1060}
+    Flow {I, R1053}
+    Activity {I, I2, R1053, R1060}
+    Domain {I, I2, R1053, R1060}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -83,10 +85,11 @@ attributes
 --
 class Sequence Flow
 attributes
-    Name {I}
-    Action {I, R1061}
-    Activity {I, R1061}
-    Domain {I, R1061}
+    Name {I2}
+    Source action {I2, R1050}
+    Flow {I, R1053}
+    Activity {I, R1053, R1050}
+    Domain {I, R1053, R1050}
 --
 class Single Instance Flow <import:Flow>
 attributes
@@ -109,8 +112,12 @@ attributes
     Domain {I}
 --
 relationships
+    R1050
+    is output by, 1 Action
+    outputs, 1c Sequence Flow
+--
     R1051
-    enables, Mc Action
+    enables, M Action
     is enabled by, Mc Control Flow
     1 Control Dependency
 --
@@ -148,9 +155,5 @@ relationships
 --
     R1060
     is yielded by, 1 Decision Action
-    yields, 1 Result
---
-    R1061
-    is output by, 1 Action
-    outputs, 1c Sequence Flow
+    yields, M Result
 --

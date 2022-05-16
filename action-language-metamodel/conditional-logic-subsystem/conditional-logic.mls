@@ -24,6 +24,7 @@ nodes
     Generalization 3-4,12
     Single Instance Flow/2 1,9-10
 connectors
+    +R1050.2 : -/1 t|Action : +/1 l+2|Sequence Flow
     +R1051 : +/1 r|Action : +/1 l*|Control Flow, t|Control Dependency
     -R1052 : +/1 r|Case : +/1 l*|Switch Action
     +R1053-1 : r|Control Flow { l-1|Sequence Flow, l|Result, l|Case }
@@ -33,4 +34,3 @@ connectors
     +R1057 : -/2 r|Decision Action : -/2 l*|Data Flow, t|Decision Input
     +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
     +R1060.2 : -/1 r|Result : -/1 l*|Decision Action
-    +R1061.2 : -/1 t|Action : +/1 l+2|Sequence Flow
