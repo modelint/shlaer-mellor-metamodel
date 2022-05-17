@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 4.6.0
+    Version : 4.7.0
     /// Creation date : June 27, 2017
-    Modification date : April 23, 2022
+    Modification date : May 17, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -52,13 +52,13 @@ attributes
     Cnum : Class Number {I2, R14}
     Domain {I, I2, R14}
 --
-class Reference <import:Formalization>
+class Classifier Attribute
 attributes
-    Ref {I}
-    From class {I}
-    To class {I}
-    Rnum {I}
-    Domain {I}
+    Superclass {I, I2, R32}
+    Generalization {I, R32}
+    Identifier {I2, R32}
+    Attribute {I2, R32}
+    Domain {I, I2, R32}
 --
 class Derived Attribute
 attributes
@@ -91,6 +91,20 @@ attributes
     Name {I, R25}
     Class {I, R25}
     Domain {I, R25}
+--
+class Reference <import:Formalization>
+attributes
+    Ref {I}
+    From class {I}
+    To class {I}
+    Rnum {I}
+    Domain {I}
+--
+class Superclass <import:Relationship>
+attributes
+    Rnum {I}
+    Class {I}
+    Domain {I}
 --
 class Super Identifier
 attributes
@@ -155,4 +169,9 @@ relationships
     R31
     defines, M Irreducible Identifier
     is defined in, 1 Class
+--
+    R32
+    makes subclass populations distinct in, 1c Superclass
+    subclass populations are distinguised by, 1c Identifier Attribute
+    1 Classifier Attribute
 --

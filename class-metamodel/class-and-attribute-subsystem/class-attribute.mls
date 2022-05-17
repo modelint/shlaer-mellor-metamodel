@@ -4,7 +4,7 @@ presentation default
 orientation landscape
 color blue steel
 sheet D
-padding l300 b400
+padding l300 b300
 frame OS Engineer
 frame_presentation default
 nodes
@@ -15,6 +15,8 @@ nodes
     Non Derived Attribute/2 4-5,7
     Identifier 9,3
     Identifier Attribute 10,6
+    Superclass 12-13,6
+    Classifier Attribute 11,8
     Attribute Reference/2 8,7-8
     Required Referential Identifier/2 10-11,3-4
     Attribute In Derivation/2 5,4-5
@@ -36,3 +38,4 @@ connectors
     +R29 : -/2 b|Class : -/1 t*|Alias
     -R30 : l|Identifier { r|Irreducible Identifier, r|Super Identifier }
     -R31 : -/2 b|Irreducible Identifier : -/2 l|Class
+    -R32 : -/2 t|Identifier Attribute : -/2 b*|Superclass, l|Classifier Attribute

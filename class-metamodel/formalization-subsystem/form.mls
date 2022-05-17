@@ -13,17 +13,22 @@ nodes
     Relationship 2,6
     Formalizing Class Role/2 3,4
     Subclass 4-5,3-4
-    Referring Class 4-5,5-6
-    Association Class 4-5,8-9
+    Referring Class 4-5,9-10
+    Association Class 4-5,11-12
     Reference 10,2
-    Association Reference/2 10-11,7
-    T Reference 7-8,8
-    P Reference 7-8,9
+    Association Reference/2 11,10
+    T Reference 7-8,11
+    P Reference 7-8,12
     Generalization Reference/2 9,3-4
+    Locally Distinct Generalization Reference/2 10,5
+    Globally Distinct Generalization Reference/2 8-9,5
+    Classifier Attribute 8-9,8
+    Classifier Attribute Reference/2 7-8,6-7
+    Subclass Classification Value/2 5-6,6
     Superclass 6-7,3
-    Simple Association Reference/2 9,5-6
-    Association Class Reference/2 9,8-9
-    Perspective 13,7
+    Simple Association Reference/2 9,9-10
+    Association Class Reference/2 9,11-12
+    Perspective 14,10
 connectors
     -R150 : -/1 r|Class : -/2 l*|Relationship, b|Formalizing Class Role
     +R151 : t|Formalizing Class Role { b|Subclass, b|Referring Class, b|Association Class }
@@ -35,5 +40,8 @@ connectors
     +R157 : +/1 t|Referring Class : +/1 b*|Simple Association Reference
     -R158 : -/1 t-2|Association Class : -/1 b*|T Reference
     +R159 : +/1 t+2|Association Class : +/1 b*|P Reference
+    +R160-1 : r|Generalization Reference { l|Globally Distinct Generalization Reference, l|Locally Distinct Generalization Reference }
+    +R161 : -/1 r|Globally Distinct Generalization Reference : -/1 l*|Classifier Attribute, t|Classifier Attribute Reference
+    -R162 : +/2 r|Subclass : +/2 b|Classifier Attribute, b|Subclass Classification Value
     +R170 : -/1 b-2|Generalization Reference : -/1 t*|Superclass
     +R176 : b|Association Reference { t|Association Class Reference, t|Simple Association Reference }
