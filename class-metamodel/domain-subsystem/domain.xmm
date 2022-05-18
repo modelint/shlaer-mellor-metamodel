@@ -77,7 +77,7 @@ attributes
 --
 relationships
     R1
-    begins numbering elements from, 1 Domain Parition
+    begins numbering elements from, 1 Domain Partition
     defines initial element number in, 1 Subsystem
 --
     OR2
@@ -86,7 +86,7 @@ relationships
 --
     R3
     is partitioned by, M Domain Partition
-    partitions, 1 Subsystem
+    partitions, 1 Modeled Domain
 --
     R4
     Domain +
