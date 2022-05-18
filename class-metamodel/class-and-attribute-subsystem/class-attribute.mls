@@ -16,7 +16,9 @@ nodes
     Identifier 9,3
     Identifier Attribute 10,6
     Superclass 12-13,6
-    Classifier Attribute 11,8
+    Classifier Attribute 11,7-8
+    Subclass Classification Value/2 12-13,9
+    Subclass 11,10
     Attribute Reference/2 8,7-8
     Required Referential Identifier/2 10-11,3-4
     Attribute In Derivation/2 5,4-5
@@ -39,3 +41,4 @@ connectors
     -R30 : l|Identifier { r|Irreducible Identifier, r|Super Identifier }
     -R31 : -/2 b|Irreducible Identifier : -/2 l|Class
     -R32 : -/2 t|Identifier Attribute : -/2 b*|Superclass, l|Classifier Attribute
+    +R33 : -/2 l*|Subclass : -/2 r|Classifier Attribute, b|Subclass Classification Value
