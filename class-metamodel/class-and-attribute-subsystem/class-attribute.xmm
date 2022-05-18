@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1a
-    Version : 4.7.1
+    Version : 4.7.2
     /// Creation date : June 27, 2017
-    Modification date : May 17, 2022
+    Modification date : May 18, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -54,6 +54,7 @@ attributes
 --
 class Classifier Attribute
 attributes
+    Type : Type Name
     Superclass {I, I2, R32}
     Generalization {I, R32}
     Identifier {I2, R32}
