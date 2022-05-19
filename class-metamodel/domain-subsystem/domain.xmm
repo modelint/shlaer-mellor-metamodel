@@ -2,18 +2,13 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.5.0
+    Version : 2.6.0
     /// Creation date : May 9, 2011
     Modification date : May 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Domain
-class Bridge
-attributes
-    Client {I, R7}
-    Service {I, R7c}
---
 class Class <import:Class And Attribute>
 attributes
     Cnum {I, R14}
@@ -28,6 +23,11 @@ class Domain
 attributes
     Name : Domain Name {I}
     Alias : Domain Alias {I2}
+--
+class Domain Partition
+attributes
+    Number : Element Number {I, OR2}
+    Domain {I, R3, OR2}
 --
 class Element
 attributes
@@ -54,7 +54,7 @@ attributes
     Name {I, R6}
     Domain {I, R6}
     Service EE {I, R8}
-    Service Domain {I, R8}
+    Service domain {I, R8c}
 --
 class Realized Domain
 attributes
@@ -64,7 +64,7 @@ class Realized External Entity
 attributes
     Name {I, R6}
     Domain {I, R6}
-    Realized domain {R10}
+    Service domain {R10c}
 --
 class Spanning Element
 attributes
@@ -83,11 +83,6 @@ attributes
     Number {I, R16, UR14}
     Domain {I, R16, R13}
     Subsystem {R13}
---
-class Domain Partition
-attributes
-    Number : Element Number {I, OR2}
-    Domain {I, R3, OR2}
 --
 class Relationship <import:Relationship>
 attributes
@@ -116,11 +111,6 @@ relationships
     provides services defined outside, 1 Modeled Domain
     represents externally defined services as, Mc External Entity
 --
-    R7
-    satisfies assumptions of, Mc Domain
-    makes assumptions on, Mc Domain
-    1 Bridge
---
     R8
     service is defined by, 1 External Entity
     provides service represented by, Mc Modeled External Entity
@@ -131,8 +121,8 @@ relationships
         Realized External Entity
 --
     R10
-    is realized in, 1 Realized Domain
-    realizes, Mc Realized External Entity
+    service is defined by, 1 Realized Domain
+    provides service represented by, Mc Realized External Entity
 --
     R13
     manages, Mc Subsystem Element
