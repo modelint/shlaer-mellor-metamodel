@@ -2,7 +2,7 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.6.1
+    Version : 2.6.2
     /// Creation date : May 9, 2011
     Modification date : May 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -53,8 +53,7 @@ class Modeled External Entity
 attributes
     Name {I, R6}
     Domain {I, R6}
-    Service EE {R8}
-    Service domain {R8c}
+    Proxy domain {R8c}
 --
 class Realized Domain
 attributes
@@ -64,7 +63,7 @@ class Realized External Entity
 attributes
     Name {I, R6}
     Domain {I, R6}
-    Service domain {R10c}
+    Proxy domain {R10c}
 --
 class Spanning Element
 attributes
