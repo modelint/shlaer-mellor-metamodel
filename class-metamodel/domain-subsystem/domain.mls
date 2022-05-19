@@ -26,12 +26,12 @@ nodes
 connectors
     -R1 : +/2 b|Domain Partition : +/2 t*|Subsystem
     +OR2.3 : -/2 r|Domain Partition : -/2 t|Domain Partition : L10R-2 L7R-1
-    -R3 : +/2 r|Modeled Domain : +/2 l*|Domain Partition
+    -R3 : +/2 r|Modeled Domain : +/1 l*|Domain Partition
     +R4 : b|Domain { t|Modeled Domain, t|Realized Domain }
-    -R5 : +/3 l|Modeled Domain : +/3 r*|External Entity
-    -R8 : -/2 r-1|Modeled External Entity : +/2 b|External Entity
+    -R5 : +/1 l|Modeled Domain : +/1 r*|External Entity
+    -R8.2 : -/1 r-1|Modeled External Entity : -/1 b-2|Modeled Domain
     +R9 : l|External Entity { r|Modeled External Entity, r|Realized External Entity }
-    +R10 : -/2 t|Realized External Entity : -/1 l|Realized Domain
+    -R10 : -/1 t|Realized External Entity : +/1 l|Realized Domain
     +R13.2 : +/1 b|Subsystem : +/1 r|Subsystem Element
     +R14 : b|Subsystem Element { t|Relationship, t|Class }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
