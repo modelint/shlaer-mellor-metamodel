@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.4.1
+    Version : 2.5.0
     /// Creation date : May 9, 2011
-    Modification date : May 18, 2022
+    Modification date : May 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -34,6 +34,12 @@ attributes
     Number {I, UR16}
     Domain {I, R15}
 --
+class External Entity
+attributes
+    Name {I}
+    Alias {I2}
+    Domain {I, I2, R5}
+--
 class Lineage <import:Relationship>
 attributes
     Lnum {I2, R17}
@@ -43,9 +49,22 @@ class Modeled Domain
 attributes
     Name {I, R4}
 --
+class Modeled External Entity
+attributes
+    Name {I, R6}
+    Domain {I, R6}
+    Service EE {I, R8}
+    Service Domain {I, R8}
+--
 class Realized Domain
 attributes
     Name {I, R4}
+--
+class Realized External Entity
+attributes
+    Name {I, R6}
+    Domain {I, R6}
+    Realized domain {R10}
 --
 class Spanning Element
 attributes
@@ -93,10 +112,27 @@ relationships
         Modeled Domain
         Realized Domain
 --
+    R5
+    provides services defined outside, 1 Modeled Domain
+    represents externally defined services as, Mc External Entity
+--
     R7
     satisfies assumptions of, Mc Domain
     makes assumptions on, Mc Domain
     1 Bridge
+--
+    R8
+    service is defined by, 1 External Entity
+    provides service represented by, Mc Modeled External Entity
+--
+    R9
+    External Entity +
+        Modeled External Entity
+        Realized External Entity
+--
+    R10
+    is realized in, 1 Realized Domain
+    realizes, Mc Realized External Entity
 --
     R13
     manages, Mc Subsystem Element
