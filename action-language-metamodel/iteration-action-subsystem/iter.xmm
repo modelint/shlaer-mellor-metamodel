@@ -1,0 +1,76 @@
+metadata
+    Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.11
+    Version : 0.1.0
+    /// Creation date : May 20, 2022
+    Modification date : May 20, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Iteration Action
+class Action <import:Action>
+attributes
+    Action {I}
+    Activity {I}
+    Domain {I}
+--
+class Instance Order
+attributes
+    Iteration action {I, R1026}
+--
+class Iterated Action
+attributes
+    Action {I,R1028}
+    Activity {I,R1028}
+    Domain {I, R1028}
+    Iteration action {R1028}
+--
+class Iteration Action
+attributes
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Iteration Instance Input
+attributes
+    Iteration action {I, R1025}
+    Activity {I, R1025}
+    Domain {I, R1025}
+    Iteration instance set {R1025}
+--
+class Multiple Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Ordering Relationship
+attributes
+    Iteration action {I, R1027}
+    Rnum {R1028}
+--
+class Ordering Selection
+attributes
+    Iteration action {I, R1027}
+--
+relationships
+    R1025
+    instances are iterated on by, Mc Iteration Action
+    iterates on, 1 Multiple Instance Flow
+    1 Iteration Instance Input
+--
+    R1026
+    applies, 1 Ordering Rule
+    is applied by, 1 Iteration Action
+--
+    R1027
+    Instance Order +
+        Ordering Relationship
+        Ordering Selection
+--
+    R1028
+    repeatedly executes, M Action
+    is repeatedly executed by, 1c Iteration Action
+    1 Iterated Action
+--

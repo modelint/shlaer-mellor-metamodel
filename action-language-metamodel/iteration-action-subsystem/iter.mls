@@ -1,0 +1,23 @@
+diagram class // Iternation Action Subsystem / Action Metamodel
+notation Starr
+presentation default
+orientation landscape
+color pumpkin
+sheet C
+padding l200 b300
+frame OS Engineer
+frame_presentation default
+nodes
+    Multiple Instance Flow/2 5,1
+    Iteration Action 5,3-4
+    Instance Order 5,6-7
+    Action 2,3-4
+    Iterated Action 3-4,4-5
+    Iteration Instance Input/2 4,2-3
+    Ordering Relationship/2 3-4,6
+    Ordering Selection/2 3-4,7
+connectors
+    -R1025 : +/1 r|Multiple Instance Flow : +/2 l*|Iteration Action, t|Iteration Instance Input
+    +R1026 : +/1 r|Iteration Action : +/1 l*|Instance Order
+    +R1027-1 : b|Instance Order { t|Ordering Relationship, t|Ordering Selection }
+    -R1028 : +/2 b|Iteration Action : +/2 t*|Action, l|Iterated Action
