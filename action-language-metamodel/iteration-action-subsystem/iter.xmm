@@ -2,7 +2,7 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.4.3
+    Version : 0.5.0
     /// Creation date : May 20, 2022
     Modification date : May 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -19,6 +19,12 @@ class Asymmetric Perspective <import:Relationship>
 attributes
     Side {I}
     Rnum {I}
+    Domain {I}
+--
+class Attribute <import:Class Attribute>
+attributes
+    Name {I}
+    Class {I}
     Domain {I}
 --
 class Iterated Action
@@ -56,9 +62,17 @@ class Reflexive Sequence
 attributes
     Iteration action {I, R1027}
     Activity {I, R1027}
-    Domain {I, R1027, R1029}
-    Reflexive perspective {R1029c}
-    Side {R1029}
+    Domain {I, R1027, R1030}
+    Reflexive perspective {R1030c}
+    Side {R1030}
+--
+class Ordering Attribute
+attributes
+    Name {I, R1031}
+    Class {I, R1031c}
+    Iteration action {I, R1031}
+    Activity {I, R1031}
+    Domain {I, R1031}
 --
 class Ordinal Sequence
 attributes
@@ -68,18 +82,11 @@ attributes
     Oridinal relationship {R1029}
     Ascending : Boolean = True
 --
-class Selection Criteria <import:Select Action>
-attributes
-    Select action {I}
-    Activity {I}
-    Domain {I}
---
 class Selection Sequence
 attributes
     Iteration action {I, R1027}
     Activity {I, R1027}
-    Domain {I, R1027, R1030}
-    Selection {R1030}
+    Domain {I, R1027}
 --
 class Sequence
 attributes
@@ -117,6 +124,7 @@ relationships
     is defined by, 1 Asymmetric Perspective
 --
     R1031
-    defines, Mc Selection Sequence
-    is defined by, 1 Selection Criteria
+    orders input for, Mc Selection Sequence
+    has input ordered by, M Attribute
+    1 Ordering Attribute
 --
