@@ -12,7 +12,7 @@ nodes
     Iteration Action 5,3-4
     Action 2,3-4
     Iterated Action 3-4,4-5
-    Iteration Instance Input/2 4,2-3
+    Iteration Input/2 4,2-3
     Sequence 5,6-7
     Ordinal Sequence/2 3-4,8
     Ordinal Relationship/2 1,8
@@ -21,7 +21,7 @@ nodes
     Selection Sequence/2 3-4,6
     Selection Criteria/2 1,6
 connectors
-    -R1025 : +/1 r|Non Scalar Flow : +/2 l*|Iteration Action, t|Iteration Instance Input
+    -R1025 : +/1 r|Non Scalar Flow : +/2 l*|Iteration Action, t|Iteration Input
     +R1026 : +/1 r|Iteration Action : +/1 l*|Sequence
     +R1027-1 : b|Sequence { t|Ordinal Sequence, t|Reflexive Sequence, t|Selection Sequence }
     -R1028 : +/2 b|Iteration Action : +/2 t*|Action, l|Iterated Action

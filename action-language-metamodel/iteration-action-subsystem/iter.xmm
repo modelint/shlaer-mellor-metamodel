@@ -2,7 +2,7 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : May 20, 2022
     Modification date : May 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -11,7 +11,7 @@ metadata
 subsystem Iteration Action
 class Action <import:Action>
 attributes
-    Action {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
@@ -33,12 +33,12 @@ attributes
     Activity {I, R901}
     Domain {I, R901}
 --
-class Iteration Instance Input
+class Iteration Input
 attributes
     Iteration action {I, R1025}
     Activity {I, R1025}
     Domain {I, R1025}
-    Iteration instance set {R1025}
+    Input flow {R1025}
 --
 class Non Scalar Flow <import:Flow>
 attributes
@@ -86,9 +86,9 @@ attributes
 --
 relationships
     R1025
-    instances are iterated on by, Mc Iteration Action
+    elements are iterated on by, Mc Iteration Action
     iterates on, 1 Non Scalar Flow
-    1 Iteration Instance Input
+    1 Iteration Input
 --
     R1026
     applies, 1 Sequence
