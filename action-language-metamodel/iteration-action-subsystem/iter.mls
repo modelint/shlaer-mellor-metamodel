@@ -17,7 +17,7 @@ nodes
     Ordinal Sequence/2 3-4,8
     Ordinal Relationship/2 1,8
     Reflexive Sequence/2 3-4,7
-    Binary Association/2 1,7
+    Asymmetric Perspective/2 1,7
     Selection Sequence/2 3-4,6
     Selection Criteria/2 1,6
 connectors
@@ -26,5 +26,5 @@ connectors
     +R1027-1 : b|Sequence { t|Ordinal Sequence, t|Reflexive Sequence, t|Selection Sequence }
     -R1028 : +/2 b|Iteration Action : +/2 t*|Action, l|Iterated Action
     -R1029 : +/1 b|Ordinal Sequence : +/1 t*|Ordinal Relationship
-    -R1030 : +/1 b|Reflexive Sequence : +/1 t*|Binary Association
+    -R1030 : +/1 b|Reflexive Sequence : +/1 t*|Asymmetric Perspective
     -R1031 : +/1 b|Selection Sequence : +/1 t*|Selection Criteria
