@@ -2,7 +2,7 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.4.1
+    Version : 0.4.3
     /// Creation date : May 20, 2022
     Modification date : May 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,6 +17,7 @@ attributes
 --
 class Asymmetric Perspective <import:Relationship>
 attributes
+    Side {I}
     Rnum {I}
     Domain {I}
 --
@@ -57,6 +58,7 @@ attributes
     Activity {I, R1027}
     Domain {I, R1027, R1029}
     Reflexive perspective {R1029c}
+    Side {R1029}
 --
 class Ordinal Sequence
 attributes
@@ -64,7 +66,7 @@ attributes
     Activity {I, R1027}
     Domain {I, R1027, R1029}
     Oridinal relationship {R1029}
-    Direction : Phrase Name
+    Ascending : Boolean = True
 --
 class Selection Criteria <import:Select Action>
 attributes
