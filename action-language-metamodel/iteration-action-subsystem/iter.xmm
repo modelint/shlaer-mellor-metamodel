@@ -2,7 +2,7 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : May 20, 2022
     Modification date : May 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -15,9 +15,10 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Instance Order
+class Binary Association <import:Relationship>
 attributes
-    Iteration action {I, R1026}
+    Rnum {I}
+    Domain {I}
 --
 class Iterated Action
 attributes
@@ -39,38 +40,80 @@ attributes
     Domain {I, R1025}
     Iteration instance set {R1025}
 --
-class Multiple Instance Flow <import:Flow>
+class Non Scalar Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
     Domain {I}
 --
-class Ordering Relationship
+class Ordinal Relationship <import:Relationship>
 attributes
-    Iteration action {I, R1027}
-    Rnum {R1028}
+    Rnum {I}
+    Domain {I}
 --
-class Ordering Selection
+class Reflexive Sequence
 attributes
     Iteration action {I, R1027}
+    Activity {I, R1027}
+    Domain {I, R1027, R1029}
+    Reflexive association {R1029c}
+--
+class Ordinal Sequence
+attributes
+    Iteration action {I, R1027}
+    Activity {I, R1027}
+    Domain {I, R1027, R1029}
+    Oridinal relationship {R1029}
+--
+class Selection Criteria <import:Select Action>
+attributes
+    Select action {I}
+    Activity {I}
+    Domain {I}
+--
+class Selection Sequence
+attributes
+    Iteration action {I, R1027}
+    Activity {I, R1027}
+    Domain {I, R1027, R1030}
+    Selection {R1030}
+--
+class Sequence
+attributes
+    Iteration action {I, R1026}
+    Activity {I, R1026}
+    Domain {I, R1026}
 --
 relationships
     R1025
     instances are iterated on by, Mc Iteration Action
-    iterates on, 1 Multiple Instance Flow
+    iterates on, 1 Non Scalar Flow
     1 Iteration Instance Input
 --
     R1026
-    applies, 1 Ordering Rule
+    applies, 1 Sequence
     is applied by, 1 Iteration Action
 --
     R1027
-    Instance Order +
-        Ordering Relationship
-        Ordering Selection
+    Sequence +
+        Reflexive Sequence
+        Ordinal Sequence
+        Selection Sequence
 --
     R1028
     repeatedly executes, M Action
     is repeatedly executed by, 1c Iteration Action
     1 Iterated Action
+--
+    R1029
+    defines, Mc Ordinal Sequence
+    is defined by, 1 Ordinal Relationship
+--
+    R1030
+    defines, Mc Reflexive Sequence
+    is defined by, 1 Binary Association
+--
+    R1031
+    defines, Mc Selection Sequence
+    is defined by, 1 Selection Criteria
 --

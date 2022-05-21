@@ -2,22 +2,29 @@ diagram class // Iternation Action Subsystem / Action Metamodel
 notation Starr
 presentation default
 orientation landscape
-color pumpkin
+color blue
 sheet C
-padding l200 b300
+padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Multiple Instance Flow/2 5,1
+    Non Scalar Flow/2 5,1
     Iteration Action 5,3-4
-    Instance Order 5,6-7
     Action 2,3-4
     Iterated Action 3-4,4-5
     Iteration Instance Input/2 4,2-3
-    Ordering Relationship/2 3-4,6
-    Ordering Selection/2 3-4,7
+    Sequence 5,6-7
+    Ordinal Sequence/2 3-4,8
+    Ordinal Relationship/2 1,8
+    Reflexive Sequence/2 3-4,7
+    Binary Association/2 1,7
+    Selection Sequence/2 3-4,6
+    Selection Criteria/2 1,6
 connectors
-    -R1025 : +/1 r|Multiple Instance Flow : +/2 l*|Iteration Action, t|Iteration Instance Input
-    +R1026 : +/1 r|Iteration Action : +/1 l*|Instance Order
-    +R1027-1 : b|Instance Order { t|Ordering Relationship, t|Ordering Selection }
+    -R1025 : +/1 r|Non Scalar Flow : +/2 l*|Iteration Action, t|Iteration Instance Input
+    +R1026 : +/1 r|Iteration Action : +/1 l*|Sequence
+    +R1027-1 : b|Sequence { t|Ordinal Sequence, t|Reflexive Sequence, t|Selection Sequence }
     -R1028 : +/2 b|Iteration Action : +/2 t*|Action, l|Iterated Action
+    -R1029 : +/1 b|Ordinal Sequence : +/1 t*|Ordinal Relationship
+    -R1030 : +/1 b|Reflexive Sequence : +/1 t*|Binary Association
+    -R1031 : +/1 b|Selection Sequence : +/1 t*|Selection Criteria
