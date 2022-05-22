@@ -10,14 +10,14 @@ frame_presentation default
 nodes
     Class 1,9
     Constrained Loop 1,6
-    Domain 9,5-6
+    Domain 7-8,5-6
     Element 4,6-7
     Lineage 1,4-5
     Modeled Domain 6,6-7
     Modeled External Entity/2 5,2-3
     Realized External Entity/2 6-7,2-3
     External Entity 6,4
-    Realized Domain 7-8,4-5
+    Realized Domain 6,4-5
     Spanning Element 2-3,5
     Subsystem 4,9
     Subsystem Element 2-3,8
@@ -28,11 +28,7 @@ connectors
     +OR2.3 : -/2 r|Domain Partition : -/2 t|Domain Partition : L10R-2 L7R-1
     -R3 : +/2 r|Modeled Domain : +/1 l*|Domain Partition
     +R4 : b|Domain { t|Modeled Domain, t|Realized Domain }
-    -R5 : +/1 l|Modeled Domain : +/1 r*|External Entity
-    -R8.2 : -/1 r-1|Modeled External Entity : -/1 b-2|Modeled Domain
-    +R9 : l|External Entity { r|Modeled External Entity, r|Realized External Entity }
-    -R10 : -/1 t|Realized External Entity : +/1 l|Realized Domain
-    +R13.2 : +/1 b|Subsystem : +/1 r|Subsystem Element
+    +R13.2 : +/1 b|Subsystem : -/1 r|Subsystem Element
     +R14 : b|Subsystem Element { t|Relationship, t|Class }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
     +R16 : b|Element { t|Spanning Element, t|Subsystem Element }
