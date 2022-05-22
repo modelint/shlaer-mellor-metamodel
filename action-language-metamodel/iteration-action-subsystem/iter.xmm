@@ -2,7 +2,7 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.6.1
+    Version : 0.7.0
     /// Creation date : May 20, 2022
     Modification date : May 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -58,16 +58,6 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Ordering Attribute
-attributes
-    Sorting order : Ordinal {I2, OR1032}
-    Name {I, R1031, OR1032}
-    Class {I, I2, R1031c, OR1032}
-    Iteration action {I, I2, R1031, OR1032}
-    Activity {I, I2, R1031, OR1032}
-    Domain {I, I2, R1031, OR1032}
-    Ascending : Boolean
---
 class Ordinal Sequence
 attributes
     Iteration action {I, R1027}
@@ -95,6 +85,16 @@ attributes
     Iteration action {I, R1026}
     Activity {I, R1026}
     Domain {I, R1026}
+--
+class Sorting Attribute
+attributes
+    Sort order : Ordinal {I2, OR1032}
+    Name {I, R1031}
+    Class {I, I2, R1031c, OR1032}
+    Iteration action {I, I2, R1031, OR1032}
+    Activity {I, I2, R1031, OR1032}
+    Domain {I, I2, R1031, OR1032}
+    Ascending : Boolean
 --
 relationships
     R1025
@@ -126,11 +126,11 @@ relationships
     is defined by, 1 Asymmetric Perspective
 --
     R1031
-    orders input for, Mc Selection Sequence
-    has input ordered by, Mc Attribute
-    1 Ordering Attribute
+    sorts input for, Mc Selection Sequence
+    has input sorted by, Mc Attribute
+    1 Sorting Attribute
 --
     OR1032
-    sorts earlier, 1 Ordering Attribute
-    sorts later, 1 Ordering Attribute
+    sorts before, 1 Sorting Attribute
+    sorts after, 1 Sorting Attribute
 --
