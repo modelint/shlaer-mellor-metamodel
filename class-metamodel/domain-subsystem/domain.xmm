@@ -2,7 +2,7 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.domain.td.2
-    Version : 2.6.2
+    Version : 2.6.3
     /// Creation date : May 9, 2011
     Modification date : May 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -111,8 +111,8 @@ relationships
     declares, Mc External Entity
 --
     R8
-    is a proxy for, Mc Modeled Domain
-    is declared as, 1 External Entity
+    is a proxy for, 1 Modeled Domain
+    is declared as, Mc External Entity
 --
     R9
     External Entity +
