@@ -42,11 +42,7 @@ attributes
 class External Entity
 attributes
     Name : External Entity Name {I}
-    Modeled domain {I, R53}
---
-class Modeled Domain <import:Domain>
-attributes
-    Domain {I}
+    Domain {I, R53}
 --
 class Service Domain
 attributes
@@ -73,8 +69,8 @@ relationships
     1 Bridge
 --
     R53
-    is defined in, 1 Modeled Domain
-    defines, Mc External Entity
+    is interface on, 1 Domain
+    interfaces via, Mc External Entity
 --
     R54
     External Entity +
@@ -92,5 +88,5 @@ relationships
     R57
     requests service through, 1 Client Facing Entity
     services requests of, M Service Facing Entity
-    1 Channe
+    1 Channel
 --

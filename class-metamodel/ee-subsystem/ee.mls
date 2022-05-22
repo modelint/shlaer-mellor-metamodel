@@ -8,7 +8,7 @@ padding l150 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Domain 4-5,1-2
+    Domain 2,3-4
     Domain Role 4-5,3-4
     Client Domain 6,5
     Service Domain 3,5
@@ -17,12 +17,11 @@ nodes
     Client Facing Entity/2 3,7
     Channel 4-5,8
     External Entity 4-5,10
-    Modeled Domain 2,10
 connectors
-    -R50 : +/1 r|Domain : +/2 l*|Domain Role
+    -R50 : +/1 t*|Domain : +/2 b|Domain Role
     +R51 : r|Domain Role { l|Client Domain, l|Service Domain }
     -R52 : +/2 b|Client Domain : +/2 t*|Service Domain, l|Bridge
-    -R53 : +/1 b|External Entity : +/2 t*|Modeled Domain
+    -R53 : +/1 b|External Entity : +/1 r|Domain
     +R54 : l|External Entity { r|Client Facing Entity, r|Service Facing Entity : L9 }
     -R55 : +/1 r|Client Domain : +/1 l*|Service Facing Entity
     +R56 : -/1 r|Service Domain : -/1 l*|Client Facing Entity
