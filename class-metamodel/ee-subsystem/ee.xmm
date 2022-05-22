@@ -1,0 +1,96 @@
+metadata
+    Title : External Entity Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.ee.td.7
+    Version : 0.1.0
+    /// Creation date : May 19, 2022
+    Modification date : May 22, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem External Entity
+class Bridge
+attributes
+    Client domain {I,R52}
+    Service domain {I,R52}
+--
+class Channel
+attributes
+    Client facing entity {I, R57}
+    Client domain {I, R57}
+    Service facing entity {I, R57}
+    Service domain {I, R57c}
+--
+class Client Domain
+attributes
+    Domain {I, R51}
+--
+class Client Facing Entity
+attributes
+    Name {I, R54}
+    Domain {I, R54}
+--
+class Domain Role
+attributes
+    Domain {I, R50}
+    Role : Client Service {I}
+--
+class Domain <import:Domain>
+attributes
+    Domain {I}
+--
+class External Entity
+attributes
+    Name : External Entity Name {I}
+    Modeled domain {I, R53}
+--
+class Modeled Domain <import:Domain>
+attributes
+    Domain {I}
+--
+class Service Domain
+attributes
+    Domain {I, R51}
+--
+class Service Facing Entity
+attributes
+    Name {I, R54}
+    Domain {I, R54}
+--
+relationships
+    R50
+    plays, Mc Domain Role
+    is played by, 1 Domain
+--
+    R51
+    Domain Role +
+        Service Domain
+        Client Domain
+--
+    R52
+    satisfies requirements of, M Client
+    has requirements satisfied by, Mc Service
+    1 Bridge
+--
+    R53
+    is defined in, 1 Modeled Domain
+    defines, Mc External Entity
+--
+    R54
+    External Entity +
+        Service Facing Entity
+        Client Facing Entity
+--
+    R55
+    is defined in, 1 Client Domain
+    defines, Mc Service Facing Entity
+--
+    R56
+    is defined in, 1 Service Domain
+    defines, Mc Client Facing Entity
+--
+    R57
+    requests service through, 1 Client Facing Entity
+    services requests of, M Service Facing Entity
+    1 Channe
+--
