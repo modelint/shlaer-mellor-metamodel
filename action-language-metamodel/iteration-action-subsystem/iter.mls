@@ -8,7 +8,7 @@ padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Non Scalar Flow/2 5,1
+    Instance Flow/2 5,1
     Iteration Action 5,3-4
     Action 2,3-4
     Iterated Action 3-4,4-5
@@ -22,10 +22,11 @@ nodes
     Attribute 1,8
     Ordering Attribute/2 2,9
 connectors
-    -R1025 : +/1 r|Non Scalar Flow : +/2 l*|Iteration Action, t|Iteration Input
-    +R1026 : +/1 r|Iteration Action : +/1 l*|Sequence
+    -R1025 : +/2 r|Instance Flow : +/2 l*|Iteration Action, t|Iteration Input
+    -R1026 : +/2 r|Iteration Action : +/2 l*|Sequence
     +R1027-1 : b|Sequence { t|Ordinal Sequence, t|Reflexive Sequence, t|Selection Sequence }
     -R1028 : +/2 b|Iteration Action : +/2 t*|Action, l|Iterated Action
     -R1029 : +/1 b|Ordinal Sequence : +/1 t*|Ordinal Relationship
     -R1030 : +/1 b|Reflexive Sequence : +/1 t*|Asymmetric Perspective
     -R1031 : +/2 b|Selection Sequence : +/2 t*|Attribute, l|Ordering Attribute
+    +OR1032.2 : -/1 t+2|Ordering Attribute : -/1 r+2|Ordering Attribute : L3R-1 L10R-2

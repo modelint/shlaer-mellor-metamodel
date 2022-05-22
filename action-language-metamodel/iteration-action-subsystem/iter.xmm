@@ -2,9 +2,9 @@ metadata
     Title : Iteration Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.5.0
+    Version : 0.6.1
     /// Creation date : May 20, 2022
-    Modification date : May 21, 2022
+    Modification date : May 22, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -45,9 +45,9 @@ attributes
     Iteration action {I, R1025}
     Activity {I, R1025}
     Domain {I, R1025}
-    Input flow {R1025}
+    Instance flow {R1025}
 --
-class Non Scalar Flow <import:Flow>
+class Instance Flow <import:Flow>
 attributes
     Flow {I}
     Activity {I}
@@ -58,21 +58,15 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Reflexive Sequence
-attributes
-    Iteration action {I, R1027}
-    Activity {I, R1027}
-    Domain {I, R1027, R1030}
-    Reflexive perspective {R1030c}
-    Side {R1030}
---
 class Ordering Attribute
 attributes
-    Name {I, R1031}
-    Class {I, R1031c}
-    Iteration action {I, R1031}
-    Activity {I, R1031}
-    Domain {I, R1031}
+    Sorting order : Ordinal {I2, OR1032}
+    Name {I, R1031, OR1032}
+    Class {I, I2, R1031c, OR1032}
+    Iteration action {I, I2, R1031, OR1032}
+    Activity {I, I2, R1031, OR1032}
+    Domain {I, I2, R1031, OR1032}
+    Ascending : Boolean
 --
 class Ordinal Sequence
 attributes
@@ -80,7 +74,15 @@ attributes
     Activity {I, R1027}
     Domain {I, R1027, R1029}
     Oridinal relationship {R1029}
-    Ascending : Boolean = True
+    Ascending : Boolean
+--
+class Reflexive Sequence
+attributes
+    Iteration action {I, R1027}
+    Activity {I, R1027}
+    Domain {I, R1027, R1030}
+    Reflexive perspective {R1030c}
+    Side {R1030}
 --
 class Selection Sequence
 attributes
@@ -96,13 +98,13 @@ attributes
 --
 relationships
     R1025
-    elements are iterated on by, Mc Iteration Action
-    iterates on, 1 Non Scalar Flow
+    is processed sequentially by, Mc Iteration Action
+    sequentially processes, 1 Instance Flow
     1 Iteration Input
 --
     R1026
-    applies, 1 Sequence
-    is applied by, 1 Iteration Action
+    executes actions in, 1 Sequence
+    defines execution order for, 1 Iteration Action
 --
     R1027
     Sequence +
@@ -125,6 +127,10 @@ relationships
 --
     R1031
     orders input for, Mc Selection Sequence
-    has input ordered by, M Attribute
+    has input ordered by, Mc Attribute
     1 Ordering Attribute
+--
+    OR1032
+    sorts earlier, 1 Ordering Attribute
+    sorts later, 1 Ordering Attribute
 --
