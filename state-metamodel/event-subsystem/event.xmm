@@ -9,7 +9,7 @@ metadata
     Copyright notice > MIT
     Organization logo > mint
 subsystem Event
-class Class <import:Class Attribute>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -36,20 +36,20 @@ attributes
 class Non Delegated Event
 attributes
     Name {I, R560}
-    State model {I, R560}
+    State model {I, R560, UR554}
     Domain {I, R560}
 --
 class Effective Event
 attributes
-    Name {I, UR568}
+    Name {I}
     State model {I, UR568}
-    Domain {I, UR568}
+    Domain {I}
 --
 class Event
 attributes
-    Name {I, UR560}
+    Name {I}
     Subsystem element {I, UR560}
-    Domain {I, UR560}
+    Domain {I}
 --
 class Event Parameter
 attributes
@@ -63,7 +63,7 @@ class Event Specification
 attributes
     Name : Event Name {I}
     Subsystem element {I, UR550}
-    Domain {I, R550}
+    Domain {I}
 --
 class Generalization <import:Relationship>
 attributes
