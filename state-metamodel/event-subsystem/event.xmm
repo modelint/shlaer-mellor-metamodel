@@ -14,12 +14,6 @@ attributes
     Name {I}
     Domain {I}
 --
-class Creation Event <import:State>
-attributes
-    Name {I, R567}
-    Class {I, R567}
-    Domain {I, R567}
---
 class Delegated Event
 attributes
     Name {I, R560}
@@ -33,17 +27,11 @@ attributes
     Domain {I, R569}
     Generalization {I, R569c}
 --
-class Non Delegated Event
+class Effective Event
 attributes
     Name {I, R560}
     State model {I, R560, UR554}
     Domain {I, R560}
---
-class Effective Event
-attributes
-    Name {I}
-    State model {I, UR568}
-    Domain {I}
 --
 class Event
 attributes
@@ -78,9 +66,9 @@ attributes
 --
 class Forwarded Effective Event
 attributes
-    Name {I, R554, R552, R568}
-    Class {I, R554, R552, R568}
-    Domain {I, R554, R552, R568}
+    Name {I, R554, R552}
+    Class {I, R554, R552}
+    Domain {I, R554, R552}
 --
 class Forwarded Event
 attributes
@@ -95,12 +83,6 @@ attributes
     Name {I, R557, R554}
     State model {I, R557, R554}
     Domain {I, R557, R554}
---
-class Monomorphic Effective Event
-attributes
-    Name {I, R567, R568}
-    State model {I, R567, R568}
-    Domain {I, R567, R568}
 --
 class Monomorphic Event Specification
 attributes
@@ -152,7 +134,7 @@ relationships
     1 Forwarded Event
 --
     R554
-    Non Delegated Event +
+    Effective Event +
         Monomorphic Event
         Forwarded Effective Event
 --
@@ -166,7 +148,7 @@ relationships
 --
     R560
     Event +
-        Non Delegated Event
+        Effective Event
         Delegated Event
 --
     R561
@@ -181,16 +163,6 @@ relationships
     R565
     defines, Mc Monomorphic Event Specification
     is defined on, 1 State Model
---
-    R567
-    Monomorphic Event +
-        Monomorphic Effective Event
-        Creation Event
---
-    R568
-    Effective Event +
-        Monomorphic Effective Event
-        Forwarded Effective Event
 --
     R569
     forwards, Mc Delegated Event
