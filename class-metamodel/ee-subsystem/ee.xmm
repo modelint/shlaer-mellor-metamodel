@@ -2,7 +2,7 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.4.0
+    Version : 0.4.1
     /// Creation date : May 19, 2022
     Modification date : May 26, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -16,9 +16,9 @@ attributes
 --
 class EE Counterpart Relationship
 attributes
-    Client facing entity {I, R57}
+    CFE {I, R57}
     Client domain {I, R57, R62}
-    Service facing entity {I, R57}
+    SFE {I, R57}
     Service domain {I, R57, R62}
 --
 class Client Domain, CD
@@ -143,6 +143,6 @@ relationships
     is coundit for, M Wire
 --
     R62
-    mediates at runtime, 1 Bridge
-    is mediated at runtime by, Mc EE Counterpart Relationship
+    mediates, 1 Bridge
+    is mediated by, Mc EE Counterpart Relationship
 --
