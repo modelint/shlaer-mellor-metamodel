@@ -4,7 +4,7 @@ presentation default
 orientation landscape
 color teal
 sheet C
-padding l150 b350
+padding l100 b350
 frame OS Engineer
 frame_presentation default
 nodes
@@ -13,24 +13,25 @@ nodes
     Client Domain 6,3
     Service Domain 3,3
     Bridge 4-5,4
-    Service Facing Entity/2 6,5
-    Client Facing Entity/2 3,5
-    Channel 4-5,6
-    External Entity 4-5,8
-    External Entity Operation/2 7,8
-    Egress Operation 8-9,9-10
-    Ingress Operation 6,9-10
-    Wire 7,10-11
+    Service Facing Entity/2 6,8
+    Client Facing Entity/2 3,8
+    EE Counterpart Relationship/2 4-5,6-7
+    External Entity 4-5,10
+    External Entity Operation/2 7,10
+    Egress Operation 8-9,11-12
+    Ingress Operation 6,11-12
+    Wire 7,12-13
 connectors
     -R50 : +/1 t*|Domain : +/2 b|Domain Role
     +R51 : r|Domain Role { l|Client Domain, l|Service Domain }
     -R52 : +/2 b|Client Domain : +/2 t*|Service Domain, l|Bridge
     -R53 : +/2 b|External Entity : +/2 r|Domain
-    +R54 : l|External Entity { r|Client Facing Entity, r|Service Facing Entity : L7 }
+    +R54 : l|External Entity { r|Client Facing Entity, r|Service Facing Entity : L9 }
     -R55 : +/1 r|Client Domain : +/1 l*|Service Facing Entity
     +R56 : -/1 r|Service Domain : -/1 l*|Client Facing Entity
-    -R57 : +/2 b|Service Facing Entity : +/3 t*|Client Facing Entity, l|Channel
+    +R57 : +/2 b|Service Facing Entity : +/3 t*|Client Facing Entity, r|EE Counterpart Relationship
     -R58 : +/1 t|External Entity : +/2 b*|External Entity Operation
     +R59 : r|External Entity Operation { l|Ingress Operation, l|Egress Operation }
     -R60 : +/2 b|Egress Operation : +/2 t*|Ingress Operation, l|Wire
-    +R61.3 : +/1 b|Channel : +/1 b|Wire : L2R+2
+    +R61.3 : +/1 b|EE Counterpart Relationship : +/1 b|Wire : L2R+2
+    -R62 : +/2 r|Bridge : +/2 l*|EE Counterpart Relationship

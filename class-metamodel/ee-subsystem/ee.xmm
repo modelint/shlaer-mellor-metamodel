@@ -2,7 +2,7 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.3.0
+    Version : 0.4.0
     /// Creation date : May 19, 2022
     Modification date : May 26, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -14,18 +14,18 @@ attributes
     Client domain {I,R52}
     Service domain {I,R52c}
 --
-class Channel
+class EE Counterpart Relationship
 attributes
     Client facing entity {I, R57}
-    Client domain {I, R57}
+    Client domain {I, R57, R62}
     Service facing entity {I, R57}
-    Service domain {I, R57c}
+    Service domain {I, R57, R62}
 --
-class Client Domain
+class Client Domain, CD
 attributes
     Domain {I, R51}
 --
-class Client Facing Entity
+class Client Facing Entity, CFE
 attributes
     Name {I, R54}
     Domain {I, R54}
@@ -39,7 +39,7 @@ attributes
     Domain {I, R50}
     Role : Client Service {I}
 --
-class Egress Operation
+class Egress Operation, EGOP
 attributes
     Name {I, R59}
     External Entity {I, R59}
@@ -48,40 +48,44 @@ attributes
     Ingress Entity {R60}
     Ingress Domain {R60c}
 --
-class External Entity
+class External Entity, EE
 attributes
     Name : External Entity Name {I}
     Alias : Alias Name {I2}
     Domain {I, I2, R53}
 --
-class External Entity Operation
+class External Entity Operation, EEOP
 attributes
     Name : Operation Name {I}
     External Entity {R58}
 --
-class Ingress Operation
+class Ingress Operation, IGOP
 attributes
     Name {I, R59}
     External Entity {I, R59}
     Domain {I, R59}
 --
-class Service Domain
+class Service Domain, SD
 attributes
     Domain {I, R51}
 --
-class Service Facing Entity
+class Service Facing Entity, SFE
 attributes
     Name {I, R54}
     Domain {I, R54}
 --
 class Wire
 attributes
-    Egress Entity {I, R60}
-    External Entity {I, R60}
-    Egress Domain {I, R60}
-    Ingress Operation {R60}
-    Ingress Entity {R60}
-    Ingress Domain {R60c}
+    Egress operation {I, R60}
+    Egress entity {I, R60}
+    Egress domain {I, R60}
+    Ingress operation {R60}
+    Ingress entity {R60}
+    Ingress domain {R60}
+    CFE {R61}
+    Client domain {R61c}
+    SFE {R61}
+    Service domain {R61c}
 --
 relationships
     R50
@@ -118,7 +122,7 @@ relationships
     R57
     requests service through, M Client Facing Entity
     services requests of, M Service Facing Entity
-    1 Channel
+    1 EE Counterpart Relationship
 --
     R58
     defines, M External Entity Operation
@@ -135,6 +139,10 @@ relationships
     1 Wire
 --
     R61
-    runs through, 1 Channel
+    runs through, 1 EE Counterpart Relationship
     is coundit for, M Wire
+--
+    R62
+    mediates at runtime, 1 Bridge
+    is mediated at runtime by, Mc EE Counterpart Relationship
 --
