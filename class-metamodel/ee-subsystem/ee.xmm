@@ -2,9 +2,9 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.1.0
+    Version : 0.3.0
     /// Creation date : May 19, 2022
-    Modification date : May 22, 2022
+    Modification date : May 26, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -12,7 +12,7 @@ subsystem External Entity
 class Bridge
 attributes
     Client domain {I,R52}
-    Service domain {I,R52}
+    Service domain {I,R52c}
 --
 class Channel
 attributes
@@ -30,19 +30,40 @@ attributes
     Name {I, R54}
     Domain {I, R54}
 --
+class Domain <import:Domain>
+attributes
+    Name {I}
+--
 class Domain Role
 attributes
     Domain {I, R50}
     Role : Client Service {I}
 --
-class Domain <import:Domain>
+class Egress Operation
 attributes
-    Domain {I}
+    Name {I, R59}
+    External Entity {I, R59}
+    Domain {I, R59}
+    Ingress Operation {R60}
+    Ingress Entity {R60}
+    Ingress Domain {R60c}
 --
 class External Entity
 attributes
     Name : External Entity Name {I}
-    Domain {I, R53}
+    Alias : Alias Name {I2}
+    Domain {I, I2, R53}
+--
+class External Entity Operation
+attributes
+    Name : Operation Name {I}
+    External Entity {R58}
+--
+class Ingress Operation
+attributes
+    Name {I, R59}
+    External Entity {I, R59}
+    Domain {I, R59}
 --
 class Service Domain
 attributes
@@ -52,6 +73,15 @@ class Service Facing Entity
 attributes
     Name {I, R54}
     Domain {I, R54}
+--
+class Wire
+attributes
+    Egress Entity {I, R60}
+    External Entity {I, R60}
+    Egress Domain {I, R60}
+    Ingress Operation {R60}
+    Ingress Entity {R60}
+    Ingress Domain {R60c}
 --
 relationships
     R50
@@ -64,13 +94,13 @@ relationships
         Client Domain
 --
     R52
-    satisfies requirements of, M Client
     has requirements satisfied by, Mc Service
+    satisfies requirements of, M Client
     1 Bridge
 --
     R53
-    is interface on, 1 Domain
-    interfaces via, Mc External Entity
+    defines a portal of interaction on, 1 Domain
+    interacts via a portal defined as, Mc External Entity
 --
     R54
     External Entity +
@@ -79,14 +109,32 @@ relationships
 --
     R55
     is defined in, 1 Client Domain
-    defines, Mc Service Facing Entity
+    defines, M Service Facing Entity
 --
     R56
     is defined in, 1 Service Domain
-    defines, Mc Client Facing Entity
+    defines, M Client Facing Entity
 --
     R57
-    requests service through, 1 Client Facing Entity
+    requests service through, M Client Facing Entity
     services requests of, M Service Facing Entity
     1 Channel
+--
+    R58
+    defines, M External Entity Operation
+    is defined on, 1 External Entity
+--
+    R59
+    External Entity Operation +
+        Ingress Operation
+        Egress Operation
+--
+    R60
+    feeds into, 1 Ingress Operation
+    is fed by, Mc Egress Operation
+    1 Wire
+--
+    R61
+    runs through, 1 Channel
+    is coundit for, M Wire
 --
