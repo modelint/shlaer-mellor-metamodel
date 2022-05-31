@@ -19,7 +19,7 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Class <import:Class Attribute>
+class Class <import:Class And Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -84,7 +84,7 @@ class Real State
 attributes
     Name {I, R510}
     State model {I, R510, UR511}
-    Domain {I, R510, R504, UR511}
+    Domain {I, R510, R504}
     Activity {R504}
 --
 class Single Assigner
@@ -94,9 +94,9 @@ attributes
 --
 class State
 attributes
-    Name {I} : State Name
+    Name : State Name {I}
     State model {I, UR510}
-    Domain {I, UR510}
+    Domain {I}
 --
 class State Activity <import:Activity>
 attributes
@@ -105,8 +105,8 @@ attributes
 --
 class State Model
 attributes
-    Name : State Model Name {I}
-    Domain {I, UR502}
+    Name : State Model Name {I, UR502}
+    Domain {I}
 --
 class Transition
 attributes
@@ -136,7 +136,7 @@ relationships
 --
     R504
     entry executes, 1 State Activity
-    is executed on transition into, 1 State
+    is executed on transition into, 1 Real State
 --
     R505
     specifies response to, Mc Effective Event
@@ -162,7 +162,7 @@ relationships
         Initial Pseudo State
 --
     R511
-    State +
+    Real State +
         Deletion State
         Non Deletion State
 --

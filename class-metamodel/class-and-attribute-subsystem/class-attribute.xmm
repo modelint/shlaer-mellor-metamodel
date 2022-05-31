@@ -109,7 +109,7 @@ attributes
 --
 class Subclass Classification Value
 attributes
-    Value {I} : Enumeration Value
+    Value : Enumeration Value {I}
     Superclass {I, R33}
     Subclass {I, R33}
     Generalization {I, R33}
