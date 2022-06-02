@@ -2,9 +2,9 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.4.1
+    Version : 0.4.2
     /// Creation date : May 19, 2022
-    Modification date : May 26, 2022
+    Modification date : May 28, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -58,6 +58,7 @@ class External Entity Operation, EEOP
 attributes
     Name : Operation Name {I}
     External Entity {R58}
+    Domain {R58}
 --
 class Ingress Operation, IGOP
 attributes
