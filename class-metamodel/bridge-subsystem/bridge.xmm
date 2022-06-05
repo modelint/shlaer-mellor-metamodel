@@ -2,7 +2,7 @@ metadata
     Title : Bridge Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.4.3
+    Version : 0.5.0
     /// Creation date : May 19, 2022
     Modification date : June 5, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -13,6 +13,39 @@ class Bridge
 attributes
     Client domain {I,R52}
     Service domain {I,R52c}
+--
+class Bridge Element
+attributes
+    ID : Brige Element ID {I}
+    Domain {I, R1305}
+--
+class Join Point
+attributes
+    BE ID {I, R1300}
+    Client domain {I, R1300}
+    Service domain {I, R1300}
+--
+class Client Facing Join Point
+attributes
+    BE ID {I, R1301}
+    Domain {I, R1301}
+    Client domain {I, R1301}
+--
+class Service Facing Join Point
+attributes
+    BE ID {I, R1301}
+    Domain {I, R1301, R1304}
+    Service domain {I, R1301}
+    Client facing BE ID {R1302}
+    Client facing domain {R1302}
+    ID number {R1304}
+    ID class {R1304}
+--
+class Identifier <import:Class Attribute>
+attributes
+    Number {I}
+    Class {I}
+    Domain {I}
 --
 class EE Counterpart Relationship
 attributes
@@ -89,6 +122,24 @@ attributes
     Service domain {R61c}
 --
 relationships
+    R1300
+    is mapped in, M Bridge
+    maps, M Bridge Element
+    1 Join Point
+--
+    R1301
+    Join Point +
+        Service Facing Join Point
+        Client Facing Join Point
+--
+    R1302
+    represents, 1 Client Facing Join Point
+    is represented by, M Service Facing Join Point
+--
+    R1304
+    selects instance with, 1 Identifier
+    is used to select instance by, Mc Service Facing Join Point
+--
     R50
     plays, Mc Domain Role
     is played by, 1 Domain
