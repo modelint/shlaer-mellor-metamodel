@@ -1,9 +1,9 @@
-diagram class // EE Subsystem layout
+diagram class // Bridge Subsystem layout
 notation Starr
 presentation default
 orientation landscape
 color teal
-sheet C
+sheet E
 padding l100 b350
 frame OS Engineer
 frame_presentation default
