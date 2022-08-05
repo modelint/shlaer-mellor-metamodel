@@ -3,44 +3,21 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet E
-padding l100 b350
+sheet C
+padding l200 b450
 frame OS Engineer
 frame_presentation default
 nodes
-    Bridge Element 15,4
-    Join Point 11,5
-    Service Facing Join Point/2 12,6-7
-    Client Facing Join Point/2 9,6-7
-    Identifier 12,9
-    Domain 2,1-2
-    Domain Role 4-5,1-2
-    Client Domain 6,3
-    Service Domain 3,3
-    Bridge 4-5,4
-    Service Facing Entity/2 6,8
-    Client Facing Entity/2 3,8
-    EE Counterpart Relationship/2 4-5,6-7
-    External Entity 4-5,10
-    External Entity Operation/2 7,10
-    Egress Operation 8-9,11-12
-    Ingress Operation 6,11-12
-    Wire 7,12-13
+    Class 6,1-2
+    External Entity 6,4
+    Operation 3-4,4
+    Ingress Operation 4,5-6
+    Egress Operation 3,5-6
+    External Entity Activity/2 4,8
+    Operation Parameter/2 1,4
 connectors
-    -R1300 : +/1 t|Bridge : +/1 b*|Bridge Element, l|Join Point
-    +R1301 : r|Join Point { l|Service Facing Join Point, l|Client Facing Join Point }
-    -R1302 : +/1 b|Service Facing Join Point : +/1 t*|Client Facing Join Point
-    -R1304 : +/2 r|Service Facing Join Point : +/2 l*|Identifier
-    -R50 : +/1 t*|Domain : +/2 b|Domain Role
-    +R51 : r|Domain Role { l|Client Domain, l|Service Domain }
-    -R52 : +/2 b|Client Domain : +/2 t*|Service Domain, l|Bridge
-    -R53 : +/2 b|External Entity : +/2 r|Domain
-    +R54 : l|External Entity { r|Client Facing Entity, r|Service Facing Entity : L9 }
-    -R55 : +/1 r|Client Domain : +/1 l*|Service Facing Entity
-    +R56 : -/1 r|Service Domain : -/1 l*|Client Facing Entity
-    +R57 : +/2 b|Service Facing Entity : +/3 t*|Client Facing Entity, r|EE Counterpart Relationship
-    -R58 : +/1 t|External Entity : +/2 b*|External Entity Operation
-    +R59 : r|External Entity Operation { l|Ingress Operation, l|Egress Operation }
-    -R60 : +/2 b|Egress Operation : +/2 t*|Ingress Operation, l|Wire
-    +R61.3 : +/1 b|EE Counterpart Relationship : +/1 b|Wire : L2R+2
-    -R62 : +/2 r|Bridge : +/2 l*|EE Counterpart Relationship
+    -R50 : +/1 r|Class : +/1 l*|External Entity
+    -R51 : +/1 b|External Entity : +/2 t*|Operation
+    +R52 : -/1 b|Operation : -/1 t*|Operation Parameter
+    +R53 : r|Operation { l|Ingress Operation, l|Egress Operation }
+    -R54 : +/1 r|Ingress Operation : +/2 l*|External Entity Activity

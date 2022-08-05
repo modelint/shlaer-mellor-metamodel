@@ -1,200 +1,77 @@
 metadata
-    Title : Bridge Subsystem / Shlaer-Mellor Metamodel
+    Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.5.0
+    Version : 0.6.0
     /// Creation date : May 19, 2022
-    Modification date : June 5, 2022
+    Modification date : August 4, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Bridge
-class Bridge
-attributes
-    Client domain {I,R52}
-    Service domain {I,R52c}
---
-class Bridge Element
-attributes
-    ID : Brige Element ID {I}
-    Domain {I, R1305}
---
-class Join Point
-attributes
-    BE ID {I, R1300}
-    Client domain {I, R1300}
-    Service domain {I, R1300}
---
-class Client Facing Join Point
-attributes
-    BE ID {I, R1301}
-    Domain {I, R1301}
-    Client domain {I, R1301}
---
-class Service Facing Join Point
-attributes
-    BE ID {I, R1301}
-    Domain {I, R1301, R1304}
-    Service domain {I, R1301}
-    Client facing BE ID {R1302}
-    Client facing domain {R1302}
-    ID number {R1304}
-    ID class {R1304}
---
-class Identifier <import:Class Attribute>
-attributes
-    Number {I}
-    Class {I}
-    Domain {I}
---
-class EE Counterpart Relationship
-attributes
-    CFE {I, R57}
-    Client domain {I, R57, R62}
-    SFE {I, R57}
-    Service domain {I, R57, R62}
---
-class Client Domain, CD
-attributes
-    Domain {I, R51}
---
-class Client Facing Entity, CFE
-attributes
-    Name {I, R54}
-    Domain {I, R54}
---
-class Domain <import:Domain>
+subsystem External Entity
+class Class <import:Class Attribute>
 attributes
     Name {I}
---
-class Domain Role
-attributes
-    Domain {I, R50}
-    Role : Client Service {I}
---
-class Egress Operation, EGOP
-attributes
-    Name {I, R59}
-    External Entity {I, R59}
-    Domain {I, R59}
-    Ingress Operation {R60}
-    Ingress Entity {R60}
-    Ingress Domain {R60c}
+    Domain {I}
 --
 class External Entity, EE
 attributes
     Name : External Entity Name {I}
-    Alias : Alias Name {I2}
-    Domain {I, I2, R53}
+    Class {I2, R50}
+    Domain {I, I2, R50}
 --
-class External Entity Operation, EEOP
+class Operation, OP
 attributes
     Name : Operation Name {I}
-    External Entity {R58}
-    Domain {R58}
+    External Entity {R51}
+    Domain {R51}
 --
-class Ingress Operation, IGOP
+class External Entity Activity <import:Flow>
 attributes
-    Name {I, R59}
-    External Entity {I, R59}
-    Domain {I, R59}
+    ID {I}
+    Domain {I}
 --
-class Service Domain, SD
+class Ingress Operation, INOP
 attributes
-    Domain {I, R51}
+    Name {I, R53}
+    External Entity {I, R53}
+    Domain {I, R53}
+    Activity {R54}
 --
-class Service Facing Entity, SFE
+class Egress Operation, EGOP
 attributes
-    Name {I, R54}
-    Domain {I, R54}
+    Name {I, R53}
+    External Entity {I, R53}
+    Domain {I, R53}
+    Synchronous : Boolean
 --
-class Wire
+class Operation Parameter
 attributes
-    Egress operation {I, R60}
-    Egress entity {I, R60}
-    Egress domain {I, R60}
-    Ingress operation {R60}
-    Ingress entity {R60}
-    Ingress domain {R60}
-    CFE {R61}
-    Client domain {R61c}
-    SFE {R61}
-    Service domain {R61c}
+    Name : Parameter Name {I}
+    Operation {I, R52}
+    EE {I, R52}
+    Domain {I, R52}
+    Type : Type Name
 --
 relationships
-    R1300
-    is mapped in, M Bridge
-    maps, M Bridge Element
-    1 Join Point
---
-    R1301
-    Join Point +
-        Service Facing Join Point
-        Client Facing Join Point
---
-    R1302
-    represents, 1 Client Facing Join Point
-    is represented by, M Service Facing Join Point
---
-    R1304
-    selects instance with, 1 Identifier
-    is used to select instance by, Mc Service Facing Join Point
---
     R50
-    plays, Mc Domain Role
-    is played by, 1 Domain
+    is a proxy for, 1 Class
+    has proxy, 1c External Entity
 --
     R51
-    Domain Role +
-        Service Domain
-        Client Domain
---
-    R52
-    has requirements satisfied by, Mc Service
-    satisfies requirements of, M Client
-    1 Bridge
---
-    R53
-    defines a portal of interaction on, 1 Domain
-    interacts via a portal defined as, Mc External Entity
---
-    R54
-    External Entity +
-        Service Facing Entity
-        Client Facing Entity
---
-    R55
-    is defined in, 1 Client Domain
-    defines, M Service Facing Entity
---
-    R56
-    is defined in, 1 Service Domain
-    defines, M Client Facing Entity
---
-    R57
-    requests service through, M Client Facing Entity
-    services requests of, M Service Facing Entity
-    1 EE Counterpart Relationship
---
-    R58
-    defines, M External Entity Operation
+    defines, M Operation
     is defined on, 1 External Entity
 --
-    R59
-    External Entity Operation +
+    R52
+    requires, Mc Operation Parameter
+    is required by, 1 Operation
+--
+    R53
+    Operation +
         Ingress Operation
         Egress Operation
 --
-    R60
-    feeds into, 1 Ingress Operation
-    is fed by, Mc Egress Operation
-    1 Wire
---
-    R61
-    runs through, 1 EE Counterpart Relationship
-    is coundit for, M Wire
---
-    R62
-    mediates, 1 Bridge
-    is mediated by, Mc EE Counterpart Relationship
+    R54
+    executes, 1 External Entity Activity
+    is executed by, 1 Ingress EE Operation
 --
