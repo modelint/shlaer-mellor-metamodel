@@ -2,9 +2,9 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.6.0
+    Version : 0.6.1
     /// Creation date : May 19, 2022
-    Modification date : August 4, 2022
+    Modification date : August 5, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,17 +14,18 @@ attributes
     Name {I}
     Domain {I}
 --
+class Egress Operation, EGOP
+attributes
+    Name {I, R53}
+    EE {I, R53}
+    Domain {I, R53}
+    Synchronous : Boolean
+--
 class External Entity, EE
 attributes
-    Name : External Entity Name {I}
+    Name : EE Name {I}
     Class {I2, R50}
     Domain {I, I2, R50}
---
-class Operation, OP
-attributes
-    Name : Operation Name {I}
-    External Entity {R51}
-    Domain {R51}
 --
 class External Entity Activity <import:Flow>
 attributes
@@ -34,16 +35,15 @@ attributes
 class Ingress Operation, INOP
 attributes
     Name {I, R53}
-    External Entity {I, R53}
+    EE {I, R53}
     Domain {I, R53}
     Activity {R54}
 --
-class Egress Operation, EGOP
+class Operation, OP
 attributes
-    Name {I, R53}
-    External Entity {I, R53}
-    Domain {I, R53}
-    Synchronous : Boolean
+    Name : Operation Name {I}
+    EE {R51}
+    Domain {R51}
 --
 class Operation Parameter
 attributes
