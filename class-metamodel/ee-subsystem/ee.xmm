@@ -2,13 +2,19 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.6.1
+    Version : 0.6.2
     /// Creation date : May 19, 2022
     Modification date : August 5, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem External Entity
+class Asynchronous Operation
+attributes
+    Name {I, R55}
+    EE {I, R55}
+    Domain {I, R55}
+--
 class Class <import:Class Attribute>
 attributes
     Name {I}
@@ -19,7 +25,13 @@ attributes
     Name {I, R53}
     EE {I, R53}
     Domain {I, R53}
-    Synchronous : Boolean
+--
+class Egress Output
+attributes
+    Operation {I, R56}
+    EE {I, R56}
+    Domain {I, R56}
+    Type : Type Name
 --
 class External Entity, EE
 attributes
@@ -27,7 +39,7 @@ attributes
     Class {I2, R50}
     Domain {I, I2, R50}
 --
-class External Entity Activity <import:Flow>
+class Ingress Activity <import:Flow>
 attributes
     ID {I}
     Domain {I}
@@ -53,10 +65,16 @@ attributes
     Domain {I, R52}
     Type : Type Name
 --
+class Synchronous Operation
+attributes
+    Name {I, R55}
+    EE {I, R55}
+    Domain {I, R55}
+--
 relationships
     R50
     is a proxy for, 1 Class
-    has proxy, 1c External Entity
+    is represented by, 1c External Entity
 --
     R51
     defines, M Operation
@@ -72,6 +90,15 @@ relationships
         Egress Operation
 --
     R54
-    executes, 1 External Entity Activity
-    is executed by, 1 Ingress EE Operation
+    executes, 1 Ingress Activity
+    is executed by, 1 Ingress Operation
+--
+    R55
+    Egress Operation +
+        Asynchronous Egress Operation
+        Synchronous Egress Operation
+--
+    R56
+    yields, 1c Egress Output
+    is yielded by, 1 Ingress Operation
 --
