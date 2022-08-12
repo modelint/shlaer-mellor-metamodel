@@ -18,7 +18,7 @@ nodes
     Identifier Select/2 2,3
     Projection 6,8
     Attribute 8,8
-    Criterion 10,8
+    Restriction Criterion/2 10,8
     Restriction 10,5-6
     Ranking Criterion/2 9,9-10
     Comparison Criterion/2 10-11,9-10
@@ -29,13 +29,13 @@ nodes
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
-    -R877 : +/1 b|Criterion : +/1 t*|Attribute
+    -R877 : +/1 b|Restriction Criterion : +/1 t*|Attribute
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
     -R881 : +/2 r|Comparison Criterion : +/2 l*|Scalar Flow
     +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
     -R883 : +/2 t|Select Action : +/2 b*|Restriction
-    +R884 : r|Criterion { l|Ranking Criterion, l|Comparison Criterion }
-    +R885 : -/1 r|Restriction : +/1 l*|Criterion
+    +R884 : r|Restriction Criterion { l|Ranking Criterion, l|Comparison Criterion }
+    +R885 : -/1 r|Restriction : +/1 l*|Restriction Criterion
     -R886 : +/1 r|Select Action : +/1 b|Attribute, l|Projected Attribute

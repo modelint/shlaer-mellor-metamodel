@@ -2,7 +2,7 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.8.1
+    Version : 0.8.2
     /// Creation date : September 11, 2021
     Modification date : August 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -22,13 +22,13 @@ attributes
     Domain {I, R884}
     Comparison : Comp Op
 --
-class Criterion
+class Restriction Criterion
 attributes
-    Select action {I, R883}
-    Activity {I, R883}
+    Select action {I, R885}
+    Activity {I, R885}
     Attribute {R877}
     Class {R877c}
-    Domain {I, R883, R877}
+    Domain {I, R885, R877}
 --
 class Identifier <import:Class And Attribute>
 attributes
@@ -76,7 +76,7 @@ attributes
     Select action {I, R884}
     Activity {I, R884}
     Domain {I, R884}
-    Ascending : Boolean
+    Order : Ascending Descending
 --
 class Restriction
 attributes
@@ -130,7 +130,7 @@ relationships
 --
     R877
     compares, 1 Attribute
-    is compared in, Mc Selection Criterion
+    is compared in, Mc Restriction Criterion
 --
     R878
     criteria is defined by, 1 Identifier
@@ -146,7 +146,7 @@ relationships
 --
     R881
     compares value from, 1 Scalar Flow
-    supplies value to, Mc Comparison Criterion
+    has value compared in, Mc Comparison Criterion
 --
     R882
     Single Select +
@@ -159,12 +159,12 @@ relationships
     seleects instances for, 1 Select Action
 --
     R884
-    Criterion +
+    Restriction Criterion +
         Ranking Criterion
         Comparison Criterion
 --
     R885
-    applies, M Criterion
+    applies, M Restriction Criterion
     is applied in, 1 Restriction
 --
     R886
