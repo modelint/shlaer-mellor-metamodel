@@ -1,9 +1,9 @@
-diagram class // Select Action Subsystem 0.7.x / Action Metamodel
+diagram class // Select Action Subsystem
 notation Starr
 presentation default
 orientation landscape
 color pumpkin
-sheet C
+sheet D
 padding l200 b250
 frame OS Engineer
 frame_presentation default
@@ -14,21 +14,28 @@ nodes
     Single Instance Flow/2 4,2
     Multiple Instance Flow/2 4,10
     Zero One Cardinality Select/2 2,4-5 >top
-    Selection Criteria 8,5-6
+    Selection 8,5-6
     Identifier Select/2 2,3
-    Attribute 8,2-3
-    Selection Attribute 9,4
-    Selection Input 9,7
-    Scalar Flow 8,8-9
+    Projection 6,8
+    Attribute 8,8
+    Criteria 10,8
+    Restriction 10,5-6
+    Ranking Criteria/2 9,9-10
+    Comparison Criteria/2 10-11,9-10
+    Scalar Flow 10-11,12
     Instance Flow 6,3
     Identifier 2,1
+    Projected Attribute 6-7,9
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
-    -R877 : +/1 l|Selection Criteria : +/1 r*|Attribute, b|Selection Attribute
+    -R877 : +/1 b|Criteria : +/1 t*|Attribute
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
-    -R881 : +/3 r|Selection Criteria : +/3 l*|Scalar Flow, b|Selection Input
+    -R881 : +/2 r|Comparison Criteria : +/2 l*|Scalar Flow
     +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
-    -R883 : +/2 t|Select Action : +/2 b*|Selection Criteria
+    -R883 : +/2 t|Select Action : +/2 b*|Restriction
+    +R884 : r|Criteria { l|Ranking Criteria, l|Comparison Criteria }
+    +R885 : -/1 r|Restriction : +/1 l*|Criteria
+    -R886 : +/1 r|Select Action : +/1 b|Attribute, l|Projected Attribute

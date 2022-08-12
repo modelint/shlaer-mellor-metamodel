@@ -2,35 +2,35 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.7.1
+    Version : 0.8.0
     /// Creation date : September 11, 2021
-    Modification date : April 14, 2022
+    Modification date : August 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Select Action
-class Attribute <import:Classes And Attributes>
+class Attribute <import:Class And Attribute>
 attributes
     Name {I}
     Class {I}
     Domain {I}
 --
-class Selection Attribute
+class Comparison Criteria
 attributes
-    Attribute {I, R877}
-    Select action {I, R877}
-    Activity {I, R877}
-    Class {I, R877}
-    Domain {I, R877}
+    Select action {I, R884}
+    Activity {I, R884}
+    Domain {I, R884}
+    Comparison : Comp Op
 --
-class Selection Criteria
+class Criteria
 attributes
     Select action {I, R883}
     Activity {I, R883}
-    Domain {I, R883}
-    Expression : Text
+    Attribute {R877}
+    Class {R877}
+    Domain {I, R883, R877}
 --
-class Identifier <import:Classes And Attributes>
+class Identifier <import:Class And Attribute>
 attributes
     Number {I}
     Class {I}
@@ -63,6 +63,28 @@ attributes
     Activity {I}
     Domain {I}
 --
+class Projected Attribute
+attributes
+    Attribute {I, R886}
+    Class {I, R886}
+    Select action {I, R886}
+    Activity {I, R886}
+    Domain {I, R886}
+--
+class Ranking Criteria
+attributes
+    Select action {I, R884}
+    Activity {I, R884}
+    Domain {I, R884}
+    Ascending : Boolean
+--
+class Restriction
+attributes
+    Select action {I, R883}
+    Activity {I, R883}
+    Domain {I, R883}
+    Expression : Restriction Expression
+--
 class Scalar Flow <import:Flow>
 attributes
     Flow {I}
@@ -76,13 +98,6 @@ attributes
     Domain {I, R901, R876}
     Input flow {R876}
     Selection cardinality : Cardinality
---
-class Selection Input
-attributes
-    Flow {I, R881}
-    Action {I, R881}
-    Activity {I, R881}
-    Domain {I, R881}
 --
 class Single Instance Flow <import:Flow>
 attributes
@@ -114,9 +129,8 @@ relationships
     is source of instances for, Mc Select Action
 --
     R877
-    compares, M Attribute
+    compares, 1 Attribute
     is compared in, Mc Selection Criteria
-    1 Selection Attribute
 --
     R878
     criteria is defined by, 1 Identifier
@@ -131,9 +145,8 @@ relationships
     is yielded by, 1c Many Select
 --
     R881
-    performs comparison using value from, Mc Scalar Flow
-    provides comparison value to, Mc Select
-    1 Scalar Input
+    compares value from, 1 Scalar Flow
+    supplies value to, Mc Comparison Criteria
 --
     R882
     Single Select +
@@ -142,6 +155,20 @@ relationships
         Criteria One Select
 --
     R883
-    uses criteria defined in, 1c Selection Criteria
-    defines criteria for, 1 Select Action
+    has instances selected by, 1c Restriction
+    seleects instances for, 1 Select Action
+--
+    R884
+    Criteria +
+        Ranking Criteria
+        Comparison Criteria
+--
+    R885
+    applies, M Criteria
+    is applied in, 1 Restriction
+--
+    R886
+    is projected in, Mc Select Action
+    projects on, Mc Attribute
+    1 Projected Attribute
 --
