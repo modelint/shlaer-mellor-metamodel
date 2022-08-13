@@ -2,7 +2,7 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 0.8.2
+    Version : 0.9.0
     /// Creation date : September 11, 2021
     Modification date : August 11, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,18 +17,13 @@ attributes
 --
 class Comparison Criterion
 attributes
+    ID {I, R884}
     Select action {I, R884}
     Activity {I, R884}
+    Attribute {I, R884}
+    Class{I, R884}
     Domain {I, R884}
     Comparison : Comp Op
---
-class Restriction Criterion
-attributes
-    Select action {I, R885}
-    Activity {I, R885}
-    Attribute {R877}
-    Class {R877c}
-    Domain {I, R885, R877}
 --
 class Identifier <import:Class And Attribute>
 attributes
@@ -73,8 +68,11 @@ attributes
 --
 class Ranking Criterion
 attributes
+    ID {I, R884}
     Select action {I, R884}
     Activity {I, R884}
+    Attribute {I, R884}
+    Class{I, R884}
     Domain {I, R884}
     Order : Ascending Descending
 --
@@ -82,8 +80,18 @@ class Restriction
 attributes
     Select action {I, R883}
     Activity {I, R883}
+    Class {I, R883}
     Domain {I, R883}
     Expression : Restriction Expression
+--
+class Restriction Criterion
+attributes
+    ID : Criterion ID {I}
+    Select action {I, R887}
+    Activity {I, R887}
+    Attribute {I, R877}
+    Class {I, R877}
+    Domain {I, R877}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -95,6 +103,7 @@ class Select Action
 attributes
     Action {I, R901}
     Activity {I, R901, R876}
+    Class {I, R876}
     Domain {I, R901, R876}
     Input flow {R876}
     Selection cardinality : Cardinality
@@ -129,8 +138,9 @@ relationships
     is source of instances for, Mc Select Action
 --
     R877
-    compares, 1 Attribute
-    is compared in, Mc Restriction Criterion
+    compares, M Attribute
+    is compared in, Mc Restriction
+    M Restriction Criterion
 --
     R878
     criteria is defined by, 1 Identifier
@@ -162,10 +172,6 @@ relationships
     Restriction Criterion +
         Ranking Criterion
         Comparison Criterion
---
-    R885
-    applies, M Restriction Criterion
-    is applied in, 1 Restriction
 --
     R886
     is projected in, Mc Select Action
