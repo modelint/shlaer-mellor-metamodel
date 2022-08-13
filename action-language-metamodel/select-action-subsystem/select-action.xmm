@@ -41,9 +41,10 @@ attributes
 --
 class Instance Flow <import:Flow>
 attributes
-    Flow {I}
-    Activity {I}
-    Domain {I}
+    Flow {I, *I2}
+    Activity {I, *I2}
+    Class {*I2}
+    Domain {I, *I2}
 --
 class Many Select
 attributes
