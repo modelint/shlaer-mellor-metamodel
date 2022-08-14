@@ -1,4 +1,4 @@
-diagram class
+diagram class // Flow Subsystem
 notation Starr
 presentation default
 orientation landscape
@@ -8,26 +8,9 @@ padding l300 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Domain 2,8-9
-    External Entity 2,6
-    State 2,3
-    Asynchronous Activity/2 5-6,4
-    Synchronous Activity/2 5-6,8
-    Activity 7,6
-    Action 10,6
-    Connecting Flow 11,4
-    Connecting Data Flow/2 12-13,5
-    Input Data Flow 12-13,7
-    Output Data Flow 12-13,9
-    State Activity 4,3
-    Asynchronous External Entity Operation/2 4,4-5
-    Synchronous External Entity Operation/2 4,7
-    Method 4,10
-    Domain Operation/2 4,8-9
     Class 15,14 : 2,10
     Flow 15-16,4
     Data Flow 14,7
-    Content 14,10-11
     Control Flow 14,3
     Instance Flow 15,12
     Table Flow 13,12

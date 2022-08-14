@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 0.5.0
+    Version : 1.0.0
     /// Creation date : September 10, 2021
-    Modification date : November 23, 2021
+    Modification date : Aug 14, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -15,38 +15,10 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Activity
-attributes
-    ID : Activity ID {I}
-    Domain {I}
---
-class Asynchronous Activity
-attributes
-    ID {I, R805}
-    Domain {I, R805}
---
-class Asynchronous External Entity Operation
-attributes
-    ID {I, R818}
-    Domain {I, R818}
---
 class Class <import:Class>
 attributes
     Name {I}
     Domain {I}
---
-class Connecting Data Flow
-attributes
-    ID {I, R801}
-    Activity {I, R801}
-    Domain {I, R801}
---
-class Connecting Flow
-attributes
-    To action {I, R809}
-    Activity {I, R809}
-    Domain {I, R809}
-    From action {R809}
 --
 class Control Flow
 attributes
@@ -60,37 +32,11 @@ attributes
     Activity {I, R800}
     Domain {I, R800}
 --
-class Content
-attributes
-    Flow {I, R811}
-    Activity {I, R811}
-    Domain {I, R811}
---
-class Domain <import:Domain>
-attributes
-    Name {I}
---
-class Domain Operation
-attributes
-    ID {I, R810}
-    Domain {I, R810}
---
-class External Entity <import:Domain>
-attributes
-    Name {I}
-    Domain {I}
---
 class Flow
 attributes
     ID : Flow ID {I}
     Activity {I, R822}
     Domain {I, R822}
---
-class Input Data Flow
-attributes
-    ID {I, R801}
-    Activity {I, R801, R814}
-    Domain {I, R801, R814}
 --
 class Instance Flow
 attributes
@@ -99,22 +45,11 @@ attributes
     Domain {I, R802, R803}
     Class {R803}
 --
-class Method
-attributes
-    ID {I, R810}
-    Domain {I, R810}
---
 class Multiple Instance Flow
 attributes
     Flow {I, R808}
     Activity {I, R808}
     Domain {I, R808}
---
-class Output Data Flow
-attributes
-    ID {I, R801}
-    Activity {I, R801, R817}
-    Domain {I, R801, R817}
 --
 class Scalar Flow
 attributes
@@ -128,27 +63,6 @@ attributes
     Flow {I, R808}
     Activity {I, R808}
     Domain {I, R808}
---
-class State <import:State>
-attributes
-    Name {I}
-    State model {I}
-    Domain {I}
---
-class State Activity
-attributes
-    ID {I, R818}
-    Domain {I, R818}
---
-class Synchronous Activity
-attributes
-    ID {I, R805}
-    Domain {I, R805}
---
-class Synchronous External Entity Operation
-attributes
-    ID {I, R810}
-    Domain {I, R810}
 --
 class Table Attribute
 attributes
