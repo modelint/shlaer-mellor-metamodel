@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.2.0
+    Version : 0.3.0
     /// Creation date : August 13, 2022
-    Modification date : August 13, 2022
+    Modification date : August 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,15 +14,27 @@ attributes
     ID : Activity ID {I}
     Domain {I}
 --
+class Input Parameter
+attributes
+    Name : Parameter Name {I}
+    Activity {I, R828}
+    Domain {I, R828}
+--
+class Synchronous Output
+attributes
+    Activity {I, R829}
+    Domain {I, R829}
+--
 class Asynchronous Activity
 attributes
-    ID {I, R805}
-    Domain {I, R805}
+    ID {I, R825}
+    Domain {I, R825}
 --
 class Asynchronous External Entity Operation
 attributes
-    ID {I, R818}
-    Domain {I, R818}
+    ID {I, R830}
+    EE {R832}
+    Domain {I, R830, R832}
 --
 class Class <import:Class>
 attributes
@@ -34,28 +46,11 @@ attributes
     Name {I}
     Domain {I}
 --
-class Flow <import:Flow>
-attributes
-    ID {I}
-    Activity {I}
-    Domain {I}
---
-class Input Data Flow <import:Flow>
-attributes
-    ID {I}
-    Activity {I}
-    Domain {I}
---
 class Method
 attributes
-    ID {I, R810}
-    Domain {I, R810}
---
-class Output Data Flow <import:Flow>
-attributes
-    ID {I}
-    Activity {I}
-    Domain {I}
+    ID {I, R826}
+    Class {R827}
+    Domain {I, R826, R827}
 --
 class State <import:State>
 attributes
@@ -65,60 +60,58 @@ attributes
 --
 class State Activity
 attributes
-    ID {I, R818}
-    Domain {I, R818}
+    ID {I, R830}
+    State {R831}
+    Domain {I, R830, R831}
 --
 class Synchronous Activity
 attributes
-    ID {I, R805}
-    Domain {I, R805}
+    ID {I, R825}
+    Domain {I, R825}
 --
 class Synchronous External Entity Operation
 attributes
-    ID {I, R810}
-    Domain {I, R810}
+    ID {I, R826}
+    EE {R833}
+    Domain {I, R826, R833}
 --
 relationships
-    R805
+    R825
     Activity +
         Asynchronous Activity
         Synchronous Activity
 --
-    R810
+    R826
     Synchronous Activity +
         Method
         Synchronous External Entity Operation
 --
-    R812
+    R827
     defines, Mc Method
     is defined by, 1 Class
 --
-    R814
+    R828
     provides external input to, 1 Activity
-    gets external input from, Mc Input Data Flow
+    gets external input from, Mc Input Parameter
 --
-    R817
-    yields, 1c Output Data Flow
+    R829
+    yields, 1c Synchrounous Output
     is yielded by, 1 Synchronous Activity
 --
-    R818
+    R830
     Asynchronous Activity +
         State Activity
         Asynchronous External Entity Operation
 --
-    R819
+    R831
     is executed in, 1 State
     executes, 1 State Activity
 --
-    R820
+    R832
     defines, Mc Asynchronous External Entity Operation
     is defined on, 1 External Entity
 --
-    R821
+    R833
     defines, Mc Synchronous External Entity Operation
     is defined on, 1 External Entity
---
-    R822
-    communicates using, Mc Flow
-    communicates within, 1 Activity
 --
