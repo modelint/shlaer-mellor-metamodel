@@ -3,43 +3,30 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet E
-padding l300 b350
+sheet C
+padding l250 b450
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 15,14 : 2,10
-    Flow 15-16,4
-    Data Flow 14,7
-    Control Flow 14,3
-    Instance Flow 15,12
-    Table Flow 13,12
-    Table Header 13,11
-    Table Attribute 13,15
-    Scalar Flow 11,12
-    Single Instance Flow/2 17,11
-    Multiple Instance Flow/2 17,13
-    Type 11,14
+    Activity 6,1
+    Flow 4,1
+    Data Flow 2-3,2-3
+    Control Flow 5,2-3
+    Scalar Flow 1,4
+    Non Scalar Flow 4,4
+    Class 7,6
+    Instance Flow 5,6
+    Table Flow 3,6
+    Table Header 1,6
+    Table Attribute 1,9
+    Single Instance Flow/2 5-6,7-8
+    Multiple Instance Flow/2 4,7-8
 connectors
-    +R800 : b|Flow { t|Data Flow, t|Control Flow }
-    +R801 : b|Data Flow { t|Connecting Data Flow, t|Input Data Flow, t|Output Data Flow }
-    +R802-1 : r|Content { l|Instance Flow, l|Table Flow, l|Scalar Flow }
-    +R803 : +/1 r|Instance Flow : -/2 l*|Class
-    +R804 : +/1 r|Table Flow : -/2 l*|Table Attribute
-    +R805 : b|Activity { t|Asynchronous Activity, t|Synchronous Activity }
-    +R806 : +/2 b|Table Attribute : -/1 r|Type
-    +R807 : +/2 r|Scalar Flow : -/1 l*|Type
-    +R808 : t|Instance Flow { b|Single Instance Flow, b|Multiple Instance Flow }
-    +R809.3 : -/2 l+1|Action : +/2 t-1|Action, r-1|Connecting Flow : L5 L11
-    +R810 : b|Synchronous Activity { t|Synchronous External Entity Operation, t|Domain Operation, t|Method }
-    +R811 : +/2 l|Content : -/2 r*|Data Flow
-    -R812 : +/1 b|Method : -/1 t*|Class.2
-    +R813 : t|Connecting Flow { b-2|Connecting Data Flow, b|Control Flow }
-    +R814.2 : +/2 b|Input Data Flow : -/2 r|Activity
-    -R816 : +/1 b|Domain Operation : +/1 t*|Domain
-    +R817 : -/1 r|Synchronous Activity : +/1 b|Output Data Flow
-    +R818 : b|Asynchronous Activity { t|Asynchronous External Entity Operation, t|State Activity }
-    -R819 : +/1 b|State Activity : +/1 t*|State
-    -R820 : +/1 b|Asynchronous External Entity Operation : +/1 l|External Entity
-    +R821 : +/1 b|Synchronous External Entity Operation : +/1 r|External Entity
-    -R822.2 : +/1 l|Flow : +/1 l|Activity : L2
+    +R800 : r|Flow { l|Data Flow, l|Control Flow }
+    +R801 : r|Data Flow { l|Scalar Flow, l|Non Scalar Flow }
+    +R802 : r|Non Scalar Flow { l|Instance Flow, l|Table Flow }
+    +R803 : -/1 t|Instance Flow : -/2 b*|Class
+    +R804 : -/2 b|Table Flow : -/2 t*|Table Header
+    +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
+    +R806 : -/1 r|Table Header : -/1 l*|Table Attribute
+    -R807 : +/2 t|Flow : +/2 b*|Activity
