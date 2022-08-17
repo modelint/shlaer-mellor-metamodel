@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.3.0
+    Version : 0.4.0
     /// Creation date : August 13, 2022
     Modification date : August 16, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,13 +17,9 @@ attributes
 class Input Parameter
 attributes
     Name : Parameter Name {I}
-    Activity {I, R828}
-    Domain {I, R828}
---
-class Synchronous Output
-attributes
-    Activity {I, R829}
-    Domain {I, R829}
+    Flow {R834}
+    Activity {I, R828, R834}
+    Domain {I, R828, R834}
 --
 class Asynchronous Activity
 attributes
@@ -39,6 +35,12 @@ attributes
 class Class <import:Class>
 attributes
     Name {I}
+    Domain {I}
+--
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
     Domain {I}
 --
 class External Entity <import:Domain>
@@ -75,6 +77,12 @@ attributes
     EE {R833}
     Domain {I, R826, R833}
 --
+class Synchronous Output
+attributes
+    Activity {I, R829}
+    Flow {I2, R829}
+    Domain {I, R829}
+--
 relationships
     R825
     Activity +
@@ -95,8 +103,9 @@ relationships
     gets external input from, Mc Input Parameter
 --
     R829
-    yields, 1c Synchrounous Output
-    is yielded by, 1 Synchronous Activity
+    yields, 1c Data Flow
+    is yielded by, 1c Synchronous Activity
+    1 Synchronous Output
 --
     R830
     Asynchronous Activity +
@@ -114,4 +123,8 @@ relationships
     R833
     defines, Mc Synchronous External Entity Operation
     is defined on, 1 External Entity
+--
+    R834
+    provides value for, Mc Input Parameter
+    gets value from, 1 Data Flow
 --
