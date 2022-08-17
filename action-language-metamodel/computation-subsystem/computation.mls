@@ -1,0 +1,16 @@
+diagram class // Computation Subsystem
+notation Starr
+presentation default
+orientation landscape
+color teal
+sheet C
+padding l300 b450
+frame OS Engineer
+frame_presentation default
+nodes
+    Computation Action/2 3,4
+    Data Flow 3,1
+    Operand 2,2-3
+connectors
+    +R1100 : +/3 r|Data Flow : +/3 l*|Computation Action, t|Operand
+    +R1101.2 : -/2 t|Data Flow : +/2 t|Computation Action : L4R-1
