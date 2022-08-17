@@ -2,7 +2,7 @@ metadata
     Title : Computation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.13
-    Version : 0.1.0
+    Version : 0.1.1
     /// Creation date : August 13, 2022
     Modification date : August 17, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -12,8 +12,10 @@ subsystem Computation
 class Computation Action
 attributes
     ID {I, R901}
-    Activity {I, R901}
-    Domain {I, R901}
+    Activity {I, R901, R1101}
+    Domain {I, R901, R1101}
+    Result flow {R1101}
+    Expression : Expression
 --
 class Data Flow <import:Flow>
 attributes
