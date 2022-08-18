@@ -21,6 +21,7 @@ nodes
     Table Attribute 1,9
     Single Instance Flow/2 5-6,7-8
     Multiple Instance Flow/2 4,7-8
+    Label 2,1
 connectors
     +R800 : r|Flow { l|Data Flow, l|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l|Non Scalar Flow }
@@ -30,3 +31,4 @@ connectors
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
     +R806 : -/1 r|Table Header : -/1 l*|Table Attribute
     -R807 : +/2 t|Flow : +/2 b*|Activity
+    -R808 : +/1 b|Flow : +/1 t*|Label
