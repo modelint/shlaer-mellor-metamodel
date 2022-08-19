@@ -23,7 +23,6 @@ nodes
     Required Referential Identifier/2 10-11,3-4
     Attribute In Derivation/2 5,4-5
     Attribute Derivation Activity/2 2-3,6
-    Type 6,9
     Reference 8,10
     Irreducible Identifier/2 8-9,1-2
     Super Identifier 10,1-2
@@ -32,7 +31,6 @@ connectors
     -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
     -R22.2 : +/1 r|Identifier : -/1 t-2|Attribute, b|Identifier Attribute
     +R23 : -/1 r|Attribute Reference : -/1 l*|Reference
-    -R24 : -/3 r|Attribute : +/3 l*|Type
     -R25 : b|Attribute { t|Derived Attribute, t|Non Derived Attribute }
     +R26.2 : +/1 l-2|Attribute : -/2 l|Derived Attribute, r|Attribute In Derivation : L5R+2
     +R27 : -/3 t|Class : -/3 b*|Identifier

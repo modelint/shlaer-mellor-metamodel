@@ -1,10 +1,10 @@
 metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.class.td.1a
-    Version : 4.7.2
+    Document ID : mint.sm-meta.class.td.1
+    Version : 4.7.3
     /// Creation date : June 27, 2017
-    Modification date : May 18, 2022
+    Modification date : August 19, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -20,7 +20,7 @@ attributes
     Name : Name {I}
     Class {I, R20}
     Domain {I, R20}
-    Type {R24}
+    Type : Type Name
 --
 class Attribute Derivation Activity <import:Activity>
 attributes
@@ -127,10 +127,6 @@ attributes
     Class {I, R30}
     Domain {I, R30}
 --
-class Type <import:Type>
-attributes
-    Name {I}
---
 relationships
     R20
     is characterized by, M Attribute
@@ -149,10 +145,6 @@ relationships
     R23
     formalizes, 1 Reference
     is formalized by, M Attribute Reference
---
-    R24
-    may assume values defined by, 1 Type
-    defines range of values assignable to, Mc Attribute
 --
     R25
     Attribute +
