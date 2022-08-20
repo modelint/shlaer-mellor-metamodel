@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.5.0
+    Version : 0.6.0
     /// Creation date : August 13, 2022
-    Modification date : August 19, 2022
+    Modification date : August 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -71,8 +71,9 @@ attributes
 class State Activity
 attributes
     ID {I, R830}
-    State {R831}
-    Domain {I, R830, R831}
+    State {I2, R831}
+    State model {I2, R831}
+    Domain {I, I2, R830, R831}
 --
 class Synchronous Activity
 attributes
