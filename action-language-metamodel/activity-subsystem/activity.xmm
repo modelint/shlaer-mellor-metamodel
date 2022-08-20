@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.6.2
+    Version : 0.6.3
     /// Creation date : August 13, 2022
     Modification date : August 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -132,7 +132,7 @@ relationships
         Synchronous External Entity Operation
 --
     R833
-    defines, Mc External Entity Operation
+    defines, M External Entity Operation
     is defined on, 1 External Entity
 --
     R834
