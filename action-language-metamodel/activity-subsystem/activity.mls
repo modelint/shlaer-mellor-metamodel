@@ -29,7 +29,7 @@ connectors
     -R828 : +/2 b*|Input Parameter : +/2 t|Activity
     +R829 : -/1 r|Synchronous Activity : -/1 b|Data Flow, l|Synchronous Output
     +R830 : b|Asynchronous Activity { t|Asynchronous External Entity Operation, t|State Activity }
-    -R831 : +/1 l|State Activity : +/1 r*|State
+    -R831 : +/2 l|State Activity : +/2 r*|State
     -R832 : t|External Entity Operation { b|Asynchronous External Entity Operation, b|Synchronous External Entity Operation }
     +R833 : +/1 r|External Entity Operation : -/1 l*|External Entity
     -R834 : +/2 r|Input Parameter : +/2 l*|Data Flow

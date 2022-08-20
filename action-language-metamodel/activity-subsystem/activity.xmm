@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.6.1
+    Version : 0.6.2
     /// Creation date : August 13, 2022
     Modification date : August 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -123,8 +123,8 @@ relationships
         Asynchronous External Entity Operation
 --
     R831
-    is executed in, 1 State
-    executes, 1 State Activity
+    is executed upon entry into, 1 State
+    entry executes, 1 State Activity
 --
     R832
     External Entity Operation +
