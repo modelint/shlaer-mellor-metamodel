@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.6.0
+    Version : 0.6.1
     /// Creation date : August 13, 2022
     Modification date : August 20, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -113,8 +113,8 @@ relationships
     gets external input from, Mc Input Parameter
 --
     R829
-    yields, 1c Data Flow
-    is yielded by, 1c Synchronous Activity
+    produces, 1c Data Flow
+    is produced by, 1c Synchronous Activity
     1 Synchronous Output
 --
     R830
