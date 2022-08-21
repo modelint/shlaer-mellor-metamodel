@@ -2,7 +2,7 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.4.1
+    Version : 0.5.0
     /// Creation date : September 11, 2021
     Modification date : August 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -141,10 +141,11 @@ attributes
 class Traverse Action
 attributes
     ID {I, R901}
-    Activity {I, R901, R929}
-    Domain {I, R901, R928, R929}
+    Activity {I, R901, R929, R930}
+    Domain {I, R901, R928, R929, R930}
     Path {R928}
-    Flow {R929}
+    Source flow {R929}
+    Destination flow {R930c}
 --
 relationships
     R925
@@ -165,8 +166,12 @@ relationships
     is navigated by, M Traverse Action
 --
     R929
-    produces, 1 Instance Flow
-    is produced by, 1c Traverse Action
+    navigates from instances in, 1 Instance Flow
+    provides origin instances to, Mc Traverse Action
+--
+    R930
+    navigates to instances in, 1 Instance Flow
+    yields destination instances of, 1c Traverse Action
 --
     R931
     Association Hop +
