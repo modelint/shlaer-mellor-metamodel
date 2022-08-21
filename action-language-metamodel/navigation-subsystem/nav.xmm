@@ -2,7 +2,7 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.4.0
+    Version : 0.4.1
     /// Creation date : September 11, 2021
     Modification date : August 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
@@ -161,7 +161,7 @@ relationships
         Generalization Hop
 --
     R928
-    selects instances along, 1 Path
+    navigates, 1 Path
     is navigated by, M Traverse Action
 --
     R929
