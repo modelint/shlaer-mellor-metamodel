@@ -2,9 +2,9 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.3.1
+    Version : 0.4.0
     /// Creation date : September 11, 2021
-    Modification date : March 25, 2022
+    Modification date : August 21, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -64,6 +64,12 @@ attributes
     Domain {I, OR938, R926, R940}
     Rnum {R940}
 --
+class Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
 class Ordinal Hop
 attributes
     Number {I, R936, R937}
@@ -73,8 +79,7 @@ attributes
 class Path
 attributes
     Name : Path Name {I}
-    Alias : Path Alias {I2}
-    Domain {I, I2, R925}
+    Domain {I, R925}
     Dest class {R925}
 --
 class Perspective <import:Relationship>
@@ -133,6 +138,14 @@ attributes
     Path {I, R931}
     Domain {I, R931}
 --
+class Traverse Action
+attributes
+    ID {I, R901}
+    Activity {I, R901, R929}
+    Domain {I, R901, R928, R929}
+    Path {R928}
+    Flow {R929}
+--
 relationships
     R925
     leads to, 1 Class
@@ -146,6 +159,14 @@ relationships
     Hop +
         Assocation Hop
         Generalization Hop
+--
+    R928
+    selects instances along, 1 Path
+    is navigated by, M Traverse Action
+--
+    R929
+    produces, 1 Instance Flow
+    is produced by, 1c Traverse Action
 --
     R931
     Association Hop +
