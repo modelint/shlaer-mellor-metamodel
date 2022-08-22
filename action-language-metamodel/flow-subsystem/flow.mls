@@ -19,6 +19,8 @@ nodes
     Table Flow 3,6
     Table Header 1,6
     Table Attribute 1,9
+    Attribute 3,9
+    Class Table Attribute 2,10
     Single Instance Flow/2 5-6,7-8
     Multiple Instance Flow/2 4,7-8
     Label 2,1
@@ -32,3 +34,4 @@ connectors
     +R806 : -/1 r|Table Header : -/1 l*|Table Attribute
     -R807 : +/2 t|Flow : +/2 b*|Activity
     -R808 : +/1 b|Flow : +/1 t*|Label
+    -R809 : +/1 t|Table Attribute : +/1 b*|Attribute, l|Class Table Attribute

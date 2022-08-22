@@ -1,0 +1,182 @@
+metadata
+    Title : Relational Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.14
+    Version : 0.2.0
+    /// Creation date : August 22, 2022
+    Modification date : August 24, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Relational
+class Comparison Criterion
+attributes
+    ID {I, R1203}
+    Restrict {I, R1203}
+    Activity {I, R1203}
+    Attribute {I, R1203}
+    Table flow {I, R1203}
+    Domain {I, R1203}
+    Comparison : Comp Op
+--
+class Extend
+attributes
+    ID {I, R1200}
+    Activity {I, R1200}
+    Domain {I, R1200}
+    Added attribute : Attribute Name
+    Extension : Expression
+--
+class Extension Attribute Access
+attributes
+    Extend operation {I, R1206}
+    Attribute {I, R1206}
+    Table flow {I, R1206c}
+    Activity {I, R1206}
+    Domain {I, R1206}
+--
+class Extension Scalar Input
+attributes
+    Extend operation {I, R1209}
+    Scalar flow {I, R1209}
+    Activity {I, R1209}
+    Domain {I, R1209}
+--
+class Join
+attributes
+    ID {I, R1200}
+    Activity {I, R1200, R1208}
+    Domain {I, R1200, R1208}
+    Table to join {I, R1208}
+--
+class Project
+attributes
+    ID {I, R1200}
+    Activity {I, R1200}
+    Domain {I, R1200}
+--
+class Projected Attribute
+attributes
+    Project {I, R1205}
+    Table attribute {I, R1205}
+    Table flow {I, R1205}
+    Activity {I, R1205}
+    Domain {I, R1205}
+--
+class Ranking Criterion
+attributes
+    ID {I, R1203}
+    Restrict {I, R1203}
+    Activity {I, R1203}
+    Attribute {I, R1203}
+    Table flow {I, R1203}
+    Domain {I, R1203}
+    Order : Ascending Descending
+--
+class Rename
+attributes
+    ID {I, R1200}
+    Activity {I, R1200, R1207}
+    Domain {I, R1200, R1207}
+    Attribute {R1207}
+    New name : Attribute Name
+--
+class Restrict
+attributes
+    ID {I, R1200}
+    Activity {I, R1200}
+    Domain {I, R1200}
+--
+class Restrict Criterion
+attributes
+    ID : Criterion ID {I}
+    Restrict {I, R1202}
+    Table flow {I, R1202}
+    Activity {I, R1202}
+    Domain {I, R1202}
+--
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Table Attribute <import:Flow>
+attributes
+    Name {I}
+    Table flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Table Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Table Operation
+attributes
+    ID {I, R901}
+    Activity {I, R901, R1210, R1211}
+    Domain {I, R901, R1210, R1211}
+    Input table flow {I, R1210}
+    Output table flow {I, R1211}
+--
+relationships
+    R1200
+    Table Operation +
+        Join
+        Restrict
+        Project
+        Rename
+        Extend
+--
+///    R1201
+///    restricts, 1 Table Flow
+///    is restricted by, Mc Restrict Operation
+///--
+    R1202
+    compares, M Table Attribute
+    is compared in, Mc Restrict
+    M Restrict Criterion
+--
+    R1203
+    Restrict Criterion +
+        Ranking Criterion
+        Comparison Criterion
+--
+    R1204
+    compares value from, 1 Scalar Flow
+    has value compared in, Mc Comparison Criterion
+--
+    R1205
+    includes, M Table Attribute
+    is included by, Mc Project
+    1 Projected Attribute
+--
+    R1206
+    accesses value of, Mc Table Attribute
+    is accessed in, Mc Extend
+    1 Extension Attribute Access
+--
+    R1207
+    renames, 1 Table Attribute
+    is renamed by, Mc Rename
+--
+    R1208
+    is joined by, Mc Join
+    joins to, 1 Table Flow
+--
+    R1209
+    is input to, Mc Extend
+    takes input from, Mc Scalar Flow
+    1 Extension Scalar Input
+--
+    R1210
+    is primary input to, Mc Table Operation
+    has primary input, 1 Table Flow
+--
+    R1211
+    is output of, 1c Table Operation
+    outputs, 1 Table Flow
+--
