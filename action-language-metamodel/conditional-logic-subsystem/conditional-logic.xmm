@@ -2,9 +2,9 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.6.2
+    Version : 0.6.3
     /// Creation date : May 12, 2022
-    Modification date : May 15, 2022
+    Modification date : August 25, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -44,9 +44,9 @@ attributes
 --
 class Decision Action
 attributes
-    Action {I}
-    Activity {I}
-    Domain {I}
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
     Predicate : Predicate String
 --
 class Decision Input
@@ -107,9 +107,9 @@ attributes
 --
 class Switch Action
 attributes
-    Action {I}
-    Activity {I}
-    Domain {I}
+    Action {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
 --
 relationships
     R1050

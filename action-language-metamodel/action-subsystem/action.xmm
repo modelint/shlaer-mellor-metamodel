@@ -1,0 +1,114 @@
+metadata
+    Title : Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.5
+    Version : 0.2.0
+    /// Creation date : September 7, 2021
+    Modification date : August 25, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Action
+class Action
+attributes
+    ID : Action ID {I}
+    Activity {I, R900}
+    Domain {I, R900}
+--
+class Activity <import:Flow>
+attributes
+    ID {I}
+    Domain {I}
+--
+class Computation Action <import:Copmutation>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Create Action <import:Create Delete>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Decision Action <import:Conditional Logic>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Delete Action <import:Create Delete>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Iteration Action <import:Iterate>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Read Action <import:Attribute Access>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Select Action <import:Select Action>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Signal Action <import:Signal>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Switch Action <import:Conditional Logic>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Table Operation <import:Relational>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Traverse Action <import:Navigation>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Update Action <import:Attribute Access>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+relationships
+    R900
+    executes in, 1 Activity
+    executes, Mc Action
+--
+    R901
+    Action +
+        Create Action
+        Read Action
+        Update Action
+        Computation Action
+        Signal Action
+        Delete Action
+        Table Operation
+        Switch Action
+        Decision Action
+        Iteration Action
+        Traverse Action
+        Select Action
+--

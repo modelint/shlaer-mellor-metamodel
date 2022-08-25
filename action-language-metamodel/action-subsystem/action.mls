@@ -1,0 +1,27 @@
+diagram class // Action Subsystem
+notation Starr
+presentation default
+orientation landscape
+color blue steel
+sheet D
+padding l300 b350
+frame OS Engineer
+frame_presentation default
+nodes
+    Action 7,7
+    Activity 9,7
+    Create Action 5,1
+    Delete Action 5,2
+    Read Action 5,3
+    Update Action 5,4
+    Signal Action 5,6
+    Computation Action/2 5,7
+    Iteration Action/2 5,8
+    Decision Action/2 5,9
+    Switch Action 5,10
+    Traverse Action 5,11
+    Select Action 5,12
+    Table Operation 5,15
+connectors
+    +R900 : +/1 t|Action : +/1 b*|Activity
+    +R901 : b|Action { t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Update Action, t|Computation Action, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Table Operation }
