@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.domain.td.2
-    Version : 2.7.0
+    Version : 2.7.1
     /// Creation date : May 9, 2011
-    Modification date : May 22, 2022
+    Modification date : September 6, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -55,8 +55,8 @@ attributes
 class Subsystem
 attributes
     Name : Subsystem Name {I}
-    First element number {R1}
-    Domain {I, I2, R1}
+    First element number {I3, R1}
+    Domain {I, I2, I3, R1}
     Alias : Subsystem Alias {I2}
 --
 class Subsystem Element
