@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1
-    Version : 4.7.3
+    Version : 4.7.4
     /// Creation date : June 27, 2017
-    Modification date : August 19, 2022
+    Modification date : September 10, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -41,7 +41,7 @@ attributes
     From class {I, I2, R21, R23}
     To attribute {I, R21c}
     To class {I, R21c, R23}
-    Domain {I, R21, R23}
+    Domain {I, I2, R21, R23}
     To identifier {R21}
     Ref {I2, R23}
     Rnum {I, I2, R23}
