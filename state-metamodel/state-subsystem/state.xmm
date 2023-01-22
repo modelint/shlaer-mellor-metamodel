@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.4.3
+    Version : 3.5.0
     /// Creation date : January 21, 2012
-    Modification date : April 24, 2022
+    Modification date : January 22, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -50,8 +50,16 @@ attributes
 --
 class Initial Pseudo State
 attributes
+    Name {R510}
     Class {I, R510, R508}
     Domain {I, R510, R508}
+--
+class State Input
+attributes
+    Parameter {I, R509}
+    State {I, R509}
+    State model {I, R509}
+    Domain {I, R509}
 --
 class Lifecycle
 attributes
@@ -83,7 +91,7 @@ attributes
 class Real State
 attributes
     Name {I, R510}
-    State model {I, R510, UR511}
+    State model {I, R510}
     Domain {I, R510, R504}
     Activity {R504}
 --
@@ -95,7 +103,7 @@ attributes
 class State
 attributes
     Name : State Name {I}
-    State model {I, UR510}
+    State model {I}
     Domain {I}
 --
 class State Activity <import:Activity>
@@ -105,8 +113,15 @@ attributes
 --
 class State Model
 attributes
-    Name : State Model Name {I, UR502}
+    Name : State Model Name {I}
     Domain {I}
+--
+class State Model Parameter
+attributes
+    Name : Parameter Name {I}
+    State model {I, R512}
+    Domain {I, R512}
+    Type : Type Name
 --
 class Transition
 attributes
@@ -156,6 +171,11 @@ relationships
     instances are created by delegation in, 1c Initial Pseudo State
     is source of initial transition on, 1 Lifecycle
 --
+    R509
+    takes input from, Mc Event Parameter
+    provides input to, M State
+    1 Input Parameter
+--
     R510
     State +
         Real State
@@ -165,6 +185,10 @@ relationships
     Real State +
         Deletion State
         Non Deletion State
+--
+    R512
+    defines, Mc State Model Parameter
+    is defined in, 1 State Model
 --
     R513
     deletes instances in, 1 Lifecycle

@@ -4,7 +4,7 @@ presentation default
 orientation landscape
 color tutti frutti
 sheet D
-padding l100 b300
+padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
@@ -26,6 +26,8 @@ nodes
     Transition 1,4 >bottom
     Non Transition 1,5-6 >bottom
     State Activity 5-6,7
+    State Input 3,1-2
+    State Model Parameter/2 9,1
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -36,9 +38,11 @@ connectors
     +R506 : b|Event Response { t|Transition, t|Non Transition }
     -R507 : -/2 l|Transition : +/2 b|State
     -R508 : +/3 l+2|Lifecycle : -/3 t|Initial Pseudo State
+    +R509 : -/2 b|State Model Parameter : -/2 l|State, t|State Input
     -R510 : t|State { b|Real State, b|Initial Pseudo State }
     -R511 : t|Real State { b|Deletion State, b|Non Deletion State }
-    -R513.2 : -/3 t|Deletion State : +/2 l-2|Lifecycle
+    +R512+1 : -/2 l|State Model : +/2 r*|State Model Parameter
+    -R513.2+1 : -/3 t|Deletion State : +/2 l-2|Lifecycle
     -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
     -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
     +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2
