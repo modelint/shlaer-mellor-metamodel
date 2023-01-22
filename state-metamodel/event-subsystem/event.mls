@@ -24,8 +24,7 @@ nodes
     Delegation On Generalization/2 2,12-13
     Subclass 2,15
     Forwarded Event 7,14
-    State Model Parameter 8-9,2
-    Event Parameter 7,3
+    State Signature 8-9,2
 connectors
     +R550-1 : r|Event Specification { l|Monomorphic Event Specification, l|Polymorphic Event Specification }
     -R551.2 : +/1 r|Class : +/1 t|Polymorphic Event Specification
@@ -36,6 +35,6 @@ connectors
     +R558.2 : +/1 r|Polymorphic Event Specification : +/2 t|Root Delegated Event
     +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
     +R561 : t|Delegated Event { b|Root Delegated Event, b|Forwarded Delegated Event }
-    -R563 : +/1 r*|State Model Parameter : +/1 l|Event Specification, t|Event Parameter
+    -R563 : +/2 r|State Signature : +/2 l*|Event Specification
     -R565.2 : +/1 r|State Model : -/1 b-2|Monomorphic Event Specification
     -R569 : -/1 t*|Generalization : +/2 b+1|Delegated Event, l|Delegation On Generalization

@@ -54,10 +54,10 @@ attributes
     Class {I, R510, R508}
     Domain {I, R510, R508}
 --
-class State Input
+class Input Parameter
 attributes
-    Parameter {I, R509}
-    State {I, R509}
+    Name {I, R509}
+    Signature {I, R509}
     State model {I, R509}
     Domain {I, R509}
 --
@@ -103,8 +103,9 @@ attributes
 class State
 attributes
     Name : State Name {I}
-    State model {I}
-    Domain {I}
+    State model {I, R515}
+    Domain {I, R515}
+    Signature {R515}
 --
 class State Activity <import:Activity>
 attributes
@@ -123,10 +124,16 @@ attributes
     Domain {I, R512}
     Type : Type Name
 --
+class State Signature
+attributes
+    ID : Signature ID {I}
+    State model {I, R515}
+    Domain {I, R515}
+--
 class Transition
 attributes
     From state {I, R506}
-    Event {I, R506}
+    Event {I, R506c}
     State model {I, R506, R507}
     Domain {I, R506, R507}
     To state {R507}
@@ -172,8 +179,8 @@ relationships
     is source of initial transition on, 1 Lifecycle
 --
     R509
-    takes input from, Mc Event Parameter
-    provides input to, M State
+    requires, Mc State Model Parameter
+    is required by, M State Signature
     1 Input Parameter
 --
     R510
@@ -198,6 +205,10 @@ relationships
     Assigner +
         Single Assigner
         Multiple Assigner
+--
+    R515
+    defines input required by, M State
+    requires input defined by, 1 State Signature
 --
     R517
     manages within constraint set by, 1 Constrained Loop

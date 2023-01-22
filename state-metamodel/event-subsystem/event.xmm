@@ -39,18 +39,12 @@ attributes
     State model {I}
     Domain {I}
 --
-class Event Parameter
-attributes
-    Parameter {I,R563}
-    Event specification {I, R563}
-    State model {I, R563}
-    Domain {I, R563}
---
 class Event Specification
 attributes
     Name : Event Name {I}
-    State model {I}
-    Domain {I}
+    State model {I, R563}
+    Domain {I, R563}
+    State signature {R563}
 --
 class Generalization <import:Relationship>
 attributes
@@ -106,9 +100,9 @@ attributes
     Name {I}
     Domain {I}
 --
-class State Model Parameter <import:State>
+class State Signature <import:State>
 attributes
-    Parameter {I}
+    ID {I}
     State model {I}
     Domain {I}
 --
@@ -162,9 +156,8 @@ relationships
         Forwarded Delegated Event
 --
     R563
-    receives data from, M Event Specification
-    provides data for, Mc State Model Parameter
-    1 Event Parameter
+    provides data required by, 1 State Signature
+    has data provided by, M Event Specification
 --
     R565
     defines, Mc Monomorphic Event Specification

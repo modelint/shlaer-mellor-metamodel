@@ -8,26 +8,27 @@ padding l200 b300
 frame OS Engineer
 frame_presentation default
 nodes
-    Assigner 10-11,6
-    Single Assigner 12,7-8
-    Multiple Assigner 9-10,7-8
-    Constrained Loop 10-11,9-10
-    Lifecycle 10-11,4
-    State Model 9,5
-    Class 13,4 : 8-9,9-10
-    Association 13,6
-    State 4,3
-    Deletion State 7,3
-    Non Deletion State 7,5
-    Real State 5-6,4
-    Initial Pseudo State 5-6,2
-    Effective Event/2 4,6
-    Event Response 2-3,4-5
-    Transition 1,4 >bottom
-    Non Transition 1,5-6 >bottom
-    State Activity 5-6,7
-    State Input 3,1-2
-    State Model Parameter/2 9,1
+    Assigner 10-11,8
+    Single Assigner 12,9-10
+    Multiple Assigner 9-10,9-10
+    Constrained Loop 10-11,11-12
+    Lifecycle 10-11,6
+    State Model 9,7
+    Class 13,6 : 8-9,11-12
+    Association 13,8
+    State 4,5
+    Deletion State 7,5
+    Non Deletion State 7,7
+    Real State 5-6,6
+    Initial Pseudo State 5-6,4
+    Effective Event/2 4,8
+    Event Response 2-3,6-7
+    Transition 1,6 >bottom
+    Non Transition 1,7-8 >bottom
+    State Activity 5-6,9
+    Input Parameter 6,1
+    State Model Parameter/2 9,2
+    State Signature 4,2
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -38,11 +39,12 @@ connectors
     +R506 : b|Event Response { t|Transition, t|Non Transition }
     -R507 : -/2 l|Transition : +/2 b|State
     -R508 : +/3 l+2|Lifecycle : -/3 t|Initial Pseudo State
-    +R509 : -/2 b|State Model Parameter : -/2 l|State, t|State Input
+    +R509 : -/2 b|State Model Parameter : -/2 t*|State Signature, r|Input Parameter
     -R510 : t|State { b|Real State, b|Initial Pseudo State }
     -R511 : t|Real State { b|Deletion State, b|Non Deletion State }
     +R512+1 : -/2 l|State Model : +/2 r*|State Model Parameter
     -R513.2+1 : -/3 t|Deletion State : +/2 l-2|Lifecycle
     -R514-1 : r|Assigner { l|Single Assigner, l|Multiple Assigner }
+    +R515 : -/2 r|State Signature : -/2 l*|State
     -R517 : -/2 t|Multiple Assigner : +/2 l|Constrained Loop
     +R518 : -/3 b|Multiple Assigner : -/3 l|Class.2
