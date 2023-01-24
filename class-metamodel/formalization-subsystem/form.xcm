@@ -1,0 +1,189 @@
+metadata
+    Title : Formalization Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.6
+    Version : 2.7.1
+    /// Creation date : July 3, 2011
+    Modification date : December 26, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Formalization, FORM 150-174
+class Association Class <import:Relationship>
+attributes
+    Rnum : Relationship Number {I, R120c, R151}
+    Class : Class Name {I2, R120, R151}
+    Domain : Domain Name {I, I2, R120, R151}
+--
+class Association Class Reference
+attributes
+    Ref type : Reference Type {I, R176}
+    Association class : Class Name {I, R176}
+    Participating class : Class Name {I, R176}
+    Rnum : Relationship Number {I, R176}
+    Domain : Domain Name {I, R176}
+--
+class Association Reference
+attributes
+    Ref type : Reference Type {I, R152}
+    From class : Class Name {I, R152}
+    To class : Class Name {I, R152}
+    Rnum : Relationship Number {I, R152, R154}
+    Domain : Domain Name {I, R152, R154}
+    Perspective : Side {R154}
+--
+class Class <import:Class And Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Formalizing Class Role
+attributes
+    Rnum : Relationship Number {I, R150}
+    Class : Class Name {I, R150}
+    Domain : Domain Name {I, R150}
+--
+class Generalization Reference
+attributes
+    Subclass : Class Name {I, R152, R156}
+    Superclass : Class Name {I, R152}
+    Rnum : Relationship Number {I, R152, R156, R170}
+    Domain : Domain Name {I, R152, R156, R170}
+    Ref type : Reference Type {R152}
+--
+class Referring Class
+attributes
+    Rnum : Relationship Number {I, R151}
+    Class : Class Name {I, R151}
+    Domain : Domain Name {I, R151}
+--
+class Perspective <import:Relationship>
+attributes
+    Side : Side {I}
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class Reference
+attributes
+    Ref : Reference Type {I}
+    From class : Class Name {I, R155}
+    To class : Class Name {I, R155}
+    Rnum : Relationship Number {I, R155}
+    Domain : Domain Name {I, R155}
+--
+class Simple Association Reference
+attributes
+    From class : Class Name {I, R157, R176}
+    To class : Class Name {I, R176}
+    Rnum : Relationship Number {I, R157, R176}
+    Domain : Domain Name {I, R157, R176}
+    Ref type : Reference Type {R176}
+--
+class Superclass <import:Relationship>
+attributes
+    Name {I}
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class Subclass <import:Relationship>
+attributes
+    Class {I}
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class P Reference
+attributes
+    Association class : Class Name {I, R153c}
+    Participating class : Class Name {I, R153}
+    Rnum : Relationship Number {I, R153, R159}
+    Domain : Domain Name {I, R153, R159}
+    Ref type : Reference Type {R153}
+--
+class T Reference
+attributes
+    Association class : Class Name {I, R153c}
+    Participating class : Class Name {I, R153}
+    Rnum : Relationship Number {I, R153, R158}
+    Domain : Domain Name {I, R153, R158}
+    Ref type : Reference Type {R153}
+--
+relationships
+    R150
+    is used to formalize, Mc Relationship
+    is formalized in, Mc Class
+    1 Formalizing Class Role
+    Formalizing Class Role.(Rnum, Domain) -> Relationship.(Rnum, Domain)
+    Formalizing Class Role.(Class, Domain) -> Class.(Name, Domain)
+--
+    R151
+    Formalizing Class Role +
+        Subclass
+        Association Class
+        Referring Class
+    Subclass.(Class, Rnum, Domain) -> Formalizing Class Role.(Class, Rnum, Domain)
+    Referring Class.(Class, Rnum, Domain) -> Formalizing Class Role.(Class, Rnum, Domain)
+    Association Class.(Class, Rnum, Domain) -> Formalizing Class Role.(Class, Rnum, Domain)
+--
+    R152
+    Reference +
+        Generalization Reference
+        Association Reference
+    Generalization Reference.(Ref type, Subclass, Superclass, Rnum, Domain) -> Reference.(Ref, From class, To class, Rnum, Domain)
+    Association Reference.(Ref type, From class, To class, Rnum, Domain) -> Reference.(Ref, From class, To class, Rnum, Domain)
+--
+    R153
+    Association Class Reference +
+        T Reference
+        P Reference
+    <subclass>.(Ref type, Association class, Participating class, Rnum, Domain) -> Association Class Reference.(Ref type, Association class, Participating class, Rnum, Domain)
+--
+    R154
+    refers to, 1 Perspective
+    is referred to by, Mc Association Reference
+    Association Reference.(Rnum, Domain, Perspective) -> Perspective.(Rnum, Domain, Side)
+--
+    R155
+    is referred to from, Mc Formalizing Class Role
+    refers to, M Class
+    1 Reference
+    Reference.(From class, Rnum, Domain) -> Formalizing Class Role.(Class, Rnum, Domain)
+    Reference.(To class, Domain) -> Class.(Name, Domain)
+--
+    R156
+    is housed in, 1 Subclass
+    houses, 1 Generalization Reference
+    Generalization Reference.(Subclass, Rnum, Domain) -> Subclass.(Class, Rnum, Domain)
+--
+    R157
+    houses, 1 Simple Association Reference
+    is housed in, 1 Referring Class
+    Simple Association Reference.(From class, Rnum, Domain) -> Referring Class.(Class, Rnum, Domain)
+--
+    R158
+    houses, 1 T Reference
+    is housed in, 1 Association Class
+    T Reference.(Rnum, Domain) -> Association Class.(Rnum, Domain)
+--
+    R159
+    houses, 1 P Reference
+    is housed in, 1 Association Class
+    P Reference.(Rnum, Domain) -> Association Class.(Rnum, Domain)
+--
+    R170
+    refers to, 1 Superclass
+    is referred to by, M Generalization Reference
+    Generalization Reference.(Rnum, Domain) -> Superclass.(Rnum, Domain)
+--
+    R176
+    Association Reference +
+        Simple Association Reference
+        Association Class Reference
+    Simple Association Reference.(Ref type, From class, To class, Rnum, Domain) -> Association Reference.(Ref type, From class, To class, Rnum, Domain)
+    Association Class Reference.(Ref type, Association class, Participating class, Rnum, Domain) -> Association Reference.(Ref type, From class, To class, Rnum, Domain)
+--

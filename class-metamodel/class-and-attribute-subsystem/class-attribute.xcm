@@ -1,0 +1,195 @@
+metadata
+    Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.1
+    Version : 4.8.0
+    /// Creation date : June 27, 2017
+    Modification date : December 7, 2022
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Class And Attribute, CA 25-49
+class Alias
+attributes
+    Name : Alias Name {I}
+    Class : Class Name {I2, R29}
+    Domain : Domain Name {I, I2, R29}
+--
+class Attribute
+attributes
+    Name : Attribute Name {I}
+    Class : Class Name {I, R20}
+    Domain : Domain Name {I, R20}
+    Type : Type Name
+--
+class Attribute Derivation Activity <import:Activity>
+attributes
+    Activity : Activity ID {I}
+    Domain : Domain Name {I}
+--
+class Attribute In Derivation
+attributes
+    Source attribute : Attribute Name {I, R26c}
+    Source class : Class Name {I, R26c}
+    Target attribute : Attribute Name {I, R26}
+    Target class : Class Name {I, R26}
+    Domain : Domain Name {I, R26}
+--
+class Attribute Reference
+attributes
+    From attribute : Attribute Name {I, I2, R21}
+    From class : Class Name {I, I2, R21, R23}
+    To attribute : Attribute Name {I, R21c}
+    To class : Class Name {I, R21c, R23}
+    Domain : Domain Name {I, R21, R23}
+    To identifier : ID Number {R21}
+    Ref : Reference Type {I2, R23}
+    Rnum : Relationship Number {I, I2, R23}
+--
+class Class
+attributes
+    Name : Class Name {I}
+    Cnum : Class Number {I2, R14}
+    Domain : Domain Name {I, I2, R14}
+--
+class Classifier Attribute
+attributes
+    Type : Type Name
+    Superclass : Class Name {I, I2, R32}
+    Generalization : Relationship Number {I, R32}
+    Identifier : ID Number {I2, R32}
+    Attribute : Attribute Name {I2, R32}
+    Domain : Domain Name {I, I2, R32}
+--
+class Derived Attribute
+attributes
+    Name : Attribute Name {I, R25}
+    Class : Class Name {I, R25}
+    Domain : Domain Name {I, R25}
+--
+class Identifier
+attributes
+    Number : ID Number {I}
+    Class : Class Name {I, R27}
+    Domain : Domain Name {I, R27}
+--
+class Identifier Attribute
+attributes
+    Identifier : ID Number {I, R22}
+    Attribute : Attribute Name {I, R22}
+    Class : Class Name {I, R22}
+    Domain : Domain Name {I, R22}
+--
+class Irreducible Identifier
+attributes
+    Number : ID Number {I, R30}
+    Class : Class Name {I, R30, R31}
+    Domain : Domain Name {I, R30, R31}
+--
+class Non Derived Attribute
+attributes
+    Name : Attribute Name {I, R25}
+    Class : Class Name {I, R25}
+    Domain : Domain Name {I, R25}
+--
+class Reference <import:Formalization>
+attributes
+    Ref : Reference Type {I}
+    From class : Class Name {I}
+    To class : Class Name {I}
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class Subclass <import:Relationship>
+attributes
+    Name : Class Name {I}
+    Rnum : Relationship Number {I}
+    Domain : Domain Name {I}
+--
+class Subclass Classification Value
+attributes
+    Value : Enumeration Value {I}
+    Superclass : Class Name {I, R33}
+    Subclass : Class Name {I, R33}
+    Generalization : Relationship Number {I, R33}
+    Domain : Domain Name {I, R33}
+--
+class Superclass <import:Relationship>
+attributes
+    Rnum : Relationship Number {I}
+    Class : Class Name {I}
+    Domain : Domain Name {I}
+--
+class Super Identifier
+attributes
+    Number : ID Number {I, R30}
+    Class : Class Name {I, R30}
+    Domain : Domain Name {I, R30}
+--
+relationships
+    R20
+    is characterized by, M Attribute
+    characterizes, 1 Class
+    Attribute.(Class, Domain) -> Class.(Name, Domain)
+--
+    R21
+    constrains value of, Mc Attribute
+    is constrained to match value of, Mc Identifier Attribute
+    M Attribute Reference
+    Attribute Reference.(From attribute, From class, Domain) -> Attribute.(Name, Class, Domain)
+    Attribute Reference.(To identifier, To attribute, To class, Domain) -> Identifier Attribute.(Identifier, Attribute, Class, Domain)
+--
+    R22
+    requires, M Attribute
+    is required in, Mc Identifier
+    1 Identifier Attribute
+    Identifier Attribute.(Identifier, Class, Domain) -> Identifier.(Number, Class, Domain)
+    Identifier Attribute.(Attribute, Class, Domain) -> Attribute.(Name, Class, Domain)
+--
+    R23
+    formalizes, 1 Reference
+    is formalized by, M Attribute Reference
+    Attribute Reference.(Ref, From class, To class, Rnum, Domain) -> Reference.(Ref, From class, To class, Rnum, Domain)
+--
+    R25
+    Attribute +
+        Derived Attribute
+        Non Derived Attribute
+    <subclass>.(Name, Class, Domain) -> Attribute.(Name, Class, Domain)
+--
+    R27
+    has instances uniquely distinguished by, M Identifier
+    uniquely distinguishes instances of, 1 Class
+    Identifier.(Class, Domain) -> Class.(Name, Domain)
+--
+    R29
+    abbreviates name of, 1 Class
+    is abbreviated by, 1c Alias
+    Alias.(Class, Domain) -> Class.(Name, Domain)
+--
+    R30
+    Identifier +
+        Irreducible Identifier
+        Super Identifier
+    <subclass>.(Number, Class, Domain) -> Identifier.(Number, Class, Domain)
+--
+    R31
+    defines, M Irreducible Identifier
+    is defined in, 1 Class
+    Irreducible Identifier.(Class, Domain) -> Class.(Name, Domain)
+--
+    R32
+    makes subclass populations distinct in, 1c Superclass
+    subclass populations are distinguised by, 1c Identifier Attribute
+    1 Classifier Attribute
+    Classifier Attribute.(Generalization, Domain) -> Superclass.(Rnum, Domain)
+    Classifier Attribute.(Identifier, Attribute, Superclass, Domain) -> Identifier Attribute.(Identifier, Attribute, Class, Domain)
+--
+    R33
+    generates type values for, 1 Subclass
+    has type values generated by, 1c Classifier Attribute
+    M Subclass Classification Value
+    Subclass Classification Value.(Superclass, Generalization, Domain) -> Classifier Attribute.(Superclass, Generalization, Domain)
+    Subclass Classification Value.(Subclass, Generalization, Domain) -> Subclass.(Class, Rnum, Domain)
+--
