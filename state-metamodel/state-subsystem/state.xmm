@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.5.0
+    Version : 3.5.1
     /// Creation date : January 21, 2012
-    Modification date : January 22, 2023
+    Modification date : January 28, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -91,8 +91,9 @@ attributes
 class Real State
 attributes
     Name {I, R510}
-    State model {I, R510}
-    Domain {I, R510, R504}
+    State model {I, R510, R515}
+    Domain {I, R510, R504, R515}
+    Signature {R515}
     Activity {R504}
 --
 class Single Assigner
@@ -103,9 +104,8 @@ attributes
 class State
 attributes
     Name : State Name {I}
-    State model {I, R515}
-    Domain {I, R515}
-    Signature {R515}
+    State model {I}
+    Domain {I}
 --
 class State Activity <import:Activity>
 attributes
@@ -207,7 +207,7 @@ relationships
         Multiple Assigner
 --
     R515
-    defines input required by, M State
+    defines input required by, M Real State
     requires input defined by, 1 State Signature
 --
     R517
