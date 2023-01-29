@@ -56,10 +56,11 @@ attributes
 --
 class Input Parameter
 attributes
-    Name {I, R509}
+    Name : Parameter Name {I}
     Signature {I, R509}
     State model {I, R509}
     Domain {I, R509}
+    Type : Type Name
 --
 class Lifecycle
 attributes
@@ -117,13 +118,6 @@ attributes
     Name : State Model Name {I}
     Domain {I}
 --
-class State Model Parameter
-attributes
-    Name : Parameter Name {I}
-    State model {I, R512}
-    Domain {I, R512}
-    Type : Type Name
---
 class State Signature
 attributes
     ID : Signature ID {I}
@@ -179,9 +173,8 @@ relationships
     is source of initial transition on, 1 Lifecycle
 --
     R509
-    requires, Mc State Model Parameter
-    is required by, M State Signature
-    1 Input Parameter
+    specifies, Mc Input Parameter
+    is specified by, 1 State Signature
 --
     R510
     State +
@@ -194,7 +187,7 @@ relationships
         Non Deletion State
 --
     R512
-    defines, Mc State Model Parameter
+    defines, M State Signature
     is defined in, 1 State Model
 --
     R513
