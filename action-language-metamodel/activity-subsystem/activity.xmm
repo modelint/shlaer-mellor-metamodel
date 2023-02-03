@@ -2,13 +2,13 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.6.3
+    Version : 0.7.0
     /// Creation date : August 13, 2022
-    Modification date : August 20, 2022
+    Modification date : February 2, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Flow
+subsystem Activity
 class Activity
 attributes
     ID : Activity ID {I}
@@ -20,7 +20,7 @@ attributes
     EE {I, R833}
     Domain {I, R833}
 --
-class Input Parameter
+class Parameter
 attributes
     Name : Parameter Name {I}
     Flow {R834}
@@ -62,11 +62,21 @@ attributes
     Class {I2, R827}
     Domain {I, I2, R826, R827}
 --
-class State <import:State>
+class Non State Activity
 attributes
-    Name {I}
-    State model {I}
-    Domain {I}
+    ID {I, R830}
+    Signature {R836}
+    Domain {I, R830, R836}
+--
+class Non State Signature
+attributes
+    ID {I, R837}
+    Domain {I, R837}
+--
+class Signature
+attributes
+    SIGnum : Signature Number {I, R17}
+    Domain {I, R17}
 --
 class State Activity
 attributes
@@ -74,6 +84,11 @@ attributes
     State {I2, R831}
     State model {I2, R831}
     Domain {I, I2, R830, R831}
+--
+class State Signature <import:State>
+attributes
+    SIGnum {I}
+    Domain {I}
 --
 class Synchronous Activity
 attributes
@@ -109,8 +124,8 @@ relationships
     is defined by, 1 Class
 --
     R828
-    provides external input to, 1 Activity
-    gets external input from, Mc Input Parameter
+    input is defined by, 1 Signature
+    defines input with, Mc Parameter
 --
     R829
     produces, 1c Data Flow
@@ -136,6 +151,20 @@ relationships
     is defined on, 1 External Entity
 --
     R834
-    provides value for, Mc Input Parameter
+    provides value for, Mc Parameter
     gets value from, 1 Data Flow
+--
+    R835
+    Non State Activity +
+        Method
+        External Entity Operation
+--
+    R836
+    defines input into, 1 Non State Action
+    specifies required input with, 1 Non State Signature
+--
+    R837
+    Signature +
+        State Signature
+        Non State Signature
 --
