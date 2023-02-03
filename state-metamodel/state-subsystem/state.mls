@@ -26,8 +26,8 @@ nodes
     Transition 1,6 >top
     Non Transition 1,7
     State Activity 5-6,4
-    State Parameter 3,9
     State Signature 5-6,9
+    Initial Transition/2 3,2
 connectors
     -R500 : +/2 t|Lifecycle : +/2 b*|Class
     -R501 : +/2 t|Assigner : +/2 b*|Association
@@ -36,10 +36,10 @@ connectors
     -R504 : +/2 l|Real State : +/2 r*|State Activity
     +R505 : +/2 r|State : +/2 l*|Effective Event, t|Event Response
     +R506 : b|Event Response { t|Transition, t|Non Transition }
-    -R507 : -/2 l|Transition : +/2 b|State
+    -R507 : +/2 l+2|Transition : +/2 b|State
     -R508 : +/3 l+2|Lifecycle : -/3 t|Initial Pseudo State
-    -R509 : +/1 b|State Signature : +/1 t*|State Parameter
-    -R510 : t|State { b|Real State, b|Initial Pseudo State }
+    +R509.2 : -/2 b-1|Initial Pseudo State : +/2 l-2|Transition, r|Initial Transition
+    -R510 : t|State { b|Real State, b+1|Initial Pseudo State }
     -R511 : t|Real State { b|Deletion State, b|Non Deletion State }
     +R512+1 : +/1 r|State Model : +/2 t|State Signature
     -R513.2+1 : -/3 t|Deletion State : +/2 l-2|Lifecycle

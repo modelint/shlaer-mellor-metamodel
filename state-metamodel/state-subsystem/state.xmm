@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.5.3
+    Version : 3.5.5
     /// Creation date : January 21, 2012
     Modification date : February 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -53,6 +53,13 @@ attributes
     Name {R510}
     Class {I, R510, R508}
     Domain {I, R510, R508}
+--
+class Initial Transition
+attributes
+    From state {I, R509}
+    Class {I, R509}
+    Domain {I, R509}
+    Event {I, R509}
 --
 class Lifecycle
 attributes
@@ -110,14 +117,6 @@ attributes
     Name : State Model Name {I}
     Domain {I}
 --
-class State Parameter
-attributes
-    Name : Parameter Name {I}
-    Signature {I, R509}
-    State model {I, R509}
-    Domain {I, R509}
-    Type : Type Name
---
 class State Signature
 attributes
     SIGnum {I, *I2, R837}
@@ -173,8 +172,9 @@ relationships
     is source of initial transition on, 1 Lifecycle
 --
     R509
-    specifies, Mc State Parameter
-    is specified by, 1 State Signature
+    must exit on, M Transition
+    exists from, 1c Initial Pseudo State
+    1 Initial Transition
 --
     R510
     State +
