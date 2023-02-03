@@ -8,33 +8,35 @@ padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 1,5-6
-    Asynchronous Activity/2 2-3,4
-    Synchronous Activity/2 2-3,7
+    Activity 1,4-5
+    Asynchronous Activity/2 2-3,4 >left
+    Synchronous Activity/2 2-3,5-6
     State Activity 5,3
     Asynchronous External Entity Operation/2 5,10
     Synchronous External Entity Operation/2 5,8-9
     External Entity Operation/2 6-7,9
-    Method 6-7,7
-    Non State Activity/2 8,8
-    Signature 10-11,4
-    Class 6-7,5
+    Method 6-7,5-6
+    Method Signature 9,5-6
+    External Entity Operation Signature/2 9,9
+    Signature 11,4
+    Class 6-7,4
     Non State Signature/2 8,6
-    State Signature 8,3
-    Parameter 13,4
-    Synchronous Output 2-3,10
-    External Entity 6-7,11
-    Data Flow/2 13,8
+    State Signature 9,3
+    Parameter 11,7
+    Synchronous Output 2-3,11
+    External Entity 6-7,7
+    Data Flow/2 11,11
 connectors
     +R825 : t|Activity { b|Asynchronous Activity, b|Synchronous Activity }
-    +R830 : t|Asynchronous Activity { b|Asynchronous External Entity Operation, b|State Activity }
-    -R832 : b|External Entity Operation { t|Asynchronous External Entity Operation, t|Synchronous External Entity Operation }
     +R826 : t|Synchronous Activity { b|Synchronous External Entity Operation, b|Method }
     -R827 : +/1 l|Method : +/1 r*|Class
-    -R828 : +/2 b*|Parameter : +/2 t|Signature
+    -R828 :  +/2 r|Signature : +/2 l*|Parameter
     +R829 : -/1 r|Synchronous Activity : -/1 l*|Synchronous Output
-    +R833 : +/1 r|External Entity Operation : -/1 l*|External Entity
+    +R830 : t|Asynchronous Activity { b|Asynchronous External Entity Operation, b|State Activity }
+    +R831 : -/1 b|Data Flow : -/1 t*|Synchronous Output
+    -R832 : b|External Entity Operation { t|Asynchronous External Entity Operation, t|Synchronous External Entity Operation }
+    +R833 : +/1 l|External Entity Operation : -/1 r*|External Entity
     -R834 : +/2 r|Parameter : +/2 l*|Data Flow
-    +R835 : b|Non State Activity { t|Method, t|External Entity Operation }
-    -R836 : +/2 r|Non State Signature : +/2 l*|Non State Activity
-    +R837 : b|Signature { t|State Signature, t|Non State Signature }
+    -R835 : +/2 b|Method Signature : +/2 t*|Method
+    -R836 : +/2 b|External Entity Operation Signature : +/2 t*|External Entity Operation
+    +R837 : b|Signature { t|State Signature, t|Method Signature, t|External Entity Operation Signature }

@@ -14,19 +14,6 @@ attributes
     ID : Activity ID {I}
     Domain {I}
 --
-class External Entity Operation
-attributes
-    Name : Operation Name {I}
-    EE {I, R833}
-    Domain {I, R833}
---
-class Parameter
-attributes
-    Name : Parameter Name {I}
-    Flow {R834}
-    Activity {I, R828, R834}
-    Domain {I, R828, R834}
---
 class Asynchronous Activity
 attributes
     ID {I, R825}
@@ -50,10 +37,23 @@ attributes
     Activity {I}
     Domain {I}
 --
-class External Entity <import:Domain>
+class External Entity Operation
+attributes
+    Name : Operation Name {I}
+    EE {I, R833}
+    Domain {I, R833}
+--
+class External Entity <import:External Entity>
 attributes
     Name {I}
     Domain {I}
+--
+class External Entity Operation Signature
+attributes
+    ID {I, R837}
+    External entity {I2, R836}
+    Operation {I2, R836}
+    Domain {I, I2, R837, R836}
 --
 class Method
 attributes
@@ -62,16 +62,19 @@ attributes
     Class {I2, R827}
     Domain {I, I2, R826, R827}
 --
-class Non State Activity
-attributes
-    ID {I, R830}
-    Signature {R836}
-    Domain {I, R830, R836}
---
-class Non State Signature
+class Method Signature
 attributes
     ID {I, R837}
-    Domain {I, R837}
+    Method {I2, R835}
+    Class {I2, R835}
+    Domain {I, I2, R837, R835}
+--
+class Parameter
+attributes
+    Name : Parameter Name {I}
+    Input flow {R834}
+    Activity {I, R828, R834}
+    Domain {I, R828, R834}
 --
 class Signature
 attributes
@@ -104,9 +107,9 @@ attributes
 --
 class Synchronous Output
 attributes
-    Activity {I, R829}
-    Flow {I2, R829}
-    Domain {I, R829}
+    Activity {I, R829, R831}
+    Output flow {I2, R831}
+    Domain {I, R829, R831}
 --
 relationships
     R825
@@ -128,9 +131,8 @@ relationships
     defines input with, Mc Parameter
 --
     R829
-    produces, 1c Data Flow
-    is produced by, 1c Synchronous Activity
-    1 Synchronous Output
+    produces, 1c Synchronous Output
+    is produced by, 1 Synchronous Activity
 --
     R830
     Asynchronous Activity +
@@ -138,8 +140,8 @@ relationships
         Asynchronous External Entity Operation
 --
     R831
-    is executed upon entry into, 1 State
-    entry executes, 1 State Activity
+    is fed by, 1c Synchronous Output
+    feeds, 1 Data Flow
 --
     R832
     External Entity Operation +
@@ -155,16 +157,16 @@ relationships
     gets value from, 1 Data Flow
 --
     R835
-    Non State Activity +
-        Method
-        External Entity Operation
+    defines input into, 1 Method
+    specifies required input with, 1 Method Signature
 --
     R836
-    defines input into, 1 Non State Action
-    specifies required input with, 1 Non State Signature
+    defines input into, 1 External Entity Operation
+    specifies required input with, 1 External Entity Operation Signature
 --
     R837
     Signature +
         State Signature
-        Non State Signature
+        Method Signature
+        External Entity Operation Signature
 --

@@ -2,9 +2,9 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.5.2
+    Version : 3.5.3
     /// Creation date : January 21, 2012
-    Modification date : January 29, 2023
+    Modification date : February 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -120,9 +120,9 @@ attributes
 --
 class State Signature
 attributes
-    ID : Signature ID {I}
-    State model {I, R515}
-    Domain {I, R515}
+    SIGnum {I, *I2, R837}
+    State model {*I2, R512}
+    Domain {I, *I2, R837, R512}
 --
 class Transition
 attributes
