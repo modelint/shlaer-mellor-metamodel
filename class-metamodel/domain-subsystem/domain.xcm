@@ -4,7 +4,7 @@ metadata
     Document ID : mint.sm-meta.class.domain.td.2
     Version : 2.8.0
     /// Creation date : May 9, 2011
-    Modification date : December 7, 2022
+    Modification date : February 3, 2022
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -35,6 +35,11 @@ attributes
     Label : Element Label {I}
     Domain : Domain Name {I, R15}
 --
+class External Entity <import:External Entity>
+attributes
+    EEnum {I, R14}
+    Domain {I, R14}
+--
 class Lineage <import:Relationship>
 attributes
     Lnum {I2, R17}
@@ -47,6 +52,11 @@ attributes
 class Realized Domain
 attributes
     Name : Domain Name {I, R4}
+--
+class Signature <import:Activity>
+attributes
+    SIGnum {I, R14}
+    Domain {I, R14}
 --
 class Spanning Element
 attributes
@@ -101,8 +111,12 @@ relationships
     Subsystem Element +
         Relationship
         Class
+        Signature
+        External Entity
     Relationship.(Rnum, Domain) -> Subsystem Element.(Label, Domain)
     Class.(Cnum, Domain) -> Subsystem Element.(Label, Domain)
+    Signature.(SIGnum, Domain) -> Subsystem Element.(Label, Domain)
+    External Entity.(EEnum, Domain) -> Subsystem Element.(Label, Domain)
 --
     R15
     defines, Mc Element

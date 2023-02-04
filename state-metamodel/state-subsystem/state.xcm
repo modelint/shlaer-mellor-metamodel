@@ -1,0 +1,238 @@
+metadata
+    Title : State Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.class.td.4
+    Version : 3.7.0 /// Based on 3.6.0 in SM Metamodel
+    /// Creation date : January 21, 2012
+    Modification date : February 4, 2023
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem State, S 500-549
+class Assigner
+attributes
+    Rnum : Relationship Number {I, R501, R502}
+    Domain : Domain Name {I, R501, R502}
+--
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Class <import:Class And Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Constrained Loop <import:Relationship>
+attributes
+    CLnum {I}
+    Domain {I}
+--
+class Deletion State
+attributes
+    Name : State Name {I, R511}
+    Class : Class Name {I, R513, R511}
+    Domain : Domain Name {I, R513, R511}
+--
+class Effective Event <import:Event>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
+class Event Response
+attributes
+    State : State Name {I, R505}
+    Event : Event Name {I, R505}
+    State model : State Model Name {I, R505}
+    Domain : Domain Name {I, R505}
+--
+class Initial Pseudo State
+attributes
+    Name : State Name {R510, R508}
+    Class : Class Name {I, R510, R508}
+    Domain : Domain Name {I, R510, R508}
+--
+class Initial Transition
+attributes
+    From state : State Name {I, R509}
+    Class : Class Name {I, R509}
+    Domain : Domain Name {I, R509}
+    Event : Event Name {I, R509}
+--
+class Lifecycle
+attributes
+    Class : Class Name {I, R500, R502}
+    Domain : Domain Name {I, R500, R502}
+--
+class Multiple Assigner
+attributes
+    Rnum : Relationship Number {I, R514}
+    Domain : Domain Name {I, R514, R517, R518}
+    Loop : Constrained Loop Number {R517c}
+    Partitioning class : Class Name {R518c}
+--
+class Non Deletion State
+attributes
+    Name : State Name {I, R511}
+    State model : State Model Name {I, R511, R503}
+    Domain : Domain Name {I, R511, R503}
+--
+class Non Transition
+attributes
+    State : State Name {I, R506}
+    Event : Event Name {I, R506}
+    State model : State Model Name {I, R506}
+    Domain : Domain Name {I, R506}
+    Behavior : NT Response
+    Reason : Description
+--
+class Real State
+attributes
+    Name : State Name {I, R510}
+    State model : State Model Name {I, R510, R515}
+    Domain : Domain Name {I, R510, R504, R515}
+    Signature : Signature Number {R515}
+    Activity : Activity ID {R504}
+--
+class Single Assigner
+attributes
+    Rnum : Relationship Number {I, R514}
+    Domain : Domain Name {I, R514}
+--
+class State
+attributes
+    Name : State Name {I}
+    State model : State Model Name {I}
+    Domain : Domain Name {I}
+--
+class State Activity <import:Activity>
+attributes
+    Activity {I}
+    Domain {I}
+--
+class State Model
+attributes
+    Name : State Model Name {I}
+    Domain : Domain Name {I}
+--
+class State Signature
+attributes
+    SIGnum : Signature Number {I, *I2, R837}
+    State model : State Model Name {*I2, R512}
+    Domain : Domain Name {I, *I2, R837, R512}
+--
+class Transition
+attributes
+    From state : State Name {I, R506}
+    Event : Event Name {I, R506}
+    State model : State Model Name {I, R506, R507}
+    Domain : Domain Name {I, R506, R507}
+    To state : State Name {R507}
+--
+relationships
+    R500
+    specifies pattern of behavior for, 1 Class
+    behavior pattern is specified by, 1c Lifecycle
+    Lifecycle.(Class, Domain) -> Class.(Name, Domain)
+--
+    R501
+    resolves competition on, 1 Association
+    competition is resolved by, 1c Assigner
+    Assigner.(Rnum, Domain) -> Association.(Rnum, Domain)
+--
+    R502
+    State Model +
+        Lifecycle
+        Assigner
+    Lifecycle.(Class, Domain) -> State Model.(Name, Domain)
+    Assigner.(Rnum, Domain) -> State Model.(Name, Domain)
+--
+    R503
+    specifies period of time as, M Non Deletion State
+    partions time period on, 1 State Model
+    Non Deletion State.(State model, Domain) -> State Model.(Name, Domain)
+--
+    R504
+    entry executes, 1 State Activity
+    is executed on transition into, 1 Real State
+    Real State.(Activity, Domain) -> State Activity.(Activity, Domain)
+--
+    R505
+    specifies response to, Mc Effective Event
+    is responded to in, M State
+    1 Event Response
+    Event Response.(State, State model, Domain) -> State.(Name, State model, Domain)
+    Event Response.(Event, State model, Domain) -> Effective Event.(Name, State model, Domain)
+--
+    R506
+    Event Response +
+        Transition
+        Non Transition
+    Transition.(From state, Event, State model, Domain) -> Event Response.(State, Event, State model, Domain)
+    Non Transition.(State, Event, State model, Domain) -> Event Response.(State, Event, State model, Domain)
+--
+    R507
+    specifies path to, 1 Real State
+    is arrived at via, Mc Transition
+    Transition.(To state, State model, Domain) -> Real State.(Name, State model, Domain)
+--
+    R508
+    instances are created by delegation in, 1c Initial Pseudo State
+    is source of initial transition on, 1 Lifecycle
+    Initial Pseudo State.(Class, Domain) -> Lifecycle.(Class, Domain)
+--
+    R509
+    must exit on, M Transition
+    exists from, 1c Initial Pseudo State
+    1 Initial Transition
+    Initial Transition.(From state, Class, Domain) -> Initial Pseudo State.(Name, Class, Domain)
+    Initial Transition.(From state, Event, Class, Domain) -> Transition.(From state, Event, State model, Domain)
+--
+    R510
+    State +
+        Real State
+        Initial Pseudo State
+    Initial Pseudo State.(Name, Class, Domain) -> State.(Name, State model, Domain)
+    Real State.(Name, State model, Domain) -> State.(Name, State model, Domain)
+--
+    R511
+    Real State +
+        Deletion State
+        Non Deletion State
+    Deletion State.(Name, Class, Domain) -> State.(Name, State model, Domain)
+    Non Deletion State.(Name, State model, Domain) -> State.(Name, State model, Domain)
+--
+    R512
+    defines, M State Signature
+    is defined in, 1 State Model
+    State Signature.(State model, Domain) -> State Model.(Name, Domain)
+--
+    R513
+    deletes instances in, 1 Lifecycle
+    instances are deleted after entering, Mc Deletion State
+    Deletion State.(Class, Domain) -> Lifecycle.(Class, Domain)
+--
+    R514
+    Assigner +
+        Single Assigner
+        Multiple Assigner
+    <subclass>.(Rnum, Domain) -> Assigner.(Rnum, Domain)
+--
+    R515
+    defines input required by, M Real State
+    requires input defined by, 1 State Signature
+    Real State.(Signature, State model, Domain) -> State Signature.(SIGnum, State model, Domain)
+--
+    R517
+    manages within constraint set by, 1 Constrained Loop
+    establishes constraint for, Mc Multiple Assigner
+    Multiple Assigner.(Loop, Domain) -> Constrained Loop.(CLnum, Domain)
+--
+    R518
+    managed instance subset is partitioned by, 1 Class
+    partitions managed instance subset for, Mc Multiple Assigner
+    Multiple Assigner.(Partitioning class, Domain) -> Class.(Name, Domain)
+--
