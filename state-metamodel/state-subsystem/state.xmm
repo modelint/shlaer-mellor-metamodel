@@ -2,7 +2,7 @@ metadata
     Title : State Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.4
-    Version : 3.5.5
+    Version : 3.5.6
     /// Creation date : January 21, 2012
     Modification date : February 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -164,7 +164,7 @@ relationships
         Non Transition
 --
     R507
-    specifies path to, 1 State
+    specifies path to, 1 Real State
     is arrived at via, Mc Transition
 --
     R508
