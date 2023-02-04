@@ -2,9 +2,9 @@ metadata
     Title : Event Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.5
-    Version : 3.9.0
+    Version : 3.9.1
     /// Creation date : March 4, 2012
-    Modification date : January 22, 2023
+    Modification date : February 4, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -156,8 +156,8 @@ relationships
         Forwarded Delegated Event
 --
     R563
-    provides data required by, 1 State Signature
-    has data provided by, M Event Specification
+    provides data required by, M Event Specification
+    has data provided by, 1 State Signature
 --
     R565
     defines, Mc Monomorphic Event Specification

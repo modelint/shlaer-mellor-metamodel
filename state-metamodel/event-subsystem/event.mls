@@ -35,6 +35,6 @@ connectors
     +R558.2 : +/1 r|Polymorphic Event Specification : +/2 t|Root Delegated Event
     +R560 : t|Event { b|Effective Event, b-1|Delegated Event }
     +R561 : t|Delegated Event { b|Root Delegated Event, b|Forwarded Delegated Event }
-    -R563 : +/2 r|State Signature : +/2 l*|Event Specification
+    -R563 : +/2 l|Event Specification : +/2 r*|State Signature
     -R565.2 : +/1 r|State Model : -/1 b-2|Monomorphic Event Specification
     -R569 : -/1 t*|Generalization : +/2 b+1|Delegated Event, l|Delegation On Generalization
