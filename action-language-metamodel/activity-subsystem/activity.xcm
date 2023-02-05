@@ -2,7 +2,7 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.7.1
+    Version : 0.7.2
     /// Creation date : August 13, 2022
     Modification date : February 4, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -76,7 +76,7 @@ attributes
     Signature : Signature Number {I, R828}
     Domain : Domain Name {I, R828, R834}
     Input flow : Flow ID {R834}
-    Activity : Activity ID {I, R834}
+    Activity : Activity ID {R834}
 --
 class Signature
 attributes

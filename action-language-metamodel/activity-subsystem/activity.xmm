@@ -51,7 +51,7 @@ attributes
 class External Entity Operation Signature
 attributes
     SIGnum {I, R837}
-    External entity {I2, R836}
+    EE {I2, R836}
     Operation {I2, R836}
     Domain {I, I2, R837, R836}
 --
