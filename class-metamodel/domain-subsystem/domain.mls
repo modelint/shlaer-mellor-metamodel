@@ -15,6 +15,7 @@ nodes
     Element 4,5
     Lineage 1,3
     Modeled Domain 7,5
+    Activity 1,10
     External Entity 1,9
     Realized Domain 7,3
     Spanning Element 2-3,3-4
@@ -28,7 +29,7 @@ connectors
     -R3 : +/2 r|Modeled Domain : +/1 l*|Domain Partition
     +R4 : b|Domain { t|Modeled Domain, t|Realized Domain }
     +R13 : +/1 b|Subsystem : +/1 t*|Subsystem Element
-    +R14 : b|Subsystem Element { t|Relationship, t|Class, t|Signature, t|External Entity }
+    +R14 : b|Subsystem Element { t|Relationship, t|Class, t|Signature, t|External Entity, t|Activity }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
     +R16 : b|Element { t|Spanning Element, t|Subsystem Element }
     +R17 : b|Spanning Element { t|Lineage, t|Constrained Loop }
