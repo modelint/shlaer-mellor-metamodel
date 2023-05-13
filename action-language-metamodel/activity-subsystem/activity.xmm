@@ -4,7 +4,7 @@ metadata
     Document ID : mint.sm-meta.action.td.12
     Version : 0.7.3
     /// Creation date : August 13, 2022
-    Modification date : February 5, 2023
+    Modification date : May 13, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -105,6 +105,7 @@ attributes
     Name {I2, R832}
     EE {I2, R832}
     Domain {I, I2, R826, R832}
+    Direction : Ingress_Egress
 --
 class Synchronous Output
 attributes
