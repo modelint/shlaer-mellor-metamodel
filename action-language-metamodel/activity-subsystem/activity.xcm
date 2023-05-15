@@ -126,11 +126,6 @@ relationships
         Synchronous External Entity Operation
     <subclass>.(ID, Domain) -> Activity.(ID, Domain)
 --
-    R827
-    defines, Mc Method
-    is defined by, 1 Class
-    Method.(Class, Domain) -> Class.(Name, Domain)
---
     R828
     input is defined by, 1 Signature
     defines input with, Mc Parameter

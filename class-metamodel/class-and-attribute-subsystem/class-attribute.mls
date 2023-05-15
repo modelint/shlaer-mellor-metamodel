@@ -9,7 +9,9 @@ frame OS Engineer
 frame_presentation default
 nodes
     Class 6,3
-    Alias 4,3
+    Alias 7,4-5
+    Method 4,3
+    External Entity 4,1-2
     Attribute 50% 6,6-7
     Derived Attribute/2 4-5,6
     Non Derived Attribute/2 4-5,7
@@ -31,12 +33,13 @@ connectors
     -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
     -R22.2 : +/1 r|Identifier : -/1 t-2|Attribute, b|Identifier Attribute
     +R23 : -/1 r|Attribute Reference : -/1 l*|Reference
+    +R24 : +/1 b|Class : +/1 t*|Method
     -R25 : b|Attribute { t|Derived Attribute, t|Non Derived Attribute }
     +R26.2 : +/1 l-2|Attribute : -/2 l|Derived Attribute, r|Attribute In Derivation : L5R+2
     +R27 : -/3 t|Class : -/3 b*|Identifier
     +R28 : -/2 b|Derived Attribute : -/2 t*|Attribute Derivation Activity
-    +R29 : -/2 b|Class : -/1 t*|Alias
+    -R29 : +/1 t+2|Class : +/1 l|Alias
     -R30 : l|Identifier { r|Irreducible Identifier, r|Super Identifier }
-    -R31 : -/2 b|Irreducible Identifier : -/2 l|Class
+    -R31 : -/2 b|Irreducible Identifier : +/1 l+2|Class
     -R32 : -/2 t|Identifier Attribute : -/2 b*|Superclass, l|Classifier Attribute
     +R33 : -/2 l*|Subclass : -/2 r|Classifier Attribute, b|Subclass Classification Value

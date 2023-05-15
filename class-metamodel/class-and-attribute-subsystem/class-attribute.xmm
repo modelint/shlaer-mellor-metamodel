@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1
-    Version : 4.7.4
+    Version : 4.8.0
     /// Creation date : June 27, 2017
-    Modification date : September 10, 2022
+    Modification date : May 15, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -68,6 +68,11 @@ attributes
     Domain {I, R25, R28}
     Derivation {R28}
 --
+class External Entity <import:External Entity>
+attributes
+    Name {I}
+    Domain {I}
+--
 class Identifier
 attributes
     Number : ID Number {I}
@@ -86,6 +91,13 @@ attributes
     Number {I, R30}
     Class {I, R30, R31}
     Domain {I, R30, R31}
+--
+class Method <import:Activity>
+attributes
+    ID {I}
+    Name {I2}
+    Class {I2, R24}
+    Domain {I, I2, R24}
 --
 class Non Derived Attribute
 attributes
@@ -145,6 +157,11 @@ relationships
     R23
     formalizes, 1 Reference
     is formalized by, M Attribute Reference
+--
+    R24
+    defines, Mc Method
+    is defined by, 1 Class
+    /// Method.(Class, Domain) -> Class.(Name, Domain)
 --
     R25
     Attribute +
