@@ -68,11 +68,6 @@ attributes
     Domain {I, R25, R28}
     Derivation {R28}
 --
-class External Entity <import:External Entity>
-attributes
-    Name {I}
-    Domain {I}
---
 class Identifier
 attributes
     Number : ID Number {I}
