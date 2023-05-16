@@ -1,4 +1,3 @@
-metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
@@ -8,12 +7,13 @@ metadata
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem External Entity
+domain Metamodel, META
+subsystem External Entity, EE 50-74
 class Asynchronous Ingress Operation
 attributes
-    Name {I, R52}
-    EE {I, R52}
-    Domain {I, R52}
+    Name : Operation Name {I, R52}
+    EE : EE Name {I, R52}
+    Domain : Domain Name {I, R52}
 --
 class Class <import:Class Attribute>
 attributes
@@ -22,51 +22,55 @@ attributes
 --
 class Egress Operation, EGOP
 attributes
-    Name {I, R53}
-    EE {I, R53}
-    Domain {I, R53}
+    Name : Operation Name {I, R53}
+    EE : EE Name {I, R53}
+    Domain : Domain Name {I, R53}
 --
 class External Entity, EE
 attributes
-    EEnum : EE Number {I, R14}
+    EEnum : EE Number {I}
     Name : EE Name {I2}
-    Class {I2, R50}
-    Domain {I, I2, R50, R14}
+    Class : Class Name {I2, R50}
+    Domain : Domain Name {I, I2, R50}
 --
 class Ingress Operation, INOP
 attributes
-    Name {I, R53}
-    EE {I, R53}
-    Domain {I, R53}
+    Name : Operation Name {I, R53}
+    EE : EE Name {I, R53}
+    Domain : Domain Name {I, R53}
 --
 class Operation, OP
 attributes
     Name : Operation Name {I}
-    EE {R51}
-    Domain {R51}
+    EE : EE Name {R51}
+    Domain : Domain Name {R51}
 --
 class Synchronous Ingress Operation
 attributes
-    Name {I, R52}
-    EE {I, R52}
-    Domain {I, R52}
+    Name : Operation Name {I, R52}
+    EE : EE Name {I, R52}
+    Domain : Domain Name {I, R52}
 --
 relationships
     R50
     is a proxy for, 1 Class
     is represented by, 1c External Entity
+    External Entity.(Class, Domain) -> Class.(Name, Domain)
 --
     R51
     defines, M Operation
     is defined on, 1 External Entity
+    Operation.(EE, Domain) -> EE.(Name, Domain)
 --
     R52
     Ingress Operation +
         Synchronous Ingress Operation
         Asynchronous Ingress Operation
+    <subclass>.(Name, EE, Domain) -> Operation.(Name, EE, Domain)
 --
     R53
     Operation +
         Ingress Operation
         Egress Operation
+    <subclass>.(Name, EE, Domain) -> Ingress Operation.(Name, EE, Domain)
 --

@@ -2,35 +2,29 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.7.2
+    Version : 0.8.0
     /// Creation date : August 13, 2022
-    Modification date : February 4, 2023
+    Modification date : May 15, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
-subsystem Activity, ACTIVITY 500-524
+subsystem Activity, ACTIVITY 825-850
 class Activity
 attributes
-    ID : Activity ID {I}
+    Anum : Activity Number {I}
     Domain : Domain Name {I}
+    Actions : Description
 --
 class Asynchronous Activity
 attributes
-    ID : Activity ID {I, R825}
+    Anum : Activity Number {I, R825}
     Domain : Domain Name {I, R825}
 --
-class Asynchronous External Entity Operation
+class Asynchronous Ingress Operation <import:External Entity>
 attributes
-    ID : Activity ID {I, R830}
-    Name : Operation Name {I2, R832}
-    EE : EE Name {I2, R832}
-    Domain : Domain Name {I, I2, R830, R832}
---
-class Class <import:Class>
-attributes
-    Name {I}
-    Domain {I}
+    Anum {I, R830}
+    Domain {I, R830}
 --
 class Data Flow <import:Flow>
 attributes
@@ -38,27 +32,9 @@ attributes
     Activity {I}
     Domain {I}
 --
-class External Entity Operation
-attributes
-    Name : Operation Name {I}
-    EE : EE Name {I, R833}
-    Domain : Domain Name {I, R833}
---
-class External Entity <import:External Entity>
-attributes
-    Name {I}
-    Domain {I}
---
-class External Entity Operation Signature
-attributes
-    SIGnum : Signature Number {I, R837}
-    External entity : EE Name {I2, R836}
-    Operation : Operation Name {I2, R836}
-    Domain : Domain Name {I, I2, R837, R836}
---
 class Method
 attributes
-    ID : Activity ID {I, R826}
+    Anum : Activity Number {I, R826}
     Name : Method Name {I2}
     Class : Class Name {I2, R827}
     Domain : Domain Name {I, I2, R826, R827}
@@ -70,13 +46,26 @@ attributes
     Class : Class Name {I2, R835}
     Domain : Domain Name {I, I2, R837, R835}
 --
+class Operation <import:External Entity>
+attributes
+    Name {I}
+    EE {I}
+    Domain {I}
+--
+class Operation Signature
+attributes
+    SIGnum : Signature Number {I, R837}
+    EE : EE Name {I2, R836}
+    Operation : Operation Name {I2, R836}
+    Domain : Domain Name {I, I2, R837, R836}
+--
 class Parameter
 attributes
     Name : Parameter Name {I}
     Signature : Signature Number {I, R828}
     Domain : Domain Name {I, R828, R834}
     Input flow : Flow ID {R834}
-    Activity : Activity ID {R834}
+    Activity : Activity Number {R834}
 --
 class Signature
 attributes
@@ -85,7 +74,7 @@ attributes
 --
 class State Activity
 attributes
-    ID : Activity ID {I, R830}
+    Anum : Activity Number {I, R830}
     State : State Name {I2, R831}
     State model : State Model Name {I2, R831}
     Domain : Domain Name {I, I2, R830, R831}
@@ -97,19 +86,17 @@ attributes
 --
 class Synchronous Activity
 attributes
-    ID : Activity ID {I, R825}
+    Anum : Activity Number {I, R825}
     Domain : Domain Name {I, R825}
 --
-class Synchronous External Entity Operation
+class Synchronous Ingress Operation <import:External Entity>
 attributes
-    ID : Activity ID {I, R826}
-    Name : Operation Name {I2, R832}
-    EE : EE Name {I2, R832}
-    Domain : Domain Name {I, I2, R826, R832}
+    Anum {I, R826}
+    Domain {I, R826}
 --
 class Synchronous Output
 attributes
-    Activity : Activity ID {I, R829, R831}
+    Activity : Activity Number {I, R829, R831}
     Output flow : Flow ID {I2, R831}
     Domain : Domain Name {I, R829, R831}
 --
@@ -118,13 +105,13 @@ relationships
     Activity +
         Asynchronous Activity
         Synchronous Activity
-    <subclass>.(ID, Domain) -> Activity.(ID, Domain)
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
 --
     R826
     Synchronous Activity +
         Method
-        Synchronous External Entity Operation
-    <subclass>.(ID, Domain) -> Activity.(ID, Domain)
+        Synchronous Ingress Operation
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
 --
     R828
     input is defined by, 1 Signature
@@ -134,29 +121,18 @@ relationships
     R829
     produces, 1c Synchronous Output
     is produced by, 1 Synchronous Activity
-    Synchronous Output.(Activity, Domain) -> Synchronous Activity.(ID, Domain)
+    Synchronous Output.(Activity, Domain) -> Synchronous Activity.(Anum, Domain)
 --
     R830
     Asynchronous Activity +
         State Activity
         Asynchronous External Entity Operation
-    <subclass>.(ID, Domain) -> Activity.(ID, Domain)
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
 --
     R831
     is fed by, 1c Synchronous Output
     feeds, 1 Data Flow
     Synchronous Output.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
---
-    R832
-    External Entity Operation +
-        Asynchronous External Entity Operation
-        Synchronous External Entity Operation
-    <subclass>.(Name, EE, Domain) -> External Entity Operation.(Name, EE, Domain)
---
-    R833
-    defines, M External Entity Operation
-    is defined on, 1 External Entity
-    External Entity Operation.(EE, Domain) -> External Entity.(Name, Domain)
 --
     R834
     provides value for, Mc Parameter
@@ -170,13 +146,13 @@ relationships
 --
     R836
     defines input into, 1 External Entity Operation
-    specifies required input with, 1 External Entity Operation Signature
-    External Entity Operation Signature.(External entity, Class, Domain) -> External Entity Operation.(Name, EE, Domain)
+    specifies required input with, 1 Operation Signature
+    Operation Signature.(Operation, EE, Domain) -> External Entity Operation.(Name, EE, Domain)
 --
     R837
     Signature +
         State Signature
         Method Signature
-        External Entity Operation Signature
+        Operation Signature
     <subclass>.(SIGnum, Domain) -> Signature.(SIGnum, Domain)
 --
