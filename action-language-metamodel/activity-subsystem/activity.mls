@@ -8,35 +8,31 @@ padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 1,5-6
-    Asynchronous Activity/2 2-3,4
-    Synchronous Activity/2 2-3,7
-    State Activity 4-5,3
-    Asynchronous External Entity Operation/2 5,10
-    Synchronous External Entity Operation/2 5,8-9
-    External Entity Operation/2 6-7,9
-    Method 6-7,5-6
+    Activity 3,5
+    Asynchronous Activity/2 4-5,3
+    Synchronous Activity/2 4-5,7
+    State Activity 6,2
+    Asynchronous Ingress Operation/2 6,4
+    Synchronous Ingress Operation/2 6,8
+    Operation/2 9,10
+    Method 6,5-6
     Method Signature 9,5-6
-    External Entity Operation Signature/2 9,9
+    Operation Signature/2 9,7-8
     Signature 11,4
     Class 6-7,3-4
     Non State Signature/2 8,6
     State Signature 9,3
     Parameter 11,7
-    Synchronous Output 2-3,11
-    External Entity 6-7,7
+    Synchronous Output 4-5,11
     Data Flow/2 11,11
 connectors
     +R825 : t|Activity { b|Asynchronous Activity, b|Synchronous Activity }
-    +R826+2 : t|Synchronous Activity { b|Synchronous External Entity Operation, b|Method : L4R+1 }
-    -R827 : +/1 l|Method : +/1 r*|Class
+    +R826 : t|Synchronous Activity { b|Synchronous Ingress Operation, b|Method }
     -R828 :  +/2 r|Signature : +/2 l*|Parameter
     +R829 : -/1 r|Synchronous Activity : -/1 l*|Synchronous Output
-    +R830 : t|Asynchronous Activity { b|Asynchronous External Entity Operation, b|State Activity : L3R+2 }
+    +R830 : t|Asynchronous Activity { b|Asynchronous Ingress Operation, b|State Activity }
     +R831 : -/1 b|Data Flow : -/1 t*|Synchronous Output
-    -R832 : b|External Entity Operation { t|Asynchronous External Entity Operation, t|Synchronous External Entity Operation }
-    +R833 : +/1 l|External Entity Operation : -/1 r*|External Entity
-    -R834 : +/2 r|Parameter : +/2 l*|Data Flow
+    -R834 : +/1 r|Parameter : +/1 l*|Data Flow
     -R835 : +/2 b|Method Signature : +/2 t*|Method
-    -R836 : +/2 b|External Entity Operation Signature : +/2 t*|External Entity Operation
-    +R837 : b|Signature { t|State Signature, t|Method Signature, t|External Entity Operation Signature }
+    -R836 : +/2 r|Operation Signature : +/2 l*|Operation
+    +R837 : b|Signature { t|State Signature, t|Method Signature, t|Operation Signature }

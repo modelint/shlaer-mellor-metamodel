@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.7.3
+    Version : 0.8.0
     /// Creation date : August 13, 2022
-    Modification date : February 5, 2023
+    Modification date : May 15, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,17 +19,10 @@ attributes
     Anum {I, R825}
     Domain {I, R825}
 --
-class Asynchronous External Entity Operation
+class Asynchronous Ingress Operation <import:External Entity>
 attributes
     Anum {I, R830}
-    Name {I2, R832}
-    EE {I2, R832}
-    Domain {I, I2, R830, R832}
---
-class Class <import:Class>
-attributes
-    Name {I}
-    Domain {I}
+    Domain {I, R830}
 --
 class Data Flow <import:Flow>
 attributes
@@ -37,30 +30,12 @@ attributes
     Activity {I}
     Domain {I}
 --
-class External Entity Operation
-attributes
-    Name : Operation Name {I}
-    EE {I, R833}
-    Domain {I, R833}
---
-class External Entity <import:External Entity>
-attributes
-    Name {I}
-    Domain {I}
---
-class External Entity Operation Signature
-attributes
-    SIGnum {I, R837}
-    EE {I2, R836}
-    Operation {I2, R836}
-    Domain {I, I2, R837, R836}
---
 class Method
 attributes
     Anum {I, R826}
     Name : Method Name {I2}
-    Class {I2, R827}
-    Domain {I, I2, R826, R827}
+    Class {I2, R24}
+    Domain {I, I2, R826, R24}
 --
 class Method Signature
 attributes
@@ -68,6 +43,19 @@ attributes
     Method {I2, R835}
     Class {I2, R835}
     Domain {I, I2, R837, R835}
+--
+class Operation <import:External Entity>
+attributes
+    Name {I}
+    EE {I}
+    Domain {I}
+--
+class Operation Signature
+attributes
+    SIGnum {I, R837}
+    EE {I2, R836}
+    Operation {I2, R836}
+    Domain {I, I2, R837, R836}
 --
 class Parameter
 attributes
@@ -99,12 +87,10 @@ attributes
     Anum {I, R825}
     Domain {I, R825}
 --
-class Synchronous External Entity Operation
+class Synchronous Ingress Operation <import:External Entity>
 attributes
     Anum {I, R826}
-    Name {I2, R832}
-    EE {I2, R832}
-    Domain {I, I2, R826, R832}
+    Domain {I, R826}
 --
 class Synchronous Output
 attributes
@@ -121,11 +107,7 @@ relationships
     R826
     Synchronous Activity +
         Method
-        Synchronous External Entity Operation
---
-    R827
-    defines, Mc Method
-    is defined by, 1 Class
+        Synchronous Ingress Operation
 --
     R828
     input is defined by, 1 Signature
@@ -138,20 +120,11 @@ relationships
     R830
     Asynchronous Activity +
         State Activity
-        Asynchronous External Entity Operation
+        Asynchronous Ingress Operation
 --
     R831
     is fed by, 1c Synchronous Output
     feeds, 1 Data Flow
---
-    R832
-    External Entity Operation +
-        Asynchronous External Entity Operation
-        Synchronous External Entity Operation
---
-    R833
-    defines, M External Entity Operation
-    is defined on, 1 External Entity
 --
     R834
     provides value for, Mc Parameter
@@ -162,12 +135,12 @@ relationships
     specifies required input with, 1 Method Signature
 --
     R836
-    defines input into, 1 External Entity Operation
-    specifies required input with, 1 External Entity Operation Signature
+    defines input into, 1 Operation
+    specifies required input with, 1 Operation Signature
 --
     R837
     Signature +
         State Signature
         Method Signature
-        External Entity Operation Signature
+        Operation Signature
 --
