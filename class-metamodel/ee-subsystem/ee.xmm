@@ -2,9 +2,9 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.7.1
+    Version : 0.7.2
     /// Creation date : May 19, 2022
-    Modification date : May 15, 2023
+    Modification date : May 19, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -13,7 +13,8 @@ class Asynchronous Ingress Operation
 attributes
     Name {I, R52}
     EE {I, R52}
-    Domain {I, R52}
+    Domain {I, I2, R52, R830}
+    Anum {I2, R830}
 --
 class Class <import:Class Attribute>
 attributes
@@ -49,7 +50,8 @@ class Synchronous Ingress Operation
 attributes
     Name {I, R52}
     EE {I, R52}
-    Domain {I, R52}
+    Domain {I, I2, R52, R826}
+    Anum {I2, R826}
 --
 relationships
     R50
