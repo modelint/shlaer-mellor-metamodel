@@ -43,8 +43,8 @@ attributes
 class Operation, OP
 attributes
     Name : Operation Name {I}
-    EE {R51}
-    Domain {R51}
+    EE {I, R51}
+    Domain {I, R51}
 --
 class Synchronous Ingress Operation
 attributes
