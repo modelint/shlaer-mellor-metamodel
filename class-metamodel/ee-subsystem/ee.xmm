@@ -2,30 +2,24 @@ metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.7.2
+    Version : 0.8.0
     /// Creation date : May 19, 2022
-    Modification date : May 19, 2023
+    Modification date : May 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem External Entity
-class Asynchronous Ingress Operation
+class Asynchronous Operation
 attributes
-    Name {I, R52}
-    EE {I, R52}
-    Domain {I, I2, R52, R830}
+    Name {I, R53}
+    EE {I, R53}
+    Domain {I, I2, R53, R830}
     Anum {I2, R830}
 --
 class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
---
-class Egress Operation, EGOP
-attributes
-    Name {I, R53}
-    EE {I, R53}
-    Domain {I, R53}
 --
 class External Entity, EE
 attributes
@@ -34,23 +28,18 @@ attributes
     Class {I2, R50}
     Domain {I, I2, R50, R14}
 --
-class Ingress Operation, INOP
-attributes
-    Name {I, R53}
-    EE {I, R53}
-    Domain {I, R53}
---
 class Operation, OP
 attributes
     Name : Operation Name {I}
     EE {I, R51}
     Domain {I, R51}
+    Direction : Ingress_Egress
 --
-class Synchronous Ingress Operation
+class Synchronous Operation
 attributes
-    Name {I, R52}
-    EE {I, R52}
-    Domain {I, I2, R52, R826}
+    Name {I, R53}
+    EE {I, R53}
+    Domain {I, I2, R53, R826}
     Anum {I2, R826}
 --
 relationships
@@ -62,13 +51,8 @@ relationships
     defines, M Operation
     is defined on, 1 External Entity
 --
-    R52
-    Ingress Operation +
-        Synchronous Ingress Operation
-        Asynchronous Ingress Operation
---
     R53
     Operation +
-        Ingress Operation
-        Egress Operation
+        Synchronous Operation
+        Asynchronous Operation
 --

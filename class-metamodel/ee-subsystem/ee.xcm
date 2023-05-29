@@ -1,30 +1,26 @@
+metadata
     Title : External Entity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.ee.td.7
-    Version : 0.7.1
+    Version : 0.8.0
     /// Creation date : May 19, 2022
-    Modification date : May 15, 2023
+    Modification date : May 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
 subsystem External Entity, EE 50-74
-class Asynchronous Ingress Operation
+class Asynchronous Operation
 attributes
-    Name : Operation Name {I, R52}
-    EE : EE Name {I, R52}
-    Domain : Domain Name {I, R52}
+    Name : Operation Name {I, R53}
+    EE : EE Name {I, R53}
+    Domain : Domain Name {I, I2, R53, R830}
+    Anum : Activity Number {I2, R830}
 --
 class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
---
-class Egress Operation, EGOP
-attributes
-    Name : Operation Name {I, R53}
-    EE : EE Name {I, R53}
-    Domain : Domain Name {I, R53}
 --
 class External Entity, EE
 attributes
@@ -33,23 +29,19 @@ attributes
     Class : Class Name {I2, R50}
     Domain : Domain Name {I, I2, R50}
 --
-class Ingress Operation, INOP
-attributes
-    Name : Operation Name {I, R53}
-    EE : EE Name {I, R53}
-    Domain : Domain Name {I, R53}
---
 class Operation, OP
 attributes
     Name : Operation Name {I}
-    EE : EE Name {R51}
-    Domain : Domain Name {R51}
+    EE : EE Name {I, R51}
+    Domain : Domain Name {I, R51}
+    Direction : Ingress_Egress
 --
-class Synchronous Ingress Operation
+class Synchronous Operation
 attributes
-    Name : Operation Name {I, R52}
-    EE : EE Name {I, R52}
-    Domain : Domain Name {I, R52}
+    Name : Operation Name {I, R53}
+    EE : EE Name {I, R53}
+    Domain : Domain Name {I, I2, R53, R826}
+    Anum : Activity Number {I2, R826}
 --
 relationships
     R50
@@ -62,15 +54,9 @@ relationships
     is defined on, 1 External Entity
     Operation.(EE, Domain) -> EE.(Name, Domain)
 --
-    R52
-    Ingress Operation +
-        Synchronous Ingress Operation
-        Asynchronous Ingress Operation
-    <subclass>.(Name, EE, Domain) -> Operation.(Name, EE, Domain)
---
     R53
     Operation +
-        Ingress Operation
-        Egress Operation
-    <subclass>.(Name, EE, Domain) -> Ingress Operation.(Name, EE, Domain)
+        Asynchronous Operation
+        Synchronous Operation
+    <subclass>.(Name, EE, Domain) -> Operation.(Name, EE, Domain)
 --
