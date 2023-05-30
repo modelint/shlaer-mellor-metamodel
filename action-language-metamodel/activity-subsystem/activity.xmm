@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.8.0
+    Version : 0.9.0
     /// Creation date : August 13, 2022
-    Modification date : May 15, 2023
+    Modification date : May 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,7 +19,7 @@ attributes
     Anum {I, R825}
     Domain {I, R825}
 --
-class Asynchronous Ingress Operation <import:External Entity>
+class Asynchronous Operation <import:External Entity>
 attributes
     Anum {I, R830}
     Domain {I, R830}
@@ -87,7 +87,7 @@ attributes
     Anum {I, R825}
     Domain {I, R825}
 --
-class Synchronous Ingress Operation <import:External Entity>
+class Synchronous Operation <import:External Entity>
 attributes
     Anum {I, R826}
     Domain {I, R826}
@@ -107,7 +107,7 @@ relationships
     R826
     Synchronous Activity +
         Method
-        Synchronous Ingress Operation
+        Synchronous Operation
 --
     R828
     input is defined by, 1 Signature
@@ -120,7 +120,7 @@ relationships
     R830
     Asynchronous Activity +
         State Activity
-        Asynchronous Ingress Operation
+        Asynchronous Operation
 --
     R831
     is fed by, 1c Synchronous Output
