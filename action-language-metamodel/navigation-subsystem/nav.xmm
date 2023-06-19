@@ -2,7 +2,7 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.6.0
+    Version : 0.6.1
     /// Creation date : September 11, 2021
     Modification date : June 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -18,7 +18,7 @@ attributes
 class Asymmetric Circular Hop
 attributes
     Number {I, R936, R937}
-    Path {I, R936, R937}
+    Path {I, R936, R937
     Domain {I, R936, R937}
 --
 class Circular Hop
@@ -60,8 +60,8 @@ attributes
 class Hop
 attributes
     Number : Hop Number {I, OR938}
-    Path {I, R926, OR938}
-    Domain {I, OR938, R926, R940}
+    Path {I, R926}
+    Domain {I, R926, R940}
     Rnum {R940}
     Class step {R933}
 --
@@ -92,9 +92,9 @@ attributes
 --
 class Perspective Hop
 attributes
-    Hop {I, UR937}
-    Path {I, UR937}
-    Domain {I, UR937, R941}
+    Hop {I}
+    Path {I}
+    Domain {I, R941}
     Side {R941}
     Rnum {R941c}
 --
@@ -109,18 +109,11 @@ attributes
     Path {I, R931}
     Domain {I, R931}
 --
-class Subclass <import:Relationship>
-attributes
-    Rnum {I}
-    Class {I}
-    Domain {I}
---
 class To Subclass Hop
 attributes
     Number {I, R934}
     Path {I, R934}
-    Domain {I, R934, R935}
-    Dest subclass {R935}
+    Domain {I, R934}
 --
 class To Superclass Hop
 attributes
@@ -196,10 +189,6 @@ relationships
         To Superclass Hop
         To Subclass Hop
 --
-    R935
-    specifies as target, 1 Sublcass
-    is specified as target of, Mc To Subclass Hop
---
     R936
     Circular Hop +
         Symmetric Hop
@@ -213,8 +202,8 @@ relationships
         From Asymmetric Association Class Hop
 --
     OR938
-    is traversed after, 1c Hop
-    is traversed before, 1c Hop
+    after, 1c Hop
+    before, 1c Hop
 --
     R940
     traverses, 1 Relationship
