@@ -2,9 +2,9 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.5.0
+    Version : 0.6.0
     /// Creation date : September 11, 2021
-    Modification date : August 21, 2022
+    Modification date : June 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -63,6 +63,7 @@ attributes
     Path {I, R926, OR938}
     Domain {I, OR938, R926, R940}
     Rnum {R940}
+    Class step {R933}
 --
 class Instance Flow <import:Flow>
 attributes
@@ -75,6 +76,7 @@ attributes
     Number {I, R936, R937}
     Path {I, R936, R937}
     Domain {I, R936, R937}
+    Ascending : Boolean
 --
 class Path
 attributes
@@ -184,6 +186,10 @@ relationships
         To Association Class Hop
         From Asymmetric Association Class Hop
         From Symmetric Association Class Hop
+--
+    R933
+    hops to, 1 Class
+    is hopped to from, Mc Hop
 --
     R934
     Generalization Hop +
