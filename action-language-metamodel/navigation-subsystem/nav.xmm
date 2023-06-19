@@ -35,9 +35,9 @@ attributes
 --
 class From Asymmetric Association Class Hop
 attributes
-    Number {I, R931}
-    Path {I, R931}
-    Domain {I, R931}
+    Number {I, R932, R937}
+    Path {I, R932, R937}
+    Domain {I, R932, R937}
 --
 class Association Class Hop
 attributes
@@ -47,9 +47,9 @@ attributes
 --
 class From Symmetric Association Class Hop
 attributes
-    Number {I, R931}
-    Path {I, R931}
-    Domain {I, R931}
+    Number {I, R932}
+    Path {I, R932}
+    Domain {I, R932}
 --
 class Generalization Hop
 attributes
@@ -123,15 +123,15 @@ attributes
 --
 class Symmetric Hop
 attributes
-    Number {I, R936, R937}
-    Path {I, R936, R937}
-    Domain {I, R936, R937}
+    Number {I, R936}
+    Path {I, R936}
+    Domain {I, R936}
 --
 class To Association Class Hop
 attributes
-    Number {I, R931}
-    Path {I, R931}
-    Domain {I, R931}
+    Number {I, R932}
+    Path {I, R932}
+    Domain {I, R932}
 --
 class Traverse Action
 attributes
