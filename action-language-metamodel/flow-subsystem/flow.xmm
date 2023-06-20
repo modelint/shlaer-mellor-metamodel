@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.4.0
+    Version : 1.5.0
     /// Creation date : September 10, 2021
-    Modification date : August 23, 2022
+    Modification date : June 20, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,24 +14,10 @@ attributes
     ID {I}
     Domain {I}
 --
-class Attribute <import:Class Attribute>
-attributes
-    Name {I}
-    Class {I}
-    Domain {I}
---
-class Class <import:Class Attribute>
+class Class Type <import:Type>
 attributes
     Name {I}
     Domain {I}
---
-class Class Table Attribute
-attributes
-    Name {I, R809}
-    Table flow {I, R809}
-    Activity {I, R809}
-    Domain {I, R809}
-    Class {R809}
 --
 class Control Flow
 attributes
@@ -84,25 +70,16 @@ attributes
     Domain {I, R801}
     Type : Type Name
 --
+class Scalar Type <import:Type>
+attributes
+    Name {I}
+    Domain {I}
+--
 class Single Instance Flow
 attributes
     ID {I, R805}
     Activity {I, R805}
     Domain {I, R805}
---
-class Table Attribute
-attributes
-    Name : Attribute Name {I}
-    Table flow {I, R806}
-    Activity {I, R806}
-    Domain {I, R806}
-    Type : Type Name
---
-class Table Header
-attributes
-    Table flow {I, R804}
-    Activity {I, R804}
-    Domain {I, R804}
 --
 class Table Flow
 attributes
@@ -110,6 +87,11 @@ attributes
     Activity {I, R802}
     Domain {I, R802}
     Tuple : Boolean
+--
+class Table Type <import:Type>
+attributes
+    Name {I}
+    Domain {I}
 --
 relationships
     R800
@@ -128,12 +110,12 @@ relationships
         Table Flow
 --
     R803
-    flows instances of, 1 Class
-    types, Mc Instance Flow
+    flows instances of, 1 Class Type
+    constrains instances in, Mc Instance Flow
 --
     R804
-    columns are defined by, 1 Table Header
-    defines columns of, 1 Table Flow
+    flows values of, 1 Table Type
+    defines values in, 1 Table Flow
 --
     R805
     Instance Flow +
@@ -141,8 +123,8 @@ relationships
         Multiple Instance Flow
 --
     R806
-    defines a set of, Mc Table Attribute
-    is a member of, 1 Table Header
+    defines values in, Mc Scalar Flow
+    values are defined by, 1 Scalar Type
 --
     R807
     communicates internally with, Mc Flow
@@ -151,9 +133,4 @@ relationships
     R808
     names, 1 Flow
     is named by, 1c Label
---
-    R809
-    represents, 1c Attribute
-    is represented by, Mc Table Attribute
-    1 Class Table Attribute
 --
