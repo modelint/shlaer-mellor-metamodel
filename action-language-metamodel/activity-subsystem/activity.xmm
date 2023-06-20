@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 0.9.0
+    Version : 1.1.0
     /// Creation date : August 13, 2022
-    Modification date : May 29, 2023
+    Modification date : June 20, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -23,12 +23,6 @@ class Asynchronous Operation <import:External Entity>
 attributes
     Anum {I, R830}
     Domain {I, R830}
---
-class Data Flow <import:Flow>
-attributes
-    ID {I}
-    Activity {I}
-    Domain {I}
 --
 class Method
 attributes
@@ -61,9 +55,9 @@ class Parameter
 attributes
     Name : Parameter Name {I}
     Signature {I, R828}
-    Domain {I, R828, R834}
-    Input flow {R834}
+    Domain {I, R828, R834, R827}
     Activity {I, R834}
+    Type {R827}
 --
 class Signature
 attributes
@@ -94,9 +88,14 @@ attributes
 --
 class Synchronous Output
 attributes
-    Activity {I, R829, R831}
-    Output flow {I2, R831}
-    Domain {I, R829, R831}
+    Anum {I, R829}
+    Domain {I, R829}
+    Type {R829}
+--
+class Type <import:Type>
+attributes
+    Name {I}
+    Domain {I}
 --
 relationships
     R825
@@ -109,26 +108,23 @@ relationships
         Method
         Synchronous Operation
 --
+    R827
+    constrains input to, Mc Parameter
+    input is constrained by, 1 Type
+--
     R828
     input is defined by, 1 Signature
     defines input with, Mc Parameter
 --
     R829
-    produces, 1c Synchronous Output
-    is produced by, 1 Synchronous Activity
+    yields output of, 1c Type
+    constraints output of, Mc Synchronous Activity
+    1 Synchronous Output
 --
     R830
     Asynchronous Activity +
         State Activity
         Asynchronous Operation
---
-    R831
-    is fed by, 1c Synchronous Output
-    feeds, 1 Data Flow
---
-    R834
-    provides value for, Mc Parameter
-    gets value from, 1 Data Flow
 --
     R835
     defines input into, 1 Method
