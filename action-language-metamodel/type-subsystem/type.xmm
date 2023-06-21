@@ -2,9 +2,9 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.15
-    Version : 0.1.0
+    Version : 0.2.0
     /// Creation date : June 20, 2023
-    Modification date : June 20, 2023
+    Modification date : June 21, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -55,7 +55,7 @@ relationships
 --
     R1127
     defines header as, Mc Table Attribute
-    is defined in header of, 1 Table Type
+    is included in header of, 1 Table Type
 --
     R1128
     holds value defined by, 1 Scalar Type
