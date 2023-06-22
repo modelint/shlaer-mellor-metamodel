@@ -2,9 +2,9 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 1.1.0
+    Version : 1.1.1
     /// Creation date : August 13, 2022
-    Modification date : June 20, 2023
+    Modification date : June 22, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -55,8 +55,7 @@ class Parameter
 attributes
     Name : Parameter Name {I}
     Signature {I, R828}
-    Domain {I, R828, R834, R827}
-    Activity {I, R834}
+    Domain {I, R828, R827}
     Type {R827}
 --
 class Signature
