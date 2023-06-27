@@ -2,9 +2,9 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 1.1.1
+    Version : 1.2.1
     /// Creation date : August 13, 2022
-    Modification date : June 22, 2023
+    Modification date : June 27, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -24,12 +24,19 @@ attributes
     Anum {I, R830}
     Domain {I, R830}
 --
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
 class Method
 attributes
-    Anum {I, R826}
+    Anum {I, I3, R826, R832}
     Name : Method Name {I2}
     Class {I2, R24}
-    Domain {I, I2, R826, R24}
+    Domain {I, I2, I3, R826, R24, R832}
+    Self flow {I3, R832}
 --
 class Method Signature
 attributes
@@ -55,8 +62,16 @@ class Parameter
 attributes
     Name : Parameter Name {I}
     Signature {I, R828}
-    Domain {I, R828, R827}
+    Domain {I, I2, R828, R827, R831}
+    Data flow {I2, R831}
+    Activity {I2, R831}
     Type {R827}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
 class Signature
 attributes
@@ -88,7 +103,9 @@ attributes
 class Synchronous Output
 attributes
     Anum {I, R829}
-    Domain {I, R829}
+    Domain {I, I2, R829, R833}
+    Data flow {I2, R833}
+    Activity {I2, R833}
     Type {R829}
 --
 class Type <import:Type>
@@ -124,6 +141,18 @@ relationships
     Asynchronous Activity +
         State Activity
         Asynchronous Operation
+--
+    R831
+    provides value for, 1c Parameter
+    gets value from, 1 Data Flow
+--
+    R832
+    supplies self instance in, 1 Single Instance Flow
+    gets instance from, 1c Method
+--
+    R833
+    yields value in, 1 Data Flow
+    transmits value from, 1c Synchronous Output
 --
     R835
     defines input into, 1 Method

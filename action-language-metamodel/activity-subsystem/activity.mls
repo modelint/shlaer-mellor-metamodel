@@ -25,6 +25,8 @@ nodes
     Parameter 11,7
     Synchronous Output/2 3-4,8-9
     Type 11,10 : 4-5,10
+    Data Flow 12,5 : 3-4,11
+    Single Instance Flow/2 7-8,3
 connectors
     +R825 : t|Activity { b|Asynchronous Activity, b|Synchronous Activity }
     +R826 : t|Synchronous Activity { b|Synchronous Operation, b|Method }
@@ -32,6 +34,9 @@ connectors
     -R828 :  +/2 r|Signature : +/2 l*|Parameter
     +R829 :  +/2 r|Synchronous Activity : +/2 l*|Type.2, t|Synchronous Output
     +R830 : t|Asynchronous Activity { b|Asynchronous Operation, b|State Activity }
-    -R835 : +/2 b|Method Signature : +/2 t*|Method
+    +R831.2 : +/2 r|Data Flow : +/2 t|Parameter
+    +R832 : -/2 r|Single Instance Flow : -/3 t-2|Method
+    +R833 : -/2 r|Synchronous Output : -/2 l*|Data Flow.2
+    +R835 : +/2 b|Method Signature : +/2 t*|Method
     -R836 : +/2 r|Operation Signature : +/2 l*|Operation
     +R837 : b|Signature { t|State Signature, t|Method Signature, t|Operation Signature }
