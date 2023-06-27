@@ -62,9 +62,9 @@ class Parameter
 attributes
     Name : Parameter Name {I}
     Signature {I, R828}
-    Domain {I, I2, R828, R827, R831}
-    Data flow {I2, R831}
-    Activity {I2, R831}
+    Domain {I, I2, R828, R827, R833}
+    Data flow {I2, R833}
+    Activity {I2, R833}
     Type {R827}
 --
 class Single Instance Flow <import:Flow>
@@ -103,9 +103,9 @@ attributes
 class Synchronous Output
 attributes
     Anum {I, R829}
-    Domain {I, I2, R829, R833}
-    Data flow {I2, R833}
-    Activity {I2, R833}
+    Domain {I, I2, R829, R831}
+    Data flow {I2, R831}
+    Activity {I2, R831}
     Type {R829}
 --
 class Type <import:Type>
@@ -143,16 +143,16 @@ relationships
         Asynchronous Operation
 --
     R831
-    provides value for, 1c Parameter
-    gets value from, 1 Data Flow
+    yields value in, 1 Data Flow
+    transmits value from, 1c Synchronous Output
 --
     R832
     supplies self instance in, 1 Single Instance Flow
     gets instance from, 1c Method
 --
     R833
-    yields value in, 1 Data Flow
-    transmits value from, 1c Synchronous Output
+    provides value for, 1c Parameter
+    gets value from, 1 Data Flow
 --
     R835
     defines input into, 1 Method
