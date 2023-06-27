@@ -2,7 +2,7 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 1.2.1
+    Version : 1.2.2
     /// Creation date : August 13, 2022
     Modification date : June 27, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -36,7 +36,7 @@ attributes
     Name : Method Name {I2}
     Class {I2, R24}
     Domain {I, I2, I3, R826, R24, R832}
-    Self flow {I3, R832}
+    Executing instance flow {I3, R832}
 --
 class Method Signature
 attributes
@@ -63,7 +63,7 @@ attributes
     Name : Parameter Name {I}
     Signature {I, R828}
     Domain {I, I2, R828, R827, R833}
-    Data flow {I2, R833}
+    Input flow {I2, R833}
     Activity {I2, R833}
     Type {R827}
 --
@@ -104,7 +104,7 @@ class Synchronous Output
 attributes
     Anum {I, R829}
     Domain {I, I2, R829, R831}
-    Data flow {I2, R831}
+    Output flow {I2, R831}
     Activity {I2, R831}
     Type {R829}
 --
