@@ -2,9 +2,9 @@ metadata
     Title : Navigation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.6
-    Version : 0.6.1
+    Version : 0.6.2
     /// Creation date : September 11, 2021
-    Modification date : June 29, 2023
+    Modification date : June 30, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -92,7 +92,7 @@ attributes
 --
 class Perspective Hop
 attributes
-    Hop {I}
+    Number {I}
     Path {I}
     Domain {I, R941}
     Side {R941}
