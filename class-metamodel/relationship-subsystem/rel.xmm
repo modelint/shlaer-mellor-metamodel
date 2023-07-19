@@ -2,9 +2,9 @@ metadata
     Title : Relationship Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.3
-    Version : 4.8.1
+    Version : 4.9.0
     /// Creation date : March 4, 2012
-    Modification date : September 25, 2022
+    Modification date : July 2, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,6 +19,7 @@ attributes
     Rnum {I, R120c, R151}
     Class {I2, R120, R151}
     Domain {I, I2, R120, R151}
+    Multiplicity : One Many
 --
 class Asymmetric Perspective
 attributes

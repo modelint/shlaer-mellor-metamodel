@@ -26,6 +26,8 @@ nodes
     Instance Flow 6,3
     Identifier 2,1
     Projected Attribute 6-7,9
+    Equivalence Criterion/2 12,9
+    Scalar Type 12,11-12
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
@@ -36,5 +38,6 @@ connectors
     -R881 : +/2 r|Comparison Criterion : +/2 l*|Scalar Flow
     +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
     -R883 : +/2 t|Select Action : +/2 b*|Restriction
-    +R884 : r|Restriction Criterion { l|Ranking Criterion, l|Comparison Criterion }
+    +R884 : r|Restriction Criterion { l|Ranking Criterion, l|Comparison Criterion, l|Equivalence Criterion }
+    -R885 : +/2 r|Equivalence Criterion : +/2 l*|Scalar Type
     -R886 : +/1 r|Select Action : +/1 b|Attribute, l|Projected Attribute
