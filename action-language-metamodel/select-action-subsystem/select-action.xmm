@@ -2,7 +2,7 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.1.1
+    Version : 1.1.2
     /// Creation date : September 11, 2021
     Modification date : July 19, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -35,7 +35,7 @@ attributes
     Domain {I, R884, R885}
     Operation : Equivalence Op
     Value : Value Representation
-    Scalar Type {R885}
+    Scalar type {R885}
 --
 class Identifier <import:Class And Attribute>
 attributes
@@ -66,7 +66,7 @@ attributes
 --
 class Multiple Instance Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
