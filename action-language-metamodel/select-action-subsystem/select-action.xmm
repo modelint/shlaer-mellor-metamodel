@@ -2,7 +2,7 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.1.0
+    Version : 1.1.1
     /// Creation date : September 11, 2021
     Modification date : July 19, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -21,7 +21,7 @@ attributes
     Select action {I, R884}
     Activity {I, R884}
     Attribute {I, R884}
-    Class{I, R884}
+    Class {I, R884}
     Domain {I, R884}
     Comparison : Comp Op
 --
@@ -31,7 +31,7 @@ attributes
     Select action {I, R884}
     Activity {I, R884}
     Attribute {I, R884}
-    Class{I, R884}
+    Class {I, R884}
     Domain {I, R884, R885}
     Operation : Equivalence Op
     Value : Value Representation
@@ -53,10 +53,9 @@ attributes
 --
 class Instance Flow <import:Flow>
 attributes
-    Flow {I, *I2}
-    Activity {I, *I2}
-    Class {*I2}
-    Domain {I, *I2}
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
 class Many Select
 attributes
@@ -85,7 +84,7 @@ attributes
     Select action {I, R884}
     Activity {I, R884}
     Attribute {I, R884}
-    Class{I, R884}
+    Class {I, R884}
     Domain {I, R884}
     Order : Ascending Descending
 --
@@ -108,7 +107,7 @@ attributes
 --
 class Scalar Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
@@ -123,7 +122,7 @@ attributes
 --
 class Single Instance Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
