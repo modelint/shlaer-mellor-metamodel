@@ -2,9 +2,9 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.1.2
+    Version : 1.1.4
     /// Creation date : September 11, 2021
-    Modification date : July 19, 2023
+    Modification date : July 20, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,10 +19,11 @@ class Comparison Criterion
 attributes
     ID {I, R884}
     Select action {I, R884}
-    Activity {I, R884}
+    Activity {I, R884, R881}
     Attribute {I, R884}
     Class {I, R884}
-    Domain {I, R884}
+    Domain {I, R884, R881}
+    Compared input {R881}
     Comparison : Comp Op
 --
 class Equivalence Criterion
@@ -33,7 +34,7 @@ attributes
     Attribute {I, R884}
     Class {I, R884}
     Domain {I, R884, R885}
-    Operation : Equivalence Op
+    Equal : Boolean
     Value : Value Representation
     Scalar type {R885}
 --

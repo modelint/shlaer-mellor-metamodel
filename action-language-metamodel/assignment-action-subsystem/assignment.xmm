@@ -1,0 +1,64 @@
+metadata
+    Title : Assignment Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.13
+    Version : 0.2.0
+    /// Creation date : August 13, 2022 / formerly Computation Subsystem
+    Modification date : July 26, 2023
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Assignment
+class Assignment
+attributes
+    ID {I, R901}
+    Activity {I, R901, R1101, R1103}
+    Domain {I, R901, R1101, R1103}
+    Result flow {R1101}
+    Label {R1103}
+--
+class Computation
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+    Operator : Operator Name
+--
+class Label <import:Flow>
+attributes
+    Name {I}
+    Activity {I}
+    Domain {I}
+--
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Operand
+attributes
+    Flow {I, R1101}
+    Computation {I, R1100}
+    Activity {I, R1100}
+    Domain {I, R1100}
+--
+relationships
+    R1100
+    receives operand value from, Mc Data Flow
+    provides operand value to, Mc Computation Action
+    1 Operand
+--
+    R1101
+    assigns result as labeled, 1 Data Flow
+    flows result of, 1c Assignment
+    /// Assignment.(Result, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R1103
+    assigns value with, 1 Label
+    is name of value assigned in, 1 Assignment
+    /// Assignment.(Label, Activity, Domain) -> Label.(Name, Activity, Domain)
+--
+    R1104
+
+--
