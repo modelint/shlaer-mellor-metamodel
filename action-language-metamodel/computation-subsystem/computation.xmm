@@ -2,9 +2,9 @@ metadata
     Title : Computation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.13
-    Version : 0.2.2
+    Version : 0.2.3
     /// Creation date : August 13, 2022
-    Modification date : July 27, 2023
+    Modification date : July 28, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,7 +14,7 @@ attributes
     ID {I, R901}
     Activity {I, R901}
     Domain {I, R901}
-    Operator : Operator Name
+    Operator : Operator Symbol
 --
 class Data Flow <import:Flow>
 attributes
@@ -42,7 +42,7 @@ relationships
     is processed by, 1 Computation
 --
     R1101
-    yields, 1 Result
+    yields, 1 Computed Result
     is yielded by, 1 Computation
 --
     R1102
@@ -51,5 +51,5 @@ relationships
 --
     R1103
     is output as, 1 Data Flow
-    provides output as, 1c Result
+    provides output as, 1c Computed Result
 --
