@@ -2,20 +2,19 @@ metadata
     Title : Computation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.13
-    Version : 0.1.1
+    Version : 0.2.2
     /// Creation date : August 13, 2022
-    Modification date : August 17, 2022
+    Modification date : July 27, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Computation
-class Computation Action
+class Computation
 attributes
     ID {I, R901}
-    Activity {I, R901, R1101}
-    Domain {I, R901, R1101}
-    Result flow {R1101}
-    Expression : Expression
+    Activity {I, R901}
+    Domain {I, R901}
+    Operator : Operator Name
 --
 class Data Flow <import:Flow>
 attributes
@@ -25,18 +24,32 @@ attributes
 --
 class Operand
 attributes
-    Flow {I, R1101}
-    Computation {I, R1100}
-    Activity {I, R1100}
-    Domain {I, R1100}
+    Flow {I, R1102}
+    Activity {I, R1100, R1102}
+    Domain {I, R1100, R1102}
+    Computation {R1100}
+--
+class Computed Result
+attributes
+    Computation {I, R1101}
+    Activity {I, I2, R1101, R1103}
+    Domain {I, I2, R1101, R1103}
+    Flow {I2, R1103}
 --
 relationships
     R1100
-    receives operand value from, Mc Data Flow
-    provides operand value to, Mc Computation Action
-    1 Operand
+    processes, M Operand
+    is processed by, 1 Computation
 --
     R1101
-    yields result via, 1 Data Flow
-    conveys result from, 1c Computation Action
+    yields, 1 Result
+    is yielded by, 1 Computation
+--
+    R1102
+    is input from, 1 Data Flow
+    provides input as, 1c Operand
+--
+    R1103
+    is output as, 1 Data Flow
+    provides output as, 1c Result
 --
