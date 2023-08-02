@@ -1,0 +1,19 @@
+diagram class // Project Action Subsystem
+notation Starr
+presentation default
+orientation landscape
+color dead leaf
+sheet D
+padding l200 b250
+frame OS Engineer
+frame_presentation default
+nodes
+    Relational Action/2 14-15,8
+    Restrict Action/2 13,6
+    Project Action/2 13,8
+    Rename Action/2 13,10
+    Criterion 12,5
+    Model Attribute/2 11,6
+connectors
+    +R1150 : b|Relational Action { t|Restrict Action, t|Project Action, t|Rename Action }
+    +R1151 : +/1 b|Restrict Action : +/1 t*|Model Attribute, r|Criterion

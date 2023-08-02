@@ -14,8 +14,11 @@ nodes
     Table Type 5,4
     Class 3,5-6
     Table Attribute 3,4
+    Model Attribute 1-2,5
+    Attribute 3,7
 connectors
     +R1125 : b|Type { t|Scalar Type, t|Class Type, t|Table Type }
     +R1126 : -/1 b|Class Type : -/1 t*|Class
     +R1127 : -/1 b|Table Type : -/1 t*|Table Attribute
     +R1128 : -/1 b|Scalar Type : -/1 l|Table Attribute
+    +R1129 : t|Model Attribute { b|Table Attribute, b|Attribute }

@@ -1,0 +1,122 @@
+metadata
+    Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.16
+    Version : 0.2.0
+    /// Creation date : August 1, 2023
+    Modification date : August 1, 2023
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Relational Action
+class Attribute <import:Class And Attribute>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Criterion
+attributes
+    ID : Criterion ID {I}
+    Restrict action {I, R1151}
+    Activity {I, R1151}
+    Attribute {I, R1151}
+    Table {I, R1151}
+    Domain {I, R1151}
+--
+class Comparison Criterion
+attributes
+    ID {I, R884}
+    Select action {I, R884}
+    Activity {I, R884}
+    Attribute {I, R884}
+    Class {I, R884}
+    Domain {I, R884}
+    Comparison : Comp Op
+--
+class Equivalence Criterion
+attributes
+    ID {I, R884}
+    Select action {I, R884}
+    Activity {I, R884}
+    Attribute {I, R884}
+    Class {I, R884}
+    Domain {I, R884, R885}
+    Operation : Equivalence Op
+    Value : Value Representation
+    Scalar type {R885}
+--
+class Model Attribute <import:Type>
+attributes
+    Name {I}
+    Table {I}
+    Domain {I}
+--
+class Project Action
+attributes
+    ID {I, R1150}
+    Activity {I, R1150}
+    Domain {I, R1150}
+--
+class Ranking Criterion
+attributes
+    ID {I, R884}
+    Select action {I, R884}
+    Activity {I, R884}
+    Attribute {I, R884}
+    Class {I, R884}
+    Domain {I, R884}
+    Order : Ascending Descending
+--
+class Relational Action
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Rename Action
+attributes
+    ID {I, R1150}
+    Activity {I, R1150}
+    Domain {I, R1150}
+--
+class Restrict Action
+attributes
+    ID {I, R1150}
+    Activity {I, R1150}
+    Domain {I, R1150}
+--
+class Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Scalar Type <import:Type>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Modeled Attribute
+attributes
+    ID : Attribute ID {I}
+    Domain {I}
+--
+class Table Attribute <import:Type>
+attributes
+    Name {I}
+    Table type {I}
+    Domain {I}
+--
+relationships
+    R1150
+    Relational Action +
+        Project
+        Restrict
+        Rename
+--
+    R1151
+    compares, M Model Attribute
+    is compared in, Mc Restriction
+    M Criterion
+--

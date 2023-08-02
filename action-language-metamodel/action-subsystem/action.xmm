@@ -56,6 +56,12 @@ attributes
     Activity {I, R901}
     Domain {I, R901}
 --
+class Relational Action <import:Relational Action>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
 class Select Action <import:Select Action>
 attributes
     ID {I, R901}

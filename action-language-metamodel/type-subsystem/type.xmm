@@ -2,13 +2,19 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.15
-    Version : 0.2.2
+    Version : 0.3.0
     /// Creation date : June 20, 2023
-    Modification date : June 22, 2023
+    Modification date : August 1, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Type
+class Attribute <import:Class Attribute>
+attributes
+    Name {I, R1129}
+    Class {I, R1129}
+    Domain {I, R1129}
+--
 class Class Type
 attributes
     Name {I, R1125, R1126}
@@ -18,6 +24,12 @@ class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
+--
+class Model Attribute
+attributes
+    Name : Attribute Name {I}
+    Table : Table Name {I}
+    Domain : Domain Name {I}
 --
 class Scalar Type
 attributes
@@ -31,9 +43,9 @@ attributes
 --
 class Table Attribute
 attributes
-    Name : Attribute Name {I}
-    Table type {I, R1127}
-    Domain {I, R1127, R1128}
+    Name {I, R1129}
+    Table type {I, R1127, R1129}
+    Domain {I, R1127, R1128, R1129}
     Attribute type {R1128}
 --
 class Type
@@ -60,4 +72,9 @@ relationships
     R1128
     holds value defined by, 1 Scalar Type
     specifies values in, Mc Table Attribute
+--
+    R1129
+    Model Attribute +
+        Attribute
+        Table Attribute
 --
