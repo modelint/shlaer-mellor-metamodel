@@ -8,31 +8,38 @@ padding l200 b250
 frame OS Engineer
 frame_presentation default
 nodes
-    Relational Action/2 7,12
-    Restrict Action/2 8,6
-    Project Action/2 7,10
-    Rename Action/2 6,10
+    Relational Action 7,12
+    Restrict Action 8,6
+    Project Action 7,10
+    Rename Action 6,10
     Table Restrict/2 9-10,7
     Select Action 9-10,5
     Criterion 6-7,5
     Model Attribute/2 6,7
     Table Attribute 4-5,8
     Projected Attribute/2 8,8-9
-    Table Flow 8,14
+    Table Flow 5,12
     Equivalence Criterion/2 8,3-4
     Comparison Criterion/2 7,3-4
     Ranking Criterion/2 6,3-4
     Scalar Type 8,1
     Scalar Flow 7,1
+    Non Scalar Flow 8-9,12
+    Extend Action 3,10
+    Extension Attribute Access/2 3-4,7
+    Extension Scalar Input/2 2,5
 connectors
-    +R1150 : l|Relational Action { r|Table Restrict, r|Project Action, r|Rename Action }
+    +R1150 : l|Relational Action { r|Table Restrict, r|Project Action, r|Rename Action, r|Extend Action }
     +R1151.2 : -/1 b|Restrict Action : -/1 l|Model Attribute, r|Criterion
     +R1152 : t|Restrict Action { b|Table Restrict, b|Select Action }
     -R1153.2 : +/1 l|Project Action : +/1 t|Model Attribute, b|Projected Attribute
     -R1155 : +/1 r|Model Attribute : +/1 l*|Rename Action
-    +R1156 : -/1 r|Table Attribute : +/1 b|Rename Action
-    +R1157.2 : -/1 t|Relational Action : +/1 l|Table Flow
-    -R1158.2 : -/1 b|Table Flow : +/1 r|Relational Action
+    +R1156 : -/1 r+2|Table Attribute : +/1 b|Rename Action
+    -R1157.2 : +/1 t*|Relational Action : +/1 b|Non Scalar Flow
+    -R1158.2 : +/1 t*|Table Flow : +/1 b|Relational Action
     +R1159 : l|Criterion { r|Ranking Criterion, r|Comparison Criterion, r|Equivalence Criterion : L4R+1 }
     -R1160 : +/2 l|Equivalence Criterion : +/2 r*|Scalar Type
     -R1161 : +/2 l|Comparison Criterion : +/2 r*|Scalar Flow
+    -R1162 : +/1 t|Extend Action : +/1 r-2|Table Attribute
+    +R1163 : +/1 l|Extend Action : +/1 b|Table Attribute, r|Extension Attribute Access
+    -R1164 : -/1 l-2|Extend Action : +/1 b|Scalar Flow, t|Extension Scalar Input

@@ -1,9 +1,9 @@
 metadata
     Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.action.td.16
-    Version : 0.2.2
-    /// Creation date : August 1, 2023
+    Document ID : mint.sm-meta.action.td.14
+    Version : 0.2.3
+    /// Creation date : August 22, 2022
     Modification date : August 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
@@ -41,10 +41,39 @@ attributes
     Value : Value Representation
     Scalar type {R1160}
 --
+class Extend Action
+attributes
+    ID {I, R1150}
+    Activity {I, R1150}
+    Domain {I, R1150}
+    Added attribute : Attribute Name
+    Extension : Expression
+--
+class Extension Attribute Access
+attributes
+    Extend action {I, R1163}
+    Table attribute {I, R1163}
+    Table type {I, R1163c}
+    Activity {I, R1163}
+    Domain {I, R1163}
+--
+class Extension Scalar Input
+attributes
+    Extend operation {I, R1163}
+    Scalar flow {I, R1163}
+    Activity {I, R1163}
+    Domain {I, R1163}
+--
 class Model Attribute <import:Type>
 attributes
     Name {I}
     Table {I}
+    Domain {I}
+--
+class Non Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
     Domain {I}
 --
 class Project Action
@@ -136,6 +165,7 @@ relationships
         Table Restrict
         Project Action
         Rename Action
+        Extend Action
 --
     R1151
     compares, M Model Attribute
@@ -161,7 +191,7 @@ relationships
     is created by, 1c Rename Action
 --
     R1157
-    operates on, 1 Table Flow
+    operates on, 1 Non Scalar Flow
     is input to, Mc Relational Action
 --
     R1158
@@ -181,4 +211,18 @@ relationships
     R1161
     compares value from, 1 Scalar Flow
     has value compared in, Mc Comparison Criterion
+--
+    R1162
+    computes, 1 Table Attribute
+    is computed by, Mc Extend Action
+--
+    R1163
+    accesses value of, Mc Table Attribute
+    is accessed in, Mc Extend Action
+    1 Extension Attribute Access
+--
+    R1164
+    is input to, Mc Extend Action
+    takes input from, Mc Scalar Flow
+    1 Extension Scalar Input
 --
