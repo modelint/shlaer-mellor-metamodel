@@ -2,18 +2,18 @@ metadata
     Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.16
-    Version : 0.2.0
+    Version : 0.2.1
     /// Creation date : August 1, 2023
-    Modification date : August 1, 2023
+    Modification date : August 2, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Relational Action
 class Attribute <import:Class And Attribute>
 attributes
-    Name {I}
-    Class {I}
-    Domain {I}
+    Name {I, R1154}
+    Class {I, R1154}
+    Domain {I, R1154}
 --
 class Criterion
 attributes
@@ -26,25 +26,26 @@ attributes
 --
 class Comparison Criterion
 attributes
-    ID {I, R884}
-    Select action {I, R884}
-    Activity {I, R884}
-    Attribute {I, R884}
-    Class {I, R884}
-    Domain {I, R884}
+    ID {I, R1159}
+    Select action {I, R1159}
+    Activity {I, R1159, R1161}
+    Attribute {I, R1159}
+    Table {I, R1159}
+    Domain {I, R1159, R1161}
+    Value {R1161}
     Comparison : Comp Op
 --
 class Equivalence Criterion
 attributes
-    ID {I, R884}
-    Select action {I, R884}
-    Activity {I, R884}
-    Attribute {I, R884}
-    Class {I, R884}
-    Domain {I, R884, R885}
+    ID {I, R1159}
+    Select action {I, R1159}
+    Activity {I, R1159}
+    Attribute {I, R1159}
+    Table {I, R1159}
+    Domain {I, R1159, R1160}
     Operation : Equivalence Op
     Value : Value Representation
-    Scalar type {R885}
+    Scalar type {R1160}
 --
 class Model Attribute <import:Type>
 attributes
@@ -58,27 +59,41 @@ attributes
     Activity {I, R1150}
     Domain {I, R1150}
 --
+class Projected Attribute
+attributes
+    Attribute {I, R1153}
+    Table {I, R1153}
+    Select action {I, R1153}
+    Activity {I, R1153}
+    Domain {I, R1153}
+--
 class Ranking Criterion
 attributes
-    ID {I, R884}
-    Select action {I, R884}
-    Activity {I, R884}
-    Attribute {I, R884}
-    Class {I, R884}
-    Domain {I, R884}
+    ID {I, R1159}
+    Select action {I, R1159}
+    Activity {I, R1159}
+    Attribute {I, R1159}
+    Table {I, R1159}
+    Domain {I, R1159}
     Order : Ascending Descending
 --
 class Relational Action
 attributes
     ID {I, R901}
-    Activity {I, R901}
-    Domain {I, R901}
+    Activity {I, R901, R1157, R1158 }
+    Domain {I, R901, R1157, R1158 }
+    Input flow {R1157}
+    Output flow {R1158}
 --
 class Rename Action
 attributes
     ID {I, R1150}
     Activity {I, R1150}
-    Domain {I, R1150}
+    Domain {I, R1150, R1155, R1156}
+    From attribute {R1155}
+    From table {R1155}
+    To attribute {R1156}
+    To table {R1156}
 --
 class Restrict Action
 attributes
@@ -97,26 +112,84 @@ attributes
     Name {I}
     Domain {I}
 --
-class Modeled Attribute
+class Select Action <import:Select Action>
 attributes
-    ID : Attribute ID {I}
-    Domain {I}
+    ID {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
 --
 class Table Attribute <import:Type>
 attributes
-    Name {I}
-    Table type {I}
+    Name {I, R1154}
+    Table type {I, R1154}
+    Domain {I, R1154}
+--
+class Table Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
     Domain {I}
+--
+class Table Restrict
+attributes
+    ID {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
 --
 relationships
     R1150
     Relational Action +
-        Project
-        Restrict
-        Rename
+        Table Restrict
+        Project Action
+        Rename Action
 --
     R1151
     compares, M Model Attribute
     is compared in, Mc Restriction
     M Criterion
+--
+    R1152
+    Restrict Action +
+        Table Restrict
+        Select Action
+--
+    R1153
+    is projected in, Mc Project
+    projects on, Mc Model Attribute
+    1 Projected Attribute
+--
+    R1154
+    Model Attribute +
+        Attribute
+        Table Attribute
+--
+    R1155
+    renames, 1 Model Attribute
+    is renamed by, Mc Rename Action
+--
+    R1156
+    creates, 1 Table Attribute
+    is created by, 1c Rename Action
+--
+    R1157
+    operates on, 1 Table Flow
+    is input to, Mc Relational Action
+--
+    R1158
+    outputs, 1 Table Flow
+    is yielded by, 1c Relational Action
+--
+    R1159
+    Restriction Criterion +
+        Ranking Criterion
+        Comparison Criterion
+        Equivalence Criterion
+--
+    R1160
+    specifies type of value in, Mc Equivalence Criterion
+    has value type specified by, 1 Scalar Type
+--
+    R1161
+    compares value from, 1 Scalar Flow
+    has value compared in, Mc Comparison Criterion
 --
