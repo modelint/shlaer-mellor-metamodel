@@ -149,6 +149,14 @@ attributes
     Activity {I, R901, R1152}
     Domain {I, R901, R1152}
 --
+class Set Action
+attributes
+    ID {I, R1150}
+    Set op : Relational Set Operation
+    Activity {I, R1150, R1166}
+    Domain {I, R1150, R1166}
+    B flow {R1166}
+--
 class Table Attribute <import:Type>
 attributes
     Name {I}
