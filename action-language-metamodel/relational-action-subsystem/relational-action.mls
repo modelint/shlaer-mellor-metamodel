@@ -28,8 +28,9 @@ nodes
     Extend Action 3,10
     Extension Attribute Access/2 3-4,7
     Extension Scalar Input/2 2,5
+    Join Action 2,12
 connectors
-    +R1150 : l|Relational Action { r|Table Restrict, r|Project Action, r|Rename Action, r|Extend Action }
+    +R1150 : l|Relational Action { r|Table Restrict, r|Project Action, r|Rename Action, r|Extend Action, l|Join Action }
     +R1151.2 : -/1 b|Restrict Action : -/1 l|Model Attribute, r|Criterion
     +R1152 : t|Restrict Action { b|Table Restrict, b|Select Action }
     -R1153.2 : +/1 l|Project Action : +/1 t|Model Attribute, b|Projected Attribute
@@ -43,3 +44,4 @@ connectors
     -R1162 : +/1 t|Extend Action : +/1 r-2|Table Attribute
     +R1163 : +/1 l|Extend Action : +/1 b|Table Attribute, r|Extension Attribute Access
     -R1164 : -/1 l-2|Extend Action : +/1 b|Scalar Flow, t|Extension Scalar Input
+    -R1165 : -/1 t|Join Action : +/1 b*|Table Flow
