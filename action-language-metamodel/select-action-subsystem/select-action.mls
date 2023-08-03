@@ -3,8 +3,8 @@ notation Starr
 presentation default
 orientation landscape
 color pumpkin
-sheet D
-padding l200 b250
+sheet C
+padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
@@ -16,28 +16,12 @@ nodes
     Zero One Cardinality Select/2 2,4-5 >top
     Selection 8,5-6
     Identifier Select/2 2,3
-    Projection 6,8
-    Attribute 8,8
-    Restriction Criterion/2 10,7
-    Restriction 8,5-6
-    Ranking Criterion/2 9-10,9
-    Comparison Criterion/2 11,9
-    Scalar Flow 11,11-12
     Instance Flow 6,3
     Identifier 2,1
-    Projected Attribute 6-7,9
-    Equivalence Criterion/2 12,9
-    Scalar Type 12,11-12
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
-    -R877 : +/1 r|Restriction : +/1 l*|Attribute, b|Restriction Criterion
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
-    -R881 : +/2 r|Comparison Criterion : +/2 l*|Scalar Flow
     +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
-    -R883 : +/2 t|Select Action : +/2 b*|Restriction
-    +R884 : r|Restriction Criterion { l|Ranking Criterion, l|Comparison Criterion, l|Equivalence Criterion }
-    -R885 : +/2 r|Equivalence Criterion : +/2 l*|Scalar Type
-    -R886 : +/1 r|Select Action : +/1 b|Attribute, l|Projected Attribute
