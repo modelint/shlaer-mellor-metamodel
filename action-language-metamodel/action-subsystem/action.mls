@@ -21,7 +21,7 @@ nodes
     Switch Action 5,10
     Traverse Action 5,11
     Select Action 5,12
-    Table Operation 5,15
+    Table Action 5,15
 connectors
     +R900 : +/1 t|Action : +/1 b*|Activity
-    +R901 : b|Action { t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Update Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Table Operation }
+    +R901 : b|Action { t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Update Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Table Action }

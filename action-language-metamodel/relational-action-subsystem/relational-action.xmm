@@ -2,19 +2,13 @@ metadata
     Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.16
-    Version : 0.2.1
+    Version : 0.2.2
     /// Creation date : August 1, 2023
-    Modification date : August 2, 2023
+    Modification date : August 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Relational Action
-class Attribute <import:Class And Attribute>
-attributes
-    Name {I, R1154}
-    Class {I, R1154}
-    Domain {I, R1154}
---
 class Criterion
 attributes
     ID : Criterion ID {I}
@@ -114,15 +108,15 @@ attributes
 --
 class Select Action <import:Select Action>
 attributes
-    ID {I, R1152}
-    Activity {I, R1152}
-    Domain {I, R1152}
+    ID {I, R901, R1152}
+    Activity {I, R901, R1152}
+    Domain {I, R901, R1152}
 --
 class Table Attribute <import:Type>
 attributes
-    Name {I, R1154}
-    Table type {I, R1154}
-    Domain {I, R1154}
+    Name {I}
+    Table type {I}
+    Domain {I}
 --
 class Table Flow <import:Flow>
 attributes
@@ -132,9 +126,9 @@ attributes
 --
 class Table Restrict
 attributes
-    ID {I, R1152}
-    Activity {I, R1152}
-    Domain {I, R1152}
+    ID {I, R1150, R1152}
+    Activity {I, R1150, R1152}
+    Domain {I, R1150, R1152}
 --
 relationships
     R1150
@@ -157,11 +151,6 @@ relationships
     is projected in, Mc Project
     projects on, Mc Model Attribute
     1 Projected Attribute
---
-    R1154
-    Model Attribute +
-        Attribute
-        Table Attribute
 --
     R1155
     renames, 1 Model Attribute
