@@ -2,9 +2,9 @@ metadata
     Title : Class and Attribute Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.td.1
-    Version : 4.9.1
+    Version : 5.0.0
     /// Creation date : June 27, 2017
-    Modification date : August 3, 2023
+    Modification date : August 4, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -48,9 +48,9 @@ attributes
 --
 class Class
 attributes
-    Name : Class Name {I}
+    Name {I, R1125}
     Cnum : Class Number {I2, R14}
-    Domain {I, I2, R14}
+    Domain {I, I2, R14, R1125}
 --
 class Classifier Attribute
 attributes
@@ -108,7 +108,7 @@ attributes
     Rnum {I}
     Domain {I}
 --
-class Scalar Type <import:Type>
+class Scalar <import:Type>
 attributes
     Name {I}
     Domain {I}
@@ -205,6 +205,6 @@ relationships
     M Subclass Classification Value
 --
     R34
-    values are constrained by, 1 Scalar Type
+    values are constrained by, 1 Scalar
     constrains values of, Mc Attribute
 --

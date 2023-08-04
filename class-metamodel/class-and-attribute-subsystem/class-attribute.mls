@@ -1,4 +1,4 @@
-diagram class // Class and Attribute Subsystem / Shlaer-Mellor Metamodel / v4.6.x
+diagram class // Class and Attribute Subsystem
 notation Starr
 presentation default
 orientation landscape
@@ -27,7 +27,7 @@ nodes
     Reference 8,10-11
     Irreducible Identifier/2 8-9,1-2
     Super Identifier 10,1-2
-    Scalar Type 6,9
+    Scalar 6,9
 connectors
     +R20 : +/1 r+1|Class : +/1 l*|Attribute
     -R21 : +/2 r|Identifier Attribute : +/2 t+2|Attribute, l|Attribute Reference
@@ -43,4 +43,4 @@ connectors
     -R31 : -/2 b|Irreducible Identifier : +/1 l+1|Class
     -R32 : -/2 t|Identifier Attribute : -/2 b*|Superclass, l|Classifier Attribute
     +R33 : -/2 l*|Subclass : -/2 r|Classifier Attribute, b|Subclass Classification Value
-    +R34 : -/2 r|Attribute : -/2 l*|Scalar Type
+    +R34 : -/2 r|Attribute : -/2 l*|Scalar
