@@ -2,7 +2,7 @@ metadata
     Title : Type Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.15
-    Version : 0.5.0
+    Version : 0.5.1
     /// Creation date : June 20, 2023
     Modification date : August 4, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -23,7 +23,7 @@ attributes
 class Model Attribute
 attributes
     Name : Attribute Name {I}
-    Table : Table Name {I}
+    Non Scalar Type : Type Name {I}
     Domain : Domain Name {I}
 --
 class Scalar
@@ -39,9 +39,9 @@ attributes
 class Table Attribute
 attributes
     Name {I, R1129}
-    Table type {I, R1127, R1129}
+    Table {I, R1127, R1129}
     Domain {I, R1127, R1128, R1129}
-    Attribute type {R1128}
+    Scalar {R1128}
 --
 class Type
 attributes

@@ -2,7 +2,7 @@ metadata
     Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.3.0
+    Version : 0.3.1
     /// Creation date : August 22, 2022
     Modification date : August 3, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -14,9 +14,9 @@ attributes
     ID : Criterion ID {I}
     Restrict action {I, R1151}
     Activity {I, R1151}
-    Attribute {I, R1151}
-    Table {I, R1151}
     Domain {I, R1151}
+    Attribute {R1151}
+    Non Scalar Type {R1151}
 --
 class Comparison Criterion
 attributes
@@ -64,13 +64,6 @@ attributes
     Scalar flow {I, R1164}
     Activity {I, R1164}
     Domain {I, R1164}
---
-class Join Action
-attributes
-    ID {I, R1150}
-    Activity {I, R1150, R1165}
-    Domain {I, R1150, R1165}
-    Joined table {R1165}
 --
 class Model Attribute <import:Type>
 attributes
@@ -131,6 +124,7 @@ attributes
     ID {I, R1150}
     Activity {I, R1150}
     Domain {I, R1150}
+    Expression : Predicate
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -153,9 +147,9 @@ class Set Action
 attributes
     ID {I, R1150}
     Set op : Relational Set Operation
-    Activity {I, R1150, R1166}
-    Domain {I, R1150, R1166}
-    B flow {R1166}
+    Activity {I, R1150, R1165}
+    Domain {I, R1150, R1165}
+    Operand {R1165}
 --
 class Table Attribute <import:Type>
 attributes
@@ -182,7 +176,7 @@ relationships
         Project Action
         Rename Action
         Extend Action
-        Join Action
+        Set Action
 --
     R1151
     compares, M Model Attribute
@@ -244,6 +238,6 @@ relationships
     1 Extension Scalar Input
 --
     R1165
-    is joined by, Mc Join Action
-    joins to, 1 Table Flow
+    is operated on by, Mc Set Action
+    operates on, 1 Table Flow
 --
