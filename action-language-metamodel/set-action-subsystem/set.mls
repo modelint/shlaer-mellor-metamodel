@@ -1,0 +1,18 @@
+diagram class // Computation Subsystem
+notation Starr
+presentation default
+orientation landscape
+color recycle bin
+sheet C
+padding l300 b450
+frame OS Engineer
+frame_presentation default
+nodes
+    Instance Set Action/2 5,6
+    Class 5,8-9
+    Instance Flow 5,2-3
+connectors
+    -R1200 : +/1 r|Instance Set Action : +/1 l*|Class
+    -R1201 : +/1 l+1|Instance Set Action : +/1 r*|Instance Flow
+    -R1202 : +/1 l-2|Instance Set Action : +/1 r*|Instance Flow
+    -R1203.2 : +/1 b+1|Instance Set Action : +/1 b-1|Instance Flow : L4

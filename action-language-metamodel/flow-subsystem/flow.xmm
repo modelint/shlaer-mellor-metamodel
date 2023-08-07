@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.5.1
+    Version : 1.6.0
     /// Creation date : September 10, 2021
-    Modification date : June 22, 2023
+    Modification date : August 7, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,7 +14,7 @@ attributes
     ID {I}
     Domain {I}
 --
-class Class Type <import:Type>
+class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
@@ -63,6 +63,13 @@ attributes
     Activity {I, R801}
     Domain {I, R801}
 --
+class Relation Flow
+attributes
+    ID {I, R802}
+    Activity {I, R802}
+    Domain {I, R802, R804}
+    Type {R804}
+--
 class Scalar Flow
 attributes
     ID {I, R801}
@@ -83,16 +90,20 @@ attributes
 --
 class Table Flow
 attributes
-    ID {I, R802}
-    Activity {I, R802}
-    Domain {I, R802, R804}
-    Type {R804}
-    Tuple : Boolean
+    ID {I, R809}
+    Activity {I, R809}
+    Domain {I, R809}
 --
-class Table Type <import:Type>
+class Table <import:Type>
 attributes
     Name {I}
     Domain {I}
+--
+class Tuple Flow
+attributes
+    ID {I, R809}
+    Activity {I, R809}
+    Domain {I, R809}
 --
 relationships
     R800
@@ -108,15 +119,15 @@ relationships
     R802
     Non Scalar Flow +
         Instance Flow
-        Table Flow
+        Relation Flow
 --
     R803
     flows instances of, 1 Class Type
     constrains instances in, Mc Instance Flow
 --
     R804
-    flows values of, 1 Table Type
-    defines values in, 1 Table Flow
+    flows values of, 1 Table
+    defines values in, M Relation Flow
 --
     R805
     Instance Flow +
@@ -134,4 +145,9 @@ relationships
     R808
     names, 1 Flow
     is named by, 1c Label
+--
+    R809
+    Relation Flow +
+        Tuple Flow
+        Table Flow
 --

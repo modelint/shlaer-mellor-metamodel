@@ -4,44 +4,53 @@ presentation default
 orientation landscape
 color dead leaf
 sheet D
-padding l200 b250
+padding l200 b200
 frame OS Engineer
 frame_presentation default
 nodes
-    Relational Action 7,12
-    Restrict Action 8,6
+    Restrict Action 9-10,10
+    Restriction Condition 8,6
     Project Action 7,10
     Rename Action 6,10
-    Table Restrict/2 9-10,7
-    Select Action 9-10,5
+    Table Restriction Condition/2 9-10,7
+    Class Restriction Condition/2 9-10,5
     Criterion 6-7,5
     Model Attribute/2 6,7
-    Table Attribute 4-5,8
+    Table Attribute 4-5,8 : 12,9-10
     Projected Attribute/2 8,8-9
-    Table Flow 5,12
+    Relation Flow 8,12 >top
     Equivalence Criterion/2 8,3-4
     Comparison Criterion/2 7,3-4
     Ranking Criterion/2 6,3-4
     Scalar Type 8,1
-    Scalar Flow 7,1
-    Non Scalar Flow 8-9,12
+    Scalar Flow 7,1 : 11,9-10
+    Table Action 6-7,12
+    Non Scalar Flow 6-7,16-17
     Extend Action 3,10
     Extension Attribute Access/2 3-4,7
-    Extension Scalar Input/2 2,5
-    Set Action 2,12
+    Extension Scalar Input/2 3-4,4
+    Set Action 4-5,12
+    Extract Action 11,12
+    Relational Action 8,14
+    Tuple Flow 11,14-15
 connectors
-    +R1150 : l|Relational Action { r|Table Restrict, r|Project Action, r|Rename Action, r|Extend Action, l|Set Action }
-    +R1151.2 : -/1 b|Restrict Action : -/1 l|Model Attribute, r|Criterion
-    +R1152 : t|Restrict Action { b|Table Restrict, b|Select Action }
+    +R1150 : l|Table Action { r|Restrict Action, r|Project Action, r|Rename Action, r|Extend Action, l|Set Action }
+    +R1151.2 : -/1 b|Restriction Condition : -/1 l|Model Attribute, r|Criterion
+    +R1152 : t|Restriction Condition { b|Table Restriction Condition, b|Class Restriction Condition }
     -R1153.2 : +/1 l|Project Action : +/1 t|Model Attribute, b|Projected Attribute
+    -R1154 : +/1 r|Table Restriction Condition : +/1 l*|Restrict Action
     -R1155 : +/1 r|Model Attribute : +/1 l*|Rename Action
     +R1156 : -/1 r+2|Table Attribute : +/1 b|Rename Action
-    -R1157.2 : +/1 t*|Relational Action : +/1 b|Non Scalar Flow
-    -R1158.2 : +/1 t*|Table Flow : +/1 b|Relational Action
+    +R1157 : -/1 r|Table Action : -/1 l*|Non Scalar Flow
+    -R1158 : +/1 b*|Relation Flow : +/1 t|Table Action
     +R1159 : l|Criterion { r|Ranking Criterion, r|Comparison Criterion, r|Equivalence Criterion : L4R+1 }
     -R1160 : +/2 l|Equivalence Criterion : +/2 r*|Scalar Type
     -R1161 : +/2 l|Comparison Criterion : +/2 r*|Scalar Flow
     -R1162 : +/1 t|Extend Action : +/1 r-2|Table Attribute
     +R1163 : +/1 l|Extend Action : +/1 b|Table Attribute, r|Extension Attribute Access
-    -R1164 : -/1 l-2|Extend Action : +/1 b|Scalar Flow, t|Extension Scalar Input
-    -R1165 : -/1 t|Set Action : +/1 b*|Table Flow
+    -R1164 : -/1 l-2|Extend Action : +/1 b|Scalar Flow, b|Extension Scalar Input
+    +R1165 : -/1 r|Set Action : +/1 b|Non Scalar Flow
+    +R1166 : l|Relational Action { r+2|Table Action, r-2|Extract Action }
+    +R1167 : -/1 l|Extract Action : +/1 r*|Scalar Flow.2
+    -R1168 : +/2 t|Extract Action : +/1 r|Table Attribute.2
+    -R1169 : +/1 l*|Tuple Flow : +/1 r+1|Extract Action

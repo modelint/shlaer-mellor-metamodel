@@ -1,14 +1,20 @@
 metadata
-    Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.3.1
+    Version : 0.5.0
     /// Creation date : August 22, 2022
-    Modification date : August 3, 2023
+    Modification date : August 7, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Relational Action
+subsystem Table Action
+class Class Restriction Condition
+attributes
+    ID {I, R877, R1152}
+    Activity {I, R877, R1152}
+    Domain {I, R877, R1152}
+--
 class Criterion
 attributes
     ID : Criterion ID {I}
@@ -65,6 +71,16 @@ attributes
     Activity {I, R1164}
     Domain {I, R1164}
 --
+class Extract Action
+attributes
+    ID {I, R1166}
+    Activity {I, R1166, R1167, R1169}
+    Domain {I, R1166, R1167, R1168, R1169}
+    Input tuple {R1169}
+    Table {R1168}
+    Attribute {R1168}
+    Output scalar {R1167}
+--
 class Model Attribute <import:Type>
 attributes
     Name {I}
@@ -101,13 +117,25 @@ attributes
     Domain {I, R1159}
     Order : Ascending Descending
 --
+class Table Action
+attributes
+    ID {I, R1166}
+    Activity {I, R1166, R1158 }
+    Domain {I, R1166, R1158 }
+    Output flow {R1158}
+--
+class Relation Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
 class Relational Action
 attributes
     ID {I, R901}
     Activity {I, R901, R1157, R1158 }
     Domain {I, R901, R1157, R1158 }
     Input flow {R1157}
-    Output flow {R1158}
 --
 class Rename Action
 attributes
@@ -124,6 +152,12 @@ attributes
     ID {I, R1150}
     Activity {I, R1150}
     Domain {I, R1150}
+--
+class Restriction Condition
+attributes
+    ID : Action ID {I}
+    Activity Activity ID {I}
+    Domain {I}
     Expression : Predicate
 --
 class Scalar Flow <import:Flow>
@@ -137,12 +171,6 @@ attributes
     Name {I}
     Domain {I}
 --
-class Select Action <import:Select Action>
-attributes
-    ID {I, R901, R1152}
-    Activity {I, R901, R1152}
-    Domain {I, R901, R1152}
---
 class Set Action
 attributes
     ID {I, R1150}
@@ -154,24 +182,24 @@ attributes
 class Table Attribute <import:Type>
 attributes
     Name {I}
-    Table type {I}
+    Table {I}
     Domain {I}
 --
-class Table Flow <import:Flow>
+class Table Restriction Condition
+attributes
+    Restrict action {I, R1154, R1152}
+    Activity {I, R1154, R1152}
+    Domain {I, R1154, R1152}
+--
+class Tuple Flow <import:Flow>
 attributes
     ID {I}
     Activity {I}
     Domain {I}
 --
-class Table Restrict
-attributes
-    ID {I, R1150, R1152}
-    Activity {I, R1150, R1152}
-    Domain {I, R1150, R1152}
---
 relationships
     R1150
-    Relational Action +
+    Table Action +
         Table Restrict
         Project Action
         Rename Action
@@ -184,7 +212,7 @@ relationships
     M Criterion
 --
     R1152
-    Restrict Action +
+    Restriction Condition +
         Table Restrict
         Select Action
 --
@@ -192,6 +220,10 @@ relationships
     is projected in, Mc Project
     projects on, Mc Model Attribute
     1 Projected Attribute
+--
+    R1154
+    applies, 1 Table Restriction Condition
+    is applied by, 1 Restrict Action
 --
     R1155
     renames, 1 Model Attribute
@@ -202,12 +234,12 @@ relationships
     is created by, 1c Rename Action
 --
     R1157
-    operates on, 1 Non Scalar Flow
-    is input to, Mc Relational Action
+    takes input from, 1 Non Scalar Flow
+    is primary input to, Mc Table Action
 --
     R1158
-    outputs, 1 Table Flow
-    is yielded by, 1c Relational Action
+    outputs, 1 Relation Flow
+    is yielded by, 1c Table Action
 --
     R1159
     Restriction Criterion +
@@ -239,5 +271,22 @@ relationships
 --
     R1165
     is operated on by, Mc Set Action
-    operates on, 1 Table Flow
+    operates on, 1 Non Scalar Flow
+--
+    R1166
+    Relational Action +
+        Table Action
+        Extract Action
+--
+    R1167
+    outputs, 1 Scalar Flow
+    is output by, 1c Extract Action
+--
+    R1168
+    extracts value of, 1 Table Attribute
+    has value extracted by, Mc Extract Action
+--
+    R1169
+    takes input from, 1 Tuple Flow
+    is input to, Mc Extract Action
 --

@@ -1,0 +1,49 @@
+metadata
+    Title : Set Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.16
+    Version : 0.1.0
+    /// Creation date : August 7, 2023
+    Modification date : August 7, 2023
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+subsystem Set Action
+class Instance Set Action
+attributes
+    ID {I, R901}
+    Activity {I, R901, R1201, R1202}
+    Domain {I, R901, R1200, R1201, R1202}
+    Set operation : Set Operation Name
+    A input {R1201}
+    B input {R1202}
+    Class {R1200}
+--
+class Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+relationships
+    R1200
+    is typed by, 1 Class
+    types, Mc Instance Set Action
+--
+    R1201
+    takes a input from, 1 Instance Flow
+    privides a input to, Mc Instance Set Action
+--
+    R1202
+    takes b input from, 1 Instance Flow
+    privides b input to, Mc Instance Set Action
+--
+    R1203
+    outputs, 1 Instance Flow
+    is output by, 1c Instance Set Operation
+--
