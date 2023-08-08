@@ -22,7 +22,7 @@ nodes
     Equivalence Criterion/2 8,3-4
     Comparison Criterion/2 7,3-4
     Ranking Criterion/2 6,3-4
-    Scalar Type 8,1
+    Scalar 8,1
     Scalar Flow 7,1 : 11,9-10
     Table Action 6-7,12
     Non Scalar Flow 6-7,16-17
@@ -44,7 +44,7 @@ connectors
     +R1157 : -/1 r|Table Action : -/1 l*|Non Scalar Flow
     -R1158 : +/1 b*|Relation Flow : +/1 t|Table Action
     +R1159 : l|Criterion { r|Ranking Criterion, r|Comparison Criterion, r|Equivalence Criterion : L4R+1 }
-    -R1160 : +/2 l|Equivalence Criterion : +/2 r*|Scalar Type
+    -R1160 : +/2 l|Equivalence Criterion : +/2 r*|Scalar
     -R1161 : +/2 l|Comparison Criterion : +/2 r*|Scalar Flow
     -R1162 : +/1 t|Extend Action : +/1 r-2|Table Attribute
     +R1163 : +/1 l|Extend Action : +/1 b|Table Attribute, r|Extension Attribute Access

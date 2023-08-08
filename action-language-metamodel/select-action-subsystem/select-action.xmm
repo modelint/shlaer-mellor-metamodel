@@ -2,9 +2,9 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.3.0
+    Version : 1.3.1
     /// Creation date : September 11, 2021
-    Modification date : August 4, 2023
+    Modification date : August 8, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -54,7 +54,6 @@ attributes
     Activity {I, R901, R876}
     Domain {I, R901, R876}
     Input flow {R876}
-    Selection cardinality : Cardinality
 --
 class Single Instance Flow <import:Flow>
 attributes

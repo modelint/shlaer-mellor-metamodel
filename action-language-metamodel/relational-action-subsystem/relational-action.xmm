@@ -2,9 +2,9 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.0
+    Version : 0.5.1
     /// Creation date : August 22, 2022
-    Modification date : August 7, 2023
+    Modification date : August 8, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -18,7 +18,7 @@ attributes
 class Criterion
 attributes
     ID : Criterion ID {I}
-    Restrict action {I, R1151}
+    Action {I, R1151}
     Activity {I, R1151}
     Domain {I, R1151}
     Attribute {R1151}
@@ -27,7 +27,7 @@ attributes
 class Comparison Criterion
 attributes
     ID {I, R1159}
-    Select action {I, R1159}
+    Action {I, R1159}
     Activity {I, R1159, R1161}
     Attribute {I, R1159}
     Table {I, R1159}
@@ -38,7 +38,7 @@ attributes
 class Equivalence Criterion
 attributes
     ID {I, R1159}
-    Select action {I, R1159}
+    Action {I, R1159}
     Activity {I, R1159}
     Attribute {I, R1159}
     Table {I, R1159}
@@ -110,7 +110,7 @@ attributes
 class Ranking Criterion
 attributes
     ID {I, R1159}
-    Select action {I, R1159}
+    Action {I, R1159}
     Activity {I, R1159}
     Attribute {I, R1159}
     Table {I, R1159}
@@ -159,6 +159,7 @@ attributes
     Activity Activity ID {I}
     Domain {I}
     Expression : Predicate
+    Selection cardinality : Cardinality
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -166,7 +167,7 @@ attributes
     Activity {I}
     Domain {I}
 --
-class Scalar Type <import:Type>
+class Scalar <import:Type>
 attributes
     Name {I}
     Domain {I}
@@ -249,7 +250,7 @@ relationships
 --
     R1160
     specifies type of value in, Mc Equivalence Criterion
-    has value type specified by, 1 Scalar Type
+    has value type specified by, 1 Scalar
 --
     R1161
     compares value from, 1 Scalar Flow
