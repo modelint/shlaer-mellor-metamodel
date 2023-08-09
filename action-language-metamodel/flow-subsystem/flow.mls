@@ -4,26 +4,27 @@ presentation default
 orientation landscape
 color teal
 sheet C
-padding l250 b350
+padding l150 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 6,1
-    Flow 4,1
-    Data Flow 3,2-3
-    Control Flow 5,2-3
-    Scalar Flow 1-2,4
-    Non Scalar Flow 6,4
-    Class 9-10,6
-    Instance Flow 7,6
-    Relation Flow 4-5,6
-    Scalar Type 1-2,6-7
-    Single Instance Flow/2 7-8,7-8
-    Multiple Instance Flow/2 6,7-8
-    Label 2,1
-    Table 4-5,8-9
-    Tuple Flow 3,5-6
-    Table Flow 3,7
+    Activity 6,3
+    Flow 4,3
+    Data Flow 3,4-5
+    Control Flow 5,4-5
+    Scalar Flow 1-2,6
+    Non Scalar Flow 6,6
+    Class 9-10,8
+    Instance Flow 7,8
+    Relation Flow 4-5,8
+    Scalar Type 1-2,8-9
+    Single Instance Flow/2 7-8,9-10
+    Multiple Instance Flow/2 6,9-10
+    Table 4-5,10
+    Tuple Flow 3,7-8
+    Table Flow 3,9
+    Unlabeled Flow 5,1-2
+    Labeled Flow 3-4,1-2
 connectors
     +R800 : r|Flow { l|Data Flow, l|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l|Non Scalar Flow }
@@ -33,5 +34,5 @@ connectors
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
     +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar Type
     -R807 : +/2 t|Flow : +/2 b*|Activity
-    -R808 : +/1 b|Flow : +/1 t*|Label
+    +R808 : l|Flow { r|Labeled Flow, r|Unlabeled Flow }
     +R809 : b|Relation Flow { t|Table Flow, t|Tuple Flow }

@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.6.0
+    Version : 1.7.0
     /// Creation date : September 10, 2021
-    Modification date : August 7, 2023
+    Modification date : August 9, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -37,19 +37,19 @@ attributes
     Activity {I, R807}
     Domain {I, R807}
 --
-class Label
-attributes
-    Name : Flow Name {I}
-    Flow {I2, R808}
-    Activity {I, I2, R808}
-    Domain {I, I2, R808}
---
 class Instance Flow
 attributes
     ID {I, R802}
     Activity {I, R802}
     Domain {I, R802, R803}
     Type {R803}
+--
+class Labeled Flow
+attributes
+    ID {I, R808}
+    Activity {I, R808}
+    Domain {I, R808}
+    Name : Flow Name
 --
 class Multiple Instance Flow
 attributes
@@ -105,6 +105,12 @@ attributes
     Activity {I, R809}
     Domain {I, R809}
 --
+class Unlabeled Flow
+attributes
+    ID {I, R808}
+    Activity {I, R808}
+    Domain {I, R808}
+--
 relationships
     R800
     Flow +
@@ -143,8 +149,9 @@ relationships
     communicates within, 1 Activity
 --
     R808
-    names, 1 Flow
-    is named by, 1c Label
+    Flow +
+        Labeled Flow
+        Unlabeled Flow
 --
     R809
     Relation Flow +
