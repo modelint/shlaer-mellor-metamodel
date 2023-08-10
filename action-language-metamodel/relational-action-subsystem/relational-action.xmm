@@ -69,7 +69,7 @@ attributes
 class Model Attribute <import:Type>
 attributes
     Name {I}
-    Table {I}
+    Non Scalar Type {I}
     Domain {I}
 --
 class Non Scalar Flow <import:Flow>
@@ -87,8 +87,8 @@ attributes
 class Projected Attribute
 attributes
     Attribute {I, R1153}
-    Table {I, R1153}
-    Select action {I, R1153}
+    Non Scalar Type {I, R1153}
+    Project action {I, R1153}
     Activity {I, R1153}
     Domain {I, R1153}
 --
@@ -102,7 +102,7 @@ attributes
     Domain {I, R1159}
     Order : Ascending Descending
 --
-class Relation Flow <import:Flow>
+class Table Flow <import:Flow>
 attributes
     ID {I}
     Activity {I}
@@ -121,7 +121,7 @@ attributes
     Activity {I, R1150}
     Domain {I, R1150, R1155, R1156}
     From attribute {R1155}
-    From table {R1155}
+    From non scalar type {R1155}
     To attribute {R1156}
     To table {R1156}
 --
@@ -162,7 +162,7 @@ class Source Tuple Attribute Access
 attributes
     Extend action {I, R1163}
     Model attribute {I, R1163}
-    Table {I, R1163c}
+    Non Scalar Type {I, R1163c}
     Activity {I, R1163, R1170}
     Domain {I, R1163, R1170}
     Flow {R1170}
@@ -213,7 +213,7 @@ relationships
 --
     R1153
     is projected in, Mc Project
-    projects on, Mc Model Attribute
+    projects on, M Model Attribute
     1 Projected Attribute
 --
     R1154
@@ -233,7 +233,7 @@ relationships
     is primary input to, Mc Table Action
 --
     R1158
-    outputs, 1 Relation Flow
+    outputs, 1 Table Flow
     is yielded by, 1c Table Action
 --
     R1159

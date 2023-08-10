@@ -14,18 +14,18 @@ nodes
     Rename Action 6,10
     Table Restriction Condition/2 9-10,7
     Class Restriction Condition/2 9-10,5
-    Criterion 6-7,5
+    Criterion 7,5
     Model Attribute/2 6,7
     Table Attribute 4-5,9 : 12,9-10
     Projected Attribute/2 8,8-9
-    Relation Flow 8,12 >top
+    Table Flow 8,12 >top
     Equivalence Criterion/2 8,3-4
-    Comparison Criterion/2 7,3-4
-    Ranking Criterion/2 6,3-4
+    Comparison Criterion/2 6,3-4
+    Ranking Criterion/2 7,3-4
     Scalar 8,1
-    Scalar Flow 7,1-2 : 11,9-10
+    Scalar Flow 6,1-2 : 11,9-10
     Table Action 6-7,12
-    Non Scalar Flow 6-7,16-17
+    Non Scalar Flow 5-6,14
     Extend Action 3,10
     Source Tuple Attribute Access/2 4-5,6
     Set Action 4-5,12
@@ -40,16 +40,16 @@ connectors
     -R1154 : +/1 r|Table Restriction Condition : +/1 l*|Restrict Action
     -R1155 : +/1 r|Model Attribute : +/1 l*|Rename Action
     +R1156 : -/1 t|Table Attribute : +/1 l-2|Rename Action
-    +R1157 : -/1 r|Table Action : -/1 l*|Non Scalar Flow
-    -R1158 : +/1 b*|Relation Flow : +/1 t|Table Action
-    +R1159 : l|Criterion { r|Ranking Criterion, r|Comparison Criterion, r|Equivalence Criterion : L4R+1 }
+    +R1157.2 : -/1 r-1|Table Action : +/1 t|Non Scalar Flow
+    -R1158 : +/1 b*|Table Flow : +/1 t|Table Action
+    +R1159-1 : l|Criterion { r|Ranking Criterion, r|Comparison Criterion, r|Equivalence Criterion : L4R+1 }
     -R1160 : +/2 l|Equivalence Criterion : +/2 r*|Scalar
     -R1161 : +/2 l|Comparison Criterion : +/2 r*|Scalar Flow
     -R1162 : +/1 t|Extend Action : +/1 r|Table Attribute
     +R1163 : +/1 l|Extend Action : +/1 b|Model Attribute, r|Source Tuple Attribute Access
     -R1164 : -/1 l-2|Extend Action : -/2 b-1|Scalar Flow
     +R1165 : -/1 r|Set Action : +/1 b|Non Scalar Flow
-    +R1166 : l|Relational Action { r+2|Table Action, r-2|Extract Action }
+    +R1166 : l|Relational Action { r+1|Table Action, r-1|Extract Action }
     +R1167 : -/1 l|Extract Action : +/1 r*|Scalar Flow.2
     -R1168 : +/2 t|Extract Action : +/1 r|Table Attribute.2
     -R1169 : +/1 l*|Tuple Flow : +/1 r+1|Extract Action
