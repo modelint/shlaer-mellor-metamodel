@@ -17,11 +17,11 @@ nodes
     Zero One Cardinality Select/2 2,4-5 >top
     Selection 8,5-6
     Identifier Select/2 2,3
-    Instance Flow 6,3
+    Non Scalar Flow 6,3
     Identifier 2,1
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
-    -R876 : +/2 l|Select Action : +/2 r*|Instance Flow
+    -R876 : +/2 l|Select Action : +/2 r*|Non Scalar Flow
     -R877 : +/1 r|Select Action : +/1 l*|Class Restriction Condition
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow

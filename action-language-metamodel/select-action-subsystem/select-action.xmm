@@ -2,9 +2,9 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.3.1
+    Version : 1.4.0
     /// Creation date : September 11, 2021
-    Modification date : August 8, 2023
+    Modification date : August 10, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -29,12 +29,6 @@ attributes
     Identifier {R878}
     Class {R878c}
 --
-class Instance Flow <import:Flow>
-attributes
-    ID {I}
-    Activity {I}
-    Domain {I}
---
 class Many Select
 attributes
     Action {I, R875}
@@ -43,6 +37,12 @@ attributes
     Output flow {R880}
 --
 class Multiple Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Non Scalar Flow <import:Flow>
 attributes
     ID {I}
     Activity {I}
@@ -81,7 +81,7 @@ relationships
         Many Select
 --
     R876
-    specifies instances in, 1 Instance Flow
+    specifies instances in, 1 Non Scalar Flow
     is source of instances for, Mc Select Action
 --
     R877
