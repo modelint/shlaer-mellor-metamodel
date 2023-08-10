@@ -25,7 +25,6 @@ nodes
     Relation Flow 3,9
     Unlabeled Flow 5,1-2
     Labeled Flow 3-4,1-2
-    Flow Conversion 7-8,5-6
 connectors
     +R800 : r|Flow { l|Data Flow, l|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l-1|Non Scalar Flow }
@@ -37,4 +36,3 @@ connectors
     -R807 : +/2 t|Flow : +/2 b*|Activity
     +R808 : l|Flow { r|Labeled Flow, r|Unlabeled Flow }
     +R809 : b|Table Flow { t|Relation Flow, t|Tuple Flow }
-    -R810.2 : -/1 l+2|Non Scalar Flow : +/1 t-2|Non Scalar Flow, b|Flow Conversion : L5R+2 L7R-2

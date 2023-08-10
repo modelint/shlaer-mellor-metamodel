@@ -2,7 +2,7 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.5
+    Version : 0.5.4
     /// Creation date : August 22, 2022
     Modification date : August 10, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -229,8 +229,8 @@ relationships
     is created by, 1c Rename Action
 --
     R1157
-    takes input from, 1 Non Scalar Flow
-    is primary input to, Mc Table Action
+    takes input a from, 1 Non Scalar Flow
+    is input a to, Mc Table Action
 --
     R1158
     outputs, 1 Table Flow
@@ -264,8 +264,8 @@ relationships
     applies result from, 1 Scalar Flow
 --
     R1165
-    is operated on by, Mc Set Action
-    operates on, 1 Non Scalar Flow
+    is input b to, Mc Set Action
+    takes input b as, 1 Non Scalar Flow
 --
     R1166
     Relational Action +
