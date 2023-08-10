@@ -2,7 +2,7 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.4
+    Version : 0.5.5
     /// Creation date : August 22, 2022
     Modification date : August 10, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -202,7 +202,7 @@ relationships
         Set Action
 --
     R1151
-    compares, M Model Attribute
+    compares, Mc Model Attribute
     is compared in, Mc Restriction
     M Criterion
 --
