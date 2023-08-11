@@ -2,18 +2,18 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.5
+    Version : 0.5.8
     /// Creation date : August 22, 2022
-    Modification date : August 10, 2023
+    Modification date : August 11, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Table Action
 class Class Restriction Condition
 attributes
-    ID {I, R877, R1152}
-    Activity {I, R877, R1152}
-    Domain {I, R877, R1152}
+    Select action {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
 --
 class Criterion
 attributes
@@ -22,7 +22,7 @@ attributes
     Activity {I, R1151}
     Domain {I, R1151}
     Attribute {R1151}
-    Non Scalar Type {R1151}
+    Non scalar type {R1151}
 --
 class Comparison Criterion
 attributes
@@ -45,7 +45,7 @@ attributes
     Domain {I, R1159, R1160}
     Operation : Equivalence Op
     Value : Value Representation
-    Scalar type {R1160}
+    Scalar {R1160}
 --
 class Extend Action
 attributes
@@ -69,7 +69,7 @@ attributes
 class Model Attribute <import:Type>
 attributes
     Name {I}
-    Non Scalar Type {I}
+    Non scalar type {I}
     Domain {I}
 --
 class Non Scalar Flow <import:Flow>
@@ -87,7 +87,7 @@ attributes
 class Projected Attribute
 attributes
     Attribute {I, R1153}
-    Non Scalar Type {I, R1153}
+    Non scalar type {I, R1153}
     Project action {I, R1153}
     Activity {I, R1153}
     Domain {I, R1153}
@@ -111,9 +111,8 @@ attributes
 class Relational Action
 attributes
     ID {I, R901}
-    Activity {I, R901, R1157, R1158 }
-    Domain {I, R901, R1157, R1158 }
-    Input flow {R1157}
+    Activity {I, R901}
+    Domain {I, R901}
 --
 class Rename Action
 attributes
@@ -133,9 +132,9 @@ attributes
 --
 class Restriction Condition
 attributes
-    ID : Action ID {I}
-    Activity Activity ID {I}
-    Domain {I}
+    Action : Action ID {I}
+    Activity : Activity Number {I}
+    Domain : Domain Name {I}
     Expression : Predicate
     Selection cardinality : Cardinality
 --
@@ -156,7 +155,7 @@ attributes
     Operation : Set Operation Name
     Activity {I, R1150, R1165}
     Domain {I, R1150, R1165}
-    Operand {R1165}
+    Input b flow {R1165}
 --
 class Source Tuple Attribute Access
 attributes
@@ -170,8 +169,9 @@ attributes
 class Table Action
 attributes
     ID {I, R1166}
-    Activity {I, R1166, R1158 }
-    Domain {I, R1166, R1158 }
+    Activity {I, R1166, R1158, R1157 }
+    Domain {I, R1166, R1158, R1157 }
+    Input a flow {R1157}
     Output flow {R1158}
 --
 class Table Attribute <import:Type>
@@ -208,8 +208,8 @@ relationships
 --
     R1152
     Restriction Condition +
-        Table Restrict
-        Select Action
+        Table Restriction Condition
+        Class Restriction Condition
 --
     R1153
     is projected in, Mc Project

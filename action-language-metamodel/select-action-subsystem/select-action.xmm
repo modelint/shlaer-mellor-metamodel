@@ -2,18 +2,18 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.4.0
+    Version : 1.4.1
     /// Creation date : September 11, 2021
-    Modification date : August 10, 2023
+    Modification date : August 11, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Select Action
 class Class Restriction Condition <import:Relational Action>
 attributes
-    ID {I, R877, R1152}
-    Activity {I, R877, R1152}
-    Domain {I, R877, R1152}
+    ID {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
 --
 class Identifier <import:Class And Attribute>
 attributes
@@ -50,9 +50,9 @@ attributes
 --
 class Select Action
 attributes
-    Action {I, R901}
-    Activity {I, R901, R876}
-    Domain {I, R901, R876}
+    Action {I, R901, R877}
+    Activity {I, R901, R876, R877}
+    Domain {I, R901, R876, R877}
     Input flow {R876}
 --
 class Single Instance Flow <import:Flow>
@@ -81,11 +81,11 @@ relationships
         Many Select
 --
     R876
-    specifies instances in, 1 Non Scalar Flow
-    is source of instances for, Mc Select Action
+    takes input from, 1 Non Scalar Flow
+    provides input to, Mc Select Action
 --
     R877
-    applies, 1c Class Restriction Condition
+    applies, 1 Class Restriction Condition
     is applied by, 1 Select Action
 --
     R878
