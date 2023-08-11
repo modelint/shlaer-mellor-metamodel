@@ -2,18 +2,18 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.8
+    Version : 0.5.9
     /// Creation date : August 22, 2022
     Modification date : August 11, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Table Action
-class Class Restriction Condition
+class Class Restriction Condition <import:Select Action>
 attributes
-    Select action {I, R1152}
-    Activity {I, R1152}
-    Domain {I, R1152}
+    Select action {I, R1152, R877}
+    Activity {I, R1152, R877}
+    Domain {I, R1152, R877}
 --
 class Criterion
 attributes
