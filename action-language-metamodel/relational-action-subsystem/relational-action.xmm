@@ -2,9 +2,9 @@ metadata
     Title : Table Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.5.9
+    Version : 0.6.0
     /// Creation date : August 22, 2022
-    Modification date : August 11, 2023
+    Modification date : August 22, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -30,7 +30,6 @@ attributes
     Action {I, R1159}
     Activity {I, R1159, R1161}
     Attribute {I, R1159}
-    Table {I, R1159}
     Domain {I, R1159, R1161}
     Value {R1161}
     Comparison : Comp Op
@@ -41,7 +40,6 @@ attributes
     Action {I, R1159}
     Activity {I, R1159}
     Attribute {I, R1159}
-    Table {I, R1159}
     Domain {I, R1159, R1160}
     Operation : Equivalence Op
     Value : Value Representation
@@ -98,7 +96,6 @@ attributes
     Action {I, R1159}
     Activity {I, R1159}
     Attribute {I, R1159}
-    Table {I, R1159}
     Domain {I, R1159}
     Order : Ascending Descending
 --
