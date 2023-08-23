@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.9.2
+    Version : 1.9.3
     /// Creation date : September 10, 2021
-    Modification date : August 10, 2023
+    Modification date : August 23, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -76,7 +76,7 @@ attributes
     Domain {I, R801, R806}
     Type {R806}
 --
-class Scalar Type <import:Type>
+class Scalar <import:Type>
 attributes
     Name {I}
     Domain {I}
@@ -142,7 +142,7 @@ relationships
 --
     R806
     defines values in, Mc Scalar Flow
-    values are defined by, 1 Scalar Type
+    values are defined by, 1 Scalar
 --
     R807
     communicates internally with, Mc Flow

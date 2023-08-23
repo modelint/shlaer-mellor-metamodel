@@ -17,7 +17,7 @@ nodes
     Class 9-10,8
     Instance Flow 7,8
     Table Flow 4-5,8
-    Scalar Type 1-2,8-9
+    Scalar 1-2,8-9
     Single Instance Flow/2 7-8,9-10
     Multiple Instance Flow/2 6,9-10
     Table 4-5,10
@@ -32,7 +32,7 @@ connectors
     +R803 : -/1 t|Instance Flow : -/2 b*|Class
     +R804 : -/2 r|Table Flow : -/2 l*|Table
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
-    +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar Type
+    +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar
     -R807 : +/2 t|Flow : +/2 b*|Activity
     +R808 : l|Flow { r|Labeled Flow, r|Unlabeled Flow }
     +R809 : b|Table Flow { t|Relation Flow, t|Tuple Flow }
