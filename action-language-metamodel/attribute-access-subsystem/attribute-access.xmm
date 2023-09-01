@@ -2,9 +2,9 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.3.5
+    Version : 0.4.0
     /// Creation date : September 11, 2021
-    Modification date : April 16, 2022
+    Modification date : August 31, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -20,28 +20,9 @@ attributes
     Attribute {I, R1003}
     Class {I, R1003}
     Read action {I, R1003}
-    Activity {I, R1003}
-    Domain {I, R1003}
---
-class Attribute Read Tuple
-attributes
-    Flow {I, R1001}
-    Activity {I, R1004, R1001}
-    Domain {I, R1004, R1001}
-    Read action {I, R1004}
---
-class Attribute Update Tuple
-attributes
-    Flow {I, R1001}
-    Activity {I, R1005, R1001}
-    Domain {I, R1005, R1001}
-    Update action {I, R1005}
---
-class Attribute Value Tuple
-attributes
-    Flow {I, Rxx}
-    Activity {I, R1005, Rxx}
-    Domain {I, R1005, Rxx}
+    Activity {I, R1003, R1004}
+    Domain {I, R1003, R1004}
+    Flow {R1004}
 --
 class Attribute Write Access
 attributes
@@ -64,6 +45,12 @@ attributes
     Domain {I, R901, R1006}
     Instance flow {R1006}
 --
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
 class Single Instance Flow <import:Flow>
 attributes
     Flow {I}
@@ -73,20 +60,16 @@ attributes
 class Update Action
 attributes
     Action {I, R901}
-    Activity {I, R901, R1002}
-    Domain {I, R901, R1002}
+    Activity {I, R901, R1002, R1005}
+    Domain {I, R901, R1002, R1005}
     Instance flow {R1002}
+    Scalar flow {R1005}
 --
 relationships
     R1000
     is updated by, Mc Update Action
     updates value of, M Attribute
     1 Attribute Write Access
---
-    R1001
-    Attribute Value Tuple +
-        Attribute Update Tuple
-        Attribute Read Tuple
 --
     R1002
     updates instances in, 1 Instance Flow
@@ -98,12 +81,12 @@ relationships
     1 Attribute Access
 --
     R1004
-    yields, 1 Attribute Value Tuple
-    is yielded by, 1 Read Action
+    outputs value in, 1 Scalar Flow
+    yields, 1c Attribute Read Access
 --
     R1005
-    writes new values in, 1 Attribute Value Tuple
-    supplies new values to, 1 Update Action
+    obtains value from, 1 Scalar Flow
+    provides value to, Mc Attribute Write Access
 --
     R1006
     reads attributes of instance in, 1 Single Instance Flow

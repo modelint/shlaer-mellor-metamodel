@@ -1,28 +1,25 @@
-diagram class // Attribute Access Subsystem / Action Metamodel v 0.3.x
+diagram class // Attribute Access Subsystem
 notation Starr
 presentation default
 orientation landscape
 color pumpkin
 sheet C
-padding l200 b300
+padding l300 b400
 frame OS Engineer
 frame_presentation default
 nodes
-    Attribute 6,4
-    Attribute Write Access/2 7,5
-    Update Action 8,4
-    Instance Flow/2 8,1-2
-    Read Action 4,4
-    Attribute Read Access/2 5,5
-    Attribute Update Tuple/2 8,6
-    Attribute Read Tuple/2 4,6
-    Attribute Value Tuple/2 6,7-8
-    Single Instance Flow/2 4,1-2
+    Scalar Flow 3,8
+    Attribute 4,4
+    Attribute Write Access/2 5,5-6
+    Update Action 6,4
+    Instance Flow/2 6,1-2
+    Read Action 2,4
+    Attribute Read Access/2 3,5-6
+    Single Instance Flow/2 2,1-2
 connectors
-    -R1000 : +/2 b*|Update Action : +/2 t|Attribute, l|Attribute Write Access
-    +R1001-1 : l|Attribute Value Tuple { r|Attribute Update Tuple, r|Attribute Read Tuple }
+    -R1000 : +/1 b*|Update Action : +/1 t|Attribute, l|Attribute Write Access
     -R1002 : +/3 l|Update Action : +/2 r*|Instance Flow
-    -R1003 : +/2 b|Attribute : +/2 t*|Read Action, l|Attribute Read Access
-    -R1004 : +/1 r|Read Action : +/1 l*|Attribute Read Tuple
-    -R1005 : +/2 r|Update Action : +/2 l*|Attribute Update Tuple
+    -R1003 : +/1 b|Attribute : +/1 t*|Read Action, l|Attribute Read Access
+    -R1004 : +/2 r|Attribute Read Access : +/1 l*|Scalar Flow
+    +R1005.2 : +/1 r|Attribute Write Access : +/1 t|Scalar Flow
     -R1006 : +/3 l|Read Action : +/3 r*|Single Instance Flow

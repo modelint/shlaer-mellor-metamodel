@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.9.5
+    Version : 1.9.6
     /// Creation date : September 10, 2021
-    Modification date : August 25, 2023
+    Modification date : August 31, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -74,7 +74,7 @@ attributes
     ID {I, R801}
     Activity {I, R801}
     Domain {I, R801, R806}
-    Type {R806}
+    Scalar {R806}
 --
 class Scalar <import:Type>
 attributes
