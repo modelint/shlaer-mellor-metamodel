@@ -11,14 +11,14 @@ nodes
     Scalar Flow 3,8
     Attribute 4,4
     Attribute Write Access/2 5,5-6
-    Update Action 6,4
+    Write Action 6,4
     Instance Flow/2 6,1-2
     Read Action 2,4
     Attribute Read Access/2 3,5-6
     Single Instance Flow/2 2,1-2
 connectors
-    -R1000 : +/1 b*|Update Action : +/1 t|Attribute, l|Attribute Write Access
-    -R1002 : +/3 l|Update Action : +/2 r*|Instance Flow
+    -R1000 : +/1 b*|Write Action : +/1 t|Attribute, l|Attribute Write Access
+    -R1002 : +/3 l|Write Action : +/2 r*|Instance Flow
     -R1003 : +/1 b|Attribute : +/1 t*|Read Action, l|Attribute Read Access
     -R1004 : +/2 r|Attribute Read Access : +/1 l*|Scalar Flow
     +R1005.2 : +/1 r|Attribute Write Access : +/1 t|Scalar Flow

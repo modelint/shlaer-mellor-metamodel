@@ -13,7 +13,7 @@ nodes
     Create Action 5,1
     Delete Action 5,2
     Read Action 5,3
-    Update Action 5,4
+    Write Action 5,4
     Signal Action 5,6
     Computation 5,7
     Iteration Action/2 5,8
@@ -25,4 +25,4 @@ nodes
     Instance Set Action/2 5,13
 connectors
     +R900 : +/1 t|Action : +/1 b*|Activity
-    +R901 : b|Action { t|Instance Set Action, t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Update Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Relation Action }
+    +R901 : b|Action { t|Instance Set Action, t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Write Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Relation Action }

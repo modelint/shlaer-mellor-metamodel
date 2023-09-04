@@ -2,9 +2,9 @@ metadata
     Title : Attribute Access Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.8
-    Version : 0.4.0
+    Version : 0.4.2
     /// Creation date : September 11, 2021
-    Modification date : August 31, 2023
+    Modification date : September 1, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -22,58 +22,58 @@ attributes
     Read action {I, R1003}
     Activity {I, R1003, R1004}
     Domain {I, R1003, R1004}
-    Flow {R1004}
+    Output flow {R1004}
 --
 class Attribute Write Access
 attributes
     Attribute {I, R1000}
     Class {I, R1000}
-    Update action {I, R1000}
-    Activity {I, R1000}
-    Domain {I, R1000}
+    Write action {I, R1000}
+    Activity {I, R1000, R1005}
+    Domain {I, R1000, R1005}
+    Input flow {R1005}
 --
 class Instance Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Read Action
 attributes
-    Action {I, R901}
+    ID {I, R901}
     Activity {I, R901, R1006}
     Domain {I, R901, R1006}
     Instance flow {R1006}
 --
 class Scalar Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Single Instance Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
-class Update Action
+class Write Action
 attributes
-    Action {I, R901}
-    Activity {I, R901, R1002, R1005}
-    Domain {I, R901, R1002, R1005}
+    ID {I, R901}
+    Activity {I, R901, R1002}
+    Domain {I, R901, R1002}
     Instance flow {R1002}
-    Scalar flow {R1005}
 --
 relationships
     R1000
-    is updated by, Mc Update Action
+    is updated by, Mc Write Action
     updates value of, M Attribute
     1 Attribute Write Access
 --
     R1002
     updates instances in, 1 Instance Flow
-    provides instances to update by, Mc Update Action
+    provides instances to update by, Mc Write Action
 --
     R1003
     reads value of, M Attribute
@@ -82,7 +82,7 @@ relationships
 --
     R1004
     outputs value in, 1 Scalar Flow
-    yields, 1c Attribute Read Access
+    obtains value from, 1c Attribute Read Access
 --
     R1005
     obtains value from, 1 Scalar Flow
