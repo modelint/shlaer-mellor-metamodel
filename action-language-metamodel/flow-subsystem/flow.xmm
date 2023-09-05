@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 1.9.6
+    Version : 1.9.7
     /// Creation date : September 10, 2021
-    Modification date : August 31, 2023
+    Modification date : September 5, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -63,7 +63,7 @@ attributes
     Activity {I, R801}
     Domain {I, R801}
 --
-class Relation Flow
+class Table Flow
 attributes
     ID {I, R809}
     Activity {I, R809}
@@ -92,7 +92,7 @@ attributes
     Name {I}
     Domain {I}
 --
-class Table Flow
+class Relation Flow
 attributes
     ID {I, R802}
     Activity {I, R802}
@@ -125,7 +125,7 @@ relationships
     R802
     Non Scalar Flow +
         Instance Flow
-        Table Flow
+        Relation Flow
 --
     R803
     flows instances of, 1 Class Type
@@ -133,7 +133,7 @@ relationships
 --
     R804
     flows values of, 1 Table
-    defines values in, M Table Flow
+    defines values in, M Relation Flow
 --
     R805
     Instance Flow +
@@ -154,7 +154,7 @@ relationships
         Unlabeled Flow
 --
     R809
-    Table Flow +
+    Relation Flow +
         Tuple Flow
-        Relation Flow
+        Table Flow
 --

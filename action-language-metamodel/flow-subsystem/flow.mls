@@ -16,23 +16,23 @@ nodes
     Non Scalar Flow 6,6
     Class 9-10,8
     Instance Flow 7,8
-    Table Flow 4-5,8
+    Relation Flow 4-5,8
     Scalar 1-2,8-9
     Single Instance Flow/2 7-8,9-10
     Multiple Instance Flow/2 6,9-10
     Table 4-5,10
     Tuple Flow 3,7-8
-    Relation Flow 3,9
+    Table Flow 3,9
     Unlabeled Flow 5,1-2
     Labeled Flow 3-4,1-2
 connectors
     +R800 : r|Flow { l|Data Flow, l|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l-1|Non Scalar Flow }
-    +R802 : r|Non Scalar Flow { l|Instance Flow, l|Table Flow }
+    +R802 : r|Non Scalar Flow { l|Instance Flow, l|Relation Flow }
     +R803 : -/1 t|Instance Flow : -/2 b*|Class
-    +R804 : -/2 r|Table Flow : -/2 l*|Table
+    +R804 : -/2 r|Relation Flow : -/2 l*|Table
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
     +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar
     -R807 : +/2 t|Flow : +/2 b*|Activity
     +R808 : l|Flow { r|Labeled Flow, r|Unlabeled Flow }
-    +R809 : b|Table Flow { t|Relation Flow, t|Tuple Flow }
+    +R809 : b|Relation Flow { t|Table Flow, t|Tuple Flow }
