@@ -2,9 +2,9 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.6.3
+    Version : 0.6.4
     /// Creation date : May 12, 2022
-    Modification date : August 25, 2022
+    Modification date : September 5, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -17,11 +17,11 @@ attributes
 --
 class Case
 attributes
-    Value : Enumerated Value {I2}
-    Switch action {I2, R1152}
+    Value : Enumeration Value {I2}
+    Switch action {I2, R1052}
     Flow {I, R1053}
-    Activity {I, I2, R1053, R1152}
-    Domain {I, I2, R1053, R1152}
+    Activity {I, I2, R1053, R1052}
+    Domain {I, I2, R1053, R1052}
 --
 class Control Dependency
 attributes
@@ -32,22 +32,22 @@ attributes
 --
 class Control Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Data Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Decision Action
 attributes
-    Action {I, R901}
+    ID {I, R901}
     Activity {I, R901}
     Domain {I, R901}
-    Predicate : Predicate String
+    Predicate : Predicate
 --
 class Decision Input
 attributes
@@ -71,13 +71,13 @@ attributes
 --
 class Scalar Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Scalar Switch Action
 attributes
-    Action {I, R1053}
+    ID {I, R1053}
     Activity {I, R1053, R1056}
     Domain {I, R1053, R1056}
     Scalar input {R1056}
@@ -85,21 +85,20 @@ attributes
 --
 class Sequence Flow
 attributes
-    Name {I2}
-    Source action {I2, R1050}
+    Source action {R1050}
     Flow {I, R1053}
     Activity {I, R1053, R1050}
     Domain {I, R1053, R1050}
 --
 class Single Instance Flow <import:Flow>
 attributes
-    Flow {I}
+    ID {I}
     Activity {I}
     Domain {I}
 --
 class Subclass Switch Action
 attributes
-    Action {I, R1053}
+    ID {I, R1053}
     Activity {I, R1053, R1054}
     Domain {I, R1053, R1054, R1055}
     Superclass instance {R1054c}
@@ -107,7 +106,7 @@ attributes
 --
 class Switch Action
 attributes
-    Action {I, R901}
+    ID {I, R901}
     Activity {I, R901}
     Domain {I, R901}
 --
