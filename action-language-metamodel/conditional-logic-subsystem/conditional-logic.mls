@@ -14,6 +14,7 @@ nodes
     Control Dependency/2 5,4
     Result 7,6-7
     Case 5,6-7
+    Match Value 3,6-7
     Decision Action 7,8-9
     Data Flow 7,11-12
     Decision Input 6,10
@@ -33,4 +34,5 @@ connectors
     +R1056 : -/2 b|Scalar Switch Action : -/2 t*|Scalar Flow
     +R1057 : -/2 r|Decision Action : -/2 l*|Data Flow, t|Decision Input
     +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
+    +R1059 : -/1 b|Case : -/1 t*|Match Value
     +R1060.2 : -/1 r|Result : -/1 l*|Decision Action
