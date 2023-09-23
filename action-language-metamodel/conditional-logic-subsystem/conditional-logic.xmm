@@ -2,7 +2,7 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.6.6
+    Version : 0.6.7
     /// Creation date : May 12, 2022
     Modification date : September 23, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -17,10 +17,10 @@ attributes
 --
 class Case
 attributes
-    Switch action {I2, R1052}
     Flow {I, R1053}
     Activity {I, I2, R1053, R1052}
     Domain {I, I2, R1053, R1052}
+    Switch action {R1052}
 --
 class Control Dependency
 attributes
@@ -62,7 +62,7 @@ attributes
 --
 class Match Value
 attributes
-    Switch action {I, R1059}
+    Case flow {I, R1059}
     Activity {I, R1059}
     Domain {I, R1059}
     Value : Enumeration Value
