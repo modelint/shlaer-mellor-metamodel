@@ -3,28 +3,30 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet C
+sheet D
 padding l150 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 6,3
-    Flow 4,3
-    Data Flow 3,4-5
-    Control Flow 5,4-5
-    Scalar Flow 1-2,6
-    Non Scalar Flow 6,6
-    Class 9-10,8
-    Instance Flow 7,8
-    Relation Flow 4-5,8
-    Scalar 1-2,8-9
-    Single Instance Flow/2 7-8,9-10
-    Multiple Instance Flow/2 6,9-10
-    Table 4-5,10
-    Tuple Flow 3,7-8
-    Table Flow 3,9
-    Unlabeled Flow 5,1-2
-    Labeled Flow 3-4,1-2
+    Activity 4,1
+    Gate 7,4
+    Gated Flow 6,2
+    Flow 4,4
+    Data Flow 3,5-6
+    Control Flow 5,5-6
+    Scalar Flow 1-2,7
+    Non Scalar Flow 6,7
+    Class 9-10,9
+    Instance Flow 7,9
+    Relation Flow 4-5,9
+    Scalar 1-2,9-10
+    Single Instance Flow/2 7-8,10-11
+    Multiple Instance Flow/2 6,10-11
+    Table 4-5,11
+    Tuple Flow 3,8-9
+    Table Flow 3,10
+    Unlabeled Flow 2,3
+    Labeled Flow 2,4-5
 connectors
     +R800 : r|Flow { l|Data Flow, l|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l-1|Non Scalar Flow }
@@ -33,6 +35,8 @@ connectors
     +R804 : -/2 r|Relation Flow : -/2 l*|Table
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
     +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar
-    -R807 : +/2 t|Flow : +/2 b*|Activity
-    +R808 : l|Flow { r|Labeled Flow, r|Unlabeled Flow }
+    +R807 : -/2 l-1|Flow : -/2 r*|Activity
+    +R808 : b|Flow { t|Labeled Flow, t|Unlabeled Flow }
     +R809 : b|Relation Flow { t|Table Flow, t|Tuple Flow }
+    +R810 : +/1 t|Flow : +/1 b*|Gate
+    -R811.2 : +/2 l+1|Flow : +/1 l|Gate, r|Gated Flow : L3
