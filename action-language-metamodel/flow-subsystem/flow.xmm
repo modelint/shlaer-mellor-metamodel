@@ -2,7 +2,7 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.0.0
+    Version : 2.0.1
     /// Creation date : September 10, 2021
     Modification date : September 25, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -31,20 +31,19 @@ attributes
     Activity {I, R800}
     Domain {I, R800}
 --
+class Data Flow Switch
+attributes
+    Output flow {I, R110}
+    Activity {I, R110}
+    Domain {I, R110}
+--
 class Flow
 attributes
     ID : Flow ID {I}
     Activity {I, R807}
     Domain {I, R807}
 --
-class Gate
-attributes
-    Output flow {I, R110}
-    Activity {I, R110}
-    Domain {I, R110}
-    Operation : Switch_Collective
---
-class Gated Flow
+class Switched Data Flow
 attributes
     Input flow {I, R111c}
     Activity {I, R111}
@@ -173,11 +172,11 @@ relationships
         Table Flow
 --
     R810
-    is output by, 1c Gate
-    outputs, 1 Flow
+    is output by, 1c Data Flow Switch
+    outputs, 1 Data Flow
 --
     R811
-    is consolidated at, Mc Gate
-    consolidates input from, M Flow
-    1 Gated Flow
+    feeds, Mc Data Flow Switch
+    switches among, M Data Flow
+    1 Switched Data Flow
 --

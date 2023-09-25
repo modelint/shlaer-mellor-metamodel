@@ -2,9 +2,9 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.6.8
+    Version : 0.7.0
     /// Creation date : May 12, 2022
-    Modification date : September 23, 2023
+    Modification date : September 25, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -54,6 +54,19 @@ attributes
     Flow {I, R1057}
     Activity {I, R1057}
     Domain {I, R1057}
+--
+class Emitter
+attributes
+    Output flow {I, R1061}
+    Activity {I, R1061}
+    Domain {I, R1061}
+--
+class Emitter Input
+attributes
+    Input flow {I, R1062}
+    Output flow {I, R1062}
+    Activity {I, R1062}
+    Domain {I, R1062}
 --
 class Generalization <import:Relationship>
 attributes
@@ -164,4 +177,13 @@ relationships
     R1060
     is yielded by, 1 Decision Action
     yields, M Result
+--
+    R1061
+    outputs, 1 Sequence Flow
+    is output by, 1c Emitter
+--
+    R1062
+    enables, Mc Emitter
+    is enabled by, M Sequence Flow
+    1 Emitter Input
 --

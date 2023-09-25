@@ -9,6 +9,8 @@ frame OS Engineer
 frame_presentation default
 nodes
     Action 6,2-3
+    Emitter 8-9,9
+    Emitter Input 10-11,8
     Sequence Flow 8-9,6-7
     Control Flow 6,5
     Control Dependency/2 5,4
@@ -25,7 +27,7 @@ nodes
     Generalization 3-4,12
     Single Instance Flow/2 1,9-10
 connectors
-    +R1050.2 : -/1 t|Action : +/1 l+2|Sequence Flow
+    +R1050.2 : -/1 t|Action : -/1 l+2|Sequence Flow
     +R1051 : +/1 r|Action : +/1 l*|Control Flow, t|Control Dependency
     -R1052 : +/1 r|Case : +/1 l*|Switch Action
     +R1053-1 : r|Control Flow { l-1|Sequence Flow, l|Result, l|Case }
@@ -36,3 +38,5 @@ connectors
     +R1058-1 : b|Switch Action { t|Scalar Switch Action, t|Subclass Switch Action }
     +R1059 : -/1 b|Case : -/1 t*|Match Value
     +R1060.2 : -/1 r|Result : -/1 l*|Decision Action
+    +R1061 : -/1 r|Sequence Flow : -/1 l*|Emitter
+    -R1062.2 : -/1 t|Sequence Flow : +/1 t|Emitter, b|Emitter Input : L9R+2

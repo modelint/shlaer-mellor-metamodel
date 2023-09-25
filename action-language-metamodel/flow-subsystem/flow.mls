@@ -9,11 +9,11 @@ frame OS Engineer
 frame_presentation default
 nodes
     Activity 4,1-2
-    Gate 7,4
-    Gated Flow 6,2
+    Data Flow Switch/2 7-8,5-6
+    Switched Data Flow/2 6,4
     Flow 4,4
-    Data Flow 3,5-6
-    Control Flow 5,5-6
+    Data Flow 5,5-6
+    Control Flow 3-4,5-6
     Scalar Flow 1-2,7
     Non Scalar Flow 6,7
     Class 9-10,9
@@ -28,15 +28,15 @@ nodes
     Unlabeled Flow 2,3
     Labeled Flow 2,4-5
 connectors
-    +R800 : r|Flow { l|Data Flow, l|Control Flow }
+    +R800 : r|Flow { l-2|Data Flow, l+1|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l-1|Non Scalar Flow }
     +R802 : r|Non Scalar Flow { l|Instance Flow, l|Relation Flow }
     +R803 : -/1 t|Instance Flow : -/2 b*|Class
     +R804 : -/2 r|Relation Flow : -/2 l*|Table
     +R805 : r|Instance Flow { l|Single Instance Flow, l|Multiple Instance Flow }
     +R806 : -/2 r|Scalar Flow : -/2 l*|Scalar
-    +R807 : -/2 l-1|Flow : -/2 r*|Activity
+    +R807 : -/2 l|Flow : -/2 r*|Activity
     +R808 : b|Flow { t|Labeled Flow, t|Unlabeled Flow }
     +R809 : b|Relation Flow { t|Table Flow, t|Tuple Flow }
-    +R810 : +/1 t|Flow : +/1 b*|Gate
-    -R811.2 : +/2 l+1|Flow : +/1 l|Gate, r|Gated Flow : L3
+    +R810 : +/1 t|Data Flow : +/1 b*|Data Flow Switch
+    +R811.2 : -/1 l+1|Data Flow : +/1 l|Data Flow Switch, r|Switched Data Flow : L5R-2
