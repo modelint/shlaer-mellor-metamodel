@@ -4,11 +4,11 @@ presentation default
 orientation landscape
 color teal
 sheet D
-padding l150 b350
+padding l300 b500
 frame OS Engineer
 frame_presentation default
 nodes
-    Activity 4,1
+    Activity 4,1-2
     Gate 7,4
     Gated Flow 6,2
     Flow 4,4
