@@ -2,9 +2,9 @@ metadata
     Title : Conditional Logic Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.10
-    Version : 0.7.0
+    Version : 0.7.1
     /// Creation date : May 12, 2022
-    Modification date : September 25, 2023
+    Modification date : September 28, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -78,7 +78,7 @@ attributes
     Case flow {I, R1059}
     Activity {I, R1059}
     Domain {I, R1059}
-    Value : Enumeration Value
+    Value : Enumeration Value {I}
 --
 class Result
 attributes
