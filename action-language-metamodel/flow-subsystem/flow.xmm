@@ -2,7 +2,7 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.1.0
+    Version : 2.1.1
     /// Creation date : September 10, 2021
     Modification date : September 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
@@ -11,7 +11,7 @@ metadata
 subsystem Flow
 class Activity <import:Activity>
 attributes
-    ID {I}
+    Anum {I}
     Domain {I}
 --
 class Class <import:Class Attribute>
@@ -22,7 +22,7 @@ attributes
 class Class Accessor
 attributes
     Class {I, R812}
-    Activity {I, I2, R812}
+    Activity {I, I2, R812, R813}
     Domain {I, I2, R812, R813}
     Output flow {I2, R813}
 --
