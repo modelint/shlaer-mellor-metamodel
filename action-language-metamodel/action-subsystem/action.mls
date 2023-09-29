@@ -22,7 +22,8 @@ nodes
     Traverse Action 5,11
     Select Action 5,12
     Relation Action 5,15
-    Instance Set Action/2 5,13
+    Instance Set Action/2 5,14
+    Class Accessor 5,13
 connectors
     +R900 : +/1 t|Action : +/1 b*|Activity
     +R901 : b|Action { t|Instance Set Action, t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Write Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Relation Action }
