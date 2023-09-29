@@ -2,13 +2,26 @@ metadata
     Title : Select Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.3
-    Version : 1.4.2
+    Version : 1.5.0
     /// Creation date : September 11, 2021
-    Modification date : August 11, 2023
+    Modification date : September 28, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 subsystem Select Action
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Class Accessor
+attributes
+    ID {I, R901}
+    Activity {I, R901, R884}
+    Domain {I, R901, R883, R884}
+    Class {R883c}
+    Output flow {R884}
+--
 class Class Restriction Condition
 attributes
     Select action {I, R1152, R877}
@@ -105,4 +118,12 @@ relationships
         Identifier Select
         Zero One Cardinality Select
         Criterion One Select
+--
+    R883
+    outputs population of, 1 Class
+    has population output by, Mc Class Accessor
+--
+    R884
+    outputs, 1 Multiple Instance Flow
+    is output by, 1c Class Accessor
 --
