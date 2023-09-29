@@ -8,9 +8,7 @@ padding l200 b350
 frame OS Engineer
 frame_presentation default
 nodes
-    Class 8,7-8
-    Class Accessor 7,10
-    Class Restriction Condition/2 8,5-6
+    Class Restriction Condition/2 6,8-9
     Select Action/2 6,5-6
     Single Select/2 4,4
     Many Select/2 4,7
@@ -24,10 +22,8 @@ nodes
 connectors
     +R875 : b|Select Action { t|Single Select, t|Many Select }
     -R876 : +/2 l|Select Action : +/2 r*|Non Scalar Flow
-    -R877 : +/1 t|Select Action : +/1 b*|Class Restriction Condition
+    -R877 : +/1 r|Select Action : +/1 l*|Class Restriction Condition
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
     +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
-    +R883 : -/1 r|Class : +/2 t|Class Accessor
-    -R884 : +/1 b|Class Accessor : +/1 t*|Multiple Instance Flow

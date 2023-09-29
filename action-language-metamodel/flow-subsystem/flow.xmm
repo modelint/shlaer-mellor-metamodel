@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.0.1
+    Version : 2.1.0
     /// Creation date : September 10, 2021
-    Modification date : September 25, 2023
+    Modification date : September 29, 2023
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -18,6 +18,13 @@ class Class <import:Class Attribute>
 attributes
     Name {I}
     Domain {I}
+--
+class Class Accessor
+attributes
+    Class {I, R812}
+    Activity {I, I2, R812}
+    Domain {I, I2, R812, R813}
+    Output flow {I2, R813}
 --
 class Control Flow
 attributes
@@ -179,4 +186,13 @@ relationships
     feeds, Mc Data Flow Switch
     switches among, M Data Flow
     1 Switched Data Flow
+--
+    R812
+    is accessed in, Mc Activity
+    accesses, Mc Class Accessor
+    1 Class Accessor
+--
+    R813
+    outputs, 1 Multiple Instance Flow
+    is output by, 1c Class Accessor
 --
