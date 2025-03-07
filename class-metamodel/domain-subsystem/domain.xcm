@@ -2,13 +2,14 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.domain.td.2
-    Version : 3.0.0
+    Version : 3.1.0
     /// Creation date : May 9, 2011
-    Modification date : August 4, 2023
+    Modification date : March 6, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
-subsystem Domain
+domain Metamodel, META
+subsystem Domain, D 1-24
 class Activity <import:Activity>
 attributes
     Anum {I, R14}
@@ -32,12 +33,12 @@ attributes
 class Domain Partition
 attributes
     Number : Element Number {I, OR2}
-    Domain {I, R3, OR2}
+    Domain : Domain Name {I, R3}
 --
 class Element
 attributes
     Label : Element Label {I}
-    Domain {I, R15}
+    Domain : Domain Name {I, R15}
 --
 class External Entity <import:External Entity>
 attributes
@@ -51,16 +52,11 @@ attributes
 --
 class Modeled Domain
 attributes
-    Name {I, R4}
+    Name : Domain Name {I, R4}
 --
 class Realized Domain
 attributes
-    Name {I, R4}
---
-class Relationship <import:Relationship>
-attributes
-    Rnum {I, R14}
-    Domain {I, R14}
+    Name : Domain Name {I, R4}
 --
 class Signature <import:Activity>
 attributes
@@ -70,20 +66,29 @@ attributes
 class Spanning Element
 attributes
     Label : Spanning Element Label {I, R16}
-    Domain {I, R16}
+    Domain : Domain Name {I, R16}
 --
 class Subsystem
 attributes
     Name : Subsystem Name {I}
-    First element number {I3, R1}
-    Domain {I, I2, I3, R1}
+    First element number : Element Number {I3, R1}
+    Domain : Domain Name {I, I2, I3, R1}
     Alias : Subsystem Alias {I2}
 --
 class Subsystem Element
 attributes
     Label : Subsystem Element Label {I, R16}
-    Domain {I, R16, R13}
-    Subsystem {R13}
+    Domain : Domain Name {I, R16, R13}
+    Subsystem : Subsystem Name {R13}
+--
+class System
+attributes
+    Name : System Name {I}
+--
+class Relationship <import:Relationship>
+attributes
+    Rnum {I, R14}
+    Domain {I, R14}
 --
 class Type <import:Type>
 attributes
@@ -94,27 +99,32 @@ relationships
     R1
     begins numbering elements from, 1 Domain Partition
     defines initial element number in, 1 Subsystem
+    Subsystem.(First element number, Domain) -> Domain Partition.(Number, Domain)
 --
     OR2
-    is greater than, 1 Domain Partition
-    is less than, 1 Domain Partition
+    greater than / less than, Domain Partition
+    Number : I
 --
     R3
     is partitioned by, M Domain Partition
     partitions, 1 Modeled Domain
+    Domain Partition.Domain -> Modeled Domain.Name
 --
     R4
     Domain +
         Modeled Domain
         Realized Domain
+    <subclass>.Name -> Domain.Name
 --
     R5
     defines values in, 1 Modeled Domain
     has values defined by, Mc Type
+    Type.Domain -> Domain.Name
 --
     R13
     manages, Mc Subsystem Element
     is managed within, 1 Subsystem
+    Subsystem Element.(Subsystem, Domain) -> Subsystem.(Name, Domain)
 --
     R14
     Subsystem Element +
@@ -123,18 +133,27 @@ relationships
         Signature
         External Entity
         Activity
+    Relationship.(Rnum, Domain) -> Subsystem Element.(Label, Domain)
+    Class.(Cnum, Domain) -> Subsystem Element.(Label, Domain)
+    Signature.(SIGnum, Domain) -> Subsystem Element.(Label, Domain)
+    External Entity.(EEnum, Domain) -> Subsystem Element.(Label, Domain)
+    Activity.(Anum, Domain) -> Subsystem Element.(Label, Domain)
 --
     R15
     defines, Mc Element
     is defined in, 1 Modeled Domain
+    Element.Domain -> Modeled Domain.Name
 --
     R16
     Element +
         Spanning Element
         Subsystem Element
+    <subclass>.(Label, Domain) -> Subsystem Element.(Label, Domain)
 --
     R17
     Spanning Element +
         Lineage
         Constrained Loop
+    Lineage.(Lnum, Domain) -> Spanning Element.(Label, Domain)
+    Constrained Loop.(CLnum, Domain) -> Spanning Element.(Label, Domain)
 --
