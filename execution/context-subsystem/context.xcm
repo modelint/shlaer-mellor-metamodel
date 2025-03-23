@@ -1,0 +1,128 @@
+metadata
+    Title : Context Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.td.19
+    Version : 0.1.0
+    Creation date : March 23, 2025
+    Modification date : March 23, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, METAMODEL
+subsystem Context, CTXT 2000-2049
+class Attribute <import:Class Attribute>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Attribute Value
+attributes
+    Attribute {I, R2003}
+    Class {I, R2003}
+    Domain {I, R2003}
+    Context {I, R2003}
+    Value : Value Representation
+--
+class Class Population
+attributes
+    Context {I, R2001}
+    Class {I, R2001}
+    Domain {I, R2001}
+--
+class Context
+attributes
+    Name : Context Name {I}
+    Domain {I, R2000}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Domain <import:Domain>
+attributes
+    Name {I}
+--
+class Instance
+attributes
+    ID : Instance ID {I}
+    Context : Context Name {I, R2002}
+    Class : Class Name {I, R2002}
+    Domain : Domain Name {I, R2002}
+--
+class Lifecycle State
+attributes
+    Instance {I, R2004}
+    State {I, R2004}
+    Class {I, R2004}
+    Context {I, R2004}
+    Domain {I, R2004}
+--
+class Multiple Assigner State
+attributes
+    Instance {I, R2005}
+    State {I, R2005}
+    Class {I, R2005}
+    Context {I, R2005}
+    Domain {I, R52005}
+--
+class Real State <import:State>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
+class Single Assigner State
+attributes
+    State {I, R2005}
+    Rnum {I, R2005}
+    Context {I, R2005}
+    Domain {I, R52005}
+--
+relationships
+    R2000
+    is a snapshot of, 1 Domain
+    snapshots, Mc Context
+    Context.Domain -> Domain.Name
+--
+    R2001
+    populates, 1 Class
+    is populated by, Mc Context
+    1 Class Population
+    Class Population.(Class, Domain) -> Class.(Name, Domain)
+    Class Population.(Context, Domain) -> Context.(Name, Domain)
+--
+    R2002
+    defines, Mc Instance
+    is defined by, 1 Class Population
+    Instance.(Context, Class, Domain) -> Class Population.(Context, Class, Domain)
+--
+    R2003
+    supplies value for, M Attribute
+    has value supplied by, Mc Instance
+    1 Attribute Value
+    Attribute Value.(Instance, Context, Class, Domain) -> Instance.(ID, Context, Class, Domain)
+    Attribute Value.(Attribute, Class, Domain) -> Attribute.(Name, Class, Domain)
+--
+    R2004
+    lifecycle is in, 1c Real State
+    is current for lifecycle of, Mc Instance
+    1 Lifecycle State
+    Lifecycle State.(Instance, Context, Class, Domain) -> Instance.(ID, Context, Class, Domain)
+    Lifecycle State.(State, Class, Domain) -> Real State.(Name, State model, Domain)
+--
+    R2005
+    puts single assigner in, 1c Real State
+    is current state of single assigner for, Mc Context
+    1 Single Assigner State
+    Single Assigner State.(Context, Domain) -> Context.(Name, Domain)
+    Single Assigner State.(State, Rnum, Domain) -> Real State.(Name, State model, Domain)
+--
+    R2006
+    puts multiple assigner in, 1c Real State
+    is current state of multiple assigner partitioned by, Mc Instance
+    1 Multiple Assigner State
+    Multiple Assigner State.(Instance, Context, Class, Domain) -> Instance.(ID, Context, Class, Domain)
+    Multiple Assigner State.(State, Class, Domain) -> Real State.(Name, State model, Domain)
+--

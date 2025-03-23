@@ -1,0 +1,114 @@
+metadata
+    Title : State Machine
+    Author : Leon Starr
+    Document ID : mint.meta.ego.td.19
+    Creation date : Feburary 17, 2025
+    Modification date : Feburary 18, 2025
+    Version : 0.1.0
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel
+class State Machine
+events
+    New input
+    No event from self
+    Process active event
+    Event ignored
+    No events
+    Transition response
+    Enter state
+    Ignore response
+    No response
+    Activity complete
+--
+state WAITING FOR EVENT
+activity
+transitions
+    New input > Event from self?
+--
+state Event from self?
+activity
+    // Get the earliest self directed event, if any
+    self_ev .= R1809/R1808/Self Directed Event(^-Order)
+    self_ev? {
+        // Event to self pending: make it the active event and process
+        &R1812 self_ev/R1808/Dispatched Event <event selected>
+        <event selected> Process active event -> me
+        } : No event from self -> me // otherwise...
+transitions
+    No event from self > Non self event?
+    Process active event > Determine response
+--
+state Non self event?
+activity
+    // Get any pending non self directed event
+    non_self_ev .= R1809/R1808/Non Self Directed Event(1)
+    non_self_ev? {
+        // Make it the active event and process
+        &R1812 non_self_ev/R1808/Dispatched Event <event selected>
+        <event selected> Process active event -> me
+        } : No events -> me // otherwise...
+transitions
+    No events > WAITING FOR EVENT
+    Process active event > Determine response
+--
+state Determine response
+activity
+    // respond to this event
+    event .= /R1812/Active Event
+    // Get its name and response
+    ev_name = event/R1812/Dispatched Event/R1810/Effective Event.Name
+    response .= /R1805/Real State/R505/Event Reponse(Event: ev_name)
+    // Transition? Save new state on R1814 and process it
+    tr .= repsonse/R506/Transition
+    tr? {
+        &R1814 tr/R507/Real State <dest state saved>
+        <dest state saved> Transition response -> me
+    } : {
+        // Must be ignore or can't happen
+        non_tr .= response/R506/Non Transition
+        non_tr.Behavior == .IGN? // Ignore?
+            Ignore response -> : No response -> me
+    }
+transitions
+    Transition response > STATE ENTRY
+    Ignore response > Event processed
+    No response > CANT HAPPEN
+--
+state STATE ENTRY
+activity
+    // Create/initiate activity execution and wait for completion
+    Execute *> Activity Execution &R1815 me, /R504/State Activity
+transitions
+    Activity complete > Event processed
+--
+state Transition
+activity
+    // Update current state
+    {
+        &R1805 /R1814/Real State
+        !& /R1814/Real State
+    } <new current state>
+    <new current state> Enter state -> me
+transitions
+    Enter state > STATE ENTRY
+--
+state Event processed
+activity
+    // Delete dispatched event
+    {
+        disp_ev .= /R1812/Dispatched Event
+        sd_ev .= disp_ev/Self Directed Event
+        nsd_ev .= disp_ev/Non Self Directed Event
+        active_ev .= /R1812/Active Event
+        pvals ..= disp_ev/R1813/Supplied Parameter Values
+        !* disp_ev, sd_ev, nsd_ev, active_ev, pvals
+    } <deleted>
+    <deleted> Event ignored > me
+transitions
+    Event ignored > Event from self?
+--
+state CANT HAPPEN
+activity
+--

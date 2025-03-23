@@ -1,0 +1,29 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color butterscotch
+sheet A2
+padding l300 b100
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    Attribute 4,7
+    Attribute Value 5,6
+    Domain 7,1
+    Context 7,3-4
+    Class 7,6
+    Class Population/2 6,5
+    Instance 4,5
+    Real State 3,1 : 9-10,3-4
+    Lifecycle State 2,3
+    Single Assigner State/2 8-9,5
+    Multiple Assigner State 5,3
+connectors
+    +R2000 : -/1 r|Domain : -/1 l*|Context
+    +R2001 : -/1 r|Context : -/1 l*|Class, t|Class Population
+    +R2002 : -/1 b|Class Population : -/1 t*|Instance
+    -R2003 : -/2 r|Instance : -/2 l*|Attribute, b|Attribute Value
+    -R2004 : +/1 b|Instance : -/2 r|Real State, t|Lifecycle State
+    -R2005 : -/2 t|Context : -/2 b*|Real State.2, l|Single Assigner State
+    -R2006.2 : +/2 l|Instance : -/2 t|Real State, b|Multiple Assigner State

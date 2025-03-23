@@ -1,0 +1,220 @@
+metadata
+    Title : Model Execution Subsystem
+    Author : Leon Starr
+    Document ID : mint.sm-meta.td.18
+    Version : 0.2.1
+    Creation date : February 15, 2025
+    Modification date : March 23, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, METAMODEL
+subsystem Execution, X 2050-2099
+class Activity Execution
+attributes
+    Activity {I, R1815}
+    Domain {I, I2, R1815}
+    State machine {I2, R1815}
+--
+class Active Event
+attributes
+    Event : Dispatch ID {I, R1812}
+    State machine : State Machine ID {I2, R1812}
+    Domain : Domain Name {I, I2, R1812}
+    Response : Event Response
+--
+class State Activity <import:Activity>
+attributes
+    Activity {I}
+    Domain {I}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Destination State
+attributes
+    State machine {I, R1814}
+    Domain {I, R1814}
+    Name {R1814}
+    State model {R1814}
+--
+class Dispatched Event
+attributes
+    ID : Dispatch ID {I}
+    State machine : State Machine ID {I, R1809}
+    Effective event : Event Name {R1810}
+    State model : State Model Name {R1810}
+    Domain : Domain Name {I, R1809, R1810}
+    Arrival time : Time
+--
+class Effective Event <import:Event>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
+class Instance Reference
+attributes
+    ID : Instance ID {I}
+    Class : Class Name {I, R1801}
+    Domain : Domain Name {I, R1801}
+--
+class Instance State Machine
+attributes
+    ID {I, R1804}
+    Domain : Domain Name {I, I2, R1800, R1802, R1804}
+    Iref : Instance ID {I2, R1802}
+    Class : Class Name {I2, R1800, R1802}
+    Current state : State Name {I, R1800}
+--
+class Multiple Assigner <import:State>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Multiple Assigner State Machine
+attributes
+    ID : State Machine ID {I, R1804}
+    Domain : Domain Name {I, I2, R1803, R1804}
+    Rnum : Relationship Number {I2, R1803}
+    Iref : Instance ID {I2, R1803}
+--
+class Non Self Directed Event
+attributes
+    ID : Dispatch ID {I, R1808}
+    Domain : Domain Name {I, R1808}
+    State machine : State Machine ID {I, R1808}
+--
+class Parameter <import:Activity>
+attributes
+    Name {I}
+    Signature {I, R828}
+    Domain {I, I2, R828, R827, R833}
+    Input flow {I2, R833}
+    Activity {I2, R833}
+    Type {R827}
+--
+class Real State <import:State>
+attributes
+    Name {I}
+    State model {I}
+    Domain {I}
+--
+class Self Directed Event
+attributes
+    ID : Dispatch ID {I, R1808}
+    Domain : Domain Name {I, I2, R1808}
+    Order : Ordinal {I2, OR1811}
+--
+class Single Assigner <import:State>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Single Assigner State Machine
+attributes
+    ID : State Machine ID {I, R1804}
+    Domain : Domain Name {I, I2, R1803, R1804}
+    Rnum : Relationship Number {I2, R1803}
+--
+class State Machine
+attributes
+    ID : State Machine ID {I}
+    Domain : Domain Name {I}
+    Current state : State Name {R1800}
+--
+class Supplied Parameter Value
+attributes
+    Event : Dispatch ID {I, R1813}
+    State machine : State Machine ID {I, R1813}
+    Domain : Domain Name {I, R1813}
+    Parameter : Parameter Name {I, R1813}
+    State signature : Signature Number {I, R1813}
+--
+relationships
+    R1801
+    populates, 1 Class
+    is populated with, Mc Instance Reference
+    Instance Reference.(Class, Domain) -> Class.(Name, Domain)
+--
+    R1802
+    drives behavior of, 1 Instance Reference
+    has behavior driven by, 1c Instance State Machine
+    Instance State Machine.(Instance, Class, Domain) -> Instance Reference.(ID, Class, Domain)
+--
+    R1803
+    assigns within parition of, 1 Instance Reference
+    is assignment parition for, Mc Assigner State Machine
+    Instance State Machine.(Instance, Class, Domain) -> Instance Reference.(ID, Class, Domain)
+--
+    R1804
+    State Machine +
+        Instance State Machine
+        Assigner State Machine
+    <subclass>.(ID, Domain) -> State Machine.(ID, Domain)
+--
+    R1805
+    is current state of, Mc State Machine
+    is in, 1 Real State
+    State Machine.(Current state, State model, Domain) -> Real State.(Name, State model, Domain)
+--
+    R1806
+    drives behavior of, 1 Single Assigner
+    has behavior driven by, Mc Single Assigner State Machine
+    Single Assigner State Machine.(Rnum, Domain) -> Single Assigner.(Rnum, Domain)
+--
+    R1807
+    drives behavior of, 1 Multiple Assigner
+    has behavior driven by, Mc Multiple Assigner State Machine
+    Multiple Assigner State Machine.(Rnum, Domain) -> Multiple Assigner.(Rnum, Domain)
+--
+    R1808
+    Dispatched Event +
+        Self Directed Event
+        Non Self Directed Event
+    <subclass>.(ID, State machine ID, Domain) -> Dispatched Event.(ID, State machine ID, Domain)
+--
+    R1809
+    is delivered to, 1 State Machine
+    has received, Mc Dispatched Event
+    Dispatched Event.(State machine, Domain) -> State Machine.(ID, Domain)
+--
+    R1810
+    is defined by, 1 Effective Event
+    defines, Mc Dispatched Event
+    Dispatched Event.(Effective event, State model, Domain) -> Effective Event.(Name, State model, Domain)
+--
+    OR1811
+    before / after, Self Directed Event
+    Order : I2
+--
+    R1812
+    is processing, 1c Dispatched Event
+    is being processed by, 1c State Machine
+    1 Active Event
+    Active Event.(State machine, Domain) -> State Machine.(ID, Domain)
+    Active Event.(Event, State machine, Domain) -> Dipatched Event.(ID, State machine Domain)
+--
+    R1813
+    supplies value for, Mc Parameter
+    defines value in, Mc Dispatched Event
+    1 Parameter Value
+    Supplied Parameter Value.(Event, State machine, Domain) -> Dispatched Event.(ID, State machine, Domain)
+    Supplied Parameter Value.(Parameter, State signature, Domain) -> Parameter.(Name, Signature, Domain)
+--
+    R1814
+    will transition to, 1c Real State
+    is next state of, Mc State Machine
+    1 Destination State
+    Destination State.(State machine, Domain) -> State Machine.(ID, Domain)
+    Destination State.(Name, State model, Domain) -> Real State.(Name, State model, Domain)
+--
+    R1815
+    is executing, 1c State Activity
+    is being executed by, 1c State Machine
+    1 Activity Execution
+    Activity Execution.(State machine, Domain) -> State Machine.(ID, Domain)
+    Activity Execution.(Activity, Domain) -> State Activity.(Activity, Domain)
+--

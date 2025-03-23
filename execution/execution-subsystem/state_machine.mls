@@ -1,0 +1,30 @@
+diagram state machine
+notation xUML
+presentation default
+orientation landscape
+sheet A2
+color harolds purple crayon
+padding l40 b60
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    WAITING FOR EVENT 11,4
+    Event from self? 9,4
+    Non self event? 7,4
+    Determine response 7,7
+    Transition 5,6
+    STATE ENTRY 5,4
+    Event processed 3,4
+    CANT HAPPEN 7,9 <error>
+connectors
+    +New input : b|WAITING FOR EVENT : t*|Event from self?
+    +No event from self : b|Event from self? : t*|Non self event?
+    +Process active event : r+1|Event from self? : t|Determine response
+    +Process active event-1 : r|Non self event? : l*|Determine response
+    +No events.3 : l|Non self event? : l|WAITING FOR EVENT : L1
+    +Transition response : b-2|Determine response : r|Transition
+    +Enter state : l|Transition : r*|STATE ENTRY
+    +Ignore response.2 : b+2|Determine response : r|Event processed
+    +No response : r|Determine response : l*|CANT HAPPEN
+    +Activity complete : b|STATE ENTRY : t*|Event processed
+    +Event ignored.3 : l|Event processed : l+1|Event from self? : L2R-2
