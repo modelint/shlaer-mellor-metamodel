@@ -1,0 +1,79 @@
+metadata
+    Title : Activity Execution Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.td.20
+    Version : 0.1.0
+    Creation date : March 23, 2025
+    Modification date : March 23, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, METAMODEL
+subsystem Activity Execution, AX 2100-2149
+class Action <import:Action>
+attributes
+    ID {I}
+    Anum {I}
+    Domain {I}
+--
+class Activity <import:Activity>
+attributes
+    Anum {I}
+    Domain {I}
+--
+class Activity Execution
+attributes
+    Instance {I, R2100}
+    Anum {I, R2100}
+    Domain {I, R2100}
+--
+class Instance <import:Context>
+attributes
+    ID {I}
+    Context {I}
+    Class {I}
+    Domain {I}
+--
+class Action Execution
+attributes
+    Action {I, R2103}
+    Instance {I, R2103}
+    Anum {I, R2103}
+    Domain {I, R2103}
+--
+class Stage
+attributes
+    Stage : Ordinal {I, OR2102}
+    Domain {I, R2101}
+--
+relationships
+    R2100
+    is executing, 1c Activity
+    is being executed by, Mc Instance
+    1 Instance Activity Execution
+    Instance Activity Execution.(Instance, Context, Class, Domain) -> Instance.(ID, Context, Class, Domain)
+    Instance Activity Execution.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    R2101
+    is executing, 1c Activity
+    is being executed by, 1c Single Assigner
+    1 Single Assigner Activity Execution
+    Instance Activity Execution.(Instance, Context, Class, Domain) -> Instance.(ID, Context, Class, Domain)
+    Instance Activity Execution.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    R2102
+    sequences execution sequence of actions by, Mc Stage
+    organizes actions by execution sequence for, 1 Activity
+    Stage.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    OR2103
+    executed before / executed after, Stage
+    Stage : I
+--
+    R2103
+    is executing, 1 Action
+    is being executed in, 1 Activity Execution
+    1 Action Execution
+    Action Execution.(Anum, Domain) -> Activity.(Anum, Domain)
+    Action Execution.(Instance, Context, Class, Anum, Domain) -> Activity.(Anum, Domain)
+--

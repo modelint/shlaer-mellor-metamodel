@@ -1,0 +1,144 @@
+metadata
+    Title : Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.5
+    Version : 0.5.0
+    /// Creation date : September 7, 2021
+    Modification date : March 24, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Action, ACTION 900-924
+class Action
+attributes
+    ID : Action ID {I}
+    Activity : Activity Number {I, R900}
+    Domain : Domain Name {I, R900}
+--
+class Activity <import:Activity>
+attributes
+    Anum {I}
+    Domain {I}
+--
+class Computation <import:Computation>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Create Action <import:Create Delete>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Decision Action <import:Conditional Logic>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Delete Action <import:Create Delete>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Iteration Action <import:Iterate>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Read Action <import:Attribute Access>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Select Action <import:Select Action>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Instance Set Action <import:Set Action>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Relation Action <import:Relational Action>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Signal Action <import:Signal>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Wave
+attributes
+    Number : Ordinal {I, OR903}
+    Anum : Activity Number {I, R902}
+    Domain : Domain Name {I, R902}
+--
+class Switch Action <import:Conditional Logic>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Traverse Action <import:Navigation>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+class Write Action <import:Attribute Access>
+attributes
+    ID {I, R901}
+    Activity {I, R901}
+    Domain {I, R901}
+--
+relationships
+    R900
+    executes in, 1 Activity
+    executes, Mc Action
+    Action.(Activity, Domain) -> Activity.(Anum, Domain)
+--
+    R901
+    Action +
+        Create Action
+        Read Action
+        Write Action
+        Computation
+        Signal Action
+        Delete Action
+        Table Operation
+        Switch Action
+        Decision Action
+        Iteration Action
+        Traverse Action
+        Select Action
+        Instance Set Action
+    <subclass>.(ID, Activity, Domain) -> Action.(ID, Activity, Domain)
+--
+    R902
+    independent flows of data are pushed in sequential, Mc Wave
+    pushes independent flows of data in, 1 Activity
+    Wave.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    OR903
+    undulates before / undulates after, Wave
+    Wave : I
+--
+    R904
+    moves input data to output in, 1 Wave
+    pushes input data to output for, M Action
+    Action.(Wave, Anum, Domain) -> Wave.(Number, Anum, Domain)
+--

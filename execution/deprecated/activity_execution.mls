@@ -1,0 +1,21 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color harolds purple crayon
+sheet A2
+padding l150 b300
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    Activity Execution 6,8
+    Action Execution
+    Activity 7,9
+    Instance 8,2
+    Action 1,4
+connectors
+    +R2100 : -/1 b|Instance : -/1 t*|Activity, r|Activity Execution
+    +R2101 : -/1 r|Activity : -/2 l*|Stage
+    +OR2102.2 : -/2 t+2|Stage : -/2 r+2|Stage
+    +R2103 : -/2 b|Activity Execution : +/1 l|Action, r|Action Execution
+    +R2104 : -/2 r|Action : +/1 b|Stage

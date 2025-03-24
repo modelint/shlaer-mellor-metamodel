@@ -1,15 +1,16 @@
-diagram class // Action Subsystem
+diagram class
 notation Starr
 presentation default
 orientation landscape
 color blue steel
-sheet D
-padding l300 b350
-frame OS Engineer
+sheet A1
+padding l10 b350
+frame Model Integration Diagram
 frame_presentation default
 nodes
     Action 7,7
     Activity 9,7
+    Wave 9,10
     Create Action 5,1
     Delete Action 5,2
     Read Action 5,3
@@ -24,5 +25,8 @@ nodes
     Relation Action 5,15
     Instance Set Action/2 5,13
 connectors
-    +R900 : +/1 t|Action : +/1 b*|Activity
+    +R900 : -/1 t|Action : -/1 b*|Activity
     +R901 : b|Action { t|Instance Set Action, t|Select Action, t|Traverse Action, t|Create Action, t|Delete Action, t|Read Action, t|Write Action, t|Computation, t|Decision Action, t|Switch Action, t|Iteration Action, t|Signal Action, t|Relation Action }
+    +R902 : -/2 r|Activity : -/2 l*|Wave
+    +OR903.2 : -/2 t+2|Wave : -/2 r+2|Wave : L10R-2 L11R-2
+    -R904 : -/2 r|Action : +/2 b|Wave

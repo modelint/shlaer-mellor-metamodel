@@ -1,0 +1,55 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color harolds purple crayon
+sheet A1
+padding l150 b100
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    Wave 11,4
+    Action 11,11
+    Action Execution 10,9-10
+    Activity Execution 11,7
+    Method 10,2
+    State Activity Execution/2 6,8
+    State Activity 7,9
+    Supplied Parameter Value 4,13
+    Active Event 4,10-11
+    Dispatched Event 5,11-12
+    Parameter 5,14
+    Self Directed Event/2 6-7,10-11
+    Non Self Directed Event/2 6-7,12
+    Single Assigner 6,3
+    Multiple Assigner 5,3 >bottom
+    Single Assigner State Machine/2 6,6
+    Multiple Assigner State Machine/2 4-5,6
+    Class 9,1
+    Instance 7-8,2
+    State Machine 25% 5,9
+    Instance State Machine/2 7-8,6
+    Real State 3,10
+    Effective Event 3,11-12
+    Destination State 3-4,8
+    Method Activity Execution/2 9,4
+connectors
+    +R2001 : -/1 b|Class : -/1 l|Instance
+    +R2002 : -/1 r|Instance : -/2 l*|Instance State Machine
+    +R2003 : -/2 l-2|Multiple Assigner State Machine : -/2 b|Instance
+    -R2004 : l|State Machine { r|Instance State Machine, r|Single Assigner State Machine, r|Multiple Assigner State Machine : L7 }
+    +R2005 : -/2 b+2|State Machine : +/1 l+2|Real State
+    +R2006 : -/2 l|Single Assigner State Machine : -/2 r*|Single Assigner
+    +R2007 : -/2 l+2|Multiple Assigner State Machine : -/2 r*|Multiple Assigner
+    -R2008 : t|Dispatched Event { b|Non Self Directed Event, b|Self Directed Event }
+    +R2009 : -/1 r+2|State Machine : -/1 l*|Dispatched Event
+    +R2010 : -/1 b|Dispatched Event : -/1 t*|Effective Event
+    +OR2011.2-1 : +/1 t-2|Self Directed Event : -/1 l+2|Self Directed Event : L7R+2 L10R-2
+    +R2012 : -/2 r-2|State Machine : -/1 l*|Dispatched Event, t|Active Event
+    +R2013 : -/2 r|Dispatched Event : -/1 l*|Parameter, t|Supplied Parameter Value
+    -R2014.2 : -/2 b-1|State Machine : -/1 l-1|Real State, r|Destination State
+    +R2015 : -/2 t|State Machine : -/1 b*|State Activity, r|State Activity Execution
+    -R2016 : +/1 b|Method : +/1 t*|Instance, l|Method Activity Execution
+    -R2017 : b|Activity Execution { t|Method Activity Execution, t|State Activity Execution }
+    +R2018 : -/1 r|Activity Execution : -/1 l*|Action, t|Action Execution
+    +R2019 : -/1 r|Wave : -/1 l*|Activity Execution
