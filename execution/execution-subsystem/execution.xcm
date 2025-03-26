@@ -2,9 +2,9 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.4.0
+    Version : 0.5.0
     Creation date : February 15, 2025
-    Modification date : March 24, 2025
+    Modification date : March 26, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -25,9 +25,9 @@ attributes
 --
 class Active Event
 attributes
-    Event : Dispatch ID {I, R2012}
-    State machine : State Machine ID {I2, R2012}
-    Domain : Domain Name {I, I2, R2012}
+    State machine : State Machine ID {I, R2012}
+    Domain : Domain Name {I, R2012}
+    Event : Dispatch ID {R2012}
     Response : Event Response
 --
 class Activity Execution
@@ -40,6 +40,12 @@ attributes
     Name {I}
     Domain {I}
 --
+class Completion Event
+attributes
+    ID : Dispatch ID {I, R2008}
+    Domain : Domain Name {I, R2008, R2011}
+    State machine : State Machine ID {I, R2008, R2011}
+--
 class Destination State
 attributes
     State machine {I, R2014}
@@ -50,10 +56,10 @@ attributes
 class Dispatched Event
 attributes
     ID : Dispatch ID {I}
-    State machine : State Machine ID {I, R2009}
+    State machine : State Machine ID {I}
     Effective event : Event Name {R2010}
     State model : State Model Name {R2010}
-    Domain : Domain Name {I, R2009, R2010}
+    Domain : Domain Name {I, R2010}
     Arrival time : Time
 --
 class Effective Event <import:Event>
@@ -70,23 +76,24 @@ attributes
 --
 class Instance State Machine
 attributes
-    ID {I, R2004}
-    Domain : Domain Name {I, I2, R2000, R2002, R2004}
+    ID : State Machine ID {I, R2004}
     Instance : Instance ID {I2, R2002}
-    Class : Class Name {I2, R2000, R2002}
-    Current state : State Name {I, R2000}
+    Class : Class Name {I2, R2002}
+    Domain : Domain Name {I, I2, R2002, R2004}
 --
 class Method <import:Activity>
 attributes
-    Anum {I}
-    Domain {I}
+    Name {I2}
+    Class {I2}
+    Domain {I2}
 --
-class Method Activity Execution
+class Method Execution
 attributes
+    Activity Execution {I2, R2017}
     Instance {I, R2016}
-    Anum {I, R2016}
+    Method {I, R2016}
     Class {I, R2016}
-    Domain {I, R2016}
+    Domain {I, I2, R2016, R2017}
 --
 class Multiple Assigner <import:State>
 attributes
@@ -99,12 +106,6 @@ attributes
     Domain : Domain Name {I, I2, R2003, R2004}
     Rnum : Relationship Number {I2, R2003}
     Instance : Instance ID {I2, R2003}
---
-class Non Self Directed Event
-attributes
-    ID : Dispatch ID {I, R2008}
-    Domain : Domain Name {I, R2008}
-    State machine : State Machine ID {I, R2008}
 --
 class Parameter <import:Activity>
 attributes
@@ -121,23 +122,22 @@ attributes
     State model {I}
     Domain {I}
 --
-class Self Directed Event
+class Signaled Event
 attributes
     ID : Dispatch ID {I, R2008}
-    Domain : Domain Name {I, I2, R2008}
-    State machine : State Machine ID {I, R2008}
-    Order : Ordinal {I2, OR2011}
+    Domain : Domain Name {I, R2008, R2009}
+    State machine : State Machine ID {I, R2008, R2009}
 --
 class Single Assigner <import:State>
 attributes
     Rnum {I}
     Domain {I}
 --
-class Wave <import:Action>
+class Single Assigner State Machine
 attributes
-    Number {I}
-    Anum {I}
-    Domain {I}
+    ID : State Machine ID {I, R2004}
+    Domain : Domain Name {I, I2, R2003, R2004}
+    Rnum : Relationship Number {I2, R2003}
 --
 class State Activity <import:Activity>
 attributes
@@ -146,15 +146,10 @@ attributes
 --
 class State Activity Execution
 attributes
+    Activity Execution {I2, R2017}
     State machine {I, R2015}
-    Domain {I, R2015}
-    Anum {R2015}
---
-class Single Assigner State Machine
-attributes
-    ID : State Machine ID {I, R2004}
-    Domain : Domain Name {I, I2, R2003, R2004}
-    Rnum : Relationship Number {I2, R2003}
+    Domain {I, I2, R2015, R2017}
+    Anum {I, R2015}
 --
 class State Machine
 attributes
@@ -169,6 +164,12 @@ attributes
     Domain : Domain Name {I, R2013}
     Parameter : Parameter Name {I, R2013}
     State signature : Signature Number {I, R2013}
+--
+class Wave <import:Action>
+attributes
+    Number {I}
+    Anum {I}
+    Domain {I}
 --
 relationships
     R2001
@@ -193,7 +194,7 @@ relationships
     <subclass>.(ID, Domain) -> State Machine.(ID, Domain)
 --
     R2005
-    is current state of, Mc State Machine
+    is the current state of, Mc State Machine
     is in, 1 Real State
     State Machine.(Current state, State model, Domain) -> Real State.(Name, State model, Domain)
 --
@@ -209,23 +210,27 @@ relationships
 --
     R2008
     Dispatched Event +
-        Self Directed Event
-        Non Self Directed Event
+        Completion Event
+        Signaled Event
     <subclass>.(ID, State machine ID, Domain) -> Dispatched Event.(ID, State machine ID, Domain)
 --
     R2009
     is delivered to, 1 State Machine
-    has received, Mc Dispatched Event
-    Dispatched Event.(State machine, Domain) -> State Machine.(ID, Domain)
+    has received, Mc Signaled Event
+    Signaled Event.(State machine, Domain) -> State Machine.(ID, Domain)
 --
     R2010
     is defined by, 1 Effective Event
     defines, Mc Dispatched Event
     Dispatched Event.(Effective event, State model, Domain) -> Effective Event.(Name, State model, Domain)
 --
-    OR2011
-    before / after, Self Directed Event
-    Order : I2
+    R2011
+    is pending for, 1 State Machine
+    has pending, 1c Completion Event
+    Completion Event.(State machine, Domain) -> State Machine.(ID, Domain)
+//    OR2011
+//    before / after, Completion Event
+//    Order : I2
 --
     R2012
     is processing, 1c Dispatched Event
@@ -257,14 +262,14 @@ relationships
 --
     R2016
     is executing, Mc Method
-    is being executed by, 1c Instance
-    1 Method Activity Execution
-    Method Activity Execution.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
-    Method Activity Execution.(Anum, Domain) -> Method.(Anum, Domain)
+    is being executed by, Mc Instance
+    1 Method Execution
+    Method Execution.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
+    Method Execution.(Anum, Domain) -> Method.(Anum, Domain)
 --
     R2017
     Activity Execution +
-        Method Activity Execution
+        Method Execution
         State Activity Execution
     <subclass>.(ID, Domain) -> Activity Execution.(ID, Domain)
 --
