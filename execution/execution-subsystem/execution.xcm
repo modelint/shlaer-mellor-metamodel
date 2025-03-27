@@ -2,9 +2,9 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.5.0
+    Version : 0.5.2
     Creation date : February 15, 2025
-    Modification date : March 26, 2025
+    Modification date : March 27, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -74,7 +74,7 @@ attributes
     Class : Class Name {I, R2001}
     Domain : Domain Name {I, R2001}
 --
-class Instance State Machine
+class Lifecycle State Machine
 attributes
     ID : State Machine ID {I, R2004}
     Instance : Instance ID {I2, R2002}
@@ -179,17 +179,17 @@ relationships
 --
     R2002
     drives behavior of, 1 Instance
-    has behavior driven by, 1c Instance State Machine
-    Instance State Machine.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
+    has behavior driven by, 1c Lifecycle State Machine
+    Lifecycle State Machine.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
 --
     R2003
     assigns within parition of, 1 Instance
     is assignment parition for, Mc Assigner State Machine
-    Instance State Machine.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
+    Lifecycle State Machine.(Instance, Class, Domain) -> Instance.(ID, Class, Domain)
 --
     R2004
     State Machine +
-        Instance State Machine
+        Lifecycle State Machine
         Assigner State Machine
     <subclass>.(ID, Domain) -> State Machine.(ID, Domain)
 --
@@ -200,7 +200,7 @@ relationships
 --
     R2006
     drives behavior of, 1 Single Assigner
-    has behavior driven by, Mc Single Assigner State Machine
+    has behavior driven by, 1c Single Assigner State Machine
     Single Assigner State Machine.(Rnum, Domain) -> Single Assigner.(Rnum, Domain)
 --
     R2007

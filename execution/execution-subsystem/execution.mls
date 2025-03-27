@@ -28,16 +28,16 @@ nodes
     Class 9,1
     Instance 7-8,2
     State Machine 25% 5,9
-    Instance State Machine/2 7-8,5
+    Lifecycle State Machine/2 7-8,5
     Real State 3,10
     Effective Event 3,12
     Destination State 3-4,8
     Method Execution/2 9,4
 connectors
     +R2001 : -/1 b|Class : -/1 l|Instance
-    +R2002 : -/1 r|Instance : -/2 l*|Instance State Machine
+    +R2002 : -/1 r|Instance : -/2 l*|Lifecycle State Machine
     +R2003 : -/2 l-2|Multiple Assigner State Machine : -/2 b|Instance
-    -R2004 : l-2|State Machine { r|Instance State Machine, r|Single Assigner State Machine, r|Multiple Assigner State Machine : L6 }
+    -R2004 : l-2|State Machine { r|Lifecycle State Machine, r|Single Assigner State Machine, r|Multiple Assigner State Machine : L6 }
     +R2005 : -/2 b+2|State Machine : +/1 l+2|Real State
     +R2006 : -/2 l|Single Assigner State Machine : -/2 r*|Single Assigner
     +R2007 : -/2 l+2|Multiple Assigner State Machine : -/2 r*|Multiple Assigner
@@ -45,7 +45,6 @@ connectors
     +R2009.2 : +/1 t+2|State Machine : -/1 l|Signaled Event
     +R2010 : -/1 b|Dispatched Event : -/1 t*|Effective Event
     +R2011.2 : -/1 l|Completion Event : -/1 t|State Machine
-//    +OR2011.2-1 : +/1 t-2|Completion Event : -/1 l+2|Completion Event : L7R+2 L10R-2
     +R2012 : -/2 r|State Machine : -/1 l*|Dispatched Event, t|Active Event
     +R2013 : -/2 r|Dispatched Event : -/1 l*|Parameter, t|Supplied Parameter Value
     -R2014.2 : -/2 b-2|State Machine : -/1 l-1|Real State, r|Destination State
