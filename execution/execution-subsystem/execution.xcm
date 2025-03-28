@@ -2,9 +2,9 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.6.1
+    Version : 0.7.0
     Creation date : February 15, 2025
-    Modification date : March 27, 2025
+    Modification date : March 28, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -121,15 +121,6 @@ attributes
     Rnum : Relationship Number {I2, R2003}
     Instance : Instance ID {I2, R2003}
 --
-class Parameter <import:Activity>
-attributes
-    Name {I}
-    Signature {I, R828}
-    Domain {I, I2, R828, R827, R833}
-    Input flow {I2, R833}
-    Activity {I2, R833}
-    Type {R827}
---
 class Real State <import:State>
 attributes
     Name {I}
@@ -177,14 +168,6 @@ attributes
     ID : State Machine ID {I}
     Domain : Domain Name {I}
     Current state : State Name {R2000}
---
-class Supplied Parameter Value
-attributes
-    Event : Dispatch ID {I, R2013}
-    State machine : State Machine ID {I, R2013}
-    Domain : Domain Name {I, R2013}
-    Parameter : Parameter Name {I, R2013}
-    State signature : Signature Number {I, R2013}
 --
 class Wave <import:Action>
 attributes
@@ -256,13 +239,6 @@ relationships
     1 Active Event
     Active Event.(State machine, Domain) -> State Machine.(ID, Domain)
     Active Event.(Event, State machine, Domain) -> Dipatched Event.(ID, State machine Domain)
---
-    R2013
-    supplies value for, Mc Parameter
-    defines value in, Mc Dispatched Event
-    1 Parameter Value
-    Supplied Parameter Value.(Event, State machine, Domain) -> Dispatched Event.(ID, State machine, Domain)
-    Supplied Parameter Value.(Parameter, State signature, Domain) -> Parameter.(Name, Signature, Domain)
 --
     R2014
     will transition to, 1c Real State

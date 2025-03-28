@@ -17,10 +17,8 @@ nodes
     Method 8,2-3
     State Activity Execution/2 7,8
     State Activity 5,7
-    Supplied Parameter Value 2,13
     Active Event 2,10-11
     Dispatched Event 3,12
-    Parameter 3,14
     Completion Event/2 5,11
     Signaled Event 6,13
     Sender 8,13
@@ -49,7 +47,6 @@ connectors
     +R2010 : -/1 b|Dispatched Event : -/1 t*|Effective Event
     +R2011.2 : -/1 l|Completion Event : +/1 t+2|State Machine
     +R2012 : -/2 r|State Machine : -/1 l*|Dispatched Event, t|Active Event
-    +R2013 : -/2 r|Dispatched Event : -/1 l*|Parameter, t|Supplied Parameter Value
     -R2014.2 : -/2 b-2|State Machine : -/1 l-1|Real State, r|Destination State
     +R2015.2-1 : -/1 l+2|State Machine : -/1 b|State Activity, b|State Activity Execution
     -R2016 : +/1 b|Method : +/1 t*|Instance, l|Method Execution
