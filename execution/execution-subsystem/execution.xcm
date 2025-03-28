@@ -2,7 +2,7 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.5.2
+    Version : 0.6.1
     Creation date : February 15, 2025
     Modification date : March 27, 2025
     Organization : Model Integration, LLC / www.modelint.com
@@ -35,6 +35,12 @@ attributes
     ID : Activity Execution ID {I}
     Domain {I}
 --
+class Association <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I, I2, R2020}
+    Sender {I2, R2020}
+--
 class Class <import:Class Attribute>
 attributes
     Name {I}
@@ -60,7 +66,6 @@ attributes
     Effective event : Event Name {R2010}
     State model : State Model Name {R2010}
     Domain : Domain Name {I, R2010}
-    Arrival time : Time
 --
 class Effective Event <import:Event>
 attributes
@@ -68,11 +73,20 @@ attributes
     State model {I}
     Domain {I}
 --
+class External Entity <import:External Entity>
+attributes
+    EEnum {I}
+    Name {I2}
+    Class {I2}
+    Domain {I, I2, I3, R2020}
+    Sender {I3, R2020}
+--
 class Instance
 attributes
     ID : Instance ID {I}
     Class : Class Name {I, R2001}
-    Domain : Domain Name {I, R2001}
+    Domain : Domain Name {I, R2001, R2020}
+    Sender : Sender ID {I2, R2020}
 --
 class Lifecycle State Machine
 attributes
@@ -122,11 +136,18 @@ attributes
     State model {I}
     Domain {I}
 --
+class Sender
+attributes
+    ID : Sender ID {I}
+    Domain : Domain Name {I}
+--
 class Signaled Event
 attributes
     ID : Dispatch ID {I, R2008}
-    Domain : Domain Name {I, R2008, R2009}
+    Domain : Domain Name {I, I2, R2008, R2009, R2021}
     State machine : State Machine ID {I, R2008, R2009}
+    Sender : Sender ID {I2, R2021}
+    Arrival time : Time {I2, OR2022}
 --
 class Single Assigner <import:State>
 attributes
@@ -228,9 +249,6 @@ relationships
     is pending for, 1 State Machine
     has pending, 1c Completion Event
     Completion Event.(State machine, Domain) -> State Machine.(ID, Domain)
-//    OR2011
-//    before / after, Completion Event
-//    Order : I2
 --
     R2012
     is processing, 1c Dispatched Event
@@ -285,4 +303,19 @@ relationships
     is being pushed by, Mc Activity Execution
     Activity Execution.(Wave, Anum, Domain) -> Wave.(Number, Anum, Domain)
 --
-
+    R2020
+    Sender +
+        External Entity
+        Association
+        Instance
+    <subclass>.(Sender, Domain) -> Sender.(ID, Domain)
+--
+    R2021
+    sends, Mc Signaled Event
+    is sent by, 1 Sender
+    Signaled Event.(Sender, Domain) -> Sender.(ID, Domain)
+--
+    OR2022
+    sent before / sent after, Signaled Event
+    Single sender order : I2
+--
