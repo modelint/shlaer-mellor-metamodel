@@ -2,9 +2,9 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.7.0
+    Version : 0.7.1
     Creation date : February 15, 2025
-    Modification date : March 28, 2025
+    Modification date : April 1, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -132,7 +132,7 @@ attributes
     ID : Sender ID {I}
     Domain : Domain Name {I}
 --
-class Signaled Event
+class Interaction Event
 attributes
     ID : Dispatch ID {I, R2008}
     Domain : Domain Name {I, I2, R2008, R2009, R2021}
@@ -215,13 +215,13 @@ relationships
     R2008
     Dispatched Event +
         Completion Event
-        Signaled Event
+        Interaction Event
     <subclass>.(ID, State machine ID, Domain) -> Dispatched Event.(ID, State machine ID, Domain)
 --
     R2009
     is delivered to, 1 State Machine
-    has received, Mc Signaled Event
-    Signaled Event.(State machine, Domain) -> State Machine.(ID, Domain)
+    has received, Mc Interaction Event
+    Interaction Event.(State machine, Domain) -> State Machine.(ID, Domain)
 --
     R2010
     is defined by, 1 Effective Event
@@ -287,11 +287,11 @@ relationships
     <subclass>.(Sender, Domain) -> Sender.(ID, Domain)
 --
     R2021
-    sends, Mc Signaled Event
+    sends, Mc Interaction Event
     is sent by, 1 Sender
-    Signaled Event.(Sender, Domain) -> Sender.(ID, Domain)
+    Interaction Event.(Sender, Domain) -> Sender.(ID, Domain)
 --
     OR2022
-    sent before / sent after, Signaled Event
+    sent before / sent after, Interaction Event
     Single sender order : I2
 --

@@ -20,7 +20,7 @@ nodes
     Active Event 2,10-11
     Dispatched Event 3,12
     Completion Event/2 5,11
-    Signaled Event 6,13
+    Interaction Event 6,13
     Sender 8,13
     Single Assigner 4,3
     Multiple Assigner 3,3 >bottom
@@ -42,8 +42,8 @@ connectors
     +R2005 : -/2 b+2|State Machine : +/1 l+2|Real State
     +R2006 : -/2 l|Single Assigner State Machine : -/2 r*|Single Assigner
     +R2007 : -/2 l+2|Multiple Assigner State Machine : -/2 r*|Multiple Assigner
-    -R2008 : t|Dispatched Event { b|Signaled Event, b|Completion Event }
-    +R2009.2 : -/1 t|State Machine : -/1 l|Signaled Event
+    -R2008 : t|Dispatched Event { b|Interaction Event, b|Completion Event }
+    +R2009.2 : -/1 t|State Machine : -/1 l|Interaction Event
     +R2010 : -/1 b|Dispatched Event : -/1 t*|Effective Event
     +R2011.2 : -/1 l|Completion Event : +/1 t+2|State Machine
     +R2012 : -/2 r|State Machine : -/1 l*|Dispatched Event, t|Active Event
@@ -54,5 +54,5 @@ connectors
     -R2018 : -/1 r|Activity Execution : -/1 l*|Action, b|Action Execution
     +R2019 : -/1 r|Wave : -/1 l*|Activity Execution
     -R2020 : l|Sender { r|Association, r|External Entity } { t-1|Instance : L10R+2 }
-    +R2021 : -/1 b|Sender : -/1 t*|Signaled Event
-    +OR2022.3 : +/1 t+2|Signaled Event : -/1 r+2|Signaled Event : L7R-2 L14R-2
+    +R2021 : -/1 b|Sender : -/1 t*|Interaction Event
+    +OR2022.3 : +/1 t+2|Interaction Event : -/1 r+2|Interaction Event : L7R-2 L14R-2
