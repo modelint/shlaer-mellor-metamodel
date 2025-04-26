@@ -1,11 +1,11 @@
-diagram class // Create Delete Subsystem / Action Metamodel 2.x.x
+diagram class
 notation Starr
 presentation default
 orientation landscape
 color butter
-sheet D
-padding l50 b220
-frame OS Engineer
+sheet A0
+padding l300 b500
+frame Model Integration Diagram
 frame_presentation default
 nodes
     Attribute 7,3
@@ -39,6 +39,7 @@ nodes
     Create In State 2-3,13
     New Instance Flow/2 7,9
     Delete Action 2,9
+    Deletion Flow 1,8
     Instance Flow 2,6-7
     Single Create Action/2 7,20
     Migrate Action 3,9
@@ -51,7 +52,7 @@ connectors
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }
     +R981-1 : r|Facet Instantiation { l+1|Local Facet Instantiation, l|Delegated Facet Instantiation }
     +R982 : +/2 r*|Single Instance Flow : +/2 l|Initializing Attribute Reference, t|Initializing Instance Reference
-    -R983 : +/2 l|Delete Action : +/2 r*|Instance Flow
+    -R983 : +/2 l|Delete Action : +/2 r*|Instance Flow, t|Deletion Flow
     -R984 : +/2 r*|Scalar Flow : +/2 l|Explicit Initialization
     +R985 : +/2 b|Reference Initialization : +/2 t*|Attribute Reference, r|Initializing Attribute Reference
     +R986-1 : r|Delegated Create Action { l|Single Delegated Create Action, l|Multiple Delegated Create Action }
