@@ -1,0 +1,319 @@
+metadata
+    Title : Table Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.14
+    Version : 0.7.2
+    /// Creation date : August 22, 2022
+    Modification date : May 30, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Relational Action, RELATION 1150-1199
+class Class Restriction Condition
+attributes
+    Select action : Action ID {I, R1152}
+    Activity : Activity Number {I, R1152}
+    Domain : Domain Name {I, R1152}
+--
+class Criterion
+attributes
+    ID : Criterion ID {I}
+    Action : Action ID {I, R1151}
+    Activity : Activity Number {I, R1151}
+    Domain : Domain Name {I, R1151}
+    Attribute : Attribute Name {R1151}
+    Non scalar type : Type Name {R1151}
+--
+class Comparison Criterion
+attributes
+    ID : Criterion ID {I, R1159}
+    Action : Action ID {I, R1159}
+    Activity : Activity Number {I, R1159, R1161}
+    Attribute : Attribute Name {I, R1159}
+    Domain : Domain Name {I, R1159, R1161}
+    Value : Value Representation {R1161}
+    Comparison : Comp Op
+--
+class Equivalence Criterion
+attributes
+    ID : Criterion ID {I, R1159}
+    Action : Action ID {I, R1159}
+    Activity : Activity Number {I, R1159}
+    Attribute : Attribute Name {I, R1159}
+    Domain : Domain Name {I, R1159, R1160}
+    Operation : Equivalence Op
+    Value : Value Representation
+    Scalar : Type Name {R1160}
+--
+class Extend Action
+attributes
+    ID : Action ID {I, R1150}
+    Activity : Activity Number {I, R1150, R1164}
+    Domain : Domain Name {I, R1150, R1162, R1164}
+    Added attribute : Attribute Name {R1162}
+    Table : Table Name {R1162c}
+    Result : Flow ID {R1164}
+--
+class Extract Action
+attributes
+    ID : Action ID {I, R1166}
+    Activity : Activity Number {I, R1166, R1167, R1169}
+    Domain : Domain Name {I, R1166, R1167, R1168, R1169}
+    Input tuple : Flow ID {R1169}
+    Table : Table Name {R1168}
+    Attribute : Attribute Name {R1168}
+    Output scalar : Flow ID {R1167}
+--
+class Model Attribute <import:Type>
+attributes
+    Name {I}
+    Non scalar type {I}
+    Domain {I}
+--
+class Non Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Project Action
+attributes
+    ID : Action ID {I, R1150}
+    Activity : Activity Number {I, R1150}
+    Domain : Domain Name {I, R1150}
+--
+class Projected Attribute
+attributes
+    Attribute : Attribute Name {I, R1153}
+    Non scalar type : Type Name {I, R1153}
+    Project action : Action ID {I, R1153}
+    Activity : Activity Number {I, R1153}
+    Domain : Domain Name {I, R1153}
+--
+class Rank Restrict Action
+attributes
+    ID : Action ID {I, R1150}
+    Activity : Activity Number {I, R1150}
+    Domain : Domain Name {I, R1150, R1171}
+    Attribute : Attribute Name {R1171}
+    Non scalar type : Type Name {R1171}
+    Selection cardinality : Cardinality
+    Extent : Greatest Least
+--
+class Relational Action
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901}
+    Domain : Domain Name {I, R901}
+--
+class Rename Action
+attributes
+    ID : Action ID {I, R1150}
+    Activity : Activity Number {I, R1150}
+    Domain : Domain Name {I, R1150, R1155, R1156}
+    From attribute : Attribute Name {R1155}
+    From non scalar type : Type Name {R1155}
+    To attribute : Attribute Name {R1156}
+    To table : Table Name {R1156}
+--
+class Restrict Action
+attributes
+    ID : Action ID {I, R1150}
+    Activity : Activity Number {I, R1150}
+    Domain : Domain Name {I, R1150}
+--
+class Restriction Condition
+attributes
+    Action : Action ID {I}
+    Activity : Activity Number {I}
+    Domain : Domain Name {I}
+    Expression : Predicate
+    Selection cardinality : Cardinality
+--
+class Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Scalar <import:Type>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Set Action
+attributes
+    ID : Action ID {I, R1150}
+    Operation : Set Operation Name
+    Activity : Activity Number {I, R1150, R1165}
+    Domain : Domain Name {I, R1150, R1165}
+    Input b flow : Flow ID {R1165}
+--
+class Source Tuple Attribute Access
+attributes
+    Extend action : Action ID {I, R1163}
+    Model attribute : Attribute Name {I, R1163}
+    Non scalar type : Type Name {I, R1163c}
+    Activity : Activity Number {I, R1163, R1170}
+    Domain : Domain Name {I, R1163, R1170}
+    Flow : Flow ID {R1170}
+--
+class Table Action
+attributes
+    ID : Action ID {I, R1166}
+    Activity : Activity Number {I, R1166, R1158, R1157}
+    Domain : Domain Name {I, R1166, R1158, R1157}
+    Input a flow : Flow ID {R1157}
+    Output flow : Flow ID {R1158}
+--
+class Table Attribute <import:Type>
+attributes
+    Name {I}
+    Table {I}
+    Domain {I}
+--
+class Relation Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Table Restriction Condition
+attributes
+    Restrict action : Action ID {I, R1154, R1152}
+    Activity : Activity Number {I, R1154, R1152}
+    Domain : Domain Name {I, R1154, R1152}
+--
+class Tuple Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+relationships
+    R1150
+    Table Action +
+        Table Restrict
+        Project Action
+        Rank Restrict Action
+        Rename Action
+        Extend Action
+        Set Action
+    <subclass>.(ID, Activity, Domain) -> Table Action.(ID, Activity, Domain)
+--
+    R1151
+    compares, Mc Model Attribute
+    is compared in, Mc Restriction
+    M Criterion
+    Criterion.(Action, Activity, Domain) -> Restriction Condition.(Action, Activity, Domain)
+    Criterion.(Attribute, Non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
+    R1152
+    Restriction Condition +
+        Table Restriction Condition
+        Class Restriction Condition
+    Table Restriction Condition.(Restrict action, Activity, Domain) -> Restriction Condition.(Action, Activity, Domain)
+    Class Restriction Condition.(Select action, Activity, Domain) -> Restriction Condition.(Action, Activity, Domain)
+--
+    R1153
+    is projected in, Mc Project
+    projects on, M Model Attribute
+    1 Projected Attribute
+    Projected Attribute.(Attribute, Non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+    Projected Attribute.(Project action, Activity, Domain) -> Project Action.(ID, Activity, Domain)
+--
+    R1154
+    applies, 1 Table Restriction Condition
+    is applied by, 1 Restrict Action
+    Table Restriction Condition.(Restrict action, Activity, Domain) -> Restrict Action.(ID, Activity, Domain)
+--
+    R1155
+    renames, 1 Model Attribute
+    is renamed by, Mc Rename Action
+    Rename Action.(From attribute, From non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
+    R1156
+    creates, 1 Table Attribute
+    is created by, 1c Rename Action
+    Rename Action.(To attribute, To table, Domain) -> Table Attribute.(Name, Table, Domain)
+--
+    R1157
+    takes input a from, 1 Non Scalar Flow
+    is input a to, Mc Table Action
+    Table Action.(Input a flow, Activity, Domain) -> Non Scalar Flow.(ID, Activity, Domain)
+--
+    R1158
+    outputs, 1 Relation Flow
+    is yielded by, 1c Table Action
+    Table Action.(Output flow, Activity, Domain) -> Relation Flow.(ID, Activity, Domain)
+--
+    R1159
+    Restriction Criterion +
+        Comparison Criterion
+        Equivalence Criterion
+    <subclass>.(ID, Action, Activity, Domain) -> Criterion.(ID, Action, Activity, Domain)
+--
+    R1160
+    specifies type of value in, Mc Equivalence Criterion
+    has value type specified by, 1 Scalar
+    Equivalence Criterion.(Scalar, Domain) -> Scalar.(Name, Domain)
+--
+    R1161
+    compares value from, 1 Scalar Flow
+    has value compared in, Mc Comparison Criterion
+    Comparison Criterion.(Value, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1162
+    adds, 1 Table Attribute
+    is added by, 1c Extend Action
+    Extend Action.(Added attribute, Table, Domain) -> Table Attribute.(Name, Table, Domain)
+--
+    R1163
+    accesses value of, Mc Model Attribute
+    is accessed in, Mc Extend Action
+    1 Source Tuple Attribute Access
+    Source Tuple Attribute Access.(Extend action, Activity, Domain) -> Extend Action.(ID, Activity, Domain)
+    Source Tuple Attribute Access.(Model attribute, Non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
+    R1164
+    provides result to, Mc Extend Action
+    applies result from, 1 Scalar Flow
+    Extend Action.(Result, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1165
+    is input b to, Mc Set Action
+    takes input b as, 1 Non Scalar Flow
+    Set Action.(Input b flow, Activity, Domain) -> Non Scalar Flow.(ID, Activity, Domain)
+--
+    R1166
+    Relational Action +
+        Table Action
+        Extract Action
+    <subclass>.(ID, Activity, Domain) -> Relational Action.(ID, Activity, Domain)
+--
+    R1167
+    outputs, 1 Scalar Flow
+    is output by, 1c Extract Action
+    Extract Action.(Output scalar, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1168
+    extracts value of, 1 Table Attribute
+    has value extracted by, Mc Extract Action
+    Extract Action.(Attribute, Table, Domain) -> Table Attribute.(Name, Table, Domain)
+--
+    R1169
+    takes input from, 1 Tuple Flow
+    is input to, Mc Extract Action
+    Extract Action.(Input tuple, Activity, Domain) -> Tuple Flow.(ID, Activity, Domain)
+--
+    R1170
+    outputs tuple value in, 1 Scalar Flow
+    provides tuple value for, 1c Source Tuple Attribute Access
+    Source Tuple Attribute Access.(Flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1171
+    selects greatest or least value of, 1 Model Attribute
+    has greatest or least value selected by, Mc Rank Restrict Action
+    Rank Restrict Action.(Attribute, Non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
