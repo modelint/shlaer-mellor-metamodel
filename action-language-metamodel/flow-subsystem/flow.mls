@@ -3,15 +3,15 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet D
-padding l300 b500
-frame OS Engineer
+sheet A1
+padding l150 b300
+frame Model Integration Diagram
 frame_presentation default
 nodes
-    Activity 4,1-2 : 9-10,13
+    Activity 4,1 : 9-10,13
     Class Accessor 8,12
-    Data Flow Switch/2 7-8,5-6
-    Switched Data Flow/2 6,4
+    Gate Action 7-8,5-6
+    Gate Input/2 6,4
     Flow 4,4
     Data Flow 5,5-6
     Control Flow 3-4,5-6
@@ -26,8 +26,8 @@ nodes
     Table 4-5,11
     Tuple Flow 3,8-9
     Table Flow 3,10
-    Unlabeled Flow 2,3
-    Labeled Flow 2,4-5
+    Unlabeled Flow 2,3-4
+    Labeled Flow 2,5
 connectors
     +R800 : r|Flow { l-2|Data Flow, l+1|Control Flow }
     +R801 : r|Data Flow { l|Scalar Flow, l-1|Non Scalar Flow }
@@ -39,7 +39,7 @@ connectors
     +R807 : -/2 l|Flow : -/2 r*|Activity
     +R808 : b|Flow { t|Labeled Flow, t|Unlabeled Flow }
     +R809 : b|Relation Flow { t|Table Flow, t|Tuple Flow }
-    +R810 : +/1 t|Data Flow : +/1 b*|Data Flow Switch
-    +R811.2 : -/1 l+1|Data Flow : +/1 l|Data Flow Switch, r|Switched Data Flow : L5R-2
+    +R810 : +/1 t|Data Flow : +/1 b*|Gate Action
+    +R811.2 : -/1 l+1|Data Flow : +/1 l|Gate Action, r|Gate Input : L5R-2
     +R812 : +/1 r|Class : +/1 l*|Activity.2, t|Class Accessor
     +R813 : +/1 b|Class Accessor : +/1 r|Multiple Instance Flow
