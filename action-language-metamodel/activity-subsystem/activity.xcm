@@ -1,0 +1,215 @@
+metadata
+    Title : Activity Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.12
+    Version : 1.3.0
+    /// Creation date : August 13, 2022
+    Modification date : June 24, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Activity, ACTIVITY 825-850
+class Activity
+attributes
+    Anum : Activity Number {I}
+    Domain : Domain Name {I}
+--
+class Asynchronous Activity
+attributes
+    Anum : Activity Number {I, R825}
+    Domain : Domain Name {I, R825}
+--
+class Asynchronous Operation <import:External Entity>
+attributes
+    Anum {I, R830}
+    Domain {I, R830}
+--
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Lifecycle Activity
+attributes
+    Anum : Activity Number {I, R834, R838}
+    Domain : Domain Name {I, R834, R838}
+    Executing instance flow : Flow ID {R838}
+--
+class Method
+attributes
+    Anum : Activity Number {I, R826, R832}
+    Name : Method Name {I2}
+    Class : Type Name {I2, R827}
+    Domain : Domain Name {I, I2, R826, R827, R832}
+    Executing instance flow : Flow ID {R832}
+--
+class Method Signature
+attributes
+    SIGnum : Signature Number {I, R837}
+    Method : Method Name {I2, R835}
+    Class : Type Name {I2, R835}
+    Domain : Domain Name {I, I2, R837, R835}
+--
+class Multiple Assigner Activity
+attributes
+    Anum : Activity Number {I, R834, R839}
+    Domain : Domain Name {I, R834, R839}
+    Partitioning instance flow : Flow ID {R839}
+--
+class Operation <import:External Entity>
+attributes
+    Name {I}
+    EE {I}
+    Domain {I}
+--
+class Operation Signature
+attributes
+    SIGnum : Signature Number {I, R837}
+    EE : EE Name {I2, R836}
+    Operation : Operation Name {I2, R836}
+    Domain : Domain Name {I, I2, R837, R836}
+--
+class Parameter
+attributes
+    Name : Parameter Name {I}
+    Signature : Signature Number {I, R828}
+    Domain : Domain Name {I, I2, R828, R827, R833}
+    Input flow : Flow ID {I2, R833}
+    Activity : Activity Number {I2, R833}
+    Type : Type Name {R827}
+--
+class Signature
+attributes
+    SIGnum : Signature Number {I, R17}
+    Domain : Domain Name {I, R17}
+--
+class Single Assigner Activity
+attributes
+    Anum : Activity Number {I, R834}
+    Domain : Domain Name {I, R834}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class State Activity
+attributes
+    Anum : Activity Number {I, R830}
+    Domain : Domain Name {I, R830}
+--
+class State Signature <import:State>
+attributes
+    SIGnum {I}
+    Domain {I}
+--
+class Synchronous Activity
+attributes
+    Anum : Activity Number {I, R825}
+    Domain : Domain Name {I, R825}
+--
+class Synchronous Operation <import:External Entity>
+attributes
+    Anum {I, R826}
+    Domain {I, R826}
+--
+class Synchronous Output
+attributes
+    Anum : Activity Number {I, R829, R831}
+    Domain : Domain Name {I, R829, R831}
+    Output flow : Flow ID {R831}
+    Type : Type Name {R829}
+--
+class Type <import:Type>
+attributes
+    Name {I}
+    Domain {I}
+--
+relationships
+    R825
+    Activity +
+        Asynchronous Activity
+        Synchronous Activity
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    R826
+    Synchronous Activity +
+        Method
+        Synchronous Operation
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    R827
+    constrains input to, Mc Parameter
+    input is constrained by, 1 Type
+    Parameter.(Type, Domain) -> Type.(Name, Domain)
+--
+    R828
+    input is defined by, 1 Signature
+    defines input with, Mc Parameter
+    Parameter.(Signature, Domain) -> Signature.(SIGnum, Domain)
+--
+    R829
+    yields output of, 1c Type
+    constraints output of, Mc Synchronous Activity
+    1 Synchronous Output
+    Synchronous Output.(Anum, Domain) -> Synchronous Activity.(Anum, Domain)
+    Synchronous Output.(Type, Domain) -> Type.(Name, Domain)
+--
+    R830
+    Asynchronous Activity +
+        State Activity
+        Asynchronous Operation
+    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
+--
+    R831
+    yields value in, 1 Data Flow
+    transmits value from, 1c Synchronous Output
+    Synchronous Output.(Output flow, Anum, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R832
+    obtains executing instance from, 1 Single Instance Flow
+    supplies executing instance to, 1c Method
+    Method.(Executing instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
+    R833
+    provides value for, 1c Parameter
+    gets value from, 1 Data Flow
+    Parameter.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R834
+    State Activity +
+        Lifecycle Activity
+        Multiple Assigner Activity
+        Assigner Activity
+    <subclass>.(Anum, Domain) -> State Activity.(Anum, Domain)
+--
+    R835
+    defines input into, 1 Method
+    specifies required input with, 1 Method Signature
+    Method Signature.(Method, Class, Domain) -> Method.(Name, Class, Domain)
+--
+    R836
+    defines input into, 1 External Entity Operation
+    specifies required input with, 1 Operation Signature
+    Operation Signature.(Operation, EE, Domain) -> External Entity Operation.(Name, EE, Domain)
+--
+    R837
+    Signature +
+        State Signature
+        Method Signature
+        Operation Signature
+    <subclass>.(SIGnum, Domain) -> Signature.(SIGnum, Domain)
+--
+    R838
+    delivers executing instance to, 1c Lifecycle Activity
+    obtains executing instance from, 1 Single Instance Flow
+    Lifecycle Activity.(Executing instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
+    R839
+    delivers paritioning instance to, 1c Multiple Assigner Activity
+    obtains paritioning instance from, 1 Single Instance Flow
+    Multiple Assigner Activity.(Paritioning instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
