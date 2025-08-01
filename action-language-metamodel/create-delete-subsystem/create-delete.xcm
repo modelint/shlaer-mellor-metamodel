@@ -112,7 +112,7 @@ attributes
 --
 class Facet Instantiation
 attributes
-    Rnum : Relationshiop Number {I, R991}
+    Rnum : Relationship Number {I, R991}
     Class : Class Name {I, R991}
     Create action : Action ID {I, R991}
     Activity : Activity Number {I, R991}

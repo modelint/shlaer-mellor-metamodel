@@ -2,18 +2,26 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 1.3.0
+    Version : 1.5.0
     /// Creation date : August 13, 2022
-    Modification date : June 24, 2025
+    Modification date : August 1, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
-subsystem Activity, ACTIVITY 825-850
+subsystem Activity, ACTIVITY 825-849
 class Activity
 attributes
     Anum : Activity Number {I}
     Domain : Domain Name {I}
+--
+class Activity Input
+attributes
+    Parameter : Parameter Name {I, R842}
+    Signature : Signature Number {I, R842}
+    Activity : Activity Number {I, R842, R833}
+    Domain : Domain Name {I, R842, R833}
+    Flow : Flow ID {I, R842, R833}
 --
 class Asynchronous Activity
 attributes
@@ -45,6 +53,20 @@ attributes
     Domain : Domain Name {I, I2, R826, R827, R832}
     Executing instance flow : Flow ID {R832}
 --
+class Method Call
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901}
+    Domain : Domain Name {I, R901, R840}
+    Method : Activity Number {R840}
+--
+class Method Call Parameter
+attributes
+    Method call : Action ID {I, R841}
+    Flow : Flow ID {I, R841}
+    Method : Activity Number {I, R841}
+    Domain : Domain Name {I, R841}
+--
 class Method Signature
 attributes
     SIGnum : Signature Number {I, R837}
@@ -75,9 +97,7 @@ class Parameter
 attributes
     Name : Parameter Name {I}
     Signature : Signature Number {I, R828}
-    Domain : Domain Name {I, I2, R828, R827, R833}
-    Input flow : Flow ID {I2, R833}
-    Activity : Activity Number {I2, R833}
+    Domain : Domain Name {I, R828, R827}
     Type : Type Name {R827}
 --
 class Signature
@@ -175,9 +195,9 @@ relationships
     Method.(Executing instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R833
-    provides value for, 1c Parameter
+    provides value for, 1c Activity Input
     gets value from, 1 Data Flow
-    Parameter.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    Activity Input.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R834
     State Activity +
@@ -209,7 +229,26 @@ relationships
     Lifecycle Activity.(Executing instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R839
-    delivers paritioning instance to, 1c Multiple Assigner Activity
-    obtains paritioning instance from, 1 Single Instance Flow
-    Multiple Assigner Activity.(Paritioning instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+    delivers partitioning instance to, 1c Multiple Assigner Activity
+    obtains partitioning instance from, 1 Single Instance Flow
+    Multiple Assigner Activity.(Partitioning instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
+    R840
+    invokes, 1 Method
+    is invoked by, Mc Method Call
+    Method Call.(Method, Domain) -> Method.(Anum, Domain)
+--
+    R841
+    gets parameter value from, M Data Flow
+    supplies parameter value for, Mc Method Call
+    1 Method Call Parameter
+    Method Call Parameter.(Flow, Method, Domain) -> Data Flow.(ID, Activity, Domain)
+    Method Call Parameter.(Method call, Method, Domain) -> Method Call.(ID, Activity, Domain)
+--
+    R842
+    flows data into, Mc Activity
+    inputs data from, Mc Parameter
+    1 Activity Input
+    Activity Input.(Parameter, Signature, Domain) -> Parameter.(Name, Signature, Domain)
+    Activity Input.(Activity, Domain) -> Activity.(Anum, Domain)
 --
