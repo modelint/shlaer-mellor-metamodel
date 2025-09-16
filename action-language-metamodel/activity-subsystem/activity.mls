@@ -4,51 +4,46 @@ presentation default
 orientation landscape
 color teal
 sheet A1
-padding l50 b250
+padding l200 b350
 frame Model Integration Diagram
 frame_presentation default
 nodes
-    Activity 1,9
-    Asynchronous Activity/2 2-3,7-8
-    Synchronous Activity/2 2-3,11
-    State Activity 4,6-7
-    Lifecycle Activity/2 5,5
-    Multiple Assigner Activity/2 3-4,5
-    Single Assigner Activity/2 2,5
-    Asynchronous Operation/2 4,8-9
-    Synchronous Operation/2 4,12
-    Operation/2 7,14
-    Method 5,10
-    Method Call 5,13
-    Method Call Parameter/2 4,16
-    Method Signature 7,10
-    Operation Signature/2 7,11-12
-    Signature 9,9
-    Class 4-5,7-8
+    Activity 1,8
+    State Activity 5-6,7
+    Real State Activity/2 6,5-6
+    Lifecycle Activity/2 7,4
+    Multiple Assigner Activity/2 6,4
+    Single Assigner Activity/2 5,4
+    Delegated Creation Activity/2 3,5-6
+    Initialization Source 2,4
+    Method 4-5,9
+    Method Signature 9,9
+    State Signature 9,11
+    External Signature 9,12-13 >top
+    External Event Specification/2 7,12-13
+    Signature 10-11,10
     Non State Signature/2 6,10
-    State Signature 7,8
-    Parameter 11,9
-    Synchronous Output/2 1-2,12-13
-    Type 11,12 : 2-3,14
-    Data Flow 7-8,5 : 1-2,15
-    Single Instance Flow/2 25% 6,3
-    Activity Input 10,5
+    Parameter 10-11,8
+    Synchronous Output/2 3,11-12
+    Type 9,6 : 2,10
+    Data Flow 3,14 : 3,2-3
+    Single Instance Flow/2 25% 8,2
+    Activity Input 12,5
 connectors
-    +R825 : t|Activity { b|Asynchronous Activity, b|Synchronous Activity }
-    +R826 : t|Synchronous Activity { b|Synchronous Operation, b|Method }
-    -R827 :  +/2 r|Parameter : +/2 l*|Type
-    -R828 :  +/2 t|Signature : +/2 b*|Parameter
-    +R829 :  +/2 r|Synchronous Activity : +/2 l*|Type.2, t|Synchronous Output
-    +R830 : t|Asynchronous Activity { b|Asynchronous Operation, b|State Activity }
-    +R831 : -/2 r|Synchronous Output : -/2 l*|Data Flow.2
-    +R832 : -/2 r|Single Instance Flow : -/3 t-2|Method
-    -R833 : +/2 t|Data Flow : +/2 b*|Activity Input
-    +R834 : l|State Activity { r|Lifecycle Activity, r|Multiple Assigner Activity, r|Single Assigner Activity : L6R-2 }
-    +R835 : +/2 b|Method Signature : +/2 t*|Method
-    -R836 : +/2 r|Operation Signature : +/2 l*|Operation
-    +R837 : b|Signature { t|State Signature, t|Method Signature, t|Operation Signature }
+    +R825 : t|Activity { b|State Activity, b|Method }
+    +R826 :  -/3 b|External Signature : -/2 t*|External Event Specification
+    +R827 :  -/2 b|Parameter : -/2 r|Type
+    -R828 :  +/2 l|Signature : +/2 r*|Parameter
+    -R829 :  +/2 r-2|Method : +/2 t|Type.2, l|Synchronous Output
+    +R831 : -/2 r|Synchronous Output : -/2 l*|Data Flow
+    +R832 : -/2 r-1|Single Instance Flow : -/3 t-2|Method
+    +R833 : +/1 t|Data Flow : +/1 r|Activity Input
+    +R834 : l|Real State Activity { r|Lifecycle Activity, r|Multiple Assigner Activity, r|Single Assigner Activity }
+    +R835 : +/3 b|Method Signature : +/2 t*|Method
+    +R837 : b|Signature { t|State Signature, t|Method Signature, t|External Signature }
     +R838 : +/2 b+2|Single Instance Flow : -/2 l|Lifecycle Activity
     +R839 : -/2 b-2|Single Instance Flow : -/2 l|Multiple Assigner Activity
-    +R840 : -/1 r|Method : -/1 l*|Method Call
-    -R841 : +/2 r|Method Call : +/2 t|Data Flow.2, l|Method Call Parameter
-    +R842.3 : +/2 l|Activity : +/2 l|Parameter, t|Activity Input : L2R-2
+    +R840 : l|State Activity { r|Real State Activity, r|Delegated Creation Activity }
+    +R842.3 : +/2 l|Activity : +/2 l|Parameter, b|Activity Input : L1R-1
+    +R843 : +/2 r|Data Flow.2 : +/2 l*|Delegated Creation Activity, t|Initialization Source
+    -R844.2 : +/2 l|Initialization Source : -/2 b|Data Flow.2

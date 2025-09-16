@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 1.5.0
+    Version : 2.4.1
     /// Creation date : August 13, 2022
-    Modification date : August 1, 2025
+    Modification date : September 16, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,25 +19,40 @@ class Activity Input
 attributes
     Parameter : Parameter Name {I, R842}
     Signature : Signature Number {I, R842}
-    Activity : Activity Number {I, R842, R833}
-    Domain : Domain Name {I, R842, R833}
-    Flow : Flow ID {I, R842, R833}
---
-class Asynchronous Activity
-attributes
-    Anum : Activity Number {I, R825}
-    Domain : Domain Name {I, R825}
---
-class Asynchronous Operation <import:External Entity>
-attributes
-    Anum {I, R830}
-    Domain {I, R830}
+    Activity : Activity Number {I, I2, R842, R833}
+    Domain : Domain Name {I, I2, R842, R833}
+    Flow : Flow ID {I2, R842, R833}
 --
 class Data Flow <import:Flow>
 attributes
     ID {I}
     Activity {I}
     Domain {I}
+--
+class Delegated Creation Activity
+attributes
+    Anum : Activity Number {I, R840}
+    Domain : Domain Name {I, R840}
+--
+class External Event Specification
+attributes
+    Name : Event Name {I}
+    Class : Type Name {I, R36}
+    Domain : Domain Name {I, I2, R36, R826}
+    Signature : Signature Number {I2, R826}
+--
+class External Signature
+attributes
+    SIGnum : Signature Number {I, R837}
+    Domain : Domain Name {I, R837}
+--
+class Initialization Source
+attributes
+    Source flow : Flow ID {I, R843}
+    Delegating activity : Activity Number {I, R843c}
+    Creation activity : Activity Number {I, R843, R844}
+    Local flow : Flow ID {R844}
+    Domain : Domain Name {I, R843, R844}
 --
 class Lifecycle Activity
 attributes
@@ -47,25 +62,11 @@ attributes
 --
 class Method
 attributes
-    Anum : Activity Number {I, R826, R832}
+    Anum : Activity Number {I, R825, R832}
     Name : Method Name {I2}
-    Class : Type Name {I2, R827}
-    Domain : Domain Name {I, I2, R826, R827, R832}
+    Class : Type Name {I2, R24}
+    Domain : Domain Name {I, I2, R825, R24, R832}
     Executing instance flow : Flow ID {R832}
---
-class Method Call
-attributes
-    ID : Action ID {I, R901}
-    Activity : Activity Number {I, R901}
-    Domain : Domain Name {I, R901, R840}
-    Method : Activity Number {R840}
---
-class Method Call Parameter
-attributes
-    Method call : Action ID {I, R841}
-    Flow : Flow ID {I, R841}
-    Method : Activity Number {I, R841}
-    Domain : Domain Name {I, R841}
 --
 class Method Signature
 attributes
@@ -80,25 +81,17 @@ attributes
     Domain : Domain Name {I, R834, R839}
     Partitioning instance flow : Flow ID {R839}
 --
-class Operation <import:External Entity>
-attributes
-    Name {I}
-    EE {I}
-    Domain {I}
---
-class Operation Signature
-attributes
-    SIGnum : Signature Number {I, R837}
-    EE : EE Name {I2, R836}
-    Operation : Operation Name {I2, R836}
-    Domain : Domain Name {I, I2, R837, R836}
---
 class Parameter
 attributes
     Name : Parameter Name {I}
     Signature : Signature Number {I, R828}
     Domain : Domain Name {I, R828, R827}
     Type : Type Name {R827}
+--
+class Real State Activity
+attributes
+    Anum : Activity Number {I, R840}
+    Domain : Domain Name {I, R840}
 --
 class Signature
 attributes
@@ -118,23 +111,13 @@ attributes
 --
 class State Activity
 attributes
-    Anum : Activity Number {I, R830}
-    Domain : Domain Name {I, R830}
+    Anum : Activity Number {I, R825}
+    Domain : Domain Name {I, R825}
 --
 class State Signature <import:State>
 attributes
     SIGnum {I}
     Domain {I}
---
-class Synchronous Activity
-attributes
-    Anum : Activity Number {I, R825}
-    Domain : Domain Name {I, R825}
---
-class Synchronous Operation <import:External Entity>
-attributes
-    Anum {I, R826}
-    Domain {I, R826}
 --
 class Synchronous Output
 attributes
@@ -151,15 +134,14 @@ attributes
 relationships
     R825
     Activity +
-        Asynchronous Activity
-        Synchronous Activity
+        State Activity
+        Method
     <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
 --
     R826
-    Synchronous Activity +
-        Method
-        Synchronous Operation
-    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
+    specifies required input with, 1 External Signature
+    defines input into, 1 External Event
+    External Event.(Signature, Domain) -> External Signature.(SIGnum, Domain)
 --
     R827
     constrains input to, Mc Parameter
@@ -173,16 +155,10 @@ relationships
 --
     R829
     yields output of, 1c Type
-    constraints output of, Mc Synchronous Activity
+    constrains output of, Mc Synchronous Activity
     1 Synchronous Output
     Synchronous Output.(Anum, Domain) -> Synchronous Activity.(Anum, Domain)
     Synchronous Output.(Type, Domain) -> Type.(Name, Domain)
---
-    R830
-    Asynchronous Activity +
-        State Activity
-        Asynchronous Operation
-    <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
 --
     R831
     yields value in, 1 Data Flow
@@ -200,7 +176,7 @@ relationships
     Activity Input.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R834
-    State Activity +
+    Real State Activity +
         Lifecycle Activity
         Multiple Assigner Activity
         Assigner Activity
@@ -211,16 +187,11 @@ relationships
     specifies required input with, 1 Method Signature
     Method Signature.(Method, Class, Domain) -> Method.(Name, Class, Domain)
 --
-    R836
-    defines input into, 1 External Entity Operation
-    specifies required input with, 1 Operation Signature
-    Operation Signature.(Operation, EE, Domain) -> External Entity Operation.(Name, EE, Domain)
---
     R837
     Signature +
         State Signature
         Method Signature
-        Operation Signature
+        External Signature
     <subclass>.(SIGnum, Domain) -> Signature.(SIGnum, Domain)
 --
     R838
@@ -234,16 +205,10 @@ relationships
     Multiple Assigner Activity.(Partitioning instance flow, Anum, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R840
-    invokes, 1 Method
-    is invoked by, Mc Method Call
-    Method Call.(Method, Domain) -> Method.(Anum, Domain)
---
-    R841
-    gets parameter value from, M Data Flow
-    supplies parameter value for, Mc Method Call
-    1 Method Call Parameter
-    Method Call Parameter.(Flow, Method, Domain) -> Data Flow.(ID, Activity, Domain)
-    Method Call Parameter.(Method call, Method, Domain) -> Method Call.(ID, Activity, Domain)
+    State Activity +
+        Real State Activity
+        Delegated Creation Activity
+    <subclass>.(Anum, Domain) -> State Activity.(Anum, Domain)
 --
     R842
     flows data into, Mc Activity
@@ -251,4 +216,16 @@ relationships
     1 Activity Input
     Activity Input.(Parameter, Signature, Domain) -> Parameter.(Name, Signature, Domain)
     Activity Input.(Activity, Domain) -> Activity.(Anum, Domain)
+--
+    R843
+    requires initializaiton data in, Mc Data Flow
+    carries initialization data for, Mc Delegated Creation Activity
+    1 Initialization Source
+    Initialization Source.(Creation activity, Domain) -> Delegated Creation Activity.(Anum, Domain)
+    Initialization Source.(Source flow, Delegating activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R844
+    copies data from, 1 Data Flow
+    has data copied to, Mc Initialization Source
+    Initialization Source.(Local flow, Creation activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
