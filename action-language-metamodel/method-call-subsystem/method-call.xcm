@@ -1,0 +1,100 @@
+metadata
+    Title : Method Call Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.17
+    Version : 0.4.0
+    /// Creation date : August 13, 2025
+    Modification date : August 21, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Method Call, MCALL 1225-1249
+class Data Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Method <import:Activity>
+attributes
+    Anum {I}
+    Domain {I}
+--
+class Method Call
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901, R1228}
+    Domain : Domain Name {I, R901, R1225, R1228}
+    Method : Activity Number {R1225}
+    Instance flow : Flow ID {R1228}
+--
+class Method Call Output
+attributes
+    Method call : Action ID {I, R1228}
+    Activity : Activity Number {I, R1228, R1230}
+    Domain : Domain Name {I, R1228, R1230}
+    Target method : Activity Number {I, R1228}
+    Flow : Flow ID {R1230}
+--
+class Method Call Parameter
+attributes
+    Method call : Action ID {I, R1226}
+    Activity : Activity Number {I, I2, R1226, R1227}
+    Parameter : Parameter Name {I, R1226}
+    Signature : Signature Number {I, R1226}
+    Domain : Domain Name {I, I2, R1226, R1227}
+    Flow : Flow ID {I2, R1227}
+--
+class Parameter <import:Activity>
+attributes
+    Name {I}
+    Signature {I}
+    Domain {I}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Synchronous Output <import:Activity>
+attributes
+    Anum {I}
+    Domain {I}
+--
+relationships
+    R1225
+    invokes, 1 Method
+    is invoked by, Mc Method Call
+    Method Call.(Method, Domain) -> Method.(Anum, Domain)
+--
+    R1226
+    fills out, Mc Parameter
+    is filled out by, Mc Method Call
+    1 Method Call Parameter
+    Method Call Parameter.(Parameter, Signature, Domain) -> Parameter.(Name, Signature, Domain)
+    Method Call Parameter.(Method call, Activity, Domain) -> Method Call.(ID, Activity, Domain)
+--
+    R1227
+    supplies value for, Mc Method Call Parameter
+    gets value from, 1 Data Flow
+    Method Call Parameter.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R1228
+    is invoked on instance in, 1 Single Instance Flow
+    provides target instance to, Mc Method Call
+    Method Call.(Instance flow, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
+    R1229
+    output is defined by, 1c Synchronous Output
+    defines output of, Mc Method Call
+    1 Method Call Output
+    Method Call Output.(Method call, Activity, Domain) -> Method Call.(ID, Activity, Domain)
+    Method Call Output.(Target method, Domain) -> Synchronous Output.(Anum, Domain)
+--
+    R1230
+    produces value in, 1 Data Flow
+    value is produced by, 1c Method Call Output
+    Method Call Output.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--

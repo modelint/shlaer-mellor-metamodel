@@ -1,0 +1,25 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color peach
+sheet A2
+padding l300 b175
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    Method 8,3
+    Method Call 6,3
+    Single Instance Flow/2 7,1
+    Parameter 6,6
+    Method Call Parameter/2 5,5
+    Method Call Output/2 5,2
+    Synchronous Output/2 4,3
+    Data Flow 2,5
+connectors
+    +R1225 : -/1 b|Method : -/1 t*|Method Call
+    +R1226 : -/1 r|Method Call : -/1 l*|Parameter, t|Method Call Parameter
+    -R1227 : -/2 b*|Method Call Parameter : -/1 t|Data Flow
+    +R1228.2 : -/2 b|Single Instance Flow : -/2 l|Method Call
+    +R1229 : +/2 b|Method Call : +/2 t*|Synchronous Output, r|Method Call Output
+    +R1230 : -/2 b|Method Call Output : -/2 l|Data Flow
