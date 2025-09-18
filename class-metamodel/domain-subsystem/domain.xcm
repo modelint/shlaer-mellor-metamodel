@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.domain.td.2
-    Version : 3.1.0
+    Version : 3.2.0
     /// Creation date : May 9, 2011
-    Modification date : March 6, 2025
+    Modification date : August 6, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -39,11 +39,6 @@ class Element
 attributes
     Label : Element Label {I}
     Domain : Domain Name {I, R15}
---
-class External Entity <import:External Entity>
-attributes
-    EEnum {I, R14}
-    Domain {I, R14}
 --
 class Lineage <import:Relationship>
 attributes
@@ -131,12 +126,10 @@ relationships
         Relationship
         Class
         Signature
-        External Entity
         Activity
     Relationship.(Rnum, Domain) -> Subsystem Element.(Label, Domain)
     Class.(Cnum, Domain) -> Subsystem Element.(Label, Domain)
     Signature.(SIGnum, Domain) -> Subsystem Element.(Label, Domain)
-    External Entity.(EEnum, Domain) -> Subsystem Element.(Label, Domain)
     Activity.(Anum, Domain) -> Subsystem Element.(Label, Domain)
 --
     R15
