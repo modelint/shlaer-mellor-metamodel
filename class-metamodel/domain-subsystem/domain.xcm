@@ -2,9 +2,9 @@ metadata
     Title : Domain Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.class.domain.td.2
-    Version : 3.2.0
+    Version : 3.3.0
     /// Creation date : May 9, 2011
-    Modification date : August 6, 2025
+    Modification date : September 18, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -125,12 +125,8 @@ relationships
     Subsystem Element +
         Relationship
         Class
-        Signature
-        Activity
     Relationship.(Rnum, Domain) -> Subsystem Element.(Label, Domain)
     Class.(Cnum, Domain) -> Subsystem Element.(Label, Domain)
-    Signature.(SIGnum, Domain) -> Subsystem Element.(Label, Domain)
-    Activity.(Anum, Domain) -> Subsystem Element.(Label, Domain)
 --
     R15
     defines, Mc Element
@@ -147,6 +143,10 @@ relationships
     Spanning Element +
         Lineage
         Constrained Loop
+        Signature
+        Activity
     Lineage.(Lnum, Domain) -> Spanning Element.(Label, Domain)
     Constrained Loop.(CLnum, Domain) -> Spanning Element.(Label, Domain)
+    Signature.(SIGnum, Domain) -> Spanning Element.(Label, Domain)
+    Activity.(Anum, Domain) -> Spanning Element.(Label, Domain)
 --

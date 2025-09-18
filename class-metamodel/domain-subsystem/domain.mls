@@ -8,21 +8,21 @@ padding l100 b175
 frame Model Integration Diagram
 frame_presentation default
 nodes
-    Class 1,7
-    Signature 1,8
-    Constrained Loop 1,4
+    Class 1,8
+    Signature 1,4
+    Constrained Loop 1,3
     Domain 8-9,4
     Element 4,5
-    Lineage 1,3
+    Lineage 1,2
     Modeled Domain 7,5
-    Activity 1,9
+    Activity 1,5
     Realized Domain 7,2
     Spanning Element 2-3,3-4
     Subsystem 5,7 >right
     Subsystem Element 2-3,7
     System 8-9,9
     Domain Partition 7,7
-    Relationship 1,6
+    Relationship 1,6-7
     Type 5,3
 connectors
     -R1 : +/2 b*|Domain Partition : +/2 t|Subsystem
@@ -31,7 +31,7 @@ connectors
     +R4 : b|Domain { t|Modeled Domain, t|Realized Domain }
     -R5 : +/2 t|Type : +/1 l|Modeled Domain
     +R13 : +/1 b|Subsystem : +/1 t*|Subsystem Element
-    +R14 : b|Subsystem Element { t|Relationship, t|Class, t|Signature, t|Activity }
+    +R14 : b|Subsystem Element { t|Relationship, t|Class }
     -R15 : +/1 b|Modeled Domain : +/1 t*|Element
     +R16 : b|Element { t|Spanning Element, t|Subsystem Element }
-    +R17 : b|Spanning Element { t|Lineage, t|Constrained Loop }
+    +R17 : b|Spanning Element { t|Lineage, t|Constrained Loop, t|Signature, t|Activity }
