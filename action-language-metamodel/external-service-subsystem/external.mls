@@ -1,0 +1,28 @@
+diagram class
+notation Starr
+presentation default
+orientation landscape
+color butterscotch
+sheet A2
+padding l150 b150
+frame Model Integration Diagram
+frame_presentation default
+nodes
+    External Service 8,3
+    External Event 6-7,1
+    External Operation 6-7,4
+    Type 4,4
+    External Operation Output/2 5,5
+    Operation Call 3,3
+    Operation Call Flow/2 2,4-5
+    Data Flow 2,7
+    External Signature 8,6
+    External Signal Action/2 3,1
+connectors
+    +R1275 : b|External Service { t|External Event, t|External Operation }
+    +R1276 : -/2 b|External Operation : -/2 t*|Type, l|External Operation Output
+    +R1277 : -/2 r|External Service : -/3 l*|External Signature
+    -R1278.2 : +/1 l|External Operation : -/1 t|Operation Call
+    +R1279 : -/1 r|Operation Call : +/1 b|External Operation Output, t|Operation Call Flow
+    +R1280 : -/2 r|Operation Call Flow : -/1 l*|Data Flow
+    -R1281 : +/2 b|External Event : +/1 t*|External Signal Action
