@@ -2,14 +2,19 @@ metadata
     Title : External Service Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.19
-    Version : 0.1.2
+    Version : 0.1.3
     /// Creation date : September 17, 2025
-    Modification date : September 18, 2025
+    Modification date : September 19, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
 subsystem External Service, EXT 1275-1299
+class Class <import:Class And Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
 class Data Flow <import:Flow>
 attributes
     ID {I}
@@ -35,8 +40,9 @@ attributes
 class External Service
 attributes
     Name : External Service Name {I}
-    Domain : Domain Name {I, I2, R1277}
+    Domain : Domain Name {I, I2, R1277, R1283}
     Signature : Signature Number {I2, R1277}
+    Class : Type Name {R1283}
 --
 class External Signal Action
 attributes
@@ -110,5 +116,10 @@ relationships
     signals, 1 External Event
     is signaled by, Mc External Signal Action
     External Signal Action.(External event, Domain) -> External Event.(Name, Domain)
+--
+    R1282
+    is delegated by, 1 Class
+    delegates, Mc External Service
+    External Service.(Class, Domain) -> Class.(Name, Domain)
 --
 
