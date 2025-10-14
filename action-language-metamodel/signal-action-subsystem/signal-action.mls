@@ -4,33 +4,38 @@ presentation default
 orientation landscape
 color pink eraser
 sheet A1
-padding l200 b350
+padding l250 b300
 frame Model Integration Diagram
 frame_presentation default
 nodes
-    Event Specification 8,5-6
-    Signal Action 6,5-6
-    Parameter 8,3
-    Supplied Parameter Value/2 6-7,1-2
-    Data Flow 9,1-2
-    Delivery Time 4,5-6
+    Signal Action 8,3-4
+    Cancel Delayed Signal Action/2 11,7-8
+    Send Signal Action 6,5-6
+    Event Specification 4-5,5-6
+    Parameter 6,2
+    Supplied Parameter Value/2 5,3-4
+    Data Flow 3,3-4
+    Signal Instance Action/2 9-10,7-8
+    Signal Completion Action/2 7,7-8
+    Initial Signal Action/2 5-6,7-8
     Signal Assigner Action/2 4,7-8
-    Association 4,10
-    Signal Completion Action/2 8,7-8
-    Single Instance Flow/2 2-3,10
-    Signal Instance Set Action/2 5-6,7-8
-    Initial Signal Action/2 7,7-8
-    External Event 9,10
-    Instance Flow 5-6,10
-    Scalar Flow 4,3
-    Multiple Assigner Partition Instance/2 1-2,9
+    Delivery Time 8,8-9
+    Association 4,10-11
+    Single Instance Flow/2 2-3,10-11
+    Initial Pseudo State/2 5-6,10-11
+    Instance Flow 9-10,11
+    Scalar Flow 8,11
+    Multiple Assigner Partition Instance/2 1-2,8-9
 connectors
-    +R850 : -/1 l|Signal Action : -/2 b|Parameter, r|Supplied Parameter Value
-    +R851 : -/2 t|Signal Action : -/2 b*|Event Specification
-    -R852 : +/2 t|Supplied Parameter Value : +/2 b*|Data Flow
-    +R854-1 : r|Signal Action { l|Signal Completion Action, l|Signal Instance Set Action, l|Signal Assigner Action, l|Initial Signal Action }
-    +R855.2 : -/1 t*|Delivery Time : -/2 b|Signal Action
-    +R857 : -/2 r|Signal Instance Set Action : -/2 l*|Instance Flow
-    +R858 : -/2 r|Signal Assigner Action : -/3 l*|Association
-    +R859 : +/3 b|Signal Assigner Action : +/3 l|Single Instance Flow, t|Multiple Assigner Partition Instance
-    -R862 : +/2 r*|Scalar Flow : +/2 l|Delivery Time
+    +R850 : -/1 l-1|Send Signal Action : -/2 r*|Parameter, t|Supplied Parameter Value
+    +R851 : -/2 b|Send Signal Action : -/2 t*|Event Specification
+    -R852 : +/2 b|Supplied Parameter Value : +/2 t*|Data Flow
+    +R853 : r|Signal Action { l+1|Send Signal Action, l|Cancel Delayed Signal Action }
+    +R854-1 : r|Send Signal Action { l|Initial Signal Action, l|Signal Instance Action, l|Signal Completion Action, l|Signal Assigner Action }
+    +R855.2 : -/1 l|Delivery Time : -/2 b|Signal Instance Action
+    -R856.2 : +/1 r|Cancel Delayed Signal Action : +/2 t|Instance Flow
+    -R857 : +/1 r|Signal Instance Action : +/1 l*|Instance Flow
+    -R858 : +/2 r|Signal Assigner Action : +/2 l*|Association
+    -R859 : -/2 b|Signal Assigner Action : +/2 l|Single Instance Flow, t|Multiple Assigner Partition Instance
+    -R860 : +/2 r|Initial Signal Action : +/2 l*|Initial Pseudo State
+    -R862 : +/2 l*|Scalar Flow : +/2 r|Delivery Time
