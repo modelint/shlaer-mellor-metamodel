@@ -2,9 +2,9 @@ metadata
     Title : External Service Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.19
-    Version : 0.1.3
+    Version : 0.1.5
     /// Creation date : September 17, 2025
-    Modification date : September 19, 2025
+    Modification date : October 15, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -36,6 +36,7 @@ attributes
     Operation : External Service Name {I, R1276}
     Domain : Domain Name {I, R1276}
     Type : Type Name {R1276}
+    Name : Flow Name
 --
 class External Service
 attributes
@@ -63,13 +64,28 @@ attributes
     Domain : Domain Name {I, R901, R1278}
     Operation : External Service Name {R1278}
 --
-class Operation Call Flow
+class Operation Call Output
 attributes
     Operation call : Action ID {I, R1279}
     Activity : Activity Number {I, I2, R1279, R1280}
     Domain : Domain Name {I, I2, R1279, R1280}
     Operation name : External Service Name {R1279}
-    Output flow : Flow ID {I2, R1280}
+    Flow : Flow ID {I2, R1280}
+--
+class Operation Call Parameter
+attributes
+    Operation call : Action ID {I, R1283}
+    Activity : Activity Number {I, I2, R1283, R1284}
+    Parameter : Parameter Name {I, R1283}
+    Signature : Signature Number {I, R1283}
+    Domain : Domain Name {I, I2, R1283, R1284}
+    Flow : Flow ID {I2, R1284}
+--
+class Parameter <import:Activity>
+attributes
+    Name {I}
+    Signature {I}
+    Domain {I}
 --
 class Type <import:Type>
 attributes
@@ -103,14 +119,14 @@ relationships
     R1279
     outputs, 1c External Operation Output
     is output by, Mc Operation Call
-    1 Operation Call Flow
-    Operation Call Flow.(Operation call, Activity, Domain) -> Operation Call.(ID, Activity, Domain)
-    Operation Call Flow.(Operation name, Domain) -> External Operation.(Name, Domain)
+    1 Operation Call Output
+    Operation Call Output.(Operation call, Activity, Domain) -> Operation Call.(ID, Activity, Domain)
+    Operation Call Output.(Operation name, Domain) -> External Operation.(Name, Domain)
 --
     R1280
     flows out in, 1 Data Flow
-    flows, 1c Operation Call Flow
-    Operation Call Flow.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    flows, 1c Operation Call Output
+    Operation Call Output.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R1281
     signals, 1 External Event
@@ -122,4 +138,15 @@ relationships
     delegates, Mc External Service
     External Service.(Class, Domain) -> Class.(Name, Domain)
 --
-
+    R1283
+    fills out, Mc Parameter
+    is filled out by, Mc Method Call
+    1 Method Call Parameter
+    Output Call Parameter.(Parameter, Signature, Domain) -> Parameter.(Name, Signature, Domain)
+    Output Call Parameter.(Operation call, Activity, Domain) -> Output Call.(ID, Activity, Domain)
+--
+    R1284
+    supplies value for, Mc Method Call Parameter
+    gets value from, 1 Data Flow
+    Output Call Parameter.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
