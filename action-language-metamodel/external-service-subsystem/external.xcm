@@ -2,7 +2,7 @@ metadata
     Title : External Service Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.19
-    Version : 0.1.5
+    Version : 0.1.6
     /// Creation date : September 17, 2025
     Modification date : October 15, 2025
     Organization : Model Integration, LLC / www.modelint.com
@@ -140,13 +140,13 @@ relationships
 --
     R1283
     fills out, Mc Parameter
-    is filled out by, Mc Method Call
+    is filled out by, Mc Operation Call
     1 Method Call Parameter
     Output Call Parameter.(Parameter, Signature, Domain) -> Parameter.(Name, Signature, Domain)
     Output Call Parameter.(Operation call, Activity, Domain) -> Output Call.(ID, Activity, Domain)
 --
     R1284
-    supplies value for, Mc Method Call Parameter
     gets value from, 1 Data Flow
+    supplies value for, Mc Operation Call Parameter
     Output Call Parameter.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
