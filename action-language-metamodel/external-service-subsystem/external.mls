@@ -12,7 +12,7 @@ nodes
     External Service 9,4
     External Event 7-8,2
     External Operation 7-8,5
-    Type 5,5
+    Scalar 5,5
     External Operation Output/2 6,6
     Operation Call 4,4
     Operation Call Output/2 3,5-6
@@ -23,7 +23,7 @@ nodes
     Operation Call Parameter 3,3
 connectors
     +R1275 : b|External Service { t|External Event, t|External Operation }
-    +R1276 : -/2 b|External Operation : -/2 t*|Type, l|External Operation Output
+    +R1276 : -/2 b|External Operation : -/2 t*|Scalar, l|External Operation Output
     -R1277 : +/1 r|External Service : +/2 l*|External Signature
     +R1278.2 : +/1 l|External Operation : -/1 t|Operation Call
     -R1279.2 : +/1 r|Operation Call : +/1 b|External Operation Output, t|Operation Call Output

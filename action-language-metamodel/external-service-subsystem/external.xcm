@@ -2,7 +2,7 @@ metadata
     Title : External Service Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.19
-    Version : 0.1.6
+    Version : 0.1.7
     /// Creation date : September 17, 2025
     Modification date : October 15, 2025
     Organization : Model Integration, LLC / www.modelint.com
@@ -87,7 +87,7 @@ attributes
     Signature {I}
     Domain {I}
 --
-class Type <import:Type>
+class Scalar <import:Type>
 attributes
     Name {I}
     Domain {I}
@@ -101,9 +101,9 @@ relationships
 --
     R1276
     constrains output of, Mc External Operation
-    yields output of, 1c Type
+    yields output of, 1c Scalar
     1 External Operation Output
-    External Operation Output.(Type, Domain) -> Type.(Name, Domain)
+    External Operation Output.(Type, Domain) -> Scalar.(Name, Domain)
     External Operation Output.(Operation, Domain) -> External Operation.(Name, Domain)
 --
     R1277
