@@ -3,17 +3,15 @@ notation Starr
 presentation default
 orientation landscape
 color teal
-sheet C
-padding l300 b450
-frame OS Engineer
+sheet A2
+padding l300 b300
+frame Model Integration Diagram
 frame_presentation default
 nodes
-    Computation 4,4
-    Operand 4,1-2
-    Computed Result 4,6-7
-    Data Flow 2,4
+    Computation Action 4,5
+    Scalar Flow 4,7-8
+    Data Flow 4,1-2
+    Computation Input 3,3-4
 connectors
-    -R1100 : +/1 r|Operand : +/1 l*|Computation
-    -R1101 : +/1 r|Computation : +/1 l*|Computed Result
-    -R1102 : +/1 b|Operand : +/1 l|Data Flow
-    -R1103 : +/1 b|Computed Result : +/1 r|Data Flow
+    +R1100 : -/1 r|Data Flow : -/1 l*|Computation Action, t|Computation Input
+    +R1101 : -/1 r|Computation Action : -/1 l*|Scalar Flow
