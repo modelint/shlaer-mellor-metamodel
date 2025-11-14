@@ -1,0 +1,116 @@
+metadata
+    Title : Select Action Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.3
+    Version : 1.4.1
+    /// Creation date : September 11, 2021
+    Modification date : August 11, 2023
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Select Action, SEL 875-899
+class Class Restriction Condition <import:Relational Action>
+attributes
+    Select action {I, R1152}
+    Activity {I, R1152}
+    Domain {I, R1152}
+--
+class Identifier <import:Class And Attribute>
+attributes
+    Number {I}
+    Class {I}
+    Domain {I}
+--
+class Identifier Select
+attributes
+    ID : Action ID {I, R882}
+    Activity : Activity Number {I, R882}
+    Domain : Domain Name {I, R882, R878}
+    Identifier : ID Number {R878}
+    Class : Type Name {R878c}
+--
+class Many Select
+attributes
+    ID : Action ID {I, R875}
+    Activity : Activity Number {I, R875, R880}
+    Domain : Domain Name {I, R875, R880}
+    Output flow : Flow ID {R880}
+--
+class Multiple Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Non Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Select Action
+attributes
+    ID : Action ID {I, R901, R877}
+    Activity : Activity Number {I, R901, R876, R877}
+    Domain : Domain Name {I, R901, R876, R877}
+    Input flow : Flow ID {R876}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Single Select
+attributes
+    ID : Action ID {I, R875}
+    Activity : Activity Number {I, R875, R879}
+    Domain : Domain Name {I, R875, R879}
+    Output flow : Flow ID {R879}
+--
+class Zero One Cardinality Select
+attributes
+    ID : Action ID {I, R882}
+    Activity : Activity Number {I, R882}
+    Domain : Domain Name {I, R882}
+--
+relationships
+    R875
+    Selection +
+        Single Select
+        Many Select
+    <subclass>.(ID, Activity, Domain) -> Select Action.(ID, Activity, Domain)
+--
+    R876
+    takes input from, 1 Non Scalar Flow
+    provides input to, Mc Select Action
+    Select Action.(Input flow, Activity, Domain) -> Instance Flow.(ID, Activity, Domain)
+--
+    R877
+    applies, 1c Class Restriction Condition
+    is applied by, 1 Select Action
+    Select Action.(ID, Activity, Domain) -> Class Restriction Condition.(Select action, Activity, Domain)
+--
+    R878
+    criteria is defined by, 1 Identifier
+    defines criteria for, Mc Identifier Select
+    Identifier Select.(Identifier, Class, Domain) -> Identifier.(Number, Class, Domain)
+--
+    R879
+    yields, 1 Single Instance Flow
+    is yielded by, 1c Single Select
+    Single Select.(Output flow, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+--
+    R880
+    yields, 1 Multiple Instance Flow
+    is yielded by, 1c Many Select
+    Many Select.(Output flow, Activity, Domain) -> Multiple Instance Flow.(ID, Activity, Domain)
+--
+    R882
+    Single Select +
+        Identifier Select
+        Zero One Cardinality Select
+        Criterion One Select
+    <subclass>.(ID, Activity, Domain) -> Single Select.(ID, Activity, Domain)
+--
