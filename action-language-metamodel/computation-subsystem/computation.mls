@@ -4,14 +4,19 @@ presentation default
 orientation landscape
 color teal
 sheet A2
-padding l300 b300
+padding l150 b200
 frame Model Integration Diagram
 frame_presentation default
 nodes
-    Computation Action 4,5
-    Scalar Flow 4,7-8
-    Data Flow 4,1-2
-    Computation Input 3,3-4
+    Computation Action 4,4
+    General Computation 3,5-6
+    Boolean Partition 5,5-6
+    Scalar Flow 3,8
+    Data Flow 4,1
+    Computation Input 3,2-3
 connectors
     +R1100 : -/1 r|Data Flow : -/1 l*|Computation Action, t|Computation Input
-    +R1101 : -/1 r|Computation Action : -/1 l*|Scalar Flow
+    +R1101 : -/2 r|General Computation : -/2 l*|Scalar Flow
+    +R1102 : r|Computation Action { l|General Computation, l|Boolean Partition }
+    +R1103+1 : +/2 r+1|Boolean Partition : +/2 t+1|Scalar Flow
+    -R1104+1 : -/2 r-1|Boolean Partition : -/2 t-1|Scalar Flow

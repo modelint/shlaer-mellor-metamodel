@@ -2,21 +2,28 @@ metadata
     Title : Computation Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.13
-    Version : 0.4.0
+    Version : 0.5.0
     /// Creation date : August 13, 2022
-    Modification date : August 19, 2025
+    Modification date : November 16, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
 subsystem Computation, COMP 1100-1124
+class Boolean Partition
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901, R1103, R1104}
+    Domain : Domain Name {I, R901, R1103, R1104}
+    True flow : Flow ID {R1103}
+    False flow : Flow ID {R1104}
+--
 class Computation Action
 attributes
     ID : Action ID {I, R901}
-    Activity : Activity Number {I, I2, R901, R1101}
-    Domain : Domain Name {I, I2, R901, R1101}
+    Activity : Activity Number {I, R901}
+    Domain : Domain Name {I, R901}
     Expression : Computation
-    Output flow : Flow ID {I2, R1101}
 --
 class Computation Input
 attributes
@@ -30,6 +37,13 @@ attributes
     ID {I}
     Activity {I}
     Domain {I}
+--
+class General Computation
+attributes
+    ID : Action ID {I, R1102}
+    Activity : Activity Number {I, I2, R1102, R1101}
+    Domain : Domain Name {I, I2, R1102, R1101}
+    Result flow : Flow ID {I2, R1101}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -47,6 +61,22 @@ relationships
 --
     R1101
     outputs result as, 1 Scalar Flow
-    provides result from, 1c Computation Action
-    Computation Action.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    provides result from, 1c General Computation
+    General Computation.(Result flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1102
+    Computation +
+        General Computation
+        Boolean Partition
+    <subclass>.(ID, Activity, Domain) -> Computation.(ID, Activity, Domain)
+--
+    R1103
+    outputs true value in, 1 Scalar Flow
+    provides true value of, 1c Boolean Partition
+    Boolean Partition.(True flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1104
+    outputs false value in, 1 Scalar Flow
+    provides false value of, 1c Boolean Partition
+    Boolean Partition.(False flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
 --
