@@ -70,8 +70,8 @@ attributes
     ID {I, R901}
     Activity {I, I2, R817, R901}
     Domain {I, I2, R901, R817}
-    Relation flow {I2, R817}
-    Instance flow {R817}
+    Instance flow {I2, R817}
+    Relation flow {R817}
 --
 class Instance Flow
 attributes
@@ -262,8 +262,8 @@ relationships
     <subclass>.(ID, Activity, Domain) -> Flow Connector.(ID, Activity, Domain)
 --
     R817
-    projects from, Mc Relation Flow
-    projects to, 1c Instance Flow
+    projects from, 1c Relation Flow
+    projects to, Mc Instance Flow
     1 Identifier Projection
     Identifier Projection.(Instance flow, Activity, Domain) -> Instance Flow.(ID, Activity, Domain)
     Identifier Projection.(Relation flow, Activity, Domain) -> Relation Flow.(ID, Activity, Domain)
