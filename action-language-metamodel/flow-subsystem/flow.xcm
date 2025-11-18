@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.2.0
+    Version : 2.5.1
     /// Creation date : September 10, 2021
-    Modification date : June 3, 2025
+    Modification date : November 18, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -45,6 +45,12 @@ attributes
     Activity : Activity Number {I, R807}
     Domain : Domain Name {I, R807}
 --
+class Flow Connector
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901}
+    Domain : Domain Name {I, R901}
+--
 class Gate Action
 attributes
     ID : Action ID {I, R901}
@@ -54,10 +60,18 @@ attributes
 --
 class Gate Input
 attributes
-    Input flow : Flow ID {I, R111c}
-    Activity : Activity Number {I, R111}
-    Domain : Domain Name {I, R111}
-    Output flow : Flow ID {I, R111}
+    Gate action : Action ID {I, R811}
+    Input flow : Flow ID {I, R811c}
+    Activity : Activity Number {I, R811}
+    Domain : Domain Name {I, R811}
+--
+class Identifier Projection
+attributes
+    ID {I, R901}
+    Activity {I, I2, R817, R901}
+    Domain {I, I2, R901, R817}
+    Relation flow {I2, R817}
+    Instance flow {R817}
 --
 class Instance Flow
 attributes
@@ -69,9 +83,9 @@ attributes
 class Labeled Flow
 attributes
     ID : Flow ID {I, R808}
-    Activity : Activity Number {I, I2, R808}
-    Domain : Domain Name {I, I2, R808}
-    Name : Flow Name {I2}
+    Activity : Activity Number {I, R808}
+    Domain : Domain Name {I, R808}
+    Name : Flow Name
 --
 class Multiple Instance Flow
 attributes
@@ -85,6 +99,14 @@ attributes
     Activity : Activity Number {I, R801}
     Domain : Domain Name {I, R801}
 --
+class Pass Action
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, I2, I3, R815, R901}
+    Domain : Domain Name {I, I2, I3, R815, R901}
+    Input flow : Flow ID {I2, R815}
+    Output flow : Flow ID {I3, R815}
+--
 class Table Flow
 attributes
     ID : Flow ID {I, R809}
@@ -97,6 +119,13 @@ attributes
     Activity : Activity Number {I, R801}
     Domain : Domain Name {I, R801, R806}
     Type : Type Name {R806}
+--
+class Scalar Value
+attributes
+    Name : Value Name {I}
+    Flow : Flow ID {I, R814}
+    Activity : Activity Number {I, R814}
+    Domain : Domain Name {I, R814}
 --
 class Scalar <import:Type>
 attributes
@@ -200,7 +229,7 @@ relationships
     switches among, M Data Flow
     1 Gate Input
     Gate Input.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
-    Gate Input.(Output flow, Activity, Domain) -> Gate Action.(Output flow, Activity, Domain)
+    Gate Input.(Gate_action, Activity, Domain) -> Gate Action.(ID, Activity, Domain)
 --
     R812
     is accessed in, Mc Activity
@@ -213,4 +242,29 @@ relationships
     outputs, 1 Multiple Instance Flow
     is output by, 1c Class Accessor
     Class Accessor.(Output flow, Activity, Domain) -> Multiple Instance Flow.(ID, Activity, Domain)
+--
+    R814
+    is preloaded with, 1c Scalar Value
+    preloads in, 1 Scalar Flow
+    Scalar Value.(Flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R815
+    passes to, 1c Data Flow
+    is passed from, 1c Data Flow
+    1 Pass Action
+    Pass Action.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    Pass Action.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R816
+    Flow Connector +
+        Pass Action
+        Gate Action
+    <subclass>.(ID, Activity, Domain) -> Flow Connector.(ID, Activity, Domain)
+--
+    R817
+    projects from, Mc Relation Flow
+    projects to, 1c Instance Flow
+    1 Identifier Projection
+    Identifier Projection.(Instance flow, Activity, Domain) -> Instance Flow.(ID, Activity, Domain)
+    Identifier Projection.(Relation flow, Activity, Domain) -> Relation Flow.(ID, Activity, Domain)
 --
