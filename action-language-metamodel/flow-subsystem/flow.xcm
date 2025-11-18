@@ -67,9 +67,9 @@ attributes
 --
 class Identifier Projection
 attributes
-    ID {I, R901}
-    Activity {I, I2, R817, R901}
-    Domain {I, I2, R901, R817}
+    ID {I, R816}
+    Activity {I, I2, R817, R816}
+    Domain {I, I2, R816, R817}
     Instance flow {I2, R817}
     Relation flow {R817}
 --
@@ -259,6 +259,7 @@ relationships
     Flow Connector +
         Pass Action
         Gate Action
+        Identifier Projection
     <subclass>.(ID, Activity, Domain) -> Flow Connector.(ID, Activity, Domain)
 --
     R817
