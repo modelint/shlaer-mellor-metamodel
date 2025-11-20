@@ -22,7 +22,7 @@ nodes
     Class 11,9
     Instance Flow 8,9
     Relation Flow 4-5,9
-    Identifier Projection/2 6,10 : 8,3-4
+    Cast To Instance/2 6,10 : 8,3-4
     Scalar 1-2,9-10
     Single Instance Flow/2 9,10-11
     Multiple Instance Flow/2 7-8,10-11
@@ -49,5 +49,5 @@ connectors
     +R813 : +/1 b|Class Accessor : +/1 r|Multiple Instance Flow
     +R814 : +/1 t|Scalar Flow : +/1 b*|Scalar Value
     +R815.2+1 : -/1 t-2|Data Flow.2 : +/1 t+2|Data Flow.2, b|Pass Action : L7R-2
-    +R816 : b|Flow Connector { t|Pass Action, t|Gate Action, t|Identifier Projection.2 }
-    +R817 : +/1 b|Instance Flow : +/1 t*|Relation Flow, l|Identifier Projection
+    +R816 : b|Flow Connector { t|Pass Action, t|Gate Action, t|Cast To Instance.2 }
+    +R817 : +/1 b|Instance Flow : +/1 t*|Relation Flow, l|Cast To Instance
