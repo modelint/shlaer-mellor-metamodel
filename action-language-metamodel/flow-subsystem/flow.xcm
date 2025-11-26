@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.5.3
+    Version : 2.5.4
     /// Creation date : September 10, 2021
-    Modification date : November 25, 2025
+    Modification date : November 26, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -251,7 +251,7 @@ relationships
     R815
     passes to, Mc Data Flow
     is passed from, Mc Data Flow
-    M Pass Action
+    1 Pass Action
     Pass Action.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
     Pass Action.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
