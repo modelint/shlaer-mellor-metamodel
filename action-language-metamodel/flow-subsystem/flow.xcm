@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.5.2
+    Version : 2.5.3
     /// Creation date : September 10, 2021
-    Modification date : November 19, 2025
+    Modification date : November 25, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -102,10 +102,10 @@ attributes
 class Pass Action
 attributes
     ID : Action ID {I, R901}
-    Activity : Activity Number {I, I2, I3, R815, R901}
-    Domain : Domain Name {I, I2, I3, R815, R901}
-    Input flow : Flow ID {I2, R815}
-    Output flow : Flow ID {I3, R815}
+    Activity : Activity Number {I, R815, R901}
+    Domain : Domain Name {I, R815, R901}
+    Input flow : Flow ID {R815}
+    Output flow : Flow ID {R815}
 --
 class Table Flow
 attributes
@@ -249,9 +249,9 @@ relationships
     Scalar Value.(Flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
 --
     R815
-    passes to, 1c Data Flow
-    is passed from, 1c Data Flow
-    1 Pass Action
+    passes to, Mc Data Flow
+    is passed from, Mc Data Flow
+    M Pass Action
     Pass Action.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
     Pass Action.(Output flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
