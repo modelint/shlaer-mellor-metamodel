@@ -1,15 +1,23 @@
 metadata
-    Title : Table Action Subsystem / Shlaer-Mellor Metamodel
+    Title : Relational Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.14
-    Version : 0.7.2
+    Version : 0.8.0
     /// Creation date : August 22, 2022
-    Modification date : May 30, 2025
+    Modification date : December 8, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
 domain Metamodel, META
 subsystem Relational Action, RELATION 1150-1199
+class Cardinality Action
+attributes
+    ID : Action ID {I, R1166}
+    Activity : Activity Number {I, R1166, R1172, R1173}
+    Domain : Domain Name {I, R1166, R1172, R1173}
+    Non scalar input flow : Flow ID {R1172}
+    Output cardinality flow : Flow ID {R1173}
+--
 class Class Restriction Condition
 attributes
     Select action : Action ID {I, R1152}
@@ -234,8 +242,8 @@ relationships
     Rename Action.(From attribute, From non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
 --
     R1156
-    creates, 1 Table Attribute
-    is created by, 1c Rename Action
+    renames to, 1 Table Attribute
+    is the target of, Mc Rename Action
     Rename Action.(To attribute, To table, Domain) -> Table Attribute.(Name, Table, Domain)
 --
     R1157
@@ -290,6 +298,7 @@ relationships
     Relational Action +
         Table Action
         Extract Action
+        Cardinality Action
     <subclass>.(ID, Activity, Domain) -> Relational Action.(ID, Activity, Domain)
 --
     R1167
@@ -316,4 +325,14 @@ relationships
     selects greatest or least value of, 1 Model Attribute
     has greatest or least value selected by, Mc Rank Restrict Action
     Rank Restrict Action.(Attribute, Non scalar type, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
+    R1172
+    counts tuples in, 1 Non Scalar Flow
+    has tuples counted by, Mc Cardinality Action
+    Cardinality Action.(Non scalar input flow, Activity, Domain) -> Non Scalar Flow.(ID, Activity, Domain)
+--
+    R1173
+    outputs cardinality to, 1 Scalar Flow
+    flows cardinality from, 1c Cardinality Action
+    Cardinality Action.(Output cardinality flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
 --
