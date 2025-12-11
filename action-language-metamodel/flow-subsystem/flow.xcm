@@ -2,9 +2,9 @@ metadata
     Title : Flow Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.2
-    Version : 2.5.4
+    Version : 2.6.0
     /// Creation date : September 10, 2021
-    Modification date : November 26, 2025
+    Modification date : December 11, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -14,6 +14,14 @@ class Activity <import:Activity>
 attributes
     Anum {I}
     Domain {I}
+--
+class Cast To Instance
+attributes
+    ID : Action ID {I, R816}
+    Activity : Activity Number {I, I2, R817, R816}
+    Domain : Domain Name {I, I2, R816, R817}
+    Instance flow : Flow ID {I2, R817}
+    Relation flow : Flow ID {R817}
 --
 class Class <import:Class Attribute>
 attributes
@@ -65,14 +73,6 @@ attributes
     Activity : Activity Number {I, R811}
     Domain : Domain Name {I, R811}
 --
-class Cast To Instance
-attributes
-    ID : Action ID {I, R816}
-    Activity : Activity Number {I, I2, R817, R816}
-    Domain : Domain Name {I, I2, R816, R817}
-    Instance flow : Flow ID {I2, R817}
-    Relation flow : Flow ID {R817}
---
 class Instance Flow
 attributes
     ID : Flow ID {I, R802}
@@ -107,11 +107,12 @@ attributes
     Input flow : Flow ID {R815}
     Output flow : Flow ID {R815}
 --
-class Table Flow
+class Relation Flow
 attributes
-    ID : Flow ID {I, R809}
-    Activity : Activity Number {I, R809}
-    Domain : Domain Name {I, R809}
+    ID : Flow ID {I, R802}
+    Activity : Activity Number {I, R802}
+    Domain : Domain Name {I, R802, R804}
+    Type : Type Name {R804}
 --
 class Scalar Flow
 attributes
@@ -122,10 +123,10 @@ attributes
 --
 class Scalar Value
 attributes
-    Name : Value Name {I}
     Flow : Flow ID {I, R814}
     Activity : Activity Number {I, R814}
     Domain : Domain Name {I, R814}
+    Name : Value Name
 --
 class Scalar <import:Type>
 attributes
@@ -137,18 +138,18 @@ attributes
     ID : Flow ID {I, R805}
     Activity : Activity Number {I, R805}
     Domain : Domain Name {I, R805}
+    Iterated : Boolean
 --
 class Table <import:Type>
 attributes
     Name {I}
     Domain {I}
 --
-class Relation Flow
+class Table Flow
 attributes
-    ID : Flow ID {I, R802}
-    Activity : Activity Number {I, R802}
-    Domain : Domain Name {I, R802, R804}
-    Type : Type Name {R804}
+    ID : Flow ID {I, R809}
+    Activity : Activity Number {I, R809}
+    Domain : Domain Name {I, R809}
 --
 class Tuple Flow
 attributes
@@ -244,8 +245,8 @@ relationships
     Class Accessor.(Output flow, Activity, Domain) -> Multiple Instance Flow.(ID, Activity, Domain)
 --
     R814
-    is preloaded with, 1c Scalar Value
-    preloads in, 1 Scalar Flow
+    is injected with, 1c Scalar Value
+    is injected into, 1 Scalar Flow
     Scalar Value.(Flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
 --
     R815
