@@ -1,0 +1,188 @@
+metadata
+    Title : Iteration Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.11
+    Version : 0.8.0
+    /// Creation date : May 20, 2022
+    Modification date : December 12, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Iteration, ITER 1025-1049
+class Asymmetric Perspective <import:Relationship>
+attributes
+    Side {I}
+    Rnum {I}
+    Domain {I}
+--
+class Attribute <import:Class Attribute>
+attributes
+    Name {I}
+    Class {I}
+    Domain {I}
+--
+class Extender
+attributes
+    ID : Action ID {I, R1027}
+    Activity : Activity Number {I, R1027}
+    Domain : Domain Name {I, R1027}
+--
+class Iterated Instance Flow
+attributes
+    Iterator {I, R1026}
+    Activity : Activity Number {I, R1026}
+    Domain : Domain Name {I, R1026}
+    Flow : Flow ID {R1026}
+--
+class Iterator
+attributes
+    Action : Action ID {I, R901}
+    Activity : Activity Number {I, R901, R1025}
+    Domain : Domain Name {I, R901, R1025}
+    Input flow : Flow ID {R1025}
+--
+class Method Extender
+attributes
+    ID : Action ID {I, R1028}
+    Activity : Activity Number {I, R1028, R1034}
+    Domain : Domain Name {I, R1028, R1034}
+    Method call : Action ID {R1034}
+--
+class Method Call <import:Method Call>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Multiple Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Ordinal Relationship <import:Relationship>
+attributes
+    Rnum {I}
+    Domain {I}
+--
+class Ordinal Sequencer
+attributes
+    ID : Action ID {I, R1027}
+    Activity : Activity Number {I, R1027}
+    Domain : Domain Name {I, R1027, R1030}
+    Oridinal relationship : Rnum {R1030}
+    Ascending : Boolean
+--
+class Reflexive Sequencer
+attributes
+    ID : Action ID {I, R1029}
+    Activity : Activity Number {I, R1029}
+    Domain : Domain Name {I, R1029, R1030}
+    Reflexive perspective {R1030c}
+    Side : Side {R1030}
+--
+class Selection Sequencer
+attributes
+    ID : Action ID {I, R1029}
+    Activity : Activity Number {I, R1029}
+    Domain : Domain Name {I, R1029}
+--
+class Sequencer
+attributes
+    ID : Action ID {I, R1027}
+    Activity : Activity Number {I, R1027}
+    Domain : Domain Name {I, R1027}
+--
+class Single Instance Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
+class Sorting Attribute
+attributes
+    Sort order : Ordinal {I2, OR1033}
+    Attribute {I, R1032}
+    Class {I, I2, R1032c, OR1033}
+    Iteration action : Action ID {I, I2, R1032, OR1033}
+    Activity : Activity Number {I, I2, R1032, OR1033}
+    Domain : Domain Name {I, I2, R1032, OR1033}
+    Ascending : Boolean
+--
+class Type Operation <import:Type>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Type Operation Extender
+attributes
+    ID : Action ID {I, R1028}
+    Activity : Activity Number {I, R1028, R1035}
+    Domain : Domain Name {I, R1028, R1035}
+    Type operation : Action ID {R1035}
+--
+relationships
+    R1025
+    is processed sequentially by, Mc Iterator
+    sequentially processes, 1 Multiple Instance Flow
+    Iterator.(Input flow, Activity, Domain) -> Multiple Instance Flow.(ID, Activity, Domain)
+--
+    R1026
+    feeds each iterated instance via, 1 Single Instance Flow
+    delivers each iterated instance from, 1c Iterator
+    1 Iteration Instance Flow
+    Iteration Instance Flow.(ID, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
+    Iteration Instance Flow.(Action, Activity, Domain) -> Iterator.(ID, Activity, Domain)
+--
+    R1027
+    Iterator +
+        Extender
+        Sequencer
+    <subclass>.(ID, Activity, Domain) -> Iterator.(ID, Activity, Domain)
+--
+    R1028
+    Extender +
+        Method Extender
+        Type Operation Extender
+    <subclass>.(ID, Activity, Domain) -> Iterator.(ID, Activity, Domain)
+--
+    R1029
+    Sequencer +
+        Reflexive Sequencer
+        Ordinal Sequencer
+        Selection Sequencer
+    <subclass>.(ID, Activity, Domain) -> Sequencer.(ID, Activity, Domain)
+--
+    R1030
+    defines, Mc Ordinal Sequencer
+    is defined by, 1 Ordinal Relationship
+    Ordinal Sequencer.(Ordinal relationship, Domain) -> Ordinal Relationship.(Rnum, Domain)
+--
+    R1031
+    defines, Mc Reflexive Sequencer
+    is defined by, 1 Asymmetric Perspective
+    Reflexive Sequencer.(Side, Reflexive perspective, Domain) -> Asymmetric Perspective.(Side, Rnum, Domain)
+--
+    R1032
+    sorts input for, Mc Selection Sequencer
+    has input sorted by, Mc Attribute
+    1 Sorting Attribute
+    Sorting Attribute.(Sequencer, Activity, Domain) -> Selection Sequencer.(ID, Activity, Domain)
+    Sorting Attribute.(Attribute, Class, Domain) -> Attribute.(Name, Class, Domain)
+--
+    OR1033
+    sorts before / sorts after, Sorting Attribute
+    Sort order : I2
+--
+    R1034
+    adds attribute computed by, 1 Method Call
+    computes attribute value for, 1c Method Extender
+    Method Extender.(Method call, Activity, Domain) -> Method Call.(ID, Activity, Domain)
+--
+    R1035
+    adds attribute computed by, 1 Type Operation
+    computes attribute value for, 1c Type Operation Extender
+    Type Operation Extender.(Type operation, Activity, Domain) -> Type Operation.(ID, Activity, Domain)
+--
