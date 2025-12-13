@@ -4,23 +4,25 @@ presentation default
 orientation landscape
 color recycle bin
 sheet A2
-padding l50 b250
+padding l100 b200
 frame Model Integration Diagram
 frame_presentation default
 nodes
     Iterator 6-7,6
-    Extender 5,4
+    Extender 5,3
     Sequencer 5,8
     Multiple Instance Flow/2 6-7,3
     Single Instance Flow/2 6-7,9
+    Scalar Flow 5,1
     Iterated Instance Flow/2 7-8,7-8
     Ordinal Sequencer/2 3-4,7
     Reflexive Sequencer/2 3-4,8
     Selection Sequencer/2 3-4,9
-    Method Extender/2 3-4,3
-    Method Call 1,3
-    Type Operation Extender/2 3-4,5
-    Type Operation 1,5
+    Method Extender/2 3-4,2
+    Method Call 1,2
+    Table Flow 5,5
+    Type Operation Extender/2 3-4,4
+    Type Operation 1,4
     Ordinal Relationship/2 1,7
     Asymmetric Perspective/2 1,8
     Attribute 1,9
@@ -37,3 +39,5 @@ connectors
     +OR1033.2 : -/1 t+2|Sorting Attribute : -/1 r+2|Sorting Attribute : L3R-1 L11R-2
     -R1034 : +/2 b|Method Extender : +/2 t*|Method Call
     -R1035 : +/2 b|Type Operation Extender : +/2 t*|Type Operation
+    -R1036 : +/2 l|Extender : +/2 r*|Scalar Flow
+    -R1037 : +/2 r|Extender : +/2 l*|Table Flow

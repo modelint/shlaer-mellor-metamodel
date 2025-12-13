@@ -2,7 +2,7 @@ metadata
     Title : Iteration Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.11
-    Version : 0.8.0
+    Version : 0.8.1
     /// Creation date : May 20, 2022
     Modification date : December 12, 2025
     Organization : Model Integration, LLC / www.modelint.com
@@ -25,8 +25,10 @@ attributes
 class Extender
 attributes
     ID : Action ID {I, R1027}
-    Activity : Activity Number {I, R1027}
-    Domain : Domain Name {I, R1027}
+    Activity : Activity Number {I, R1027, R1036, R1037}
+    Domain : Domain Name {I, R1027, R1036, R1037}
+    Attribute flow : Flow ID {R1036}
+    Table output : Flow ID {R1037}
 --
 class Iterated Instance Flow
 attributes
@@ -82,6 +84,12 @@ attributes
     Reflexive perspective {R1030c}
     Side : Side {R1030}
 --
+class Scalar Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
+--
 class Selection Sequencer
 attributes
     ID : Action ID {I, R1029}
@@ -109,6 +117,12 @@ attributes
     Activity : Activity Number {I, I2, R1032, OR1033}
     Domain : Domain Name {I, I2, R1032, OR1033}
     Ascending : Boolean
+--
+class Table Flow <import:Flow>
+attributes
+    Flow {I}
+    Activity {I}
+    Domain {I}
 --
 class Type Operation <import:Type>
 attributes
@@ -185,4 +199,14 @@ relationships
     adds attribute computed by, 1 Type Operation
     computes attribute value for, 1c Type Operation Extender
     Type Operation Extender.(Type operation, Activity, Domain) -> Type Operation.(ID, Activity, Domain)
+--
+    R1036
+    provides attribute value to, Mc Extender
+    gets attribute value from, 1 Scalar Flow
+    Extender.(Attribute flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1037
+    creates relation in, 1 Table Flow
+    conveys relation created by, 1c Extender
+    Extender.(Table output, Activity, Domain) -> Table Flow.(ID, Activity, Domain)
 --
