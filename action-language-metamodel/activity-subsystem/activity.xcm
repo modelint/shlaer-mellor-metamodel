@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 2.4.1
+    Version : 2.5.4
     /// Creation date : August 13, 2022
-    Modification date : September 16, 2025
+    Modification date : December 29, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -19,9 +19,9 @@ class Activity Input
 attributes
     Parameter : Parameter Name {I, R842}
     Signature : Signature Number {I, R842}
-    Activity : Activity Number {I, I2, R842, R833}
-    Domain : Domain Name {I, I2, R842, R833}
-    Flow : Flow ID {I2, R842, R833}
+    Activity : Activity Number {I, R842, R833}
+    Domain : Domain Name {I, R842, R833}
+    Input flow : Flow ID {R833}
 --
 class Data Flow <import:Flow>
 attributes
@@ -34,25 +34,25 @@ attributes
     Anum : Activity Number {I, R840}
     Domain : Domain Name {I, R840}
 --
-class External Event Specification
-attributes
-    Name : Event Name {I}
-    Class : Type Name {I, R36}
-    Domain : Domain Name {I, I2, R36, R826}
-    Signature : Signature Number {I2, R826}
---
 class External Signature
 attributes
     SIGnum : Signature Number {I, R837}
     Domain : Domain Name {I, R837}
 --
+class Initial Signal Action <import:Signal Action>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
 class Initialization Source
 attributes
-    Source flow : Flow ID {I, R843}
-    Delegating activity : Activity Number {I, R843c}
-    Creation activity : Activity Number {I, R843, R844}
-    Local flow : Flow ID {R844}
+    Signal action : Action ID {I, R843}
+    Signal activity : Activity Number {I, R843c}
     Domain : Domain Name {I, R843, R844}
+    Creation activity : Activity Number {I, R843, R844}
+    Source flow : Flow ID {I, R843}
+    Local flow : Flow ID {R844}
 --
 class Lifecycle Activity
 attributes
@@ -86,7 +86,7 @@ attributes
     Name : Parameter Name {I}
     Signature : Signature Number {I, R828}
     Domain : Domain Name {I, R828, R827}
-    Type : Type Name {R827}
+    Type : Type Name {R827c}
 --
 class Real State Activity
 attributes
@@ -102,6 +102,13 @@ class Single Assigner Activity
 attributes
     Anum : Activity Number {I, R834}
     Domain : Domain Name {I, R834}
+--
+class Signaled Creation
+attributes
+    Signal action : Action ID {I, R845}
+    Signal activity : Activity Number {I, R845}
+    Domain : Domain Name {I, R845}
+    Creation activity : Activity Number {R845}
 --
 class Single Instance Flow <import:Flow>
 attributes
@@ -123,8 +130,8 @@ class Synchronous Output
 attributes
     Anum : Activity Number {I, R829, R831}
     Domain : Domain Name {I, R829, R831}
+    Type : Type Name {R829c}
     Output flow : Flow ID {R831}
-    Type : Type Name {R829}
 --
 class Type <import:Type>
 attributes
@@ -137,11 +144,6 @@ relationships
         State Activity
         Method
     <subclass>.(Anum, Domain) -> Activity.(Anum, Domain)
---
-    R826
-    specifies required input with, 1 External Signature
-    defines input into, 1 External Event
-    External Event.(Signature, Domain) -> External Signature.(SIGnum, Domain)
 --
     R827
     constrains input to, Mc Parameter
@@ -173,7 +175,7 @@ relationships
     R833
     provides value for, 1c Activity Input
     gets value from, 1 Data Flow
-    Activity Input.(Flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    Activity Input.(Input flow, Activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R834
     Real State Activity +
@@ -218,14 +220,21 @@ relationships
     Activity Input.(Activity, Domain) -> Activity.(Anum, Domain)
 --
     R843
-    requires initializaiton data in, Mc Data Flow
-    carries initialization data for, Mc Delegated Creation Activity
+    requires initialization data in, Mc Data Flow
+    holds initialization data required by, Mc Signaled Creation
     1 Initialization Source
-    Initialization Source.(Creation activity, Domain) -> Delegated Creation Activity.(Anum, Domain)
-    Initialization Source.(Source flow, Delegating activity, Domain) -> Data Flow.(ID, Activity, Domain)
+    Initialization Source.(Signal action, Signal activity, Domain) -> Signaled Creation.(Signal action, Signal activity, Domain)
+    Initialization Source.(Source flow, Signal activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R844
-    copies data from, 1 Data Flow
-    has data copied to, Mc Initialization Source
+    recieves initialiation data from, 1 Data Flow
+    supplies initialiation data to, Mc Initialization Source
     Initialization Source.(Local flow, Creation activity, Domain) -> Data Flow.(ID, Activity, Domain)
+--
+    R845
+    signals, 1 Delegated Creation Activity
+    is signaled by, Mc Initial Signal Action
+    1 Signaled Creation
+    Signaled Creation.(Signal action, Signal activity, Domain) -> Initial Signal Action.(ID, Activity, Domain)
+    Signaled Creation.(Creation activity, Domain) -> Delegated Creation Activity.(Anum, Domain)
 --
