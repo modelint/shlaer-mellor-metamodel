@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 2.5.4
+    Version : 2.5.5
     /// Creation date : August 13, 2022
-    Modification date : December 29, 2025
+    Modification date : December 30, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -227,8 +227,8 @@ relationships
     Initialization Source.(Source flow, Signal activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R844
-    recieves initialiation data from, 1 Data Flow
-    supplies initialiation data to, Mc Initialization Source
+    gets initialization data from, 1 Data Flow
+    feeds initialization data into, Mc Initialization Source
     Initialization Source.(Local flow, Creation activity, Domain) -> Data Flow.(ID, Activity, Domain)
 --
     R845
