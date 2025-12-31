@@ -1,0 +1,126 @@
+metadata
+    Title : Type Subsystem / Shlaer-Mellor Metamodel
+    Author : Leon Starr
+    Document ID : mint.sm-meta.action.td.15
+    Version : 0.6.5
+    /// Creation date : June 20, 2023
+    Modification date : October 3, 2025
+    Organization : Model Integration, LLC / www.modelint.com
+    Copyright notice > MIT
+    Organization logo > mint
+domain Metamodel, META
+subsystem Type, TYPE 1125-1149
+class Attribute <import:Class Attribute>
+attributes
+    Name {I, R1129}
+    Class {I, R1129}
+    Domain {I, R1129}
+--
+class Class <import:Class Attribute>
+attributes
+    Name {I}
+    Domain {I}
+--
+class Model Attribute
+attributes
+    Name : Attribute Name {I}
+    Non scalar type : Type Name {I}
+    Domain : Domain Name {I}
+--
+class Scalar
+attributes
+    Name : Type Name {I, R1125}
+    Domain : Domain Name {I, R1125}
+--
+class Scalar Flow <import:Flow>
+attributes
+    ID {I}
+    Activity {I}
+    Domain {I}
+--
+class Selector
+attributes
+    ID : Action ID {I, R1133}
+    Activity : Activity Number {I, R1133}
+    Domain : Domain Name {I, R1133}
+    Value : Value Representation
+--
+class Table
+attributes
+    Name : Type Name {I, R1125}
+    Domain : Domain Name {I, R1125}
+--
+class Table Attribute
+attributes
+    Name : Attribute Name {I, R1129}
+    Table : Type Name {I, R1127, R1129}
+    Domain : Domain Name {I, R1127, R1128, R1129}
+    Scalar : Type Name {R1128}
+--
+class Type
+attributes
+    Name : Type Name {I}
+    Domain : Domain Name {I, R17}
+--
+class Type Action
+attributes
+    ID : Action ID {I, R901}
+    Activity : Activity Number {I, R901, R1130}
+    Domain : Domain Name {I, R901, R1130, R1131}
+    Scalar : Type Name {R1131}
+    Output flow : Flow ID {R1130}
+--
+class Type Operation
+attributes
+    ID : Action ID {I, R1133}
+    Activity : Activity Number {I, R1133}
+    Domain : Domain Name {I, R1133}
+    Name : Type Operation Name
+    Input flow : Flow ID {R1132}
+--
+relationships
+    R1125
+    Type +
+        Scalar
+        Class
+        Table
+    <subclass>.(Name, Domain) -> Type.(Name, Domain)
+--
+    R1127
+    defines, Mc Table Attribute
+    is defined in, 1 Table
+    Table Attribute.(Table, Domain) -> Table.(Name, Domain)
+--
+    R1128
+    holds value defined by, 1 Scalar Type
+    specifies values in, Mc Table Attribute
+    Table Attribute.(Scalar, Domain) -> Scalar.(Name, Domain)
+--
+    R1129
+    Model Attribute +
+        Attribute
+        Table Attribute
+    Attribute.(Name, Class, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+    Table Attribute.(Name, Table, Domain) -> Model Attribute.(Name, Non scalar type, Domain)
+--
+    R1130
+    outputs, 1 Scalar Flow
+    is output by, 1c Type Action
+    Type Action.(Output flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1131
+    operates on, 1 Scalar
+    is operated on by, Mc Type Action
+    Type Action.(Scalar, Domain) -> Scalar.(Name, Domain)
+--
+    R1132
+    inputs, 1 Scalar Flow
+    is input by, Mc Type Operation
+    Type Operation.(Input flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
+--
+    R1133
+    Type Action +
+        Type Operation
+        Selector
+    <subclass>.(ID, Activity, Domain) -> Type Action.(ID, Activity, Domain)
+--
