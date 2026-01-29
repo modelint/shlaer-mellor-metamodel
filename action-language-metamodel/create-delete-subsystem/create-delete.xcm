@@ -1,10 +1,10 @@
 metadata
-    Title : Create Delete Subsystem / Shlaer-Mellor Metamodel
+    Title : (Partial) Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
-    Document ID : mint.sm-meta.action.td.9
-    Version : 2.1.2
+    Document ID : mint.sm-meta.action.td.9c
+    Version : 2.3.4
     /// Creation date : November 07, 2021
-    Modification date : April 25, 2025
+    Modification date : August 4, 2025
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -21,17 +21,8 @@ attributes
     Create action : Action ID {I, R978}
     Activity : Activity Number {I, R978}
     Attribute : Attribute Name {I, R978}
-    Class : Class Name {I, R978}
+    Class : Type Name {I, R978}
     Domain : Domain Name {I, R978}
---
-class Attribute Reference <import:Class Attribute>
-attributes
-    From attribute : Attribute Name {I}
-    From class : Class Name {I}
-    To attribute : Attribute Name {I}
-    To class : Class Name {I}
-    Domain {I}
-    Rnum : Relationshiop Number {I}
 --
 class Class <import:Classes And Attributes>
 attributes
@@ -40,226 +31,94 @@ attributes
 --
 class Create Action
 attributes
-    Action : Action ID {I, R901}
+    ID : Action ID {I, R901}
     Activity : Activity Number {I, R901}
     Domain : Domain Name {I, R901}
---
-class Create In State
-attributes
-    Create action : Action ID {I, R977}
-    Activity : Activity Number {I, R977}
-    Class : Class Name {I, R977c}
-    Domain : Domain Name {I, R977}
-    State : State Name {I, R977}
 --
 class Default Initialization
 attributes
     Create action : Action ID {I, R980}
     Activity : Activity Number {I, R980}
     Attribute : Attribute Name {I, R980}
-    Class : Class Name {I, R980}
+    Class : Type Name {I, R980}
     Domain : Domain Name {I, R980}
+    Initial value specified : Boolean
 --
 class Delegated Create Action
 attributes
-    Action : Action ID {I, R976}
+    ID : Action ID {I, R976}
     Activity : Activity Number {I, R976}
     Domain : Domain Name {I, R976, R984}
 --
-class Delegated Facet Instantiation
-attributes
-    Rnum : Relationshiop Number {I, R981}
-    Class : Class Name {I, R981}
-    Create action : Action ID {I, R981}
-    Activity : Activity Number {I, R981}
-    Domain : Domain Name {I, R981}
---
 class Delete Action
 attributes
-    Action : Action ID {I, R901}
+    ID : Action ID {I, R901}
     Activity : Activity Number {I, R901}
     Domain : Domain Name {I, R901}
---
-class Deletion Flow
-attributes
     Flow : Flow ID {I, R983}
-    Activity : Activity Number {I, R983}
-    Domain : Domain Name {I, R983}
-    Action : Action ID {R983}
 --
 class Explicit Initialization
 attributes
     Create action : Action ID {I, R980}
     Activity : Activity Number {I, R980, R984}
     Attribute : Attribute Name {I, R980}
-    Class : Class Name {I, R980}
+    Class : Type Name {I, R980}
     Domain : Domain Name {I, R980, R984}
     Initial value flow : Flow ID {R984}
 --
-class Facet <import:Relationship>
-attributes
-    Rnum : Relationshiop Number {I}
-    Class : Class Name {I}
-    Domain : Domain Name {I}
---
-class Facet Create In State
-attributes
-    Create action : Action ID {I, R988}
-    Activity : Activity Number {I, R988}
-    Class : Class Name {I, R988c}
-    Domain : Domain Name {I, R988}
-    State : State Name {I, R988}
---
-class Facet Instantiation
-attributes
-    Rnum : Relationship Number {I, R991}
-    Class : Class Name {I, R991}
-    Create action : Action ID {I, R991}
-    Activity : Activity Number {I, R991}
-    Domain : Domain Name {I, R991}
---
-class Facet Instantiation Reference
-attributes
-    Action : Action ID {I, R993}
-    Activity : Activity Number {I, R993}
-    Domain : Domain Name {I, R993}
-    Rnum : Relationshiop Number {R993}
-    Class : Class Name {R993}
---
-class Initializing Attribute Reference
-attributes
-    Create action : Action ID {I, R985}
-    Activity : Activity Number {I, R985}
-    From attribute : Attribute Name {I, R985}
-    From class : Class Name {I, R985}
-    To attribute : Attribute Name {I, R985}
-    To class : Class Name {I, R985}
-    Rnum : Relationship Number {I, R985}
-    Domain : Domain Name {I, R985}
---
-class Initializing Instance Reference
-attributes
-    Create action : Action ID {I, R982}
-    Activity : Activity Number {I, R982}
-    From attribute : Attribute Name {I, R982}
-    From class : Class Name {I, R982}
-    To attribute : Attribute Name {I, R982}
-    To class : Class Name {I, R982}
-    Rnum : Relationshiop Number {I, R982}
-    Domain : Domain Name {I, R982}
-    Flow : Flow ID {R982}
---
 class Instance Flow <import:Flow>
 attributes
-    Flow : Flow ID {I}
-    Activity : Activity Number {I}
-    Domain : Domain Name {I}
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
 class Instance Initialization
 attributes
     Create action : Action ID {I, R975}
     Activity : Activity Number {I, R975}
-    Class : Class Name {I, R975}
+    Class : Type Name {I, R975}
     Domain : Domain Name {I, R975}
---
-class Lineage <import:Relationship>
-attributes
-    Lnum {I}
-    Domain : Domain Name {I}
 --
 class Local Create Action
 attributes
-    Action : Action ID {I, R976}
-    Activity : Activity Number {I, R976}
-    Domain : Domain Name {I, R976}
+    ID : Action ID {I, R976}
+    Activity : Activity Number {I, I2, R976, R979}
+    Domain : Domain Name {I, I2, R976, R979}
+    New instance flow : Flow ID {I2, R979}
 --
-class Local Facet Instantiation
+class Single Instance Flow <import:Flow>
 attributes
-    Rnum : Relationshiop Number {I, R981}
-    Class : Class Name {I, R981}
-    Create action : Action ID {I, R981}
-    Activity : Activity Number {I, R981}
-    Domain : Domain Name {I, R981}
---
-class Migrate Action
-attributes
-    Action : Action ID {I, R901}
-    Activity : Activity Number {I, R901, R996, R997}
-    Domain : Domain Name {I, R901, R996, R997}
-    Instances to migrate : Action ID {R996}
-    Create action : Action ID {R997}
---
-class Multiple Create Action
-attributes
-    Action : Action ID {I}
-    Activity : Activity Number {I}
-    Domain : Domain Name {I, R990}
-    Lnum : Lineage Number {R990}
---
-class Multiple Delegated Create Action
-attributes
-    Action : Action ID {I, R986, R989, R992}
-    Activity : Activity Number {I, R986, R989, R992}
-    Domain : Domain Name {I, R986, R989, R992}
-    Rnum : Relationshiop Number {R992}
-    Class : Class Name {R992}
---
-class Multiple Local Create Action
-attributes
-    Action : Action ID {I, R987, R989}
-    Activity : Activity Number {I, R987, R989}
-    Domain : Domain Name {I, R987, R989}
---
-class New Instance Flow
-attributes
-    Create action : Action ID {I, R979}
-    Flow : Flow ID {I2}
-    Activity : Activity Number {I, I2, R979}
-    Domain : Domain Name {I, I2, R979}
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
 class Reference Initialization
 attributes
     Create action : Action ID {I, R980}
     Activity : Activity Number {I, R980}
     Attribute : Attribute Name {I, R980}
-    Class : Class Name {I, R980}
+    Class : Type Name {I, R980}
     Domain : Domain Name {I, R980}
+--
+class Reference Value Input
+attributes
+    Flow : Flow ID {I, R977}
+    Activity : Activity Number {I, R977}
+    Domain : Domain Name {I, R977}
+    Create action : Action ID {I, R977}
+    Attribute : Attribute Name {I, R977}
+    Class : Type Name {I, R977}
 --
 class Scalar Flow <import:Flow>
 attributes
-    Flow : Flow ID {I}
-    Activity : Activity Number {I}
-    Domain : Domain Name {I}
+    ID {I}
+    Activity {I}
+    Domain {I}
 --
-class Single Create Action
+class Tuple Flow <import:Flow>
 attributes
-    Action : Action ID {I, R987}
-    Activity : Activity Number {I, R987}
-    Domain : Domain Name {I, R987, R995}
-    Class : Class Name {R995}
---
-class Single Delegated Create Action
-attributes
-    Action : Action ID {I, R986}
-    Activity : Activity Number {I, R986}
-    Domain : Domain Name {I, R986}
---
-class Single Instance Flow <import:Flow>
-attributes
-    Flow : Flow ID {I}
-    Activity : Activity Number {I}
-    Domain : Domain Name {I}
---
-class Single Local Create Action
-attributes
-    Action : Action ID {I, R987}
-    Activity : Activity Number {I, R987}
-    Domain : Domain Name {I, R987}
---
-class Non Deletion State <import:State>
-attributes
-    Name {I}
-    State model {I}
+    ID {I}
+    Activity {I}
     Domain {I}
 --
 relationships
@@ -268,20 +127,20 @@ relationships
     has attributes initialized by, Mc Create Action
     1 Instance Initialization
     Instance Initialization.(Class, Domain) -> Class.(Name, Domain)
-    Instance Initialization.(Create action, Activity, Domain) -> Create Action.(Action, Activity, Domain)
+    Instance Initialization.(Create action, Activity, Domain) -> Create Action.(ID, Activity, Domain)
 --
     R976
     Create Action +
         Delegated Create Action
         Local Create Action
-    <subclass>.(Action, Activity, Domain) -> Create Action.(Action, Activity, Domain)
+    <subclass>.(ID, Activity, Domain) -> Create Action.(ID, Activity, Domain)
 --
     R977
-    creates in, 1c Non Deletion State
-    is initial by, Mc Local Create Action
-    1 Create In State
-    Create In State.(Create action, Activity, Domain) -> Single Local Create Action.(Action, Activity, Domain)
-    Create In State.(State, Class, Domain) -> Non Deletion State.(Name, State model, Domain)
+    gets value from, M Tuple Flow
+    supplies value for, Mc Reference Initialization
+    1 Reference Value Input
+    Reference Value Input.(Flow, Activity, Domain) -> Tuple Flow.(ID, Activity, Domain)
+    Reference Value Input.(Create action, Attribute, Class, Activity, Domain) -> Reference Initialization.(Create action, Attribute, Class, Activity, Domain)
 --
     R978
     is initialized for, Mc Instance Initialization
@@ -291,9 +150,9 @@ relationships
     Attribute Initialization.(Create action, Activity, Class, Domain) -> Instance Initialization.(Create action, Activity, Class, Domain)
 --
     R979
-    yields new instance reference in, 1c New Instance Flow
-    conveys reference to new instance produced by, 1 Local Create Action
-    New Instance Flow.(Create action, Activity, Domain) -> Loca Create Action.(Action, Activity, Domain)
+    yields new instance reference in, 1 Single Instance Flow
+    conveys reference to new instance produced by, 1c Local Create Action
+    Local Create Action.(New instance flow, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R980
     Attribute Initialization +
@@ -302,115 +161,13 @@ relationships
         Default Initialization
     <subclass>.(Create action, Activity, Attribute, Class, Domain) -> Attribute Initialization.(Create action, Activity, Attribute, Class, Domain)
 --
-    R981
-    Facet Initialization +
-        Local Facet Initialization
-        Delegated Facet Initialization
-    <subclass>.(Rnum, Class, Create action, Activity, Domain) -> Facet Instantiation.(Rnum, Class, Create action, Activity, Domain)
---
-    R982
-    provides referenced instance for, Mc Initializing Attribute Reference
-    takes value from instance in, 1 Single Instance Flow
-    1 Initializing Instance Reference
-    Initializing Instance Reference.(Flow, Activity, Domain) -> Single Instance Flow.(Flow, Activity, Domain)
-    Initializing Instance Reference.(Create action, Activity, From attribute, From class, To attribute, To class, Rnum, Domain) -> Initializing Attribute Reference.(Create action, Activity, From attribute, From class, To attribute, To class, Rnum, Domain)
---
     R983
-    deletes instances referenced in, M Instance Flow
+    deletes instances referenced in, 1 Instance Flow
     is source of instances to, 1c Delete Action
-    1 Deletion Flow
-    Deletion Flow.(Flow, Activity, Domain) -> Instance Flow.(Flow, Activity, Domain)
-    Deletion Flow.(Action, Activity, Domain) -> Delete Action.(Action, Activity, Domain)
+    Deletion Action.(Flow, Activity, Domain) -> Instance Flow.(ID, Activity, Domain)
 --
     R984
     supplies value for, Mc Explicit Initialization
     gets value from, 1 Scalar Flow
-    Explicit Initialization.(Initial value flow, Activity, Domain) -> Scalar Flow.(Flow, Activity, Domain)
---
-    R985
-    finds value across, M Attribute Reference
-    leads to value used for, Mc Reference Initialization
-    1 Initializing Attribute Reference
-    Initializing Attribute Reference.(Create action, Activity, From attribute, From class, Domain) ->
-        Reference Initialization.(Create action, Activity, Attribute, Class, Domain)
-    Initializing Attribute Reference.(From attribute, From class, To attribute, To class, Domain, Rnum) ->
-        Attribute Reference.(From attribute, From class, To attribute, To class, Domain, Rnum)
---
-    R986
-    Delegated Create Action +
-        Single Delegated Create Action
-        Multiple Delegated Create Action
-    <subclass>.(Action, Activity, Domain) -> Delegated Create Action.(Action, Activity, Domain)
---
-    R987
-    Local Create Action +
-        Single Local Create Action
-        Multiple Local Create Action
-    <subclass>.(Action, Activity, Domain) -> Local Create Action.(Action, Activity, Domain)
---
-    R988
-    creates in, 1c Non Deletion State
-    is initial by, Mc Local Facet Instantiation
-    1 Facet Create In State
-    Facet Create In State.(Rnum, Class, Create action, Activity, Domain) ->
-        Local Facet Instantiation.(Rnum, Class, Create action, Activity, Domain)
-    Facet Create In State.(State, Class, Domain) ->
-        Non Deletion State.(Name, State model, Domain)
---
-    R989
-    Multiple Create Action +
-        Multipl Delegated Create Action
-        Multiple Local Create Action
-    <subclass>.(Action, Activity, Domain) -> Multiple Create Action.(Action, Activity, Domain)
---
-    R990
-    instantiates, 1 Lineage
-    is instantiated by, Mc Multiple Create Action
-    Multiple Create Action.(Lnum, Domain) -> Lineage.(Lnum, Domain)
---
-    R991
-    instantiates, M Facet
-    is instantiated by, Mc Multiple Create Action
-    1 Facet Instantiation
-    Facet Instantiation.(Rnum, Class, Domain) -> Facet.(Rnum, Class, Domain)
-    Facet Instantiation.(Create action, Activity, Domain) -> Multiple Create Action.(Action, Activity, Domain)
---
-    R992
-    sends initial event to, 1 Facet Instantiation
-    gets initial event from, 1c Multiple Delegated Create Action
-    Multiple Delegated Create Action.(Action, Activity, Rnum, Class, Domain) ->
-        Facet Instantiation.(Create Action, Activity, Rnum, Class, Domain)
---
-    R993
-    designates output reference to, 1c Facet Instantiation
-    is designated as referenced output of, 1c Multiple Local Create Action
-    1 Facet Instantiation Reference
-    Facet Instantiation Reference.(Rnum, Class, Create action, Activity, Domain) ->
-        Facet Instantiation.(Rnum, Class, Create action, Activity, Domain)
-    Facet Instantiation Reference.(Create action, Activity, Domain) ->
-        Multiple Local Create Action.(Action, Activity, Domain)
---
-    R994
-    Single Create Action +
-        Single Delegated Create Action
-        Single Local Create Action
-    Facet Instantiation Reference.(Rnum, Class, Create action, Activity, Domain) ->
-        Facet Instantiation.(Rnum, Class, Create action, Activity, Domain)
-    Facet Instantiation Reference.(Create action, Activity, Domain) ->
-        Multiple Local Create Action.(Action, Activity, Domain)
---
-    R995
-    creates instance of, 1 Class
-    is instantiated by, Mc Single Create Action
-    Single Create Action.(Class, Domain) -> Class.(Name, Domain)
---
-    R996
-    applies, 1 Multiple Local Create Action
-    is applied by, 1c Migrate Action
-    Migrate Action.(Create action, Activity, Domain) -> Multiple Local Create Action.(Action, Activity, Domain)
---
-    R997
-    migrates instances in, 1 Instance Flow
-    provides instances to migrate to, 1c Migrate Action
-    Migrate Action.(Instances to migrate, Activity, Domain) -> Instance Flow.(Flow, Activity, Domain)
+    Explicit Initialization.(Initial value flow, Activity, Domain) -> Scalar Flow.(ID, Activity, Domain)
 --
