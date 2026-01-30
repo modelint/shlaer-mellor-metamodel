@@ -27,7 +27,7 @@ nodes
 connectors
     +R975 : -/2 t|Create Action : -/1 b*|Class, r|Instance Initialization
     +R976-1 : r|Create Action { l|Delegated Create Action, l|Local Create Action : L8R+1 }
-    +R977 : +/1 b|Reference Initialization : +/1 t*|Tuple Flow, r|Reference Value Input
+    -R977 : +/1 b|Reference Initialization : +/1 t*|Tuple Flow
     +R978 : -/1 l|Instance Initialization : +/2 r*|Attribute, t|Attribute Initialization
     -R979 : +/3 t|Local Create Action : +/3 b*|Single Instance Flow
     +R980 : b|Attribute Initialization { t|Explicit Initialization, t|Reference Initialization, t|Default Initialization }

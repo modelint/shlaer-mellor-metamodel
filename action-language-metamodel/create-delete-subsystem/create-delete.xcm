@@ -2,9 +2,9 @@ metadata
     Title : (Partial) Create Delete Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.9c
-    Version : 2.3.4
+    Version : 2.4.0
     /// Creation date : November 07, 2021
-    Modification date : August 4, 2025
+    Modification date : January 30, 2026
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -95,19 +95,11 @@ attributes
 class Reference Initialization
 attributes
     Create action : Action ID {I, R980}
-    Activity : Activity Number {I, R980}
+    Activity : Activity Number {I, R980, R977}
     Attribute : Attribute Name {I, R980}
     Class : Type Name {I, R980}
-    Domain : Domain Name {I, R980}
---
-class Reference Value Input
-attributes
-    Flow : Flow ID {I, R977}
-    Activity : Activity Number {I, R977}
-    Domain : Domain Name {I, R977}
-    Create action : Action ID {I, R977}
-    Attribute : Attribute Name {I, R977}
-    Class : Type Name {I, R977}
+    Domain : Domain Name {I, R980, R977}
+    Initial value flow : Flow ID {R977}
 --
 class Scalar Flow <import:Flow>
 attributes
@@ -136,11 +128,9 @@ relationships
     <subclass>.(ID, Activity, Domain) -> Create Action.(ID, Activity, Domain)
 --
     R977
-    gets value from, M Tuple Flow
+    gets value from, 1 Tuple Flow
     supplies value for, Mc Reference Initialization
-    1 Reference Value Input
-    Reference Value Input.(Flow, Activity, Domain) -> Tuple Flow.(ID, Activity, Domain)
-    Reference Value Input.(Create action, Attribute, Class, Activity, Domain) -> Reference Initialization.(Create action, Attribute, Class, Activity, Domain)
+    Reference Initialization.(Initial value flow, Activity, Domain) -> Tuple Flow.(ID, Activity, Domain)
 --
     R978
     is initialized for, Mc Instance Initialization
