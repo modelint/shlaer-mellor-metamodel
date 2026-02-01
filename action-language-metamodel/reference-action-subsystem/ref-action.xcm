@@ -2,9 +2,9 @@ metadata
     Title : Reference Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.4
-    Version : 0.8.0
+    Version : 0.8.1
     /// Creation date : November 07, 2021
-    Modification date : Octovber 22, 2025
+    Modification date : February 1, 2026
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -140,18 +140,18 @@ relationships
     Referenced Instance.(Flow, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R786
-    creates reference to, 1 Target Ref Instance
-    is created by, 1 Target Ref Instance
+    sets reference to, 1 Target Ref Instance
+    reference is set by, 1 Target Ref Instance
     New Simple Reference Action.(Target instance, Activity, Domain) -> Target Ref Instance.(Flow, Activity, Domain)
 --
     R787
-    creates reference to, 1 T Ref Instance
-    is created by, 1 Associative Reference Action
+    sets reference to, 1 T Ref Instance
+    reference is set by, 1 Associative Reference Action
     Associative Reference Action.(T instance, Activity, Domain) -> T Ref Instance.(Flow, Activity, Domain)
 --
     R788
-    creates reference to, 1 P Ref Instance
-    is created by, 1 Associative Reference Action
+    sets reference to, 1 P Ref Instance
+    reference is set by, 1 Associative Reference Action
     Associative Reference Action.(P instance, Activity, Domain) -> P Ref Instance.(Flow, Activity, Domain)
 --
     R789

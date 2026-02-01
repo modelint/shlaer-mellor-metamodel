@@ -31,9 +31,9 @@ connectors
     +R783 : b|New Reference Action { t|New Simple Reference Action, t|New Associative Reference Action }
     +R784 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|From Ref Instance, b|To Ref Instance }
     -R785 : +/2 l|Referenced Instance : +/1 r*|Single Instance Flow
-    -R786 : +/1 b|New Simple Reference Action : +/2 t*|Target Ref Instance
-    -R787 : +/1 l|New Associative Reference Action : -/2 t|T Ref Instance
-    +R788 : +/1 r|New Associative Reference Action : +/2 t|P Ref Instance
+    +R786 : -/1 b|New Simple Reference Action : -/1 t*|Target Ref Instance
+    -R787 : +/1 l|New Associative Reference Action : -/1 t|T Ref Instance
+    +R788 : +/1 r|New Associative Reference Action : +/1 t|P Ref Instance
     -R789 : +/2 l|Update Reference Action : -/2 t|From Ref Instance
     +R790 : +/2 r|Update Reference Action : +/2 t|To Ref Instance
     +R791 : -/2 b*|Tuple Flow : -/2 t|New Reference Action
