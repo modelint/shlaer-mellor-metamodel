@@ -2,7 +2,7 @@ metadata
     Title : Reference Action Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.4
-    Version : 0.8.1
+    Version : 0.8.2
     /// Creation date : November 07, 2021
     Modification date : February 1, 2026
     Organization : Model Integration, LLC / www.modelint.com
@@ -21,12 +21,12 @@ attributes
     Activity {I}
     Domain {I}
 --
-class From Ref Instance
-attributes
-    Flow : Flow ID {I, R784}
-    Activity : Activity Number {I, R784}
-    Domain : Domain Name {I, R784}
---
+//class From Ref Instance
+//attributes
+//    Flow : Flow ID {I, R784}
+//    Activity : Activity Number {I, R784}
+//    Domain : Domain Name {I, R784}
+//--
 class New Associative Reference Action
 attributes
     ID : Action ID {I, R783}
@@ -130,7 +130,6 @@ relationships
         Target Ref Instance
         T Ref Instance
         P Ref Instance
-        From Ref Instance
         To Ref Instance
     <subclass>.(Flow, Activity, Domain) -> Referenced Instance.(Flow, Activity, Domain)
 --
@@ -155,9 +154,9 @@ relationships
     Associative Reference Action.(P instance, Activity, Domain) -> P Ref Instance.(Flow, Activity, Domain)
 --
     R789
-    updates reference at, 1 From Ref Instance
-    reference is updated by, 1 Update Reference Action
-    Update Reference Action.(From instance, Activity, Domain) -> From Ref Instance.(Flow, Activity, Domain)
+    has reference updated by, Mc Update Reference Action
+    updates reference in, 1 Single Instance Flow
+    Update Reference Action.(From instance, Activity, Domain) -> Single Instance Flow.(ID, Activity, Domain)
 --
     R790
     updates reference to, 1 To Ref Instance
