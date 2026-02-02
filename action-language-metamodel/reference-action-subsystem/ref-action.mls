@@ -26,14 +26,14 @@ nodes
     Tuple Flow 12-13,5
 connectors
     +R781 : b|Reference Action { t+2|New Reference Action, t|Update Reference Action }
-    -R782 : -/2 r|Create Action : +/2 l*|New Reference Action
+    -R782 : +/2 r|Create Action : +/2 l*|New Reference Action
     +R783 : b|New Reference Action { t|New Simple Reference Action, t|New Associative Reference Action }
     +R784 : t|Referenced Instance { b|Target Ref Instance, b|T Ref Instance, b|P Ref Instance, b|To Ref Instance }
     -R785 : +/2 r|Referenced Instance : +/1 l*|Single Instance Flow
     +R786 : -/1 b|New Simple Reference Action : -/1 t*|Target Ref Instance
-    -R787 : +/1 l|New Associative Reference Action : -/1 t|T Ref Instance
-    +R788 : +/1 r|New Associative Reference Action : +/1 t|P Ref Instance
-    -R789 : +/1 r|Update Reference Action : -/1 t|Single Instance Flow
-    +R790 : +/2 b|Update Reference Action : +/2 t*|To Ref Instance
+    +R787 : +/1 l|New Associative Reference Action : -/1 t|T Ref Instance
+    -R788 : +/1 r|New Associative Reference Action : +/1 t|P Ref Instance
+    -R789.2 : +/1 r|Update Reference Action : +/1 t|Single Instance Flow
+    -R790 : +/1 b|Update Reference Action : +/1 t*|To Ref Instance
     +R791 : -/2 b*|Tuple Flow : -/2 t|New Reference Action
     -R792 : +/2 t|Reference Action : +/2 b*|Association
