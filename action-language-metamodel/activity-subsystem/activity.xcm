@@ -2,9 +2,9 @@ metadata
     Title : Activity Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.action.td.12
-    Version : 2.5.5
+    Version : 2.5.6
     /// Creation date : August 13, 2022
-    Modification date : December 30, 2025
+    Modification date : April 9, 2026
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -23,6 +23,11 @@ attributes
     Domain : Domain Name {I, R842, R833}
     Input flow : Flow ID {R833}
 --
+class Creation Signature
+attributes
+    SIGnum : Signature Number {I, R837}
+    Domain : Domain Name {I, R837}
+--
 class Data Flow <import:Flow>
 attributes
     ID {I}
@@ -32,7 +37,8 @@ attributes
 class Delegated Creation Activity
 attributes
     Anum : Activity Number {I, R840}
-    Domain : Domain Name {I, R840}
+    Domain : Domain Name {I, I2, R840}
+    Signature : Signature Number {I2, R830}
 --
 class External Signature
 attributes
@@ -162,6 +168,11 @@ relationships
     Synchronous Output.(Anum, Domain) -> Synchronous Activity.(Anum, Domain)
     Synchronous Output.(Type, Domain) -> Type.(Name, Domain)
 --
+    R830
+    defines input into, 1 Delegated Creation Activity
+    specifies required input with, 1 Creation Signature
+    Delegated Creation Activity.(Signature, Domain) -> Creation Signature.(SIGnum, Domain)
+--
     R831
     yields value in, 1 Data Flow
     transmits value from, 1c Synchronous Output
@@ -192,6 +203,7 @@ relationships
     R837
     Signature +
         State Signature
+        Creation Signature
         Method Signature
         External Signature
     <subclass>.(SIGnum, Domain) -> Signature.(SIGnum, Domain)

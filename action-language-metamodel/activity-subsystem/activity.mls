@@ -20,6 +20,7 @@ nodes
     Initialization Source 2,2-3
     Method 4-5,9
     Method Signature 7,10
+    Creation Signature 7,8 >top
     State Signature 7,11
     External Signature 7,12 >top
     Signature 8,11 >top
@@ -28,22 +29,23 @@ nodes
     Synchronous Output/2 3,10-11
     Type 10-11,9 : 4-5,12
     Data Flow 3,1 : 3,13
-    Single Instance Flow/2 25% 8,2
+    Single Instance Flow/2 25% 8,2 : 2,9-10
     Activity Input 6,13
 connectors
-    +R825 : t|Activity { b|State Activity, b|Method }
+    +R825 : t|Activity { b|State Activity, b-1|Method }
     +R827 : -/2 l|Parameter : -/2 r*|Type
     -R828 : +/1 t|Signature : +/1 b*|Parameter
-    -R829+1 : +/2 r|Method : +/2 l*|Type.2, t|Synchronous Output
+    +R829 : +/2 r|Method : +/2 l*|Type.2, t|Synchronous Output
+    +R830.2 : -/2 r-1|Delegated Creation Activity : +/3 b|Creation Signature
     -R831 : +/1 r|Synchronous Output : +/1 l*|Data Flow.2
-    -R832 : +/1 r|Single Instance Flow : -/2 t-2|Method
+    -R832 : +/3 t*|Single Instance Flow.2 : +/3 b+2|Method
     -R833 : +/1 b|Activity Input : +/1 t*|Data Flow.2
     +R834 : l|Real State Activity { r|Lifecycle Activity, r|Multiple Assigner Activity, r|Single Assigner Activity }
-    +R835 : +/3 l|Method Signature : +/2 t|Method
-    +R837 : b|Signature { t|State Signature, t|Method Signature, t|External Signature }
+    -R835 : +/3 l|Method Signature : -/2 t|Method
+    +R837 : b|Signature { t|State Signature, t|Creation Signature, t|Method Signature, t|External Signature }
     +R838 : +/2 b+2|Single Instance Flow : -/2 l|Lifecycle Activity
     +R839 : -/2 b-2|Single Instance Flow : -/2 l|Multiple Assigner Activity
-    +R840 : l|State Activity { r|Real State Activity, r|Delegated Creation Activity }
+    +R840 : l|State Activity { r|Real State Activity, r+1|Delegated Creation Activity }
     +R842.3 : +/1 b|Activity : +/1 r|Parameter, r|Activity Input : L1 L14
     +R843 : +/2 r|Data Flow : +/2 l*|Signaled Creation, t|Initialization Source
     -R844-2 : -/2 l|Initialization Source : -/2 b|Data Flow
