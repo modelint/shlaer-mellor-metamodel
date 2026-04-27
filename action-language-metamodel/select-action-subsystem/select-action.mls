@@ -3,9 +3,9 @@ notation Starr
 presentation default
 orientation landscape
 color pumpkin
-sheet C
-padding l200 b350
-frame OS Engineer
+sheet A2
+padding l100 b150
+frame Model Integration Diagram
 frame_presentation default
 nodes
     Class Restriction Condition/2 6,8-9
@@ -15,6 +15,7 @@ nodes
     Single Instance Flow/2 4,2
     Multiple Instance Flow/2 4,10
     Zero One Cardinality Select/2 2,4-5 >top
+    Select None/2 2,6 >top
     Selection 8,5-6
     Identifier Select/2 2,3
     Non Scalar Flow 6,3
@@ -26,4 +27,4 @@ connectors
     +R878 : -/2 l|Identifier Select : -/2 r*|Identifier
     -R879 : +/1 l|Single Select : +/1 r*|Single Instance Flow
     -R880 : +/1 r|Many Select : +/1 l*|Multiple Instance Flow
-    +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select }
+    +R882 : b|Single Select { t|Identifier Select, t|Zero One Cardinality Select, t|Select None }
