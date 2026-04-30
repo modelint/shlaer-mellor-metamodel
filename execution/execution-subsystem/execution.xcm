@@ -2,9 +2,9 @@ metadata
     Title : Execution Subsystem / Shlaer-Mellor Metamodel
     Author : Leon Starr
     Document ID : mint.sm-meta.td.18
-    Version : 0.7.1
+    Version : 0.8.0
     Creation date : February 15, 2025
-    Modification date : April 1, 2025
+    Modification date : April 30, 2026
     Organization : Model Integration, LLC / www.modelint.com
     Copyright notice > MIT
     Organization logo > mint
@@ -52,6 +52,14 @@ attributes
     Domain : Domain Name {I, R2008, R2011}
     State machine : State Machine ID {I, R2008, R2011}
 --
+class Delayed Event
+attributes
+    State machine {I, R2013}
+    Event : Event Name {I, R2013}
+    State model : State Model Name {R2013}
+    Domain : Domain Name {I, R2013}
+    Delta : Duration
+--
 class Destination State
 attributes
     State machine {I, R2014}
@@ -66,6 +74,11 @@ attributes
     Effective event : Event Name {R2010}
     State model : State Model Name {R2010}
     Domain : Domain Name {I, R2010}
+--
+class Executing Modeled Domain
+attributes
+    Name : Domain Name {I, R2019}
+    Time remaining : Duration
 --
 class Effective Event <import:Event>
 attributes
@@ -108,6 +121,10 @@ attributes
     Method {I, R2016}
     Class {I, R2016}
     Domain {I, I2, R2016, R2017}
+--
+class Modeled Domain <import:Domain>
+attributes
+    Name {I}
 --
 class Multiple Assigner <import:State>
 attributes
@@ -168,12 +185,6 @@ attributes
     ID : State Machine ID {I}
     Domain : Domain Name {I}
     Current state : State Name {R2000}
---
-class Wave <import:Action>
-attributes
-    Number {I}
-    Anum {I}
-    Domain {I}
 --
 relationships
     R2001
@@ -240,6 +251,13 @@ relationships
     Active Event.(State machine, Domain) -> State Machine.(ID, Domain)
     Active Event.(Event, State machine, Domain) -> Dipatched Event.(ID, State machine Domain)
 --
+    R2013
+    is delayed target of, Mc Effective Event
+    will be dispatched to, Mc State Machine
+    1 Delayed Event
+    Delayed Event.(State machine, Domain) -> State Machine.(ID, Domain)
+    Delayed Event.(Event, State model, Domain) -> Effective Event.(Name, State model, Domain)
+--
     R2014
     will transition to, 1c Real State
     is next state of, Mc State Machine
@@ -275,9 +293,9 @@ relationships
     Action Execution.(Action, Anum, Domain) -> Action.(Action, Anum, Domain)
 --
     R2019
-    is pushing, 1 Wave
-    is being pushed by, Mc Activity Execution
-    Activity Execution.(Wave, Anum, Domain) -> Wave.(Number, Anum, Domain)
+    is executing models as, Mc Executing Modeled Domain
+    is executing models of, 1 Modeled Domain
+    Executing Modeled Domain.Name -> Modeled Domain.Name
 --
     R2020
     Sender +
